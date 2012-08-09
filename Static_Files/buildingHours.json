@@ -1,0 +1,133 @@
+[
+{"building_name":"Brown & Brew" , "phone_number": "(617)627-5747" , "hours": [
+"8:00AM","11:00PM",
+"8:00AM","11:00PM",
+"8:00AM","11:00PM",
+"8:00AM","11:00PM",
+"8:00AM","6:00PM",
+"CLOSED","CLOSED",
+"CLOSED","CLOSED"],
+"latitude":"42.406815",
+"longitude":"-71.11658" }
+,
+{"building_name":"Campus Center" , "phone_number": "N/A" , "hours": [
+"8:00AM","1:00AM",
+"8:00AM","1:00AM",
+"8:00AM","1:00AM",
+"8:00AM","2:00AM",
+"8:00AM","2:00AM",
+"10:00AM","2:00AM",
+"10:00AM","1:00AM"],
+"latitude":"42.405547"  ,
+"longitude":"-71.120259" }
+,
+{"building_name":"Carmichael" , "phone_number": "(617)627-3557" , "hours": [
+"7:15AM","8:00PM",
+"7:15AM","8:00PM",
+"7:15AM","8:00PM",
+"7:15AM","8:00PM",
+"7:15AM","7:30PM",
+"11:00AM","9:00PM",
+"8:00AM","9:00PM"],
+"latitude":"42.408935"  ,
+"longitude":"-71.122951" }
+,
+{"building_name":"Commons Deli & Grill" , "phone_number": "(617)627-3277" , "hours": [
+"11:00AM","MIDNIGHT",
+"11:00AM","MIDNIGHT",
+"11:00AM","MIDNIGHT",
+"11:00AM","MIDNIGHT",
+"11:00AM","2:00AM",
+"11:00AM","2:00AM",
+"11:00AM","MIDNIGHT"],
+"latitude":"42.40559"  ,
+"longitude":"-71.11993" }
+,
+{"building_name":"Cousens Gym" , "phone_number": "N/A" , "hours": [
+"7:00AM","10:30PM",
+"7:00AM","10:30PM",
+"7:00AM","10:30PM",
+"7:00AM","10:30PM",
+"7:00AM","10:30PM",
+"10:00AM","7:00PM",
+"10:00AM","10:30PM"],
+"latitude":"42.408773"  ,
+"longitude":"-71.116541" }
+,
+{"building_name":"Dewick" , "phone_number": "(617)627-3462" , "hours": [
+"8:00AM","9:0PAM",
+"8:00AM","9:0PAM",
+"8:00AM","9:0PAM",
+"8:00AM","9:00PM",
+"8:00AM","7:30PM",
+"8:00AM","7:30PM",
+"11:00AM","9:00PM"],
+"latitude":"42.405166"  ,
+"longitude":"-71.121693" }
+,
+{"building_name":"Hodgdon" , "phone_number": "(617)627-2917" , "hours": [
+"7:30AM","10:00PM",
+"7:30AM","10:00PM",
+"7:30AM","10:00PM",
+"7:30AM","10:00PM",
+"7:30AM","4:00PM",
+"CLOSED","CLOSED",
+"CLOSED","CLOSED"],
+"latitude":"42.405214"  ,
+"longitude":"-71.122139" }
+,
+{"building_name":"Hotung" , "phone_number": "(617)627-3838" , "hours": [
+"8:00AM","10:00PM",
+"8:00AM","10:00PM",
+"8:00AM","10:00PM",
+"8:00AM","1:00AM",
+"8:00AM","1:00AM",
+"10:00AM","1:00AM",
+"10:00AM","10:00PM"],
+"latitude":"42.40558"  ,
+"longitude":"-71.12019" }
+,
+{"building_name":"Jumbo Express" , "phone_number": "(617)627-3531" , "hours": [
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"1:00PM","MIDNIGHT",
+"1:00PM","MIDNIGHT"],
+"latitude":"42.40549"  ,
+"longitude":"-71.12032" }
+,
+{"building_name":"Rez Cafe" , "phone_number": "(508)641-6617" , "hours": [
+"8:00AM","MIDNIGHT",
+"8:00AM","MIDNIGHT",
+"8:00AM","MIDNIGHT",
+"8:00AM","10:00PM",
+"8:00AM","6:00PM",
+"NOON","6:00PM",
+"NOON","MIDNIGHT"],
+"latitude":"42.40556"  ,
+"longitude":"-71.11982" }
+,
+{"building_name":"Tisch" , "phone_number": "(617)627-3460" , "hours": [
+"8:00AM","1:00AM",
+"8:00AM","1:00AM",
+"8:00AM","1:00AM",
+"8:00AM","1:00AM",
+"8:00AM","9:00PM",
+"10:00AM","9:00PM",
+"10:00AM","1:00AM"],
+"latitude":"42.405866"  ,
+"longitude":"-71.118749" }
+,
+{"building_name":"Tower Cafe" , "phone_number": "(617)627-3841" , "hours": [
+"NOON","1:00AM",
+"NOON","1:00AM",
+"NOON","1:00AM",
+"NOON","1:00AM",
+"NOON","7:00PM",
+"NOON","7:00PM",
+"NOON","1:00AM"],
+"latitude":"42.40613"  ,
+"longitude":"-71.11933" }
+]

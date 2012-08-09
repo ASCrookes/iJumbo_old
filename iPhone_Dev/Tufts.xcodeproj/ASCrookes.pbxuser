@@ -1,0 +1,144 @@
+// !$*UTF8*$!
+{
+	8E1E7A00153C835800B126B8 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 8EC508F815ABD8BC005A7B9A /* Tufts */;
+		activeTarget = 8E1E7A08153C835800B126B8 /* Tufts */;
+		codeSenseManager = 8EC5091615ABD8CA005A7B9A /* Code sense */;
+		executables = (
+			8EC508F815ABD8BC005A7B9A /* Tufts */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					356,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 363583676;
+			PBXWorkspaceStateSaveDate = 363583676;
+		};
+		perUserProjectItems = {
+			8EC5090B15ABD8CA005A7B9A /* PBXBookmark */ = 8EC5090B15ABD8CA005A7B9A /* PBXBookmark */;
+			8EC5090C15ABD8CA005A7B9A /* PBXBookmark */ = 8EC5090C15ABD8CA005A7B9A /* PBXBookmark */;
+			8EC5090D15ABD8CA005A7B9A /* PBXTextBookmark */ = 8EC5090D15ABD8CA005A7B9A /* PBXTextBookmark */;
+			8EC5090E15ABD8CA005A7B9A /* PBXBookmark */ = 8EC5090E15ABD8CA005A7B9A /* PBXBookmark */;
+			8EC5090F15ABD8CA005A7B9A /* PBXTextBookmark */ = 8EC5090F15ABD8CA005A7B9A /* PBXTextBookmark */;
+		};
+		sourceControlManager = 8EC5091515ABD8CA005A7B9A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8E1E7A08153C835800B126B8 /* Tufts */ = {
+		activeExec = 0;
+		executables = (
+			8EC508F815ABD8BC005A7B9A /* Tufts */,
+		);
+	};
+	8E1E7A29153C835800B126B8 /* TuftsTests */ = {
+		activeExec = 0;
+	};
+	8EAC19081561DAF90078F5CD /* BuildingAnnotation.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {565, 312}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 434}";
+		};
+	};
+	8EB8632A155B70EF00A88B14 /* BuildingTableViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 364}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 374}";
+		};
+	};
+	8EC508F815ABD8BC005A7B9A /* Tufts */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Tufts;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	8EC5090B15ABD8CA005A7B9A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8E9398461562111B00395602 /* app4.png */;
+	};
+	8EC5090C15ABD8CA005A7B9A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8E7B5F211561865100E9FB7E /* background@2x.png */;
+	};
+	8EC5090D15ABD8CA005A7B9A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8EAC19081561DAF90078F5CD /* BuildingAnnotation.h */;
+		name = "BuildingAnnotation.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 434;
+		vrLoc = 0;
+	};
+	8EC5090E15ABD8CA005A7B9A /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8EB8632A155B70EF00A88B14 /* BuildingTableViewController.h */;
+	};
+	8EC5090F15ABD8CA005A7B9A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8EB8632A155B70EF00A88B14 /* BuildingTableViewController.h */;
+		name = "BuildingTableViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 374;
+		vrLoc = 0;
+	};
+	8EC5091515ABD8CA005A7B9A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	8EC5091615ABD8CA005A7B9A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}

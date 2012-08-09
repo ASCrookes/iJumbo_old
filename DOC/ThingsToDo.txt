@@ -1,0 +1,18 @@
+Immediate Tasks:
+    Documentation, Documentation, Documentation
+    Change output file naming scheme in scrapers to actually make sense 
+
+Ongoing Tasks:
+    Finishing mobile web to having something 
+        to show before having the apps ready
+    Begin looking into platform specific developing (iOS & Android)
+
+Future Tasks:
+    Improve maps
+    Transportation
+	    Joey tracker
+	    info on the T
+	    cab information
+    Campus Organizations? (sports,academic,student run...etc)
+    Course offering ->tufts bulletin
+    personalized schedule
