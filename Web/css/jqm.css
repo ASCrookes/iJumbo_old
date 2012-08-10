@@ -1,0 +1,18 @@
+.ui-page {
+	background: #6699CC;
+}
+
+h1, label, .button {
+	color: white;
+	text-shadow: -1px 0 black, 0 -1px black, 1px 0 black, 0 1px black;
+}
+
+.button {
+	width: 350;
+	height: 85;
+}
+
+#textarea2 {
+	background: #000000;
+	color: white;
+}

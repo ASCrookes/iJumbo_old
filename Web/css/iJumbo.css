@@ -1,0 +1,66 @@
+label {
+	font-size: 35px;
+	color: white;
+	text-align: center;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#mainLabel {
+	font-size: 160px;
+}
+button {
+	width: 340px;
+	height: 95px;
+	font-size: 30px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.submitButton {
+	background: white;
+	color: white;
+	width: 200px;
+	height: 30px;
+}
+a.button {
+ 	background: transparent url('../images/webButton.png') no-repeat scroll top right;
+ 	display: block;
+ 	color: white;
+ 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+ 	height: 85px;
+ 	width: 350px;
+ 	vertical-align: middle;
+ 	text-decoration: none;
+ 	line-height: 85px;
+	font-size: 30px;
+}
+/* When the button is clicked */
+a.button:active {
+	background-image: url('../images/mainClicked.png');
+}
+textarea#feedback {
+	width: 350px;
+	height: 100px;
+	background-color: transparent;
+	background-image: url('../images/feedbackArea.png');
+	color: black;
+	border: none;
+	resize: none;
+	padding: 5px 5px 5px 5px;
+}
+input.submitButton {
+	width: 200px;
+	height: 30px;
+	background-color: transparent;
+	background-image: url('../images/submitButton.png');
+	color: white;
+ 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	border: none;
+	resize: none;
+	padding: 5px 5px 5px 5px;
+	font-size: 15px;
+}
+input.submitButton:active {
+	background-image: url('../images/submitClicked.png');
+}
+body {
+	background: #6699CC;
+}

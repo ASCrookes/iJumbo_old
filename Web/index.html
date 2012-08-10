@@ -1,86 +1,9 @@
 <html>
-<style type="text/css">
-
-label {
-	font-size: 35px;
-	color: white;
-	text-align: center;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-#mainLabel {
-	font-size: 160px;
-}
-button {
-	width: 340px;
-	height: 95px;
-	font-size: 30px;
-	background: url (webButton.png) no-repeat;
-  	cursor:pointer;
-	color: white;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-textarea {
-	background: black;
-	color: white;
-}
-#submitButton {
-	background: white;
-	color: black;
-	width: 200px;
-	height: 30px;
-}
-a.button {
- 	background: transparent url('webButton.png') no-repeat scroll top right;
- 	color: #444;
- 	display: block;
- 	color: white;
- 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
- 	height: 85px;
- 	width: 350px;
- 	vertical-align: middle;
- 	text-decoration: none;
- 	line-height: 85px;
-	font-size: 30px;
-}
-a.button:active {
-	background-image: url('mainClicked.png');
-}
-textarea.feedback {
-	width: 350px;
-	height: 100px;
-	background-color: transparent;
-	background-image: url('feedbackArea.png');
-	color: black;
-	border: none;
-	resize: none;
-	padding: 5px 5px 5px 5px;
-}
-input.submitButton {
-	width: 200px;
-	height: 30px;
-	background-color: transparent;
-	background-image: url('submitButton.png');
-	color: white;
- 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	border: none;
-	resize: none;
-	padding: 5px 5px 5px 5px;
-	font-size: 15px;
-}
-input.submitButton:active {
-	background-image: url('submitClicked.png');
-}
-body {
-	background: #6699CC;
-}
-
-</style>
-
-<!-- MOVE THE CSS TO ITS OWN FILE -->
-
 	<head>
 		</br></br>
 		<title>iJumbo</title>
+		<script type="text/javascript" src="js/iJumbo.js"></script>
+		<link rel=StyleSheet href="css/iJumbo.css" TYPE="text/css">
 	</head>
 	
 	<body>
@@ -88,21 +11,12 @@ body {
 		<div align="center">
 		</br>
 			<label id="mainLabel">iJumbo</label></br></br>
-			<a href="tufts.edu" class="button"><span>iOS App</span></a></br>
-			<!-- send to facebook page -->
-			<a href="http://facebook.com/" class="button"><span>Facebook</span></a></br>
+			<a class="button" onClick="iosClick()"><span>iOS App</span></a></br>
+			<a class="button" onClick="fbClick()"><span>Facebook</span></a></br>
 			<label>Feedback & Suggestions</label></br>
 			<textarea title="Write feedback here" class="feedback"></textarea></br></br>
-			<input type="submit" class="submitButton" title="We appreciate the feedback!"/>
+			<input type="submit" class="submitButton" title="We appreciate the feedback!" onClick="submitFeedback()"/>
 		</div>
 		<!-- add footer saying "Android app on its way!" -->
 	</body>	
 </html>
-
-<!-- 
-TO DO:
-
-Set background to same image in ios: tile it
-	background-image: url('img.png');
-
--->
