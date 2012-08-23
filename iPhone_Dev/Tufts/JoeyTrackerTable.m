@@ -76,9 +76,7 @@
     dispatch_queue_t queue = dispatch_queue_create("Joey Load Data", nil);
     dispatch_async(queue, ^{
         NSData *data = [NSData dataWithContentsOfURL:url];
-        [self performSelectorOnMainThread:@selector(parseData:)
-                               withObject:data
-                            waitUntilDone:YES];
+        [self parseData:data];
     });
     dispatch_release(queue);
     

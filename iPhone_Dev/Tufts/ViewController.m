@@ -39,7 +39,6 @@
     [self setIcons];
     [self.etvc loadData];
     [self.mtvc loadData];
-    //[self.joey loadData];
     [self.map loadData];
     [self.news loadData];
     
@@ -125,7 +124,7 @@
     NSDate* today = [NSDate date];
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd"];
-    _dayNum.text = [formatter stringFromDate:today];
+    [_dayNum setText:[formatter stringFromDate:today]];
     [formatter setDateFormat:@"EEEE"];
     _dayWord.text = [formatter stringFromDate:today];
 }

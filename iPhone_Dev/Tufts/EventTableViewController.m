@@ -44,7 +44,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 {
     [super viewDidLoad];
     
-    if(!self.dataSource) {
+    if([self.dataSource count] == 0) {
         [self loadData];
     }
     self.datePicker.center = CGPointMake(160, 524);
@@ -88,10 +88,13 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)loadData
 {
-    [self.rssParser abortParsing];
+    //[self.rssParser abortParsing];
+    self.dataSource = [NSArray array];
+    //[self.tableView reloadData];
     dispatch_queue_t queue = dispatch_queue_create("Event Table Load", NULL);
     dispatch_async(queue, ^{
         self.events = [NSMutableArray array];
+
         [self parseXMLFileAtURL:self.url];
         
     });
@@ -130,6 +133,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     id event = [self.dataSource objectAtIndex:indexPath.row];
     cell.textLabel.text = [event objectForKey:@"title"];
     cell.detailTextLabel.text = [EventTableViewController getTimeSpanFromEvent:event];
+    NSLog(@"CELL EVENT: %@",event);
     
     return cell;
 }
@@ -192,7 +196,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     dispatch_async(dispatch_get_main_queue(), ^{
         self.dataSource = [NSArray array];
         self.events = [NSMutableArray array];
-        [self.tableView reloadData];
+        self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
         self.noEvents.hidden = YES;
         self.loadingView.hidden = NO;
     });
@@ -207,8 +211,18 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-    
     self.currentKey = elementName;
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+{
+    if([elementName isEqualToString:@"description"] && self.currentEvent && [self.currentEvent count] >= 7) {
+        //NSLog(@"\n\nEVENT AFTER: %@", self.currentEvent);
+        if(![[self.currentEvent objectForKey:@"title"] isEqualToString:@"TuftsLife Calendar Feed"]) {
+            [self.events addObject:self.currentEvent];
+        }
+        self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
+    }
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser
@@ -220,6 +234,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
     self.dataSource = self.events;
+    self.events = [NSMutableArray array];
     self.isLoading = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
         self.loadingView.hidden = YES;
@@ -230,14 +245,14 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    //NSLog(@"FOUND: %@", string);
     if(![self continueWithCurrentKey] || ![self validEventValue:string]) {
         return;
     }
     
     if([self.currentKey isEqualToString:@"item"]) {
-
-        self.currentEvent = [NSMutableDictionary dictionaryWithCapacity:7];
-        
+        self.currentEvent = nil;
+        self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
     } else if([self.currentKey isEqualToString:@"title"]) {
         [self.currentEvent setObject:string forKey:@"title"];
         
@@ -255,14 +270,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         
     } else if([self.currentKey isEqualToString:@"event_end"]) {
         [self.currentEvent setObject:string forKey:@"event_end"];
-        
     } 
     else if([self.currentKey isEqualToString:@"description"]) {
-        [self.currentEvent setObject:string forKey:@"description"];
-        if(self.currentEvent) {
-            [self.events addObject:self.currentEvent];
+        NSString* desc = ([self validEventValue:string]) ? [[[self.currentEvent objectForKey:@"description"] stringByAppendingString:@"\n"] stringByAppendingString:string] : nil;
+        if(desc) {
+            [self.currentEvent setObject:desc forKey:@"description"];
         }
-        self.currentEvent = nil;
     }
 }
 
@@ -277,16 +290,17 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
             ([self.currentKey isEqualToString:@"event_date"] && ![self.currentEvent objectForKey:@"event_date"])   ||
             ([self.currentKey isEqualToString:@"event_start"] && ![self.currentEvent objectForKey:@"event_start"]) ||
             ([self.currentKey isEqualToString:@"event_end"] && ![self.currentEvent objectForKey:@"event_end"])     ||
-            ([self.currentKey isEqualToString:@"description"] && ![self.currentEvent objectForKey:@"description"]); 
+            ([self.currentKey isEqualToString:@"description"]);
 }
 
 - (BOOL)validEventValue:(NSString*)value
 {
     NSString* strippedVal = [value stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    return ( ![strippedVal isEqualToString:@""] && 
-            ![strippedVal isEqualToString:@"<"] && 
-            ![strippedVal isEqualToString:@"p"] && 
-            ![strippedVal isEqualToString:@">"] && 
+    return ( ![strippedVal isEqualToString:@""]    && 
+            ![strippedVal isEqualToString:@"<"]    && 
+            ![strippedVal isEqualToString:@"p"]    && 
+            ![strippedVal isEqualToString:@">"]    &&
+            ![strippedVal isEqualToString:@"br /"] &&
             ![strippedVal isEqualToString:@"/p"]);
 }
 
@@ -344,10 +358,15 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)changeDateToDate:(NSDate*)newDate
 {
+    
     self.noEvents.hidden = YES;
     self.loadingView.hidden = YES;
+    [self.rssParser abortParsing];
     self.dataSource = [NSArray array];
     [self.tableView reloadData];
+    self.events = [NSMutableArray array];
+    self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
+    
     self.date = newDate;
     [self loadData];
 }

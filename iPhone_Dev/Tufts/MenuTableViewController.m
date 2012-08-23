@@ -47,6 +47,9 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
     if(!self.isLoading) {
         [self.tableView reloadData];
     }
+    if(!self.masterDict || [self.masterDict count] == 0) {
+        [self loadData];
+    }
     [self loadDataBasedOnDate];
 }
 
@@ -144,9 +147,7 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
     dispatch_queue_t queue = dispatch_queue_create("Menu Table Load", nil);
     dispatch_async(queue, ^{
         NSData *data = [NSData dataWithContentsOfURL:url];
-        [self performSelectorOnMainThread:@selector(parseData:)
-                               withObject:data
-                            waitUntilDone:YES];
+        [self parseData:data];
     });
     dispatch_release(queue);
 }

@@ -90,12 +90,5 @@
     self.alertedDate = [NSDate date];
 }
 
-- (NSDate*)alertedDate
-{
-    if(!_alertedDate) {
-        _alertedDate = [NSDate distantPast];
-    }
-    return _alertedDate;
-}
 
 @end

@@ -42,7 +42,7 @@
     [super viewDidLoad];
     [self setupView];
     [self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
-    if([self.buildings count] == 0) {
+    if(!self.buildings || [self.buildings count] == 0) {
         [self loadData];
     }
 }
@@ -70,7 +70,6 @@
 // Sets the map so it shows the entire Tufts campus
 - (void)setupView
 {
-    [self loadView];
     CLLocationDegrees lat;
     lat = 42.406056;
     CLLocationDegrees lng;
