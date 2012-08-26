@@ -133,7 +133,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     id event = [self.dataSource objectAtIndex:indexPath.row];
     cell.textLabel.text = [event objectForKey:@"title"];
     cell.detailTextLabel.text = [EventTableViewController getTimeSpanFromEvent:event];
-    NSLog(@"CELL EVENT: %@",event);
     
     return cell;
 }
@@ -217,7 +216,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
     if([elementName isEqualToString:@"description"] && self.currentEvent && [self.currentEvent count] >= 7) {
-        //NSLog(@"\n\nEVENT AFTER: %@", self.currentEvent);
         if(![[self.currentEvent objectForKey:@"title"] isEqualToString:@"TuftsLife Calendar Feed"]) {
             [self.events addObject:self.currentEvent];
         }
@@ -245,7 +243,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    //NSLog(@"FOUND: %@", string);
     if(![self continueWithCurrentKey] || ![self validEventValue:string]) {
         return;
     }

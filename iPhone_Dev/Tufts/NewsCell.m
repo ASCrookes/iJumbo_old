@@ -16,6 +16,7 @@
 @synthesize thumbnail = _thumbnail;
 @synthesize webView = _webView;
 @synthesize webVC = _webVC;
+@synthesize link = _link;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,18 +33,15 @@
 {
     self.title.text = [story objectForKey:@"title"];
     NSString* author = [story objectForKey:@"author"];
+    self.link = [story objectForKey:@"link"];
     self.author.text = [author isEqualToString:@"  "] ? @"Not Available" : author; 
     if([imageData length] > 0) {
         self.thumbnail.image = [UIImage imageWithData:imageData];
     } else {
         self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
     }
-
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 370)];
-    self.webView.delegate = self;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[story objectForKey:@"link"]] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:10]];
-    [self.webVC.view addSubview:self.webView];
-    
+    self.webView = nil;
+    self.webVC   = nil;
     self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -84,6 +82,17 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     self.webVC.navigationItem.rightBarButtonItem = nil;
+}
+
+- (UIWebView*)webView
+{
+    if(!_webView) {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 370)];
+        _webView.delegate = self;
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.link] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:20]];
+        [self.webVC.view addSubview:_webView];
+    }
+    return _webView;
 }
 
 
