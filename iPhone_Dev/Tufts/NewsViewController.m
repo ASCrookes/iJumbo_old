@@ -9,6 +9,7 @@
 #import "NewsViewController.h"
 
 const int UPDATE_TIME = 1800; // 1800 is half an hour -> seconds
+const int IMAGE_SIZE  = 90;
 
 @interface NewsViewController ()
 

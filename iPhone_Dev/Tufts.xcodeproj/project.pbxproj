@@ -37,6 +37,7 @@
 		8E1E7A36153C835800B126B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E7A34153C835800B126B8 /* InfoPlist.strings */; };
 		8E1E7A39153C835800B126B8 /* TuftsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E7A38153C835800B126B8 /* TuftsTests.m */; };
 		8E26B69A153E734800994136 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26B699153E734800994136 /* MenuTableViewController.m */; };
+		8E2E899B15EB2AD9002D4DA1 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E2E899A15EB2AD9002D4DA1 /* buildings.json */; };
 		8E300643156ABCA9000438A2 /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E300642156ABCA9000438A2 /* FoodViewController.m */; };
 		8E36432415CD1294008C4A0E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E36432015CD1294008C4A0E /* libTestFlight.a */; };
 		8E36432515CD1294008C4A0E /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E36432115CD1294008C4A0E /* README.txt */; };
@@ -130,6 +131,7 @@
 		8E1E7A38153C835800B126B8 /* TuftsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuftsTests.m; sourceTree = "<group>"; };
 		8E26B698153E734800994136 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		8E26B699153E734800994136 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
+		8E2E899A15EB2AD9002D4DA1 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildings.json; sourceTree = "<group>"; };
 		8E300641156ABCA9000438A2 /* FoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodViewController.h; sourceTree = "<group>"; };
 		8E300642156ABCA9000438A2 /* FoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodViewController.m; sourceTree = "<group>"; };
 		8E36432015CD1294008C4A0E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 		8E1E7A14153C835800B126B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E2E899A15EB2AD9002D4DA1 /* buildings.json */,
 				8E1E7A15153C835800B126B8 /* Tufts-Info.plist */,
 				8E1E7A16153C835800B126B8 /* InfoPlist.strings */,
 				8E1E7A19153C835800B126B8 /* main.m */,
@@ -525,6 +528,7 @@
 				8EE401BB15D1EBF3004AD1F7 /* whiteBackground.png in Resources */,
 				8EE401BD15D1EC5E004AD1F7 /* Default@2x.png in Resources */,
 				8EE401BF15D1EC62004AD1F7 /* Default.png in Resources */,
+				8E2E899B15EB2AD9002D4DA1 /* buildings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

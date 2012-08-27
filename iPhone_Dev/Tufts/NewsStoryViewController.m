@@ -48,15 +48,5 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)webViewBack:(id)sender 
-{
-    //[self.webView goBack];
-}
-
-- (IBAction)webViewForward:(id)sender 
-{
-    //[self.webView goForward];
-}
-
 
 @end

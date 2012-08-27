@@ -114,6 +114,14 @@
     // Set up a concurrent queue
     dispatch_queue_t queue = dispatch_queue_create("Map Load Data", nil);
     dispatch_async(queue, ^{
+        
+        // Load the local file and then load from the server
+        // This way the map will still have data to funciton with if there is no internet and if anything on the file changes it gets the new one
+        NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
+        NSURL* localURL = [NSURL URLWithString:@"buildings.json" relativeToURL:mainURL];
+        NSData* jsonData = [NSData dataWithContentsOfURL:localURL];
+        NSError* error;
+        self.tableBuildings = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
         NSData *data = [NSData dataWithContentsOfURL:url];
         [self performSelectorOnMainThread:@selector(parseData:)
                                withObject:data
@@ -132,7 +140,7 @@
     
     NSError* error;
     
-    _tableBuildings = [NSJSONSerialization JSONObjectWithData:responseData
+    self.tableBuildings = [NSJSONSerialization JSONObjectWithData:responseData
                                                       options:0
                                                         error:&error];
     [self createMapsBuildingsFromAllBuildings];

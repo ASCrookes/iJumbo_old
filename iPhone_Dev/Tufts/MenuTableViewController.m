@@ -168,9 +168,9 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
     [self setDataSourceFromMaster];
         
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.isLoading = NO;
         [self.tableView reloadData];
         self.lastUpdate = [NSDate date];
-        self.isLoading = NO;
         self.loadingView.hidden = YES;
     });
 }

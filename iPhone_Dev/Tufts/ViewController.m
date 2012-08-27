@@ -45,7 +45,7 @@
     // Setting the title so that trunk is invoked and beings loading
     self.trunk.title = @"Trunk";
     
-    // Checking that the internet can be accesseda
+    // Checking that the internet is available
     [self pingInternet];
 }
 

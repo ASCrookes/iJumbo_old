@@ -77,7 +77,7 @@
         [NSURLConnection sendAsynchronousRequest:request 
                                            queue:[NSOperationQueue mainQueue] 
                                completionHandler:^(NSURLResponse *request, NSData *data, NSError *error) {
-                                   if(error && !self.alertedInternetIsNotAvailable) {
+                                   if((error || data == nil) && !self.alertedInternetIsNotAvailable) {
                                        dispatch_async(dispatch_get_main_queue(), ^{
                                            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Could not access the internet" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                                            [alert show];
