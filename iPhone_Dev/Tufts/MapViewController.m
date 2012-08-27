@@ -143,6 +143,10 @@
     self.tableBuildings = [NSJSONSerialization JSONObjectWithData:responseData
                                                       options:0
                                                         error:&error];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.tableBuildings options:0 error:&error];
+    NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
+    NSURL* localURL = [NSURL URLWithString:@"buildings.json" relativeToURL:mainURL];
+    [jsonData writeToURL:localURL atomically:YES];
     [self createMapsBuildingsFromAllBuildings];
     self.isLoading = NO;
 }
@@ -227,7 +231,7 @@
     btvc.navigationItem.leftBarButtonItem = barButton;
     UIBarButtonItem* onMap = [[UIBarButtonItem alloc] initWithTitle:@"View On Map" style:UIBarButtonItemStylePlain target:self action:@selector(viewSearchResultsOnMap)];
     btvc.navigationItem.rightBarButtonItem = onMap;
-    
+    [self resignSearchKeyboard];
     [self presentModalViewController:navcon animated:YES];
 }
 
@@ -272,7 +276,6 @@
 
 - (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-
     MKAnnotationView* aView = [_mapView dequeueReusableAnnotationViewWithIdentifier:@"Map Annotation"];
     if(!aView)
     {
@@ -329,7 +332,7 @@
             [results addObject:resultsInSection];
         }
     }
-    
+    [self resignSearchKeyboard];
     return results;
 }
 

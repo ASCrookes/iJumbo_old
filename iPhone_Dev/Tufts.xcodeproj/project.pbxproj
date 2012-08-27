@@ -38,10 +38,6 @@
 		8E1E7A39153C835800B126B8 /* TuftsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E7A38153C835800B126B8 /* TuftsTests.m */; };
 		8E26B69A153E734800994136 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26B699153E734800994136 /* MenuTableViewController.m */; };
 		8E2E899B15EB2AD9002D4DA1 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E2E899A15EB2AD9002D4DA1 /* buildings.json */; };
-		8E2E89A015EB3C34002D4DA1 /* greyNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E2E899F15EB3C34002D4DA1 /* greyNavBar.png */; };
-		8E2E89A215EB3C3A002D4DA1 /* greyLowerNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E2E89A115EB3C3A002D4DA1 /* greyLowerNavBar.png */; };
-		8E2E89AD15EB3DE0002D4DA1 /* blueBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E2E89AB15EB3DE0002D4DA1 /* blueBackground.png */; };
-		8E2E89AE15EB3DE0002D4DA1 /* blueBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E2E89AC15EB3DE0002D4DA1 /* blueBackground@2x.png */; };
 		8E300643156ABCA9000438A2 /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E300642156ABCA9000438A2 /* FoodViewController.m */; };
 		8E36432415CD1294008C4A0E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E36432015CD1294008C4A0E /* libTestFlight.a */; };
 		8E36432515CD1294008C4A0E /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8E36432115CD1294008C4A0E /* README.txt */; };
@@ -136,10 +132,6 @@
 		8E26B698153E734800994136 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		8E26B699153E734800994136 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		8E2E899A15EB2AD9002D4DA1 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildings.json; sourceTree = "<group>"; };
-		8E2E899F15EB3C34002D4DA1 /* greyNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyNavBar.png; sourceTree = "<group>"; };
-		8E2E89A115EB3C3A002D4DA1 /* greyLowerNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyLowerNavBar.png; sourceTree = "<group>"; };
-		8E2E89AB15EB3DE0002D4DA1 /* blueBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueBackground.png; sourceTree = "<group>"; };
-		8E2E89AC15EB3DE0002D4DA1 /* blueBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueBackground@2x.png"; sourceTree = "<group>"; };
 		8E300641156ABCA9000438A2 /* FoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodViewController.h; sourceTree = "<group>"; };
 		8E300642156ABCA9000438A2 /* FoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodViewController.m; sourceTree = "<group>"; };
 		8E36432015CD1294008C4A0E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -228,8 +220,6 @@
 		8E0C429715B79866009165E0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				8E2E89AB15EB3DE0002D4DA1 /* blueBackground.png */,
-				8E2E89AC15EB3DE0002D4DA1 /* blueBackground@2x.png */,
 				8EE401B415D1EBAE004AD1F7 /* background@2x.png */,
 				8EE401B515D1EBAE004AD1F7 /* background.png */,
 				8EE401B815D1EBF3004AD1F7 /* whiteBackground@2x.png */,
@@ -248,8 +238,6 @@
 				8ED679C615C77D25008C82B4 /* forward arrow@2x.png */,
 				8EE401A215D1D5CB004AD1F7 /* newsDefault.png */,
 				8EE401A315D1D5CB004AD1F7 /* newsDefault@2x.png */,
-				8E2E899F15EB3C34002D4DA1 /* greyNavBar.png */,
-				8E2E89A115EB3C3A002D4DA1 /* greyLowerNavBar.png */,
 				8E0C42B115B7BB96009165E0 /* NavBar.png */,
 				8E0C42AF15B7BB8D009165E0 /* LowerNavBar.png */,
 				8E18AC3F15CB57040054284B /* Bus.png */,
@@ -541,10 +529,6 @@
 				8EE401BD15D1EC5E004AD1F7 /* Default@2x.png in Resources */,
 				8EE401BF15D1EC62004AD1F7 /* Default.png in Resources */,
 				8E2E899B15EB2AD9002D4DA1 /* buildings.json in Resources */,
-				8E2E89A015EB3C34002D4DA1 /* greyNavBar.png in Resources */,
-				8E2E89A215EB3C3A002D4DA1 /* greyLowerNavBar.png in Resources */,
-				8E2E89AD15EB3DE0002D4DA1 /* blueBackground.png in Resources */,
-				8E2E89AE15EB3DE0002D4DA1 /* blueBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

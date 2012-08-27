@@ -65,7 +65,7 @@
     self.webVC.backButton.action = @selector(goBack);
     self.webVC.forwardButton.target = self.webView;
     self.webVC.forwardButton.action = @selector(goForward);
-    [self.webVC.navBar setBackgroundImage:[UIImage imageNamed:@"greyLowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.webVC.navBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
     return self.webVC;
 }
 
