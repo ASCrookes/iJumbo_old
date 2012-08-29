@@ -108,13 +108,13 @@
 // Loads the building json
 - (void)loadData
 {
-    self.isLoading = YES;
-    NSURL *url = [NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/buildings.json"];
-    
+
     // Set up a concurrent queue
     dispatch_queue_t queue = dispatch_queue_create("Map Load Data", nil);
     dispatch_async(queue, ^{
         
+        self.isLoading = YES;
+        NSURL *url = [NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/buildings.json"];
         // Load the local file and then load from the server
         // This way the map will still have data to funciton with if there is no internet and if anything on the file changes it gets the new one
         NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
@@ -143,10 +143,10 @@
     self.tableBuildings = [NSJSONSerialization JSONObjectWithData:responseData
                                                       options:0
                                                         error:&error];
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:self.tableBuildings options:0 error:&error];
+    // After getting the data save it locally 
     NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
     NSURL* localURL = [NSURL URLWithString:@"buildings.json" relativeToURL:mainURL];
-    [jsonData writeToURL:localURL atomically:YES];
+    [responseData writeToURL:localURL atomically:YES];
     [self createMapsBuildingsFromAllBuildings];
     self.isLoading = NO;
 }
@@ -155,14 +155,14 @@
 - (void)createMapsBuildingsFromAllBuildings
 {
     NSMutableArray* temp = [[NSMutableArray alloc] init];
-    for (NSArray* list in _tableBuildings)
+    for (NSArray* list in self.tableBuildings)
     {
         for (id building in list)
         {
             [temp addObject:building];
         }
     }
-    _buildings = (NSArray*)temp;
+    self.buildings = (NSArray*)temp;
 }
 
 

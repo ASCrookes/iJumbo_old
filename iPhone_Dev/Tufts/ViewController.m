@@ -129,7 +129,7 @@
     _dayWord.text = [formatter stringFromDate:today];
 }
 
-// The delegate pings the internet and then send the response to the below function with a BOOL
+// The delegate pings the internet and then alerts if the internet is not available
 - (void)pingInternet
 {
     AppDelegate* del = [[UIApplication sharedApplication] delegate];
