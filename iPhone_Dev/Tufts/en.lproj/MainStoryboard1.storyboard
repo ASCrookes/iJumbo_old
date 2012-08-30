@@ -1285,7 +1285,7 @@
                                 <rect key="frame" x="16" y="144" width="116" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="darkBurger.png">
+                                <state key="normal" image="burger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1300,14 +1300,14 @@
                                 <rect key="frame" x="48" y="258" width="52" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gSu-DX-8uE">
                                 <rect key="frame" x="196" y="8" width="109" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="dark map.png">
+                                <state key="normal" image="map.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1322,7 +1322,7 @@
                                 <rect key="frame" x="196" y="144" width="109" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="darkBus.png">
+                                <state key="normal" image="Bus.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1337,7 +1337,7 @@
                                 <rect key="frame" x="20" y="287" width="109" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="darkCalendar.png">
+                                <state key="normal" image="event.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1352,7 +1352,7 @@
                                 <rect key="frame" x="196" y="287" width="109" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="darkWebpage.png">
+                                <state key="normal" image="Webpage.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1367,49 +1367,49 @@
                                 <rect key="frame" x="27" y="298" width="109" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="70"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="8Vb-7K-A6g">
                                 <rect key="frame" x="235" y="121" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Transportation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Xt9-KU-ExQ">
                                 <rect key="frame" x="194" y="258" width="111" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="9sp-dn-oQX">
                                 <rect key="frame" x="40" y="121" width="68" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="eAZ-MY-kEQ">
                                 <rect key="frame" x="48" y="395" width="52" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trunk" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="FbJ-nA-FS3">
                                 <rect key="frame" x="228" y="395" width="44" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KEb-KP-sTj">
                                 <rect key="frame" x="20" y="13" width="109" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="News" image="darkPaper.png">
+                                <state key="normal" title="News" image="news.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1424,7 +1424,7 @@
                                 <rect key="frame" x="33" y="293" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.46666669845581055" green="0.67058825492858887" blue="0.82745105028152466" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1461,148 +1461,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Bus.png" width="115" height="106"/>
+        <image name="Webpage.png" width="120" height="116"/>
         <image name="back arrow.png" width="20" height="20"/>
-        <image name="dark map.png" width="110" height="110"/>
-        <image name="darkBurger.png" width="130" height="91"/>
-        <image name="darkBus.png" width="115" height="106"/>
-        <image name="darkCalendar.png" width="132" height="129"/>
-        <image name="darkPaper.png" width="115" height="105"/>
-        <image name="darkWebpage.png" width="120" height="116"/>
+        <image name="burger.png" width="130" height="91"/>
+        <image name="event.png" width="132" height="129"/>
         <image name="eventDescription.png" width="280" height="200"/>
         <image name="forward arrow.png" width="20" height="20"/>
+        <image name="map.png" width="110" height="110"/>
+        <image name="news.png" width="115" height="105"/>
         <image name="newsDefault.png" width="90" height="90"/>
         <image name="roundedTextView.png" width="280" height="155"/>
     </resources>
-    <classes>
-        <class className="AboutTuftsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutTuftsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="foundingField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="visionStatementField" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="BuildingTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="BuildingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="building_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="friday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="friday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="monday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="monday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phone_number" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="saturday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="saturday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="sunday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sunday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="thursday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="thursday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tuesday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tuesday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="website" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="wedbesday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wednesday_hours" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="EventTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="EventViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="eventTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="link" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="location" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="time" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FeedbackViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="FoodViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FoodViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="allergens" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="calories" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="carbs" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cholestoral" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fiber" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ingredients" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="protein" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="satFat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="servingSize" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sodium" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sugars" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="InfoViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
-        </class>
-        <class className="JoeyTrackerTable" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoeyTrackerTable.h"/>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="MenuTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuTableViewController.h"/>
-        </class>
-        <class className="NewsCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="thumbnail" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NewsStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsStoryViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="forwardButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NewsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
-        </class>
-        <class className="SourcesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourcesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dayNum" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dayWord" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
