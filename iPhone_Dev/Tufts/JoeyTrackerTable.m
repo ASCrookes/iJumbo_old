@@ -87,7 +87,7 @@
     if(responseData == nil) {
         AppDelegate* del = [[UIApplication sharedApplication] delegate];
         [del pingServer];
-        self.navigationItem.rightBarButtonItem = self.reload;
+        [self stopLoadingUI];
         return;
     }
     NSError* error;
@@ -101,6 +101,13 @@
         self.navigationItem.rightBarButtonItem = self.reload;
         [self.tableView reloadData];
     });
+}
+
+// Stops the UI that is setup when the data is loading
+- (void)stopLoadingUI
+{
+    self.title = @"Transportation";
+    self.navigationItem.rightBarButtonItem = self.reload;
 }
 
 
@@ -126,6 +133,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // If there is no data just show a cell with a spinner saying the data is loading
     if(indexPath.section == 0 && [self.joeyInfo count] == 0) {
         return [tableView dequeueReusableCellWithIdentifier:@"Joey Loading Cell"];
     }
@@ -148,6 +156,7 @@
     if([self.joeyInfo count] == 0) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"The Joey tracker is unavailable" message:@"or you do not have internet"  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
+        return;
     }
     [self.map viewDidLoad];
     self.map.allowAnnotationClick = NO;
@@ -186,6 +195,9 @@
 //*********************************************************
 //*********************************************************
 
+
+// The map is easily created
+// data cannot be removed because it contains info for when the cell is clikced on
 - (void)clearUnnecessary
 {
     self.map = nil;

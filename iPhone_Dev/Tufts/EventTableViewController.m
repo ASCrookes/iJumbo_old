@@ -48,8 +48,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         [self loadData];
     }
     self.datePicker.center = CGPointMake(160, 524);
+    
+    // Loading and no event views are added before the screen loads
+    // they need to be deleted or else they will alwyas be there
     self.loadingView = nil;
     self.noEvents = nil;
+    
     if(self.isLoading) {
         self.loadingView.hidden = NO;
     } else {

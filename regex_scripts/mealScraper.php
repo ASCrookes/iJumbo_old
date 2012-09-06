@@ -22,6 +22,7 @@ if (!function_exists('json_encode')) {
 }
 
 
+$mainURL = 'http://menus.tufts.edu/foodpro/shortmenu.asp?sName=Tufts+Dining&locationNum=09&locationName=Carmichael+Dining+Center&naFlag=1';
 
 // given a url for a nutritions page it should return an 
 // associative array of the details
@@ -50,15 +51,16 @@ function getFoodFacts($url) {
 	$facts['fat_calories'] = $matches[0];	
 	
 	$keyConversion = array("Total Fat"     => 'total_fat',
-						   "Tot. Carb."    => 'total_carbs',
-						   "Sat. Fat"      => 'saturated_fat',
-						   "Dietary Fiber" => 'fiber',
-						   "Trans Fat"     => 'trans_fat',
-						   "Sugars"        => 'sugars',
-						   "Sugars---g"    => 'sugars',
-						   "Cholesterol"   => 'cholesterol',
-						   "Protein"       => 'protein',
-						   "Sodium"        => 'sodium');
+						   "Tot. Carb."        => 'total_carbs',
+						   "Sat. Fat"          => 'saturated_fat',
+						   "Dietary Fiber"     => 'fiber',
+						   "Dietary Fiber---g" => 'fiber',
+						   "Trans Fat"         => 'trans_fat',
+						   "Sugars"            => 'sugars',
+						   "Sugars---g"        => 'sugars',
+						   "Cholesterol"       => 'cholesterol',
+						   "Protein"           => 'protein',
+						   "Sodium"            => 'sodium');
 	
 	
 	$pattern = '/<font.*?size="4".*?>(.*?)<\/font>/';
@@ -144,6 +146,9 @@ function getMeal($mealURL) {
 		$pattern = '/mealName=(.*)$/';
 		preg_match($pattern, $url, $name);
 		$meal['MealName'] = $name[1];
+		if($meal['MealName'] != 'Breakfast' && $meal['MealName'] != 'Lunch' && $meal['MealName'] != 'Dinner') {
+			$meal['MealName'] = 'Breakfast';
+		}
 		$sectionList = array();
 		for($i = 0; $i < count($sections[0]); $i++) {
 			$section = array();
@@ -175,16 +180,34 @@ function getMeal($mealURL) {
 
 // loops through the dining hall urls and creates the final file
 function main() {
+
+	date_default_timezone_set('America/New_York');
+	
 	$diningURLS = array('Carmichael' => 'http://menus.tufts.edu/foodpro/shortmenu.asp?sName=Tufts+Dining&locationNum=09&locationName=Carmichael+Dining+Center&naFlag=1',
-				    	'Dewick'     => 'http://menus.tufts.edu/foodpro/shortmenu.asp?sName=Tufts+Dining&locationNum=14&locationName=Hodgdon+Good-+To-+Go+Take-+Out&naFlag=1',
-				    	'Hodgdon'    => 'http://menus.tufts.edu/foodpro/shortmenu.asp?sName=Tufts+Dining&locationNum=14&locationName=Hodgdon+Good-+To-+Go+Take-+Out&naFlag=1');
+			    		'Dewick'     => 'http://menus.tufts.edu/foodpro/shortmenu.asp?sName=Tufts+Dining&locationNum=11&locationName=Dewick+MacPhie+Dining+Center&naFlag=',
+			    		'Hodgdon'    => 'http://menus.tufts.edu/foodpro/shortmenu.asp?sName=Tufts+Dining&locationNum=14&locationName=Hodgdon+Good%2D+To%2D+Go+Take%2D+Out&naFlag=1');
 	$finalMealDict = array();
+	// Loops through all meals for today
 	foreach($diningURLS as $hall => $hallURL) {
 		$finalMealDict[$hall] = getMeal($hallURL);
 	}
-
 	$mealJSON = json_encode($finalMealDict);
 	file_put_contents('../files/meals.json', $mealJSON);
+
+	$tomorrowsMealDict = array();
+	// Time is right now and then add 24 hours in terms of seconds
+	$tomorrowsTime = time() + (24 * 60 * 60);
+	// Loops through and gets all the meals for tomorrow
+	foreach($diningURLS as $hall => $hallURL) {
+		$month = date('m', $tomorrowsTime);
+		$day   = date('d', $tomorrowsTime);
+		$year  = date('Y', $tomorrowsTime);
+		$tomorrowsURL = $hallURL . '&dtdate=' . $month . '%2F' . $day . '%2F' . $year;
+		//echo $tomorrowsURL;
+		$tomorrowsMealDict[$hall] = getMeal($tomorrowsURL);
+	}
+	$tomorrowsMealJSON = json_encode($tomorrowsMealDict);
+	file_put_contents('../files/tomorrowsMeals.json', $tomorrowsMealJSON);
 }
 
 

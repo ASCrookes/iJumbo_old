@@ -175,7 +175,12 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
     });
 }
 
-
+// If more UI added for when the data is loading hide it here 
+- (void)stopLoadingUI
+{
+    self.isLoading = NO;
+    self.loadingView.hidden = YES;
+}
 
 
 

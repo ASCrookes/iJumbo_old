@@ -8,8 +8,8 @@
 
 #import "NewsViewController.h"
 
-const int UPDATE_TIME = 1800; // 1800 is half an hour -> seconds
-const int IMAGE_SIZE  = 90;
+const int UPDATE_TIME = 600; // 1800 is half an hour -> seconds
+const int IMAGE_SIZE  = 90; // The images are squares
 
 @interface NewsViewController ()
 
@@ -189,7 +189,7 @@ const int IMAGE_SIZE  = 90;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-        self.navigationItem.rightBarButtonItem = self.section;
+        [self stopLoadingUI];
     });
     self.isLoading = NO;
 }
@@ -244,14 +244,19 @@ const int IMAGE_SIZE  = 90;
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    self.navigationItem.rightBarButtonItem = self.section;
+    [self stopLoadingUI];
 }
 
 - (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
 {
-    self.navigationItem.rightBarButtonItem = self.section;
+    [self stopLoadingUI];
 }
 
+// Stops the UI that show when the data is loading
+- (void)stopLoadingUI
+{
+    self.navigationItem.rightBarButtonItem = self.section;
+}
 
 
 //*********************************************************

@@ -8,11 +8,15 @@
 
 #import "AppDelegate.h"
 
+// Time in terms of seconds
+const int TIME_BETWEEN_CONNECTION_ALERT = 120;
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize alertedInternetIsNotAvailable = _alertedInternetIsNotAvailable;
 @synthesize alertedDate = _alertedDate;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -65,7 +69,7 @@
 {
     // If they have already been alerted dont bother checking again
     int intervalSinceAlert = [self.alertedDate timeIntervalSinceNow];
-    if(self.alertedInternetIsNotAvailable && intervalSinceAlert < 300) {
+    if(self.alertedInternetIsNotAvailable && intervalSinceAlert < TIME_BETWEEN_CONNECTION_ALERT) {
         return;
     }    
     dispatch_queue_t queue = dispatch_queue_create("Delegate pingServer", nil);

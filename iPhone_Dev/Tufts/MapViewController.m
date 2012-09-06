@@ -182,6 +182,9 @@
 - (void)showBuilding:(id)buildingJSON
 {   
     [self dismissModalViewControllerAnimated:YES];
+    if(!buildingJSON) {
+        return;
+    }
     
     BuildingAnnotation* pin = [BuildingAnnotation buildingWithJson:buildingJSON];
     MKCoordinateRegion resetRegion = _mapView.region;
