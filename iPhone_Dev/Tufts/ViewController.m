@@ -194,6 +194,7 @@
         _etvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Event Table"];
         _etvc.view.hidden = NO;
         _etvc.tableView.backgroundColor = self.backgroundColor;
+        _etvc.view.backgroundColor = self.backgroundColor;
     }
     return _etvc;
 }
@@ -204,6 +205,7 @@
         _mtvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu Table"];
         _mtvc.view.hidden = NO;
         _mtvc.tableView.backgroundColor = self.backgroundColor;
+        _mtvc.view.backgroundColor = self.backgroundColor;
     }
     return _mtvc;
 }
@@ -236,6 +238,7 @@
     if(!_joey) {
         _joey = [self.storyboard instantiateViewControllerWithIdentifier:@"Joey Table"];
         _joey.tableView.backgroundColor = self.backgroundColor;
+        _joey.view.backgroundColor = self.backgroundColor;
     }
     return _joey;
 }

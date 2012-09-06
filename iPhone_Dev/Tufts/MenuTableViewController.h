@@ -11,7 +11,7 @@
 #import "NSDictionary+Contains_Key.h"
 #import "TestFlight.h"
 
-@interface MenuTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface MenuTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic,strong) NSDictionary* masterDict;
@@ -22,6 +22,7 @@
 @property (nonatomic,strong) UIView* noFood;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dateSegment;
 @property (weak, nonatomic) IBOutlet UINavigationBar *extraBar;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)loadData;
 - (void)parseData:(NSData *)responseData;

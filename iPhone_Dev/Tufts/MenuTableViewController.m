@@ -28,6 +28,7 @@ const int SEGMENT_TOMORROW = 1;
 @synthesize noFood = _noFood;
 @synthesize dateSegment = _dateSegment;
 @synthesize extraBar = _extraBar;
+@synthesize tableView = _tableView;
 
 //*********************************************************
 //*********************************************************
@@ -35,14 +36,6 @@ const int SEGMENT_TOMORROW = 1;
 //*********************************************************
 //*********************************************************
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -77,23 +70,11 @@ const int SEGMENT_TOMORROW = 1;
 }
 
 
-- (void)changeDate
-{
-    int segIndex = ((UISegmentedControl*)self.extraBar.topItem.titleView).selectedSegmentIndex;
-    if(segIndex == SEGMENT_TODAY) {
-        
-    } else {
-        
-    }
-}
-
-
-
-
 - (void)viewDidUnload
 {
     [self setDateSegment:nil];
     [self setExtraBar:nil];
+    [self setTableView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -198,6 +179,7 @@ const int SEGMENT_TOMORROW = 1;
     self.masterDict = [NSJSONSerialization JSONObjectWithData:responseData
                                                     options:0
                                                       error:&error];
+    
     NSData* tomorrowsData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/tomorrowsMeals.json"]];
     self.tomorrowsDict = [NSJSONSerialization JSONObjectWithData:tomorrowsData
                                                          options:0
