@@ -11,6 +11,8 @@
 
 const int SECTION_HEIGHT = 45;
 const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
+const int SEGMENT_TODAY = 0;
+const int SEGMENT_TOMORROW = 1;
 
 @interface MenuTableViewController ()
 
@@ -24,6 +26,8 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
 @synthesize lastUpdate = _lastUpdate;
 @synthesize loadingView = _loadingView;
 @synthesize noFood = _noFood;
+@synthesize dateSegment = _dateSegment;
+@synthesize extraBar = _extraBar;
 
 //*********************************************************
 //*********************************************************
@@ -64,10 +68,32 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
     [segment setSegmentedControlStyle:UISegmentedControlStyleBar];
     segment.selectedSegmentIndex = 0;
     self.navigationItem.titleView = segment;
+    
+    [self.extraBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
+
+    
+    [self.dateSegment addTarget:self action:@selector(setDataSourceFromMaster) forControlEvents:UIControlEventValueChanged];
+    self.dateSegment.selectedSegmentIndex = 0;
 }
+
+
+- (void)changeDate
+{
+    int segIndex = ((UISegmentedControl*)self.extraBar.topItem.titleView).selectedSegmentIndex;
+    if(segIndex == SEGMENT_TODAY) {
+        
+    } else {
+        
+    }
+}
+
+
+
 
 - (void)viewDidUnload
 {
+    [self setDateSegment:nil];
+    [self setExtraBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -112,16 +138,22 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
 
 - (void)setDataSourceFromMaster
 {
-    if(!self.masterDict) {
+    if(!self.masterDict || !self.tomorrowsDict) {
         [self loadData];
     }
     int segIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
+    int dayIndex = ((UISegmentedControl*)self.extraBar.topItem.titleView).selectedSegmentIndex;
     NSString* mealKey = (segIndex == 0) ? @"Breakfast" : (segIndex == 1) ? @"Lunch" : @"Dinner";
     NSString* hallName = self.navigationItem.rightBarButtonItem.title;
     if(!hallName) {
         hallName = @"Carmichael";
     }
-    NSDictionary* hall = [self.masterDict objectForKey:hallName];
+    NSDictionary* hall;
+    if(dayIndex == SEGMENT_TODAY) {
+        hall = [self.masterDict objectForKey:hallName];
+    } else if(dayIndex == SEGMENT_TOMORROW) {
+        hall = [self.tomorrowsDict objectForKey:hallName];
+    }
     
     if([hall containsKey:mealKey]) {
         self.dataSource = [[hall objectForKey:mealKey] objectForKey:@"sections"];
@@ -152,6 +184,7 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
     dispatch_release(queue);
 }
 
+
 - (void)parseData:(NSData *)responseData
 {
     if(responseData == nil) {
@@ -165,6 +198,11 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
     self.masterDict = [NSJSONSerialization JSONObjectWithData:responseData
                                                     options:0
                                                       error:&error];
+    NSData* tomorrowsData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/tomorrowsMeals.json"]];
+    self.tomorrowsDict = [NSJSONSerialization JSONObjectWithData:tomorrowsData
+                                                         options:0
+                                                           error:&error];
+    
     [self setDataSourceFromMaster];
         
     dispatch_async(dispatch_get_main_queue(), ^{

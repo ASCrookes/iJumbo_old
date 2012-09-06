@@ -15,10 +15,13 @@
 
 @property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic,strong) NSDictionary* masterDict;
+@property (nonatomic,strong) NSDictionary* tomorrowsDict;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic,strong) NSDate* lastUpdate;
 @property (nonatomic,strong) UIView* loadingView;
 @property (nonatomic,strong) UIView* noFood;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *dateSegment;
+@property (weak, nonatomic) IBOutlet UINavigationBar *extraBar;
 
 - (void)loadData;
 - (void)parseData:(NSData *)responseData;
