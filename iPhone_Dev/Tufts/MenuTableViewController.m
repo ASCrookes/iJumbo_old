@@ -44,7 +44,8 @@ const int SEGMENT_TOMORROW = 1;
     if(!self.isLoading) {
         [self.tableView reloadData];
     }
-    if(!self.masterDict || [self.masterDict count] == 0) {
+    // If the datasource(masterDict, has not been set yet, if it is an empty array, or if the "no food" view is visible -> load data again
+    if(!self.masterDict || [self.masterDict count] == 0 || !self.noFood.hidden) {
         [self loadData];
     }
     [self loadDataBasedOnDate];
