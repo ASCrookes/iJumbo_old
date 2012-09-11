@@ -153,23 +153,23 @@ const int SEGMENT_TOMORROW = 1;
 
 - (void)loadData
 {
-    NSURL *url = [NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/meals.json"];
     self.isLoading = YES;
     self.loadingView.hidden = NO;
     self.noFood.hidden = YES;
-    // Set up a concurrent queue
+    // Load data in a background queue
     dispatch_queue_t queue = dispatch_queue_create("Menu Table Load", nil);
     dispatch_async(queue, ^{
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        [self parseData:data];
+        [self parseData];
     });
     dispatch_release(queue);
 }
 
 
-- (void)parseData:(NSData *)responseData
+- (void)parseData
 {
-    if(responseData == nil) {
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/meals.json"]];
+    NSData* tomorrowsData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/tomorrowsMeals.json"]];
+    if(data == nil || tomorrowsData == nil) {
         AppDelegate* del = [[UIApplication sharedApplication] delegate];
         [del pingServer];
         self.loadingView.hidden = YES;
@@ -177,24 +177,24 @@ const int SEGMENT_TOMORROW = 1;
     }
     NSError* error;
     
-    self.masterDict = [NSJSONSerialization JSONObjectWithData:responseData
-                                                    options:0
-                                                      error:&error];
-    
-    NSData* tomorrowsData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/tomorrowsMeals.json"]];
+    self.masterDict = [NSJSONSerialization JSONObjectWithData:data
+                                                      options:0
+                                                        error:&error];
     self.tomorrowsDict = [NSJSONSerialization JSONObjectWithData:tomorrowsData
                                                          options:0
                                                            error:&error];
-    
+
     [self setDataSourceFromMaster];
-        
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.isLoading = NO;
         [self.tableView reloadData];
         self.lastUpdate = [NSDate date];
         self.loadingView.hidden = YES;
     });
+
 }
+
 
 // If more UI added for when the data is loading hide it here 
 - (void)stopLoadingUI
