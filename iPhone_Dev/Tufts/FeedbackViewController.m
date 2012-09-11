@@ -38,12 +38,6 @@
 
 - (IBAction)sendAction:(id)sender 
 {
-    // add feedback data to post or get and then send asynchronously
-    /*
-    NSURL* feedbackURL = [NSURL URLWithString:@"feedbackurl"];
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:feedbackURL];
-    [request setHTTPMethod:@"POST"];
-    */
     [TestFlight submitFeedback:self.feedbackInputField.text];
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Thanks!" message:@"We appreciate the feedback" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
