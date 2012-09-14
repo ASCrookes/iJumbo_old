@@ -41,6 +41,7 @@
 {
     [super viewDidLoad];
     [self setupView];
+    [self.mapView setDelegate:self];
     [self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
     if(!self.buildings || [self.buildings count] == 0) {
         [self loadData];
@@ -200,10 +201,11 @@
         region.center.latitude  = [(NSString*)[buildingJSON objectForKey:@"latitude"] doubleValue];
         region.center.longitude = [(NSString*)[buildingJSON objectForKey:@"longitude"] doubleValue];
         region.span = span;
-        
         [_mapView setRegion:region animated:NO];
+    } completion:^(BOOL finished) {
+        [_mapView addAnnotation:pin];
+        [self.mapView setSelectedAnnotations:[NSArray arrayWithObject:pin]];
     }];
-    [_mapView addAnnotation:pin];
 }
                
                     

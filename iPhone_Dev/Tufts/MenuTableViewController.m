@@ -51,6 +51,11 @@ const int SEGMENT_TOMORROW = 1;
     [self loadDataBasedOnDate];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self loadDataBasedOnDate];
+}
+
 - (void)addBarInfo
 {
     UIBarButtonItem* halls = [[UIBarButtonItem alloc] initWithTitle:@"Carmichael" style:UIBarButtonItemStylePlain target:self action:@selector(changeHall)];
@@ -153,9 +158,14 @@ const int SEGMENT_TOMORROW = 1;
 
 - (void)loadData
 {
+    if(self.isLoading) {
+        return;
+    }
     self.isLoading = YES;
     self.loadingView.hidden = NO;
     self.noFood.hidden = YES;
+    self.dataSource = [NSArray array];
+    [self.tableView reloadData];
     // Load data in a background queue
     dispatch_queue_t queue = dispatch_queue_create("Menu Table Load", nil);
     dispatch_async(queue, ^{
@@ -202,8 +212,6 @@ const int SEGMENT_TOMORROW = 1;
     self.isLoading = NO;
     self.loadingView.hidden = YES;
 }
-
-
 
 
 //*********************************************************
@@ -286,25 +294,42 @@ const int SEGMENT_TOMORROW = 1;
 {
     if(!self.lastUpdate || !self.dataSource) {
         [self loadData];
+        NSLog(@"DOING THIS FIRST UPDATE");
         return;
     }
-    int now = [MenuTableViewController getNumericalDate:[NSDate date]];
-    int updated = [MenuTableViewController getNumericalDate:self.lastUpdate];
-    // the script updates at 2 so we will update at 3
-    int todaysUpdate = ((now / 100) * 100) + 3;
-    if(now > todaysUpdate && todaysUpdate > updated) {
+    NSNumber* lastUpdate = [MenuTableViewController getNumericalDate:self.lastUpdate];
+    NSNumber* serversLastUpdate = [MenuTableViewController getServersLastUpdateTime];
+    NSLog(@"%@ %@", lastUpdate, serversLastUpdate);
+    NSComparisonResult compare = [serversLastUpdate compare:lastUpdate];
+    if(compare == NSOrderedDescending) {
+        NSLog(@"server updated more recently");
         [self loadData];
     }
 }
  
-+ (int)getNumericalDate:(NSDate*)date
++ (NSNumber*)getNumericalDate:(NSDate*)date
 {
     NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyyMMddhh"];
+    [dateFormat setDateFormat:@"yyyyMMddHHmm"];
     NSString* dateString = [dateFormat stringFromDate:date];
+    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber* dateNum = [formatter numberFromString:dateString];
 
-    return [dateString intValue];
+    return dateNum;
 }
+
++ (NSNumber*)getServersLastUpdateTime
+{
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/mealDate.json"]];
+    NSError* error;
+    NSDictionary* dateDict = [NSJSONSerialization JSONObjectWithData:data
+                                           options:0
+                                             error:&error];
+    NSNumber* number = [dateDict objectForKey:@"date"];
+    return number;
+}
+
 
 //*********************************************************
 //*********************************************************

@@ -42,8 +42,6 @@
 {
     [super viewDidLoad];
     self.title = @"Places";
-    //UIBarButtonItem* reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
-    //[self.navigationItem setRightBarButtonItem:reload];
 }
 
 - (void)viewDidUnload
@@ -180,6 +178,14 @@
         [bvc setBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:bvc animated:YES];
     }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
+    bvc.allowsMap = YES;
+    [bvc setBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:bvc animated:YES];
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

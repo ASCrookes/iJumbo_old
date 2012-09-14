@@ -31,7 +31,7 @@
 - (void)clearUnnecessary;
 
 
-+ (int)getNumericalDate:(NSDate*)date;
++ (NSNumber*)getNumericalDate:(NSDate*)date;
 
 
 @end
