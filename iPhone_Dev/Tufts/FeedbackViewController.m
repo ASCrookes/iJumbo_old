@@ -38,12 +38,20 @@
 
 - (IBAction)sendAction:(id)sender 
 {
-    [TestFlight submitFeedback:self.feedbackInputField.text];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Thanks!" message:@"We appreciate the feedback" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    [self dismissModalViewControllerAnimated:YES];
+    ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://ijumboapp.com/api/feedback"]];
+    [request setDelegate:self];
+    [request setRequestMethod:@"POST"];
+    [request setPostValue:self.feedbackInputField.text forKey:@"feedback"];
+    [request startSynchronous];
 }
-
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    UIAlertView* thanksAlert = [[UIAlertView alloc] initWithTitle:@"Thanks!" message:@"We appreciate the feedback" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [thanksAlert show];
+    [self dismissModalViewControllerAnimated:YES];
+    // Use when fetching binary data
+}
 
 - (IBAction)cancelAction:(id)sender 
 {

@@ -10,7 +10,6 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "FeedbackViewController.h"
 #import "SourcesViewController.h"
-#import "TestFlight.h"
 
 @interface InfoViewController : UITableViewController
 @end

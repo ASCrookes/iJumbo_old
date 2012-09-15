@@ -49,7 +49,6 @@
         aboutTufts.view.backgroundColor = self.tableView.backgroundColor;
         UINavigationController* aboutTuftsNavcon = [self navconWithRootViewController:aboutTufts BackButtonTitle:@"Back"];
         [self presentModalViewController:aboutTuftsNavcon animated:YES];
-        [TestFlight passCheckpoint:@"INFO-About_Tufts"];
     } else if(indexPath.section == 4) {
         FeedbackViewController* feedbackView = [self.storyboard instantiateViewControllerWithIdentifier:@"Feedback Input View"];
         feedbackView.view.backgroundColor = self.view.backgroundColor;
@@ -62,7 +61,6 @@
         sourceVC.view.backgroundColor = self.tableView.backgroundColor;
         UINavigationController* navcon = [self navconWithRootViewController:sourceVC BackButtonTitle:@"Back"];
         [self presentModalViewController:navcon animated:YES];
-        [TestFlight passCheckpoint:@"INFO-Sources"];
     }
 }
 

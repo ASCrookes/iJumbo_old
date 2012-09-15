@@ -72,37 +72,31 @@
 - (IBAction)getEvents:(id)sender 
 {
     [self.navigationController pushViewController:self.etvc animated:YES];
-    [TestFlight passCheckpoint:@"GET_EVENTS"];
 }
 
 - (IBAction)getMenus:(id)sender 
 {
     [self.navigationController pushViewController:self.mtvc animated:YES];
-    [TestFlight passCheckpoint:@"GET_MENUS"];
 }
 
 - (IBAction)getTrunk:(id)sender 
 {
     [self.navigationController pushViewController:self.trunk animated:YES];
-    [TestFlight passCheckpoint:@"GET_TRUNK"];
 }
 
 - (IBAction)getJoey:(id)sender 
 {
     [self.navigationController pushViewController:self.joey animated:YES];
-    [TestFlight passCheckpoint:@"GET_JOEY"];
 }
 
 - (IBAction)getMap:(id)sender 
 {
     [self.navigationController pushViewController:self.map animated:YES];
-    [TestFlight passCheckpoint:@"GET_MAP"];
 }
 
 - (IBAction)getNews:(id)sender 
 {
     [self.navigationController pushViewController:self.news animated:YES];
-    [TestFlight passCheckpoint:@"GET_NEWS"];
 }
 
 - (IBAction)getAppInfo:(id)sender 
@@ -110,7 +104,6 @@
     InfoViewController* info = [self.storyboard instantiateViewControllerWithIdentifier:@"INFO TABLE"];
     info.tableView.backgroundColor = self.backgroundColor;
     [self.navigationController pushViewController:info animated:YES];
-    [TestFlight passCheckpoint:@"GET_INFO"];
 }
 
 //*********************************************************
@@ -178,7 +171,6 @@
     [self.mtvc clearUnnecessary];
     [self.joey clearUnnecessary];
     [self.news clearUnnecessary];
-    [TestFlight passCheckpoint:@"MEMORY_WARNING!!!"];
 }
 
 //*********************************************************

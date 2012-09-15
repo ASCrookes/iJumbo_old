@@ -201,10 +201,13 @@ const int SEGMENT_TOMORROW = 1;
         [self.tableView reloadData];
         self.lastUpdate = [NSDate date];
         self.loadingView.hidden = YES;
+        NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"MM/dd"];
+        NSString* mealsDate = [NSString stringWithFormat:@"Today(%@)", [dateFormat stringFromDate:self.lastUpdate]];
+        [(UISegmentedControl*)self.extraBar.topItem.titleView setTitle:mealsDate forSegmentAtIndex:SEGMENT_TODAY];
     });
 
 }
-
 
 // If more UI added for when the data is loading hide it here 
 - (void)stopLoadingUI
@@ -294,15 +297,12 @@ const int SEGMENT_TOMORROW = 1;
 {
     if(!self.lastUpdate || !self.dataSource) {
         [self loadData];
-        NSLog(@"DOING THIS FIRST UPDATE");
         return;
     }
     NSNumber* lastUpdate = [MenuTableViewController getNumericalDate:self.lastUpdate];
     NSNumber* serversLastUpdate = [MenuTableViewController getServersLastUpdateTime];
-    NSLog(@"%@ %@", lastUpdate, serversLastUpdate);
     NSComparisonResult compare = [serversLastUpdate compare:lastUpdate];
     if(compare == NSOrderedDescending) {
-        NSLog(@"server updated more recently");
         [self loadData];
     }
 }

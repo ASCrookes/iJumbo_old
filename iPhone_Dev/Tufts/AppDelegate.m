@@ -20,7 +20,6 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 120;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [TestFlight takeOff:@"071ba95265c6dbb6b7377dbaf3bf6f4f_MTE0NDQ1MjAxMi0wNy0yNiAwMDowNzo1MS4xNzczNDY"];
     // Override point for customization after application launch.
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];

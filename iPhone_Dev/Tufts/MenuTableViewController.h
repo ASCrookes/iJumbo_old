@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FoodViewController.h"
 #import "NSDictionary+Contains_Key.h"
-#import "TestFlight.h"
 
 @interface MenuTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
@@ -25,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)loadData;
-- (void)parseData:(NSData *)responseData;
+- (void)parseData;
 - (void)addBarInfo;
 - (void)loadDataBasedOnDate;
 - (void)clearUnnecessary;
