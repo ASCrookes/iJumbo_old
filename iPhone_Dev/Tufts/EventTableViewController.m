@@ -44,6 +44,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 {
     [super viewDidLoad];
     
+    // If there is no data try and load it
     if([self.dataSource count] == 0) {
         [self loadData];
     }
@@ -65,6 +66,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.date = [NSDate date];
     UIBarButtonItem* datePicker = [[UIBarButtonItem alloc] initWithTitle:@"Calendar" style:UIBarButtonItemStylePlain target:self action:@selector(showDatePicker:)];
     [self.navigationItem setRightBarButtonItem:datePicker];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidUnload
