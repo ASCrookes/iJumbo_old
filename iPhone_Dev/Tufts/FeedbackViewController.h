@@ -10,7 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
 
-@interface FeedbackViewController : UIViewController <ASIHTTPRequestDelegate>
+@interface FeedbackViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextView *feedbackInputField;
 

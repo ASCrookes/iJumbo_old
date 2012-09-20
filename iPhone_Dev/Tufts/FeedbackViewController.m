@@ -39,19 +39,27 @@
 - (IBAction)sendAction:(id)sender 
 {
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://ijumboapp.com/api/feedback"]];
-    [request setDelegate:self];
     [request setRequestMethod:@"POST"];
     [request setPostValue:self.feedbackInputField.text forKey:@"feedback"];
-    [request startSynchronous];
+    self.feedbackInputField.text = @"Sending Feedback...";
+    self.feedbackInputField.userInteractionEnabled = NO;
+    [self.feedbackInputField resignFirstResponder];
+    // instead of getting rid of the button make it an activity indicator
+    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem  = nil;
+    dispatch_queue_t queue = dispatch_queue_create("com.feedback.ijumbo", nil);
+    dispatch_async(queue, ^{
+        [request startSynchronous];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView* thanksAlert = [[UIAlertView alloc] initWithTitle:@"Thanks!" message:@"We appreciate the feedback" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [thanksAlert show];
+            [self dismissModalViewControllerAnimated:YES];
+        });
+    });
+    dispatch_release(queue);
+    
 }
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-    // Use when fetching text data
-    UIAlertView* thanksAlert = [[UIAlertView alloc] initWithTitle:@"Thanks!" message:@"We appreciate the feedback" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [thanksAlert show];
-    [self dismissModalViewControllerAnimated:YES];
-    // Use when fetching binary data
-}
+
 
 - (IBAction)cancelAction:(id)sender 
 {
