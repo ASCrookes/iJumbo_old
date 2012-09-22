@@ -16,5 +16,6 @@
 @property (nonatomic,strong) NSDate* alertedDate;
 
 - (void)pingServer;
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken;
 
 @end

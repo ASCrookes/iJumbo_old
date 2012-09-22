@@ -43,7 +43,8 @@
     [super viewDidLoad];
     [self loadData];
     self.scrollView.contentSize = CGSizeMake(320, 675);
-	// Do any additional setup after loading the view.
+    UIBarButtonItem* foodAlert = [[UIBarButtonItem alloc] initWithTitle:@"Alert" style:UIBarButtonItemStylePlain target:self action:@selector(subscribeToFood)];
+	self.navigationItem.rightBarButtonItem = foodAlert;
     
 }
 
@@ -88,5 +89,18 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+                                  
+- (void)subscribeToFood
+{
+    NSString* channelName = [[self.food objectForKey:@"FoodName"] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    [PFPush subscribeToChannelInBackground:channelName block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Successfully subscribed to the broadcast channel.");
+        } else {
+            NSLog(@"Failed to subscribe to the broadcast channel.");
+        }
+    }];
+}
+                                
 
 @end

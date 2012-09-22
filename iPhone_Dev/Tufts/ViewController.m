@@ -49,6 +49,12 @@
     [self pingInternet];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self setIcons];
+}
+
 - (void)viewDidUnload
 {
     [self setDayNum:nil];

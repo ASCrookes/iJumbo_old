@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="d96-t9-8dj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mbf-8U-dNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="euB-7V-168" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
@@ -24,13 +22,13 @@
                         <segue destination="2" kind="relationship" relationship="rootViewController" id="Ce6-Jh-M2e"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mbf-8U-dNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-103" y="-428"/>
         </scene>
         <!--About Tufts View Controller - Tufts Vision-->
         <scene sceneID="7Qn-l7-Iuv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hiW-6z-IgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="About Tufts" title="Tufts Vision" id="w4D-yA-MaL" customClass="AboutTuftsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yip-Fb-DFF">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -82,13 +80,13 @@
                         <outlet property="visionStatementField" destination="oU2-z7-GMA" id="lha-ls-cpK"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hiW-6z-IgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="292" y="-1001"/>
         </scene>
         <!--Food View Controller-->
         <scene sceneID="tHd-bR-q0l">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EFJ-KX-JvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Food View" id="bNb-aa-zf9" customClass="FoodViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3uz-7H-0hN">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -298,13 +296,13 @@
                         <outlet property="sugars" destination="jCf-Ha-PAK" id="ask-ki-vv5"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EFJ-KX-JvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="681" y="-1001"/>
         </scene>
         <!--Info View Controller - About-->
         <scene sceneID="e9A-bH-sfh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5oj-XL-c5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="INFO TABLE" title="About" id="9Eu-7p-i8o" customClass="InfoViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3Af-b2-sOk">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -402,13 +400,13 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5oj-XL-c5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1070" y="-1001"/>
         </scene>
         <!--Feedback View Controller-->
         <scene sceneID="dzQ-Dh-o1J">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WNn-tI-000" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Feedback Input View" id="1ca-rB-l4e" customClass="FeedbackViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ILa-bH-rOV">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -432,13 +430,13 @@
                         <outlet property="feedbackInputField" destination="FlG-0R-k2H" id="KOS-xk-hV9"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WNn-tI-000" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1425" y="-1001"/>
         </scene>
         <!--Menu Table View Controller - Menu-->
         <scene sceneID="tdK-04-pfp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hem-qR-zcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="Menu Table BUTT" title="Menu" id="eai-Dx-zYm" customClass="MenuTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="xaK-nG-dxh">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -496,13 +494,13 @@
                         <outlet property="extraBar" destination="NZM-wF-59M" id="adC-QY-QyM"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hem-qR-zcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="681" y="174"/>
         </scene>
         <!--Menu Table View Controller-->
         <scene sceneID="DYu-9F-zrc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ubI-4x-De0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Menu Table" id="7Dh-s2-RGW" customClass="MenuTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fty-ml-2Du">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -565,13 +563,13 @@
                         <outlet property="tableView" destination="qMK-UN-cxA" id="jdp-3F-PbU"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ubI-4x-De0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="681" y="736"/>
         </scene>
         <!--Joey Tracker Table - Transportation-->
         <scene sceneID="xMw-CK-8hU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hDA-MX-mvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="Joey Table" title="Transportation" id="XNp-Tx-BHy" customClass="JoeyTrackerTable" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="HzY-m0-Di4">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -632,13 +630,13 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hDA-MX-mvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1058" y="168"/>
         </scene>
         <!--News View Controller - The Daily-->
         <scene sceneID="ahf-BP-Ujy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vfo-Ay-dLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="News Table" title="The Daily" id="s3N-tR-KcV" customClass="NewsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="Bo3-bf-FvV">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -695,13 +693,13 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vfo-Ay-dLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1451" y="168"/>
         </scene>
         <!--News Story View Controller - Story-->
         <scene sceneID="L0Z-rc-dnw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="out-Kf-F4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="News Story View" title="Story" id="5mM-4i-5RP" customClass="NewsStoryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pFz-pU-adg">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -726,13 +724,13 @@
                         <outlet property="navBar" destination="WrS-aD-ObF" id="9SJ-aK-pD4"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="out-Kf-F4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1849" y="180"/>
         </scene>
         <!--Event View Controller-->
         <scene sceneID="5Vz-Cm-WZU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wy5-q1-fWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Event View" id="YHI-SR-lsQ" customClass="EventViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zJ8-lZ-gCd">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -821,13 +819,13 @@
                         <outlet property="time" destination="oNV-Gx-Jsz" id="rEW-Z9-0Rx"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wy5-q1-fWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="681" y="-428"/>
         </scene>
         <!--Building View Controller-->
         <scene sceneID="xq0-Uo-oqC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UKZ-L0-b4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Building View" id="B85-TP-hsM" customClass="BuildingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IlQ-2P-lcL">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -1007,13 +1005,13 @@
                         <outlet property="wednesday_hours" destination="ncx-AX-76p" id="pFa-QS-i3D"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UKZ-L0-b4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1066" y="-428"/>
         </scene>
         <!--Building Table View Controller - Buildings-->
         <scene sceneID="FTq-9R-2GR">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="254-h0-8xv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="Building Table" title="Buildings" id="vdX-gQ-bvC" customClass="BuildingTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="TjW-E0-wwZ">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -1048,13 +1046,13 @@
                     <navigationItem key="navigationItem" title="BUILDINGS" id="FF7-p5-mDW"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="254-h0-8xv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-95" y="174"/>
         </scene>
         <!--Event Table View Controller - Events-->
         <scene sceneID="juD-cz-Okd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xEt-38-Vaq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Event Table" title="Events" id="9bc-eR-Tt1" customClass="EventTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3wZ-s0-oJn">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -1123,13 +1121,13 @@
                         <outlet property="tableView" destination="Qrb-Rq-uJs" id="j2w-ga-0et"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xEt-38-Vaq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="274" y="172"/>
         </scene>
         <!--Map View Controller - Map-->
         <scene sceneID="djg-eo-CVq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RB5-49-1Zm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Map View" title="Map" id="Wvs-dc-Ur7" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NKr-XN-p7y">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -1159,13 +1157,13 @@
                         <outlet property="searchBar" destination="XG4-0o-fQI" id="ufy-IG-4Yx"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RB5-49-1Zm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-95" y="-1001"/>
         </scene>
         <!--Sources View Controller - Sources-->
         <scene sceneID="g6f-mX-ZLH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rh7-oJ-t0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Sources View Controller" title="Sources" id="GyK-Uy-qB4" customClass="SourcesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G0K-7z-Lbh">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -1361,13 +1359,13 @@
                         <outlet property="scrollView" destination="khG-xZ-xUW" id="ZEK-0x-Sfv"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rh7-oJ-t0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1829" y="-1001"/>
         </scene>
         <!--View Controller - TUFTS-->
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController title="TUFTS" id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -1548,6 +1546,7 @@
                         <outlet property="dayWord" destination="5t6-aD-blt" id="o2o-oM-thL"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="292" y="-428"/>
         </scene>
@@ -1565,141 +1564,6 @@
         <image name="newsDefault.png" width="90" height="90"/>
         <image name="roundedTextView.png" width="280" height="155"/>
     </resources>
-    <classes>
-        <class className="AboutTuftsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutTuftsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="foundingField" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="visionStatementField" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="BuildingTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="BuildingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="building_name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="friday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="friday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="monday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="monday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phone_number" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="saturday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="saturday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="sunday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sunday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="thursday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="thursday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tuesday_hours" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tuesday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="website" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="wedbesday_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="wednesday_hours" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="EventTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="EventViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="eventTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="link" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="location" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="time" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FeedbackViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="FoodViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FoodViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="allergens" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="calories" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="carbs" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cholestoral" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fiber" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="ingredients" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="protein" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="satFat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="servingSize" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sodium" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="sugars" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="InfoViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
-        </class>
-        <class className="JoeyTrackerTable" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoeyTrackerTable.h"/>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="MenuTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateSegment" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="extraBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NewsCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="thumbnail" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NewsStoryViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsStoryViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="forwardButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NewsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
-        </class>
-        <class className="SourcesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourcesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dayNum" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dayWord" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

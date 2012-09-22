@@ -64,6 +64,7 @@
 		8E9A35F415EE8DBB0006DA20 /* darkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F215EE8DBB0006DA20 /* darkBackground.png */; };
 		8E9A35F515EE8DBB0006DA20 /* darkBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */; };
 		8EAC190A1561DAF90078F5CD /* BuildingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC19091561DAF90078F5CD /* BuildingAnnotation.m */; };
+		8EAFB4B7160BA45A004C0003 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EAFB4B6160BA45A004C0003 /* Default-568h@2x.png */; };
 		8EB3489A15CDF8D600BC885F /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB3489815CDF8D600BC885F /* map.png */; };
 		8EB3489B15CDF8D600BC885F /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB3489915CDF8D600BC885F /* map@2x.png */; };
 		8EB7894B15ED9F1A000CFEBD /* eventDescription@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB7894915ED9F1A000CFEBD /* eventDescription@2x.png */; };
@@ -90,6 +91,13 @@
 		8EE401BD15D1EC5E004AD1F7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE401BC15D1EC5E004AD1F7 /* Default@2x.png */; };
 		8EE401BF15D1EC62004AD1F7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE401BE15D1EC62004AD1F7 /* Default.png */; };
 		8EECBEC4153D2DB20087B139 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECBEC3153D2DB20087B139 /* EventViewController.m */; };
+		8EEEBCC6160B6EFF00D702E6 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCC5160B6EFF00D702E6 /* Parse.framework */; };
+		8EEEBCC9160B6F7600D702E6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCC7160B6F6300D702E6 /* AudioToolbox.framework */; };
+		8EEEBCCB160B6F8700D702E6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCCA160B6F8700D702E6 /* libsqlite3.dylib */; };
+		8EEEBCCD160B6F8C00D702E6 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCCC160B6F8C00D702E6 /* libz.1.1.3.dylib */; };
+		8EEEBCCF160B6F9800D702E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCCE160B6F9800D702E6 /* QuartzCore.framework */; };
+		8EEEBCD1160B6F9E00D702E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCD0160B6F9E00D702E6 /* Security.framework */; };
+		8EEEBCD3160B6FA300D702E6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCD2160B6FA300D702E6 /* StoreKit.framework */; };
 		8EFF6CCC155C17A400C81B8E /* BuildingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF6CCB155C17A400C81B8E /* BuildingViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -190,6 +198,7 @@
 		8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkBackground@2x.png"; sourceTree = "<group>"; };
 		8EAC19081561DAF90078F5CD /* BuildingAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingAnnotation.h; sourceTree = "<group>"; };
 		8EAC19091561DAF90078F5CD /* BuildingAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingAnnotation.m; sourceTree = "<group>"; };
+		8EAFB4B6160BA45A004C0003 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8EB3489815CDF8D600BC885F /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		8EB3489915CDF8D600BC885F /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
 		8EB7894915ED9F1A000CFEBD /* eventDescription@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventDescription@2x.png"; sourceTree = "<group>"; };
@@ -220,6 +229,13 @@
 		8EE401BE15D1EC62004AD1F7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8EECBEC2153D2DB20087B139 /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
 		8EECBEC3153D2DB20087B139 /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
+		8EEEBCC5160B6EFF00D702E6 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		8EEEBCC7160B6F6300D702E6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8EEEBCCA160B6F8700D702E6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		8EEEBCCC160B6F8C00D702E6 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		8EEEBCCE160B6F9800D702E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8EEEBCD0160B6F9E00D702E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8EEEBCD2160B6FA300D702E6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8EFF6CCA155C17A400C81B8E /* BuildingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingViewController.h; sourceTree = "<group>"; };
 		8EFF6CCB155C17A400C81B8E /* BuildingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,7 +245,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EEEBCD3160B6FA300D702E6 /* StoreKit.framework in Frameworks */,
+				8EEEBCD1160B6F9E00D702E6 /* Security.framework in Frameworks */,
+				8EEEBCCF160B6F9800D702E6 /* QuartzCore.framework in Frameworks */,
 				8E4DC33F1603CD8A00EC14BF /* MobileCoreServices.framework in Frameworks */,
+				8EEEBCCD160B6F8C00D702E6 /* libz.1.1.3.dylib in Frameworks */,
+				8EEEBCCB160B6F8700D702E6 /* libsqlite3.dylib in Frameworks */,
+				8E1E7A12153C835800B126B8 /* CoreGraphics.framework in Frameworks */,
+				8EEEBCC9160B6F7600D702E6 /* AudioToolbox.framework in Frameworks */,
 				8E4DC33D1603CD7F00EC14BF /* CFNetwork.framework in Frameworks */,
 				8E3FA8E315CC1CA80031F87D /* MessageUI.framework in Frameworks */,
 				8ED860C215BFA77C00DBC45A /* libz.dylib in Frameworks */,
@@ -237,7 +260,7 @@
 				8E5320CE1561B18F0006C6CA /* MapKit.framework in Frameworks */,
 				8E1E7A0E153C835800B126B8 /* UIKit.framework in Frameworks */,
 				8E1E7A10153C835800B126B8 /* Foundation.framework in Frameworks */,
-				8E1E7A12153C835800B126B8 /* CoreGraphics.framework in Frameworks */,
+				8EEEBCC6160B6EFF00D702E6 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,10 +319,11 @@
 		8E1E79FE153C835800B126B8 = {
 			isa = PBXGroup;
 			children = (
+				8E3F13DC15D0B55400A558AB /* iconElephant.png */,
+				8EAFB4B6160BA45A004C0003 /* Default-568h@2x.png */,
 				8EE401BE15D1EC62004AD1F7 /* Default.png */,
 				8EE401BC15D1EC5E004AD1F7 /* Default@2x.png */,
 				8E3F13DE15D0B55800A558AB /* iconElephant@2x.png */,
-				8E3F13DC15D0B55400A558AB /* iconElephant.png */,
 				8E1E7A13153C835800B126B8 /* Tufts */,
 				8E1E7A31153C835800B126B8 /* TuftsTests */,
 				8E1E7A0C153C835800B126B8 /* Frameworks */,
@@ -319,6 +343,13 @@
 		8E1E7A0C153C835800B126B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8EEEBCD2160B6FA300D702E6 /* StoreKit.framework */,
+				8EEEBCD0160B6F9E00D702E6 /* Security.framework */,
+				8EEEBCCE160B6F9800D702E6 /* QuartzCore.framework */,
+				8EEEBCCC160B6F8C00D702E6 /* libz.1.1.3.dylib */,
+				8EEEBCCA160B6F8700D702E6 /* libsqlite3.dylib */,
+				8EEEBCC7160B6F6300D702E6 /* AudioToolbox.framework */,
+				8EEEBCC5160B6EFF00D702E6 /* Parse.framework */,
 				8E4DC33E1603CD8A00EC14BF /* MobileCoreServices.framework */,
 				8E4DC33C1603CD7F00EC14BF /* CFNetwork.framework */,
 				8E3FA8E215CC1CA80031F87D /* MessageUI.framework */,
@@ -336,10 +367,10 @@
 		8E1E7A13153C835800B126B8 /* Tufts */ = {
 			isa = PBXGroup;
 			children = (
-				8E4DC31C1603CBCB00EC14BF /* ASI */,
 				8E1E7A1C153C835800B126B8 /* AppDelegate.h */,
 				8E1E7A1D153C835800B126B8 /* AppDelegate.m */,
 				8E1E7A1F153C835800B126B8 /* MainStoryboard1.storyboard */,
+				8E4DC31C1603CBCB00EC14BF /* ASI */,
 				8E5B22DE1593B84500C7C49E /* Home View */,
 				8E3FCD1D1597B19F00A9EE0F /* Categories */,
 				8E0C429715B79866009165E0 /* UI */,
@@ -592,6 +623,7 @@
 				8EB7894C15ED9F1A000CFEBD /* eventDescription.png in Resources */,
 				8E9A35F415EE8DBB0006DA20 /* darkBackground.png in Resources */,
 				8E9A35F515EE8DBB0006DA20 /* darkBackground@2x.png in Resources */,
+				8EAFB4B7160BA45A004C0003 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,7 +744,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -729,7 +761,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "D84312D9-79BF-41C9-9A94-99CAB89FEDE9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -740,7 +771,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -751,7 +782,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "D84312D9-79BF-41C9-9A94-99CAB89FEDE9";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -760,9 +790,9 @@
 		8E1E7A3D153C835800B126B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Amadou Crookes (V23VPS752M)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Amadou Crookes (V23VPS752M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amadou Crookes (V23VPS752M)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -775,9 +805,6 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -786,9 +813,9 @@
 		8E1E7A3E153C835800B126B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Amadou Crookes (V23VPS752M)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Amadou Crookes (V23VPS752M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amadou Crookes (V23VPS752M)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -802,9 +829,6 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -850,8 +874,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -861,8 +885,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "D84312D9-79BF-41C9-9A94-99CAB89FEDE9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D84312D9-79BF-41C9-9A94-99CAB89FEDE9";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -871,9 +893,9 @@
 		8EE401C115D22166004AD1F7 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Amadou Crookes (V23VPS752M)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Amadou Crookes (V23VPS752M)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Amadou Crookes (V23VPS752M)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -887,9 +909,6 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

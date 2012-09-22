@@ -7,9 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 // Time in terms of seconds
-const int TIME_BETWEEN_CONNECTION_ALERT = 120;
+const int TIME_BETWEEN_CONNECTION_ALERT = 90;
 
 @implementation AppDelegate
 
@@ -20,10 +21,17 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 120;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Setup parse for notification system management
+    [Parse setApplicationId:@"ctpSKiaBaM1DrFYqnknjV3ICFOfWcK5cD2GOB4Qc"
+                  clientKey:@"YrPtqKjyvoWRoOMHFyPNLMhJgZbuXhzMu07JH1Qy"];
     
+    // Register this device for push notifications from parse
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
+                                                    UIRemoteNotificationTypeAlert|
+                                                    UIRemoteNotificationTypeSound];
+    
+    // Appearance of the app
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar.png"] forBarMetrics:UIBarMetricsDefault];
     [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor darkGrayColor]];
@@ -93,5 +101,29 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 120;
     self.alertedDate = [NSDate date];
 }
 
+// Once this device is registered this is the callback function
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    NSLog(@"YOLO SOLO");
+    [PFPush storeDeviceToken:newDeviceToken]; // Send parse the device token
+    // Subscribe this user to the broadcast channel, ""
+    [PFPush subscribeToChannelInBackground:@"" block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"Successfully subscribed to the broadcast channel.");
+        } else {
+            NSLog(@"Failed to subscribe to the broadcast channel.");
+        }
+    }];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@":(");
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
 
 @end
