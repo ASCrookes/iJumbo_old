@@ -330,6 +330,15 @@ const int SEGMENT_TOMORROW = 1;
     return number;
 }
 
+// Tony Kim is the jizz
+- (IBAction)showMyFood:(id)sender
+{
+    MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food"];
+    myFood.tableView.backgroundColor = self.tableView.backgroundColor;
+    [self.navigationController pushViewController:myFood animated:YES];
+}
+
+
 
 //*********************************************************
 //*********************************************************

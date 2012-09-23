@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FoodViewController.h"
 #import "NSDictionary+Contains_Key.h"
+#import "MyFoodViewController.h"
 
 @interface MenuTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
