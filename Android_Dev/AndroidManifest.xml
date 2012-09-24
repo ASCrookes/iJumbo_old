@@ -1,0 +1,37 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.tufts.mobile"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <uses-library android:name="com.google.android.maps"/>
+        
+        <activity
+            android:name=".TM_Main"
+            android:label="@string/title_activity_tm__main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".Places"></activity>
+        <activity android:name=".Joey"></activity>
+        <activity android:name=".Trunk"></activity>
+        <activity android:name=".Menus"></activity>
+        <activity android:name=".Events"></activity>
+        <activity android:name=".Map" android:theme="@android:style/Theme.NoTitleBar"></activity>
+
+    </application>
+
+</manifest>
