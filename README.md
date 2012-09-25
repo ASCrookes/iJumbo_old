@@ -14,6 +14,7 @@ iJumbo App
 Soon
 
 - MBTA T map
-
-
+- Joey schudule
+- Food notifications
+- Android
  
