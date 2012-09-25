@@ -8,6 +8,7 @@
 
 #import "MyFoodViewController.h"
 
+
 @interface MyFoodViewController ()
 
 @end
@@ -15,20 +16,32 @@
 @implementation MyFoodViewController
 
 @synthesize myFood = _myFood;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize allFood = _allFood;
+@synthesize dataSource = _dataSource;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UISegmentedControl* segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Alerts", @"All Food", nil]];
+    segControl.selectedSegmentIndex = 0;
+    [segControl addTarget:self action:@selector(segmentChange) forControlEvents:UIControlEventValueChanged];
+    [segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+    self.navigationItem.titleView = segControl;
+    [self segmentChange];
+    [self loadData];
+}
+
+- (void)segmentChange
+{
+    int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
+    if(segmentIndex == 0) {
+        self.dataSource = self.myFood;
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    } else {
+        self.dataSource = self.allFood;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -38,32 +51,70 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.myFood count];
+    return [self.dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Food Channel Cell";
+    static NSString *CellIdentifier = @"Food Name Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [[@"[" stringByAppendingString:[self.myFood objectAtIndex:indexPath.row]] stringByAppendingString:@"]"];
-    // Configure the cell...
+    NSString* cellText = [self.dataSource objectAtIndex:indexPath.row];
+    if(((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex == 0) {
+        cellText = [cellText stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+    }
+    cell.textLabel.text = cellText;
     
     return cell;
 }
 
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray* editableList = [NSMutableArray arrayWithArray:self.myFood];
-    NSString* channel = [self.myFood objectAtIndex:indexPath.row];
-    [editableList removeObjectAtIndex:indexPath.row];
-    self.myFood = editableList;
-    [PFPush unsubscribeFromChannelInBackground:channel];
-    [self.tableView reloadData];
+    int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
+    if(segmentIndex == 0){
+        NSLog(@"in my food-exiting");
+        return;
+    }
+    NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    [PFPush subscribeToChannelInBackground:channel];
+    NSLog(@"Subscribing to %@", channel);
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [PFPush unsubscribeFromChannelInBackground:[self.myFood objectAtIndex:indexPath.row]];
+        NSMutableArray* editableList = [NSMutableArray arrayWithArray:self.myFood];
+        [editableList removeObjectAtIndex:indexPath.row];
+        self.myFood = editableList;
+        [self.tableView reloadData];
+    }
+}
+
+
+
+
+
+- (void)viewDidUnload {
+    [self setTableView:nil];
+    [super viewDidUnload];
+}
+
+- (void)loadData
+{
+    NSURL* allFoodURL = [NSURL URLWithString:@"http://ijumboapp.com/api/allFood"];
+    dispatch_queue_t queue = dispatch_queue_create("all food queue", nil);
+    dispatch_async(queue, ^{
+        NSData* data = [NSData dataWithContentsOfURL:allFoodURL];
+        NSError* error;
+        self.allFood = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        NSLog(@"ALL FOOD COUNT: %i", [self.allFood count]);
+        
+    });
+    dispatch_release(queue);
 }
 
 - (NSArray*)myFood
@@ -77,6 +128,13 @@
     return _myFood;
 }
 
+- (NSArray*)allFood
+{
+    if(!_allFood) {
+        _allFood = [NSArray array];
+    }
+    return _allFood;
+}
 
 
 @end

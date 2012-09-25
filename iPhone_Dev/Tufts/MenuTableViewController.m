@@ -177,8 +177,8 @@ const int SEGMENT_TOMORROW = 1;
 
 - (void)parseData
 {
-    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/meals.json"]];
-    NSData* tomorrowsData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/tomorrowsMeals.json"]];
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://ijumboapp.com/api/json/meals"]];
+    NSData* tomorrowsData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://ijumboapp.com/api/json/tomorrowsMeals"]];
     if(data == nil || tomorrowsData == nil) {
         AppDelegate* del = [[UIApplication sharedApplication] delegate];
         [del pingServer];
@@ -321,7 +321,7 @@ const int SEGMENT_TOMORROW = 1;
 
 + (NSNumber*)getServersLastUpdateTime
 {
-    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/mealDate.json"]];
+    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://ijumboapp.com/api/json/mealDate"]];
     NSError* error;
     NSDictionary* dateDict = [NSJSONSerialization JSONObjectWithData:data
                                            options:0
@@ -333,8 +333,9 @@ const int SEGMENT_TOMORROW = 1;
 // Tony Kim is the jizz
 - (IBAction)showMyFood:(id)sender
 {
-    MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food"];
-    myFood.tableView.backgroundColor = self.tableView.backgroundColor;
+    MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food VC"];
+    myFood.view.hidden = NO;
+    myFood.tableView.backgroundColor = self.view.backgroundColor;
     [self.navigationController pushViewController:myFood animated:YES];
 }
 
