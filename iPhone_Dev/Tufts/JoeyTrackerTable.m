@@ -69,7 +69,7 @@
     [activityView startAnimating];
     UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
     self.navigationItem.rightBarButtonItem = loadingView;
-    NSURL *url = [NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/joey.json"];
+    NSURL *url = [NSURL URLWithString:@"http://ijumboapp.com/api/json/joey"];
     self.title = @"Refreshing...";
     
     // Set up a concurrent queue
