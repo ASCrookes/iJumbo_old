@@ -27,8 +27,21 @@
     [segControl addTarget:self action:@selector(segmentChange) forControlEvents:UIControlEventValueChanged];
     [segControl setSegmentedControlStyle:UISegmentedControlStyleBar];
     self.navigationItem.titleView = segControl;
+    self.editButtonItem.target = self;
+    self.editButtonItem.action = @selector(toggleTableEditMode);
     [self segmentChange];
     [self loadData];
+}
+
+- (void)toggleTableEditMode
+{
+    if(self.tableView.editing) {
+        [self.tableView setEditing:NO animated:YES];
+        self.editButtonItem.title = @"Edit";
+    } else {
+        [self.tableView setEditing:!self.tableView.editing animated:YES];
+        self.editButtonItem.title = @"Done";
+    }
 }
 
 - (void)segmentChange
@@ -39,6 +52,7 @@
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
     } else {
         self.dataSource = self.allFood;
+        self.myFood = nil;
         self.navigationItem.rightBarButtonItem = nil;
     }
     [self.tableView reloadData];
@@ -90,12 +104,10 @@
         NSMutableArray* editableList = [NSMutableArray arrayWithArray:self.myFood];
         [editableList removeObjectAtIndex:indexPath.row];
         self.myFood = editableList;
+        self.dataSource = self.myFood;
         [self.tableView reloadData];
     }
 }
-
-
-
 
 
 - (void)viewDidUnload {
@@ -111,8 +123,6 @@
         NSData* data = [NSData dataWithContentsOfURL:allFoodURL];
         NSError* error;
         self.allFood = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        NSLog(@"ALL FOOD COUNT: %i", [self.allFood count]);
-        
     });
     dispatch_release(queue);
 }
@@ -120,7 +130,9 @@
 - (NSArray*)myFood
 {
     if(!_myFood) {
-        _myFood = [[PFPush getSubscribedChannels:nil] allObjects];
+        NSSet* foodSet = [PFPush getSubscribedChannels:nil];
+        NSSortDescriptor* sort = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+        _myFood = [foodSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
         NSMutableArray* foodChannels = [NSMutableArray arrayWithArray:_myFood];
         [foodChannels removeObject:@""];
         _myFood = foodChannels;

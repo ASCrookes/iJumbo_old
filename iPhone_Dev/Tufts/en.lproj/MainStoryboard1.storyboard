@@ -1653,7 +1653,6 @@
         <class className="MenuTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showMyFood:"/>
                 <relationship kind="outlet" name="dateSegment" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="extraBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
