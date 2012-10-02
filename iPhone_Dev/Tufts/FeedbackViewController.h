@@ -13,5 +13,7 @@
 @interface FeedbackViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextView *feedbackInputField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+
 
 @end

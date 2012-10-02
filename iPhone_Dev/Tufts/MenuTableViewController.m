@@ -53,12 +53,16 @@ const int SEGMENT_TOMORROW = 1;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if(!self.masterDict || [self.masterDict count] == 0 || !self.noFood.hidden) {
+        [self loadData];
+        return;
+    }
     [self loadDataBasedOnDate];
 }
 
 - (void)addBarInfo
 {
-    UIBarButtonItem* halls = [[UIBarButtonItem alloc] initWithTitle:@"Carmichael" style:UIBarButtonItemStylePlain target:self action:@selector(changeHall)];
+    UIBarButtonItem* halls = [[UIBarButtonItem alloc] initWithTitle:@"Dewick" style:UIBarButtonItemStylePlain target:self action:@selector(changeHall)];
     self.navigationItem.rightBarButtonItem = halls;
     
     UISegmentedControl* segment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Break",@"Lunch",@"Dinner",nil]];
@@ -193,6 +197,7 @@ const int SEGMENT_TOMORROW = 1;
     self.tomorrowsDict = [NSJSONSerialization JSONObjectWithData:tomorrowsData
                                                          options:0
                                                            error:&error];
+    NSLog(@"%@",self.masterDict);
 
     [self setDataSourceFromMaster];
     

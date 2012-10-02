@@ -413,20 +413,31 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="roundedTextView.png" id="NLj-UC-mbi">
-                                <rect key="frame" x="11" y="20" width="298" height="160"/>
+                                <rect key="frame" x="11" y="60" width="298" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="FlG-0R-k2H">
-                                <rect key="frame" x="11" y="20" width="298" height="160"/>
+                                <rect key="frame" x="11" y="60" width="298" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="feedback_email.png" id="4XK-gu-DwX">
+                                <rect key="frame" x="11" y="20" width="298" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" id="rnb-s2-NcW">
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="emailField" destination="rnb-s2-NcW" id="sF9-65-oXc"/>
                         <outlet property="feedbackInputField" destination="FlG-0R-k2H" id="KOS-xk-hV9"/>
                     </connections>
                 </viewController>
@@ -478,8 +489,8 @@
                                 <items>
                                     <navigationItem id="KHl-Hm-Lhl">
                                         <nil key="title"/>
-                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="3bX-X0-aD0">
-                                            <rect key="frame" x="67" y="7" width="170" height="30"/>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="lDr-CY-t7Z">
+                                            <rect key="frame" x="86" y="7" width="147" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Today"/>
@@ -499,7 +510,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="dateSegment" destination="3bX-X0-aD0" id="8j9-VE-sOG"/>
+                        <outlet property="dateSegment" destination="lDr-CY-t7Z" id="T2g-xJ-zZs"/>
                         <outlet property="extraBar" destination="fGf-BB-nAA" id="wUY-JQ-Xth"/>
                         <outlet property="tableView" destination="qMK-UN-cxA" id="jdp-3F-PbU"/>
                     </connections>
@@ -1547,6 +1558,7 @@
         <image name="burger.png" width="130" height="91"/>
         <image name="event.png" width="132" height="129"/>
         <image name="eventDescription.png" width="280" height="200"/>
+        <image name="feedback_email.png" width="300" height="30"/>
         <image name="forward arrow.png" width="20" height="20"/>
         <image name="map.png" width="110" height="110"/>
         <image name="news.png" width="115" height="105"/>
@@ -1616,6 +1628,7 @@
             <relationships>
                 <relationship kind="action" name="cancelAction:"/>
                 <relationship kind="action" name="sendAction:"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
             </relationships>
         </class>
@@ -1653,7 +1666,6 @@
         <class className="MenuTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showMyFood:"/>
                 <relationship kind="outlet" name="dateSegment" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="extraBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>

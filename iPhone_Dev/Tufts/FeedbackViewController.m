@@ -21,12 +21,14 @@
 {    
     UIBarButtonItem* submit = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(sendAction:)];
     self.navigationItem.rightBarButtonItem = submit;
-	[self.feedbackInputField becomeFirstResponder];
+	[self.emailField becomeFirstResponder];
 }
 
 - (void)viewDidUnload
 {
     [self setFeedbackInputField:nil];
+    [self setEmailField:nil];
+    [self setEmailField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -40,12 +42,21 @@
 {
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://ijumboapp.com/api/feedback"]];
     [request setRequestMethod:@"POST"];
-    [request setPostValue:self.feedbackInputField.text forKey:@"feedback"];
+    NSString* feedback = [[self.feedbackInputField.text stringByAppendingString:@"\n\n-------\n\n"]
+                                                        stringByAppendingString:self.emailField.text];
+    [request setPostValue:feedback forKey:@"feedback"];
+    self.emailField.userInteractionEnabled = NO;
+    [self.emailField resignFirstResponder];
     self.feedbackInputField.text = @"Sending Feedback...";
     self.feedbackInputField.userInteractionEnabled = NO;
     [self.feedbackInputField resignFirstResponder];
     // instead of getting rid of the button make it an activity indicator
-    self.navigationItem.rightBarButtonItem = nil;
+    UIActivityIndicatorView * activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [activityView sizeToFit];
+    [activityView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)];
+    [activityView startAnimating];
+    UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
+    self.navigationItem.rightBarButtonItem = loadingView;
     self.navigationItem.leftBarButtonItem  = nil;
     dispatch_queue_t queue = dispatch_queue_create("com.feedback.ijumbo", nil);
     dispatch_async(queue, ^{

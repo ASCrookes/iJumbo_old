@@ -80,6 +80,11 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
