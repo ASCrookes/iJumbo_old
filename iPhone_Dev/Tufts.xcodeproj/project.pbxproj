@@ -12,6 +12,7 @@
 		8E021A0D15B1081000FBB153 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A0C15B1081000FBB153 /* NewsViewController.m */; };
 		8E021A0E15B1086100FBB153 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A0C15B1081000FBB153 /* NewsViewController.m */; };
 		8E021A1115B131C300FBB153 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A1015B131C300FBB153 /* NewsCell.m */; };
+		8E0359D1161E71AF0038D61B /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0359D0161E71AF0038D61B /* WebViewController.m */; };
 		8E0C42B015B7BB8D009165E0 /* LowerNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C42AF15B7BB8D009165E0 /* LowerNavBar.png */; };
 		8E0C42B215B7BB96009165E0 /* NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C42B115B7BB96009165E0 /* NavBar.png */; };
 		8E18AC4D15CB57040054284B /* Bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E18AC3F15CB57040054284B /* Bus.png */; };
@@ -81,7 +82,6 @@
 		8ED4A65515BE529C00B7193A /* back arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED4A65415BE529C00B7193A /* back arrow.png */; };
 		8ED679C315C77C84008C82B4 /* back arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED679C215C77C84008C82B4 /* back arrow@2x.png */; };
 		8ED679C715C77D25008C82B4 /* forward arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED679C615C77D25008C82B4 /* forward arrow@2x.png */; };
-		8ED860A215BF6C1600DBC45A /* NewsStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED860A115BF6C1600DBC45A /* NewsStoryViewController.m */; };
 		8ED860A715BF83A400DBC45A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED860A615BF83A400DBC45A /* SystemConfiguration.framework */; };
 		8ED860C215BFA77C00DBC45A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ED860C115BFA77C00DBC45A /* libz.dylib */; };
 		8EE401A415D1D5CB004AD1F7 /* newsDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE401A215D1D5CB004AD1F7 /* newsDefault.png */; };
@@ -120,6 +120,8 @@
 		8E021A0C15B1081000FBB153 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		8E021A0F15B131C300FBB153 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		8E021A1015B131C300FBB153 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		8E0359CF161E71AF0038D61B /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		8E0359D0161E71AF0038D61B /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8E0C42AF15B7BB8D009165E0 /* LowerNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LowerNavBar.png; sourceTree = "<group>"; };
 		8E0C42B115B7BB96009165E0 /* NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBar.png; sourceTree = "<group>"; };
 		8E18AC3F15CB57040054284B /* Bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bus.png; sourceTree = "<group>"; };
@@ -220,8 +222,6 @@
 		8ED4A65415BE529C00B7193A /* back arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back arrow.png"; sourceTree = "<group>"; };
 		8ED679C215C77C84008C82B4 /* back arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back arrow@2x.png"; sourceTree = "<group>"; };
 		8ED679C615C77D25008C82B4 /* forward arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward arrow@2x.png"; sourceTree = "<group>"; };
-		8ED860A015BF6C1600DBC45A /* NewsStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsStoryViewController.h; sourceTree = "<group>"; };
-		8ED860A115BF6C1600DBC45A /* NewsStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsStoryViewController.m; sourceTree = "<group>"; };
 		8ED860A615BF83A400DBC45A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8ED860C115BFA77C00DBC45A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		8EE401A215D1D5CB004AD1F7 /* newsDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newsDefault.png; sourceTree = "<group>"; };
@@ -495,8 +495,8 @@
 				8E300642156ABCA9000438A2 /* FoodViewController.m */,
 				8EFF6CCA155C17A400C81B8E /* BuildingViewController.h */,
 				8EFF6CCB155C17A400C81B8E /* BuildingViewController.m */,
-				8ED860A015BF6C1600DBC45A /* NewsStoryViewController.h */,
-				8ED860A115BF6C1600DBC45A /* NewsStoryViewController.m */,
+				8E0359CF161E71AF0038D61B /* WebViewController.h */,
+				8E0359D0161E71AF0038D61B /* WebViewController.m */,
 			);
 			name = "Specific View";
 			sourceTree = "<group>";
@@ -682,7 +682,6 @@
 				8E300643156ABCA9000438A2 /* FoodViewController.m in Sources */,
 				8E3FCD211597B1FE00A9EE0F /* NSDictionary+Contains_Key.m in Sources */,
 				8E021A1115B131C300FBB153 /* NewsCell.m in Sources */,
-				8ED860A215BF6C1600DBC45A /* NewsStoryViewController.m in Sources */,
 				8E18AC6815CB8AD20054284B /* InfoViewController.m in Sources */,
 				8E3FA8E615CC556F0031F87D /* FeedbackViewController.m in Sources */,
 				8E3FA91F15CCB53B0031F87D /* AboutTuftsViewController.m in Sources */,
@@ -697,6 +696,7 @@
 				8E4DC33A1603CBCB00EC14BF /* ASINetworkQueue.m in Sources */,
 				8E4DC33B1603CBCB00EC14BF /* Reachability.m in Sources */,
 				8E6FE98E160E5A940024567A /* MyFoodViewController.m in Sources */,
+				8E0359D1161E71AF0038D61B /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 #import "JoeyTrackerTable.h"
 #import "NewsViewController.h"
 #import "InfoViewController.h"
+#import "WebViewController.h"
 #import "AppDelegate.h"
 
 @interface ViewController : UIViewController <UIWebViewDelegate>
@@ -25,7 +26,7 @@
 @property (nonatomic,strong) JoeyTrackerTable *joey;
 @property (nonatomic,strong) MapViewController* map;
 @property (nonatomic,strong) NewsViewController* news;
-@property (nonatomic,strong) UIViewController* trunk;
+@property (nonatomic,strong) WebViewController* trunk;
 @property (weak, nonatomic) IBOutlet UILabel* dayNum;
 @property (weak, nonatomic) IBOutlet UILabel *dayWord;
 @property (strong, nonatomic) UIColor* backgroundColor;

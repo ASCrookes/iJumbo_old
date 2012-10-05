@@ -41,8 +41,6 @@
     [self.mtvc loadData];
     [self.map loadData];
     [self.news loadData];
-    
-    // Setting the title so that trunk is invoked and beings loading
     self.trunk.title = @"Trunk";
     
     // Checking that the internet is available
@@ -218,15 +216,11 @@
     return _btvc;
 }
 
-- (UIViewController*)trunk
+- (WebViewController*)trunk
 {
     if(!_trunk) {
-        UIWebView* website = [[UIWebView alloc] init];
-        website.delegate = self;
-        [website  loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://trunk.tufts.edu/xsl-portal"]]];
-        _trunk = [[UIViewController alloc] init];
-        [_trunk setView:website];
-        _trunk.title = @"Trunk";
+        _trunk = [self.storyboard instantiateViewControllerWithIdentifier:@"Web View"];
+        [_trunk setWebViewWithURL:@"https://trunk.tufts.edu/xsl-portal" delegate:self];
     }
     return _trunk;
 }

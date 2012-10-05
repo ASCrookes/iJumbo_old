@@ -14,7 +14,6 @@
 @synthesize title = _title;
 @synthesize author = _author;
 @synthesize thumbnail = _thumbnail;
-@synthesize webView = _webView;
 @synthesize webVC = _webVC;
 @synthesize link = _link;
 
@@ -40,7 +39,6 @@
     } else {
         self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
     }
-    self.webView = nil;
     self.webVC   = nil;
     self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
@@ -59,13 +57,8 @@
 //*********************************************************
 //*********************************************************
 
-- (NewsStoryViewController*)getWebViewController
+- (WebViewController*)getWebViewController
 {
-    self.webVC.backButton.target = self.webView;
-    self.webVC.backButton.action = @selector(goBack);
-    self.webVC.forwardButton.target = self.webView;
-    self.webVC.forwardButton.action = @selector(goForward);
-    [self.webVC.navBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
     return self.webVC;
 }
 
@@ -84,26 +77,16 @@
     self.webVC.navigationItem.rightBarButtonItem = nil;
 }
 
-- (UIWebView*)webView
-{
-    if(!_webView) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 370)];
-        _webView.delegate = self;
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.link] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:20]];
-        [self.webVC.view addSubview:_webView];
-    }
-    return _webView;
-}
-
-
-- (UIViewController*)webVC
+- (WebViewController*)webVC
 {
     if(!_webVC) {
-        _webVC = [[UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:nil] instantiateViewControllerWithIdentifier:@"News Story View"];
+        _webVC = [[UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:nil] instantiateViewControllerWithIdentifier:@"Web View"];
+        if(self.link) {
+            [_webVC setWebViewWithURL:self.link delegate:self];
+        }
     }
     return _webVC;
 }
-
 
 
 @end

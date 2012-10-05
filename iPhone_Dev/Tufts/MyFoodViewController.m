@@ -89,12 +89,10 @@
 {
     int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
     if(segmentIndex == 0){
-        NSLog(@"in my food-exiting");
         return;
     }
     NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
     [PFPush subscribeToChannelInBackground:channel];
-    NSLog(@"Subscribing to %@", channel);
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

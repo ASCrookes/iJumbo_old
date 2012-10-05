@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsStoryViewController.h"
+#import "WebViewController.h"
 
 @interface NewsCell : UITableViewCell <UIWebViewDelegate>
 
@@ -15,11 +15,10 @@
 @property (weak,nonatomic) IBOutlet UILabel* title;
 @property (weak,nonatomic) IBOutlet UILabel* author;
 @property (strong,nonatomic) NSString* link;
-@property (strong,nonatomic) UIWebView* webView;
-@property (strong,nonatomic) NewsStoryViewController* webVC;
+@property (strong,nonatomic) WebViewController* webVC;
 
 - (void)setupCellWithStory:(NSDictionary*)story andImageData:(NSData*)imageData;
-- (UIViewController*)getWebViewController;
+- (WebViewController*)getWebViewController;
 
 @end
 

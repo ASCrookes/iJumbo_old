@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "NewsCell.h"
-#import "NewsStoryViewController.h"
 
 @interface NewsViewController : UITableViewController <NSXMLParserDelegate, UIActionSheetDelegate>
 

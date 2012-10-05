@@ -110,7 +110,6 @@
     self.navigationItem.rightBarButtonItem = self.reload;
 }
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Table view Delegate/Data Source

@@ -105,7 +105,6 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
 {
-    NSLog(@"YOLO SOLO");
     [PFPush storeDeviceToken:newDeviceToken]; // Send parse the device token
     // Subscribe this user to the broadcast channel, ""
     [PFPush subscribeToChannelInBackground:@"" block:^(BOOL succeeded, NSError *error) {

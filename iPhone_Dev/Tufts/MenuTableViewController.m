@@ -197,7 +197,6 @@ const int SEGMENT_TOMORROW = 1;
     self.tomorrowsDict = [NSJSONSerialization JSONObjectWithData:tomorrowsData
                                                          options:0
                                                            error:&error];
-    NSLog(@"%@",self.masterDict);
 
     [self setDataSourceFromMaster];
     
