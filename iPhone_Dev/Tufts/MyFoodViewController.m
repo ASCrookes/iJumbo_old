@@ -30,7 +30,13 @@
     self.editButtonItem.target = self;
     self.editButtonItem.action = @selector(toggleTableEditMode);
     [self segmentChange];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [self loadData];
+    [self segmentChange];
 }
 
 - (void)toggleTableEditMode
@@ -115,15 +121,36 @@
 
 - (void)loadData
 {
-    NSURL* allFoodURL = [NSURL URLWithString:@"http://ijumboapp.com/api/allFood"];
+    NSError* error;
+    NSData* jsonData = [MyFoodViewController allFoodStoredData];
+    NSDictionary* allFoodInfo = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    self.allFood = [allFoodInfo objectForKey:@"foodList"];
     dispatch_queue_t queue = dispatch_queue_create("all food queue", nil);
     dispatch_async(queue, ^{
+        NSURL* allFoodURL = [NSURL URLWithString:@"http://ijumboapp.com/api/allFood"];
         NSData* data = [NSData dataWithContentsOfURL:allFoodURL];
         NSError* error;
         self.allFood = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        [data writeToURL:[MyFoodViewController storedFoodURL] atomically:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     });
     dispatch_release(queue);
 }
+
++ (NSData*)allFoodStoredData
+{
+    return [NSData dataWithContentsOfURL:[MyFoodViewController storedFoodURL]];
+}
+         
++ (NSURL*)storedFoodURL
+{
+    NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
+    NSURL* localURL = [NSURL URLWithString:@"allFood.json" relativeToURL:mainURL];
+    return localURL;
+}
+
 
 - (NSArray*)myFood
 {
