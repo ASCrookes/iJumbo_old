@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dateSegment;
 @property (weak, nonatomic) IBOutlet UINavigationBar *extraBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSDictionary* diningHallInfo;
 
 - (void)loadData;
 - (void)parseData;

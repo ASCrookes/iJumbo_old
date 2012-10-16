@@ -98,6 +98,7 @@
         return;
     }
     NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"and"];
     [PFPush subscribeToChannelInBackground:channel];
 }
 
@@ -123,8 +124,10 @@
 {
     NSError* error;
     NSData* jsonData = [MyFoodViewController allFoodStoredData];
-    NSDictionary* allFoodInfo = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-    self.allFood = [allFoodInfo objectForKey:@"foodList"];
+    if(jsonData) {
+        NSLog(@"LOADED ALL THE FOOD DATA!");
+        self.allFood = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    }
     dispatch_queue_t queue = dispatch_queue_create("all food queue", nil);
     dispatch_async(queue, ^{
         NSURL* allFoodURL = [NSURL URLWithString:@"http://ijumboapp.com/api/allFood"];
@@ -155,6 +158,7 @@
 - (NSArray*)myFood
 {
     if(!_myFood) {
+        return [NSArray array]; // DELME -> only needed when testing on simulator
         NSSet* foodSet = [PFPush getSubscribedChannels:nil];
         NSSortDescriptor* sort = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(caseInsensitiveCompare:)];
         _myFood = [foodSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];

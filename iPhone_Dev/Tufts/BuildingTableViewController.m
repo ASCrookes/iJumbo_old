@@ -9,7 +9,6 @@
 #import "BuildingTableViewController.h"
 
 
-
 @interface BuildingTableViewController ()
 
 @end

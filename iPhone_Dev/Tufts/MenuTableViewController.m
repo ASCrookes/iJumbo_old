@@ -29,6 +29,7 @@ const int SEGMENT_TOMORROW = 1;
 @synthesize dateSegment = _dateSegment;
 @synthesize extraBar = _extraBar;
 @synthesize tableView = _tableView;
+@synthesize diningHallInfo = _diningHallInfo;
 
 //*********************************************************
 //*********************************************************
@@ -45,7 +46,7 @@ const int SEGMENT_TOMORROW = 1;
         [self.tableView reloadData];
     }
     // If the datasource(masterDict, has not been set yet, if it is an empty array, or if the "no food" view is visible -> load data again
-    if(!self.masterDict || [self.masterDict count] == 0 || !self.noFood.hidden) {
+    if(!self.masterDict || [self.masterDict count] == 0) {// || !self.noFood.hidden) {
         [self loadData];
     }
     [self loadDataBasedOnDate];
@@ -53,7 +54,7 @@ const int SEGMENT_TOMORROW = 1;
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if(!self.masterDict || [self.masterDict count] == 0 || !self.noFood.hidden) {
+    if(!self.masterDict || [self.masterDict count] == 0) {// || !self.noFood.hidden) {
         [self loadData];
         return;
     }
@@ -137,7 +138,7 @@ const int SEGMENT_TOMORROW = 1;
     NSString* mealKey = (segIndex == 0) ? @"Breakfast" : (segIndex == 1) ? @"Lunch" : @"Dinner";
     NSString* hallName = self.navigationItem.rightBarButtonItem.title;
     if(!hallName) {
-        hallName = @"Carmichael";
+        hallName = @"Dewick";
     }
     NSDictionary* hall;
     if(dayIndex == SEGMENT_TODAY) {
@@ -145,8 +146,9 @@ const int SEGMENT_TOMORROW = 1;
     } else if(dayIndex == SEGMENT_TOMORROW) {
         hall = [self.tomorrowsDict objectForKey:hallName];
     }
-    
-    if([hall containsKey:mealKey]) {
+    if([hallName isEqualToString:@"Hodgdon"]) {
+        self.dataSource = [[hall objectForKey:@"Breakfast"] objectForKey:@"sections"];
+    } else if([hall containsKey:mealKey]) {
         self.dataSource = [[hall objectForKey:mealKey] objectForKey:@"sections"];
     }
     [self.tableView reloadData];
@@ -167,7 +169,7 @@ const int SEGMENT_TOMORROW = 1;
     }
     self.isLoading = YES;
     self.loadingView.hidden = NO;
-    self.noFood.hidden = YES;
+    //self.noFood.hidden = YES;
     self.dataSource = [NSArray array];
     [self.tableView reloadData];
     // Load data in a background queue
@@ -230,36 +232,55 @@ const int SEGMENT_TOMORROW = 1;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    self.noFood.hidden = !([self.dataSource count] == 0 && !self.isLoading);
-    return [self.dataSource count];
+    //self.noFood.hidden = !([self.dataSource count] == 0 && !self.isLoading);
+    return [self.dataSource count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[self.dataSource objectAtIndex:section] objectForKey:@"foods"] count];
+    if(section == 0) {
+        return 1;
+    }
+    return [[[self.dataSource objectAtIndex:section - 1] objectForKey:@"foods"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     static NSString *CellIdentifier = @"Menu Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) 
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [[[[self.dataSource objectAtIndex:indexPath.section] objectForKey:@"foods"] objectAtIndex:indexPath.row] objectForKey:@"FoodName"];
+    
+    if(indexPath.section == 0) {
+        cell.textLabel.text = [self.navigationItem.rightBarButtonItem.title stringByAppendingString:@" Info"];
+    } else {
+        cell.textLabel.text = [[[[self.dataSource objectAtIndex:indexPath.section - 1] objectForKey:@"foods"] objectAtIndex:indexPath.row] objectForKey:@"FoodName"];
+    }
     return cell;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [[self.dataSource objectAtIndex:section] objectForKey:@"SectionName"];
+    if(section == 0) {
+        return @"";
+    }
+    return [[self.dataSource objectAtIndex:section - 1] objectForKey:@"SectionName"];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.section == 0) {
+        BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
+        bvc.allowsMap = YES;
+        [bvc setBuilding:[self.diningHallInfo objectForKey:self.navigationItem.rightBarButtonItem.title]];
+        bvc.view.backgroundColor = self.tableView.backgroundColor;
+        [self.navigationController pushViewController:bvc animated:YES];
+        return;
+    }
     FoodViewController* fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Food View"];
-    [fvc setFood:[[[self.dataSource objectAtIndex:indexPath.section] objectForKey:@"foods"] objectAtIndex:indexPath.row]];
+    [fvc setFood:[[[self.dataSource objectAtIndex:indexPath.section - 1] objectForKey:@"foods"] objectAtIndex:indexPath.row]];
     [fvc setTitle:[fvc.food objectForKey:@"FoodName"]];
     fvc.view.backgroundColor = self.tableView.backgroundColor;
     [self.navigationController pushViewController:fvc animated:YES];
@@ -268,9 +289,14 @@ const int SEGMENT_TOMORROW = 1;
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, SECTION_HEIGHT)];
     label.backgroundColor = self.tableView.backgroundColor;
-    label.text = [[self.dataSource objectAtIndex:section] objectForKey:@"SectionName"];
+    if(section == 0) {
+        label.text = @"Dining Hall Info";
+    } else {
+        label.text = [[self.dataSource objectAtIndex:section - 1] objectForKey:@"SectionName"];
+    }
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldSystemFontOfSize:16];
     label.numberOfLines = 2;
@@ -355,6 +381,7 @@ const int SEGMENT_TOMORROW = 1;
 {
     [self setNoFood:nil];
     [self setLoadingView:nil];
+    [self setDiningHallInfo:nil];
 }
 
 - (UIView*)loadingView
@@ -381,17 +408,29 @@ const int SEGMENT_TOMORROW = 1;
 - (UIView*)noFood
 {
     if(!_noFood) {
-        _noFood = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 186)];
+        _noFood = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 275)];
         _noFood.backgroundColor = [UIColor clearColor];
         UILabel* label = [[UILabel alloc] initWithFrame:_noFood.frame];
         label.text = @"Meal Not Available";
         label.textColor = [UIColor whiteColor];
         label.textAlignment = UITextAlignmentCenter;
         label.backgroundColor = [UIColor clearColor];
-        [_noFood addSubview:label];
+        //[_noFood addSubview:label];
         [self.tableView addSubview:_noFood];
     }
     return _noFood;
+}
+
+- (NSDictionary*)diningHallInfo
+{
+    if(!_diningHallInfo) {
+        NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
+        NSURL* localURL = [NSURL URLWithString:@"DiningHallInfo.json" relativeToURL:mainURL];
+        NSData* jsonData = [NSData dataWithContentsOfURL:localURL];
+        NSError* error;
+        _diningHallInfo = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    }
+    return _diningHallInfo;
 }
 
 @end

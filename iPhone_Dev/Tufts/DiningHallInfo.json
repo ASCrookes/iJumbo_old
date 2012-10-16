@@ -1,0 +1,56 @@
+{
+"Carmichael":{
+      "address": "200 Packard Avenue Medford, MA 02155 ", 
+      "building_name": "Carmichael Hall", 
+      "hours": [	
+"7:15AM","8:00PM",
+"7:15AM","8:00PM",
+"7:15AM","8:00PM",
+"7:15AM","8:00PM",
+"7:15AM","7:30PM",
+"11:00AM","9:00PM",
+"8:00AM","9:00PM"      
+		], 
+      "latitude": "42.408935", 
+      "longitude": "-71.122951", 
+      "phone_number": "617-627-3557", 
+      "type": "Residence Halls", 
+      "website": "http://dining.tufts.edu/?pid=11"
+    },
+"Dewick": {
+      "address": "25 Latin Way Medford, MA 02155 ", 
+      "building_name": "Dewick-MacPhie Dining Hall", 
+      "hours": [
+"8:00AM","9:0PAM",
+"8:00AM","9:0PAM",
+"8:00AM","9:0PAM",
+"8:00AM","9:00PM",
+"8:00AM","7:30PM",
+"8:00AM","7:30PM",
+"11:00AM","9:00PM"
+	      ], 
+      "latitude": "42.405166", 
+      "longitude": "-71.121693", 
+      "phone_number": "617-627-3462", 
+      "type": "Other", 
+      "website": "http://dining.tufts.edu/?pid=14"
+    }, 
+"Hodgdon":{
+      "address": "100 Talbot Avenue Medford, MA 02155 ", 
+      "building_name": "Hodgdon Hall", 
+      "hours": [
+"7:30AM","10:00PM",
+"7:30AM","10:00PM",
+"7:30AM","10:00PM",
+"7:30AM","10:00PM",
+"7:30AM","4:00PM",
+"CLOSED","CLOSED",
+"CLOSED","CLOSED"
+      ], 
+      "latitude": "42.405214", 
+      "longitude": "-71.122139", 
+      "phone_number": "617-627-2917", 
+      "type": "Residence Halls", 
+      "website": "http://dining.tufts.edu/?pid=16"
+    }
+}
