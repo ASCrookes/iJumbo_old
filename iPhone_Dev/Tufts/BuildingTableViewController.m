@@ -7,6 +7,7 @@
 //
 
 #import "BuildingTableViewController.h"
+#import "MapViewController.h"
 
 
 @interface BuildingTableViewController ()
@@ -20,6 +21,7 @@
 @synthesize mapSelect = _mapSelect;
 @synthesize searchBar = _searchBar;
 @synthesize delegate = _delegate;
+@synthesize hasDetailedCells;
 
 
 //*********************************************************
@@ -41,6 +43,22 @@
 {
     [super viewDidLoad];
     self.title = @"Places";
+    UIBarButtonItem* mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(showMap)];
+    self.navigationItem.rightBarButtonItem = mapButton;
+}
+
+- (void)showMap
+{
+    MapViewController* map = [self.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
+    map.buildings = self.buildings;
+    map.tableBuildings = self.buildings;
+    map.view.backgroundColor = self.view.backgroundColor;
+    [map setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:map];
+    [navcon setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
+    map.navigationItem.leftBarButtonItem = backButton;
+    [self presentModalViewController:navcon animated:YES];
 }
 
 - (void)viewDidUnload
@@ -159,10 +177,21 @@
     static NSString *CellIdentifier = @"Building Cell";
     BuildingCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell) {
-        cell = (BuildingCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        if(hasDetailedCells) {
+            cell = (BuildingCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        } else {
+            cell = (BuildingCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
     }
-    [cell setupCellWithBuilding:[[self.buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] andViewController:self];
-
+    if(hasDetailedCells) {
+        [cell setupCellWithBuilding:[[self.buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] andViewController:self];
+        cell.infoButton.hidden = NO;
+        cell.mapButton.hidden  = NO;
+    } else {
+        cell.textLabel.text = [[[self.buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"building_name"];
+        cell.infoButton.hidden = YES;
+        cell.mapButton.hidden  = YES;
+    }
     return cell;
 }
 
@@ -196,12 +225,10 @@
     return sectionTitle;
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 45;
 }
-
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

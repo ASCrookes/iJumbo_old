@@ -43,9 +43,7 @@
     [self setupView];
     [self.mapView setDelegate:self];
     [self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
-    if(!self.buildings || [self.buildings count] == 0) {
-        [self loadData];
-    }
+
 }
 
 - (void)viewDidUnload
@@ -84,7 +82,7 @@
     MKCoordinateRegion region;
     region.center = center;
     region.span = span;
-    [_mapView setRegion:region animated:NO];
+    [self.mapView setRegion:region animated:NO];
 }
 
 // Puts away the keyboard for the search bar
@@ -223,6 +221,7 @@
     btvc.buildings = buildings;
     btvc.navigationController.navigationBarHidden = NO;
     btvc.mapSelect = YES;
+    btvc.hasDetailedCells = NO; 
     btvc.delegate = self;
     self.buildings = buildings;
     //[btvc loadView];

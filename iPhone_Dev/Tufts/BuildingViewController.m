@@ -63,14 +63,12 @@
 - (void)getDirections
 {
     
-    NSString* name = [self.building objectForKey:@"building_name"];
-    NSString * urlName = [name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    //NSString* name = [self.building objectForKey:@"building_name"];
+    //NSString * urlName = [name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
-    NSString* url = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@,+%@+(%@)",
+    NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@,%@&spn=8",
                      [self.building objectForKey:@"latitude"],
-                     [self.building objectForKey:@"longitude"],
-                     urlName
-                     ];
+                     [self.building objectForKey:@"longitude"] ];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
@@ -148,7 +146,7 @@
 
 - (void)addMapButton
 {
-    UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithTitle:@"Google Maps" style:UIBarButtonItemStylePlain target:self action:@selector(getDirections)];
+    UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithTitle:@"Apple Maps" style:UIBarButtonItemStylePlain target:self action:@selector(getDirections)];
     self.navigationItem.rightBarButtonItem = barButton;
 }
 

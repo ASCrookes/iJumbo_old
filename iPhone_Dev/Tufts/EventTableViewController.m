@@ -44,6 +44,8 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 {
     [super viewDidLoad];
     
+    self.title = @"Tufts Life";
+    
     // If there is no data try and load it
     if([self.dataSource count] == 0) {
         [self loadData];

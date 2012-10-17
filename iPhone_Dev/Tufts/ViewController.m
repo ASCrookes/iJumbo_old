@@ -221,6 +221,7 @@
     if(!_btvc) {
         _btvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building Table"];
         _btvc.mapSelect = NO;
+        _btvc.hasDetailedCells = YES;
         _btvc.tableView.backgroundColor = self.backgroundColor;
         _btvc.view.backgroundColor = self.backgroundColor;
     }

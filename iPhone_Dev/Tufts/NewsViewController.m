@@ -55,12 +55,6 @@ const int IMAGE_SIZE  = 90; // The images are squares
     } else if([self.dataSource count] == 0) {
         [self loadData];
     }
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -157,8 +151,8 @@ const int IMAGE_SIZE  = 90; // The images are squares
 { 
     self.stories = [[NSMutableArray alloc] init];
     self.storyImages = [[NSMutableArray alloc] init];
-    self.rssParser = [[NSXMLParser alloc] initWithContentsOfURL:self.currentURL]; // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks. 
-    [self.rssParser setDelegate:self]; // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser. 
+    self.rssParser = [[NSXMLParser alloc] initWithContentsOfURL:self.currentURL];
+    [self.rssParser setDelegate:self]; 
     [self.rssParser setShouldProcessNamespaces:NO]; 
     [self.rssParser setShouldReportNamespacePrefixes:NO]; 
     [self.rssParser setShouldResolveExternalEntities:NO]; 

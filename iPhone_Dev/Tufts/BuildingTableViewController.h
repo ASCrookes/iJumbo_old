@@ -21,7 +21,7 @@
 @property (nonatomic,strong) NSArray* buildings;
 @property (nonatomic) BOOL mapSelect;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@property (nonatomic) BOOL hasDetailedCells;
 @property (nonatomic,strong) id <BuildingTableDelegate> delegate;
 
 - (void)loadData;
