@@ -48,7 +48,7 @@
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
         // show the new stuff here!!!!
         NSLog(@"SOLO HOE\n\n");
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"FIRST LAUNCH" message:@"TUTORIAL SHIT" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"FIRST LAUNCH!!!!!" message:@"TUTORIAL SHIT" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
     }

@@ -280,7 +280,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         [self.currentEvent setObject:string forKey:@"event_end"];
     } 
     else if([self.currentKey isEqualToString:@"description"]) {
-        NSString* desc = ([self validEventValue:string]) ? [[[self.currentEvent objectForKey:@"description"] stringByAppendingString:@"\n"] stringByAppendingString:string] : nil;
+        NSString* desc = ([self validEventValue:string]) ? [[self.currentEvent objectForKey:@"description"] stringByAppendingString:string] : nil;
         if(desc) {
             [self.currentEvent setObject:desc forKey:@"description"];
         }
