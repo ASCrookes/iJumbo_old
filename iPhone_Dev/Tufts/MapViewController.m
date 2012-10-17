@@ -219,6 +219,7 @@
 - (void)showTableWithBuildings:(NSArray*)buildings
 {    
     BuildingTableViewController* btvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building Table"];
+    btvc.view.backgroundColor = self.view.backgroundColor;
     btvc.buildings = buildings;
     btvc.navigationController.navigationBarHidden = NO;
     btvc.mapSelect = YES;

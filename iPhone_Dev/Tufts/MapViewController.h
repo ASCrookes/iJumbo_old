@@ -22,7 +22,7 @@
 @property (nonatomic,strong) NSArray* tableBuildings;
 
 @property (nonatomic)        BOOL allowAnnotationClick;
-@property (nonatomic) BOOL isLoading;
+@property (nonatomic)        BOOL isLoading;
 
 
 - (void)parseData:(NSData *)responseData;

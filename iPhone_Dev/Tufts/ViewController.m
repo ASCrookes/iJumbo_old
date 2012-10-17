@@ -41,9 +41,19 @@
     [self.mtvc loadData];
     [self.map loadData];
     [self.news loadData];
+    [self.btvc loadData];
     self.trunk.title = @"Trunk";
     
-    // Checking that the internet is available
+    // if the app is yet to launch then show a page with what is new to this version of the app
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
+        // show the new stuff here!!!!
+        NSLog(@"SOLO HOE\n\n");
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"FIRST LAUNCH" message:@"TUTORIAL SHIT" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
+    }
+    
+    // Checking that the internet is available if not an alert will be shown
     [self pingInternet];
 }
 
@@ -95,7 +105,7 @@
 
 - (IBAction)getMap:(id)sender 
 {
-    [self.navigationController pushViewController:self.map animated:YES];
+    [self.navigationController pushViewController:self.btvc animated:YES];
 }
 
 - (IBAction)getNews:(id)sender 
@@ -212,6 +222,7 @@
         _btvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building Table"];
         _btvc.mapSelect = NO;
         _btvc.tableView.backgroundColor = self.backgroundColor;
+        _btvc.view.backgroundColor = self.backgroundColor;
     }
     return _btvc;
 }

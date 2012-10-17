@@ -425,10 +425,23 @@ const int SEGMENT_TOMORROW = 1;
 {
     if(!_diningHallInfo) {
         NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
-        NSURL* localURL = [NSURL URLWithString:@"DiningHallInfo.json" relativeToURL:mainURL];
+        NSURL* localURL = [NSURL URLWithString:@"diningHallInfo.json" relativeToURL:mainURL];
         NSData* jsonData = [NSData dataWithContentsOfURL:localURL];
         NSError* error;
         _diningHallInfo = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        // update the data just in case I messed up the data as it was hand written
+        dispatch_queue_t queue = dispatch_queue_create("dining.hall.info", nil);
+        dispatch_async(queue, ^{
+            NSURL* diningInfoURL = [NSURL URLWithString:@"http://ijumboapp.com/api/json/diningHallInfo"];
+            NSData* data = [NSData dataWithContentsOfURL:diningInfoURL];
+            NSError* error;
+            NSDictionary* diningInfo = [NSJSONSerialization  JSONObjectWithData:data
+                                                                        options:0
+                                                                          error:&error];
+            self.diningHallInfo = diningInfo;
+            [data writeToURL:localURL atomically:YES];
+        });
+        dispatch_release(queue);
     }
     return _diningHallInfo;
 }

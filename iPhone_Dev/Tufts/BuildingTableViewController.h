@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BuildingViewController.h"
+#import "BuildingCell.h"
 
 @protocol BuildingTableDelegate <NSObject>
 

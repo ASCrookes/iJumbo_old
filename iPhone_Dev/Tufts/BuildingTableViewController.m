@@ -76,7 +76,7 @@
         NSError* error;
         _buildings = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self loadView];
+            [self.tableView reloadData];
         });
     });
     dispatch_release(queue);
@@ -157,13 +157,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Building Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    BuildingCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell) {
+        cell = (BuildingCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    // Configure the cell...
-    cell.textLabel.text = [(NSDictionary*)[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"building_name"];
+    [cell setupCellWithBuilding:[[self.buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] andViewController:self];
+
     return cell;
 }
 
@@ -184,6 +183,7 @@
     BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
     bvc.allowsMap = YES;
     [bvc setBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+    bvc.view.backgroundColor = self.view.backgroundColor;
     [self.navigationController pushViewController:bvc animated:YES];
 }
 
