@@ -11,6 +11,12 @@
 #import "BuildingAnnotation.h"
 #import "BuildingTableViewController.h"
 
+@protocol MapViewDelegate <NSObject>
+
+- (void)searchBuildingsByName:(NSString*)searchText;
+
+@end
+
 @interface MapViewController : UIViewController <BuildingTableDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -23,6 +29,8 @@
 
 @property (nonatomic)        BOOL allowAnnotationClick;
 @property (nonatomic)        BOOL isLoading;
+
+@property (nonatomic, strong) id <MapViewDelegate> delegate;
 
 
 - (void)parseData:(NSData *)responseData;

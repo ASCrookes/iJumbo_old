@@ -30,7 +30,6 @@
     self.editButtonItem.target = self;
     self.editButtonItem.action = @selector(toggleTableEditMode);
     [self segmentChange];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,6 +56,7 @@
         self.dataSource = self.myFood;
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
     } else {
+        [self.tableView setEditing:NO animated:YES];
         self.dataSource = self.allFood;
         self.myFood = nil;
         self.navigationItem.rightBarButtonItem = nil;
@@ -125,7 +125,6 @@
     NSError* error;
     NSData* jsonData = [MyFoodViewController allFoodStoredData];
     if(jsonData) {
-        NSLog(@"LOADED ALL THE FOOD DATA!");
         self.allFood = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     }
     dispatch_queue_t queue = dispatch_queue_create("all food queue", nil);
@@ -158,7 +157,7 @@
 - (NSArray*)myFood
 {
     if(!_myFood) {
-        return [NSArray array]; // DELME -> only needed when testing on simulator
+        // return [NSArray array]; // DELME -> only needed when testing on simulator
         NSSet* foodSet = [PFPush getSubscribedChannels:nil];
         NSSortDescriptor* sort = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(caseInsensitiveCompare:)];
         _myFood = [foodSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];

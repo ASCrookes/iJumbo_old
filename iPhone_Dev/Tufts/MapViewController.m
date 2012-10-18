@@ -42,14 +42,12 @@
     [super viewDidLoad];
     [self setupView];
     [self.mapView setDelegate:self];
-    [self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
 
 }
 
 - (void)viewDidUnload
 {
     [self setMapView:nil];
-    [self setSearchBar:nil];
     [self setSearchBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -344,9 +342,12 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    /*
     [self.searchBar resignFirstResponder];
     NSArray* results = [self searchForBuildingByName:searchBar.text];
     [self showTableWithBuildings:results];
+     */
+    [self.delegate searchBuildingsByName:searchBar.text]; 
 }
 
 

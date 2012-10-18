@@ -10,7 +10,7 @@
 #import "MapViewController.h"
 
 
-@interface BuildingTableViewController ()
+@interface BuildingTableViewController () <MapViewDelegate>
 
 @end
 
@@ -21,6 +21,7 @@
 @synthesize mapSelect = _mapSelect;
 @synthesize searchBar = _searchBar;
 @synthesize delegate = _delegate;
+@synthesize dataSource = _dataSource;
 @synthesize hasDetailedCells;
 
 
@@ -30,14 +31,6 @@
 //*********************************************************
 //*********************************************************
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -45,11 +38,13 @@
     self.title = @"Places";
     UIBarButtonItem* mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(showMap)];
     self.navigationItem.rightBarButtonItem = mapButton;
+    //[self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
 }
 
 - (void)showMap
 {
     MapViewController* map = [self.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
+    map.delegate = self;
     map.buildings = self.buildings;
     map.tableBuildings = self.buildings;
     map.view.backgroundColor = self.view.backgroundColor;
@@ -64,6 +59,7 @@
 - (void)viewDidUnload
 {
     [self setSearchBar:nil];
+    [self setTableView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -92,7 +88,8 @@
             return;
         }
         NSError* error;
-        _buildings = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        self.buildings = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        self.dataSource = self.buildings;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -107,36 +104,27 @@
 //*********************************************************
 //*********************************************************
 
-- (NSArray*)searchForText:(NSString*)text
+- (NSArray*)searchForBuildingByName:(NSString*)searchTerm
 {
     NSMutableArray* results = [[NSMutableArray alloc] init];
-    char startChar = [text characterAtIndex:0];
-    bool sectionFound = NO;
-    int index = 0;
-    if(startChar == '1') {
-        //DO SOME SHIT
-        sectionFound = YES;
-    }
+    NSRange range;
     
-    for(index = 0; index < [_buildings count] && !sectionFound; index++)
+    for(NSArray* section in self.buildings)
     {
-        char sectionChar = [[[[_buildings objectAtIndex:index] objectAtIndex:0] objectForKey:@"building_name"] characterAtIndex:0];
-        if(sectionChar == startChar) {
-            sectionFound = YES;
+        NSMutableArray* resultsInSection = [[NSMutableArray alloc] init];
+        for(NSDictionary* building in section)
+        {
+            range = [[building objectForKey:@"building_name"] rangeOfString:searchTerm options:NSCaseInsensitiveSearch];
+            if(range.location != NSNotFound) {
+                [resultsInSection addObject:building];
+            }
+        }
+        if([resultsInSection count] > 0) {
+            [results addObject:resultsInSection];
         }
     }
-    
-    for(NSDictionary* building in [_buildings objectAtIndex:index])
-    {
-        NSString* title = [[building objectForKey:@"building_name"] lowercaseString];
-        NSString* searchFor = [text lowercaseString];
-        if([title hasPrefix:searchFor]) {
-            [results addObject:building];
-        }
-    }
-    
+    [self.searchBar resignFirstResponder];
     return results;
-    
 }
 
 //*********************************************************
@@ -147,10 +135,35 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSArray* results = [self searchForText:searchBar.text];
-    _buildings = [NSArray arrayWithObject:results];
+    [self.searchBar resignFirstResponder];
+    self.dataSource = [self searchForBuildingByName:searchBar.text];
+    [self.tableView reloadData];
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+    self.dataSource = self.buildings;
+    [self.tableView reloadData];
+}
+
+// this allows them to clear the text and get the full text back
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if([searchText isEqualToString:@""]) {
+        self.dataSource = self.buildings;
+        [self.tableView reloadData];
+    }
+}
+
+// This is actually a MapViewDelegate methods so searching the map links back to this view
+- (void)searchBuildingsByName:(NSString *)searchText
+{
+    [self dismissModalViewControllerAnimated:YES];
+    // change the text of the search bar and make it search using that
+    self.searchBar.text = searchText;
+    [self searchBarSearchButtonClicked:self.searchBar];
+}
 
 
 //*********************************************************
@@ -162,13 +175,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [_buildings count];
+    return [self.dataSource count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[_buildings objectAtIndex:section] count];
+    return [[self.dataSource objectAtIndex:section] count];
 }
 
 
@@ -183,12 +196,13 @@
             cell = (BuildingCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
     }
+    NSDictionary* buildingDict = [[self.dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if(hasDetailedCells) {
-        [cell setupCellWithBuilding:[[self.buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] andViewController:self];
+        [cell setupCellWithBuilding:buildingDict andViewController:self];
         cell.infoButton.hidden = NO;
         cell.mapButton.hidden  = NO;
     } else {
-        cell.textLabel.text = [[[self.buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"building_name"];
+        cell.textLabel.text = [buildingDict objectForKey:@"building_name"];
         cell.infoButton.hidden = YES;
         cell.mapButton.hidden  = YES;
     }
@@ -197,6 +211,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.searchBar resignFirstResponder];
     if(_mapSelect) {
         [self.delegate selectedBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     } else {
@@ -249,5 +264,26 @@
     
     return header;
 }
+
+
+//*********************************************************
+//*********************************************************
+#pragma mark - Setters/Getters
+//*********************************************************
+//*********************************************************
+
+- (NSArray*)dataSource
+{
+    if(!_dataSource) {
+        _dataSource = [NSArray array];
+    }
+    return _dataSource;
+}
+
+
+
+
+
+
 
 @end

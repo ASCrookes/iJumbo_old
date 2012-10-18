@@ -16,13 +16,15 @@
 
 @end
 
-@interface BuildingTableViewController : UITableViewController <UISearchBarDelegate>
+@interface BuildingTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic,strong) NSArray* buildings;
+@property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic) BOOL mapSelect;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic) BOOL hasDetailedCells;
 @property (nonatomic,strong) id <BuildingTableDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (void)loadData;
 

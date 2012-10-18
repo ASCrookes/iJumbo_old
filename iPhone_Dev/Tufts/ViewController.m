@@ -47,7 +47,6 @@
     // if the app is yet to launch then show a page with what is new to this version of the app
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
         // show the new stuff here!!!!
-        NSLog(@"SOLO HOE\n\n");
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"FIRST LAUNCH!!!!!" message:@"TUTORIAL SHIT" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
@@ -219,9 +218,12 @@
 - (BuildingTableViewController*)btvc
 {
     if(!_btvc) {
-        _btvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building Table"];
+        _btvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Detailed Building Table"];
         _btvc.mapSelect = NO;
         _btvc.hasDetailedCells = YES;
+        // DELME -> find another way to do this
+        [_btvc loadView];
+        [_btvc viewDidLoad];
         _btvc.tableView.backgroundColor = self.backgroundColor;
         _btvc.view.backgroundColor = self.backgroundColor;
     }

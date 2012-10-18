@@ -36,6 +36,7 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
     [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor darkGrayColor]];
     [[UISegmentedControl appearance] setTintColor:[UIColor darkGrayColor]];
+    [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
      
     return YES;
 }

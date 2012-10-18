@@ -388,7 +388,7 @@ const int SEGMENT_TOMORROW = 1;
 {
     
     if(!_loadingView) {
-        _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, HEIGHT_OF_HELPER_VIEWS_IN_MEALS)];
+        _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, HEIGHT_OF_HELPER_VIEWS_IN_MEALS)];
         _loadingView.backgroundColor = [UIColor clearColor];
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, HEIGHT_OF_HELPER_VIEWS_IN_MEALS)];
         label.text = @"LOADING";
