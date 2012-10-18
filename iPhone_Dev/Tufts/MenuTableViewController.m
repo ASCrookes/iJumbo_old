@@ -373,14 +373,10 @@ const int TOMORROW_INDEX = 1;
 // Tony Kim is the jizz
 - (IBAction)showMyFood:(id)sender
 {
-    //UIBarButtonItem* myFoodBtn = self.extraBar.item FIX THIS STUFF SOON!!!!!!!
-    //[myFoodBtn setTintColor:[UIColor blackColor]];
-    /*
     MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food VC"];
     myFood.view.hidden = NO;
     myFood.tableView.backgroundColor = self.view.backgroundColor;
     [self.navigationController pushViewController:myFood animated:YES];
-     */
 }
 
 
