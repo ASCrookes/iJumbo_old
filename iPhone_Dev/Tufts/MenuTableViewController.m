@@ -11,8 +11,8 @@
 
 const int SECTION_HEIGHT = 45;
 const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
-const int SEGMENT_TODAY = 0;
-const int SEGMENT_TOMORROW = 1;
+const int TODAY_INDEX = 0;
+const int TOMORROW_INDEX = 1;
 
 @interface MenuTableViewController ()
 
@@ -26,7 +26,6 @@ const int SEGMENT_TOMORROW = 1;
 @synthesize lastUpdate = _lastUpdate;
 @synthesize loadingView = _loadingView;
 @synthesize noFood = _noFood;
-@synthesize dateSegment = _dateSegment;
 @synthesize extraBar = _extraBar;
 @synthesize tableView = _tableView;
 @synthesize diningHallInfo = _diningHallInfo;
@@ -65,7 +64,7 @@ const int SEGMENT_TOMORROW = 1;
 {
     UIBarButtonItem* halls = [[UIBarButtonItem alloc] initWithTitle:@"Dewick" style:UIBarButtonItemStylePlain target:self action:@selector(changeHall)];
     self.navigationItem.rightBarButtonItem = halls;
-    
+    [self.todayBarButton setTintColor:[UIColor blackColor]];
     UISegmentedControl* segment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Break",@"Lunch",@"Dinner",nil]];
     segment.selectedSegmentIndex = 0;
     [segment addTarget:self action:@selector(setDataSourceFromMaster) forControlEvents:UIControlEventValueChanged];
@@ -74,18 +73,16 @@ const int SEGMENT_TOMORROW = 1;
     self.navigationItem.titleView = segment;
     
     [self.extraBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
-
-    
-    [self.dateSegment addTarget:self action:@selector(setDataSourceFromMaster) forControlEvents:UIControlEventValueChanged];
-    self.dateSegment.selectedSegmentIndex = 0;
 }
 
 
 - (void)viewDidUnload
 {
-    [self setDateSegment:nil];
     [self setExtraBar:nil];
     [self setTableView:nil];
+    [self setTodayBarButton:nil];
+    [self setTomorrowBarButton:nil];
+    [self setMyFoodButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -100,9 +97,22 @@ const int SEGMENT_TOMORROW = 1;
 
 //*********************************************************
 //*********************************************************
-#pragma mark - Segments and Action Sheets
+#pragma mark - Segments, Action Sheets, & bar buttons
 //*********************************************************
 //*********************************************************
+
+- (IBAction)dateButtonAction:(UIBarButtonItem*)sender
+{
+    if([sender.title isEqualToString:@"Tomorrow"]) {
+        [self.tomorrowBarButton setTintColor:[UIColor blackColor]];
+        [self.todayBarButton setTintColor:[UIColor darkGrayColor]];
+    } else {
+        [self.tomorrowBarButton setTintColor:[UIColor darkGrayColor]];
+        [self.todayBarButton setTintColor:[UIColor blackColor]];
+    }
+    [self setDataSourceFromMaster];
+}
+
 
 - (void)changeHall
 {
@@ -134,16 +144,16 @@ const int SEGMENT_TOMORROW = 1;
         [self loadData];
     }
     int segIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
-    int dayIndex = ((UISegmentedControl*)self.extraBar.topItem.titleView).selectedSegmentIndex;
+    int dayIndex = ([[self.todayBarButton tintColor] isEqual:[UIColor blackColor]]) ? TODAY_INDEX : TOMORROW_INDEX;
     NSString* mealKey = (segIndex == 0) ? @"Breakfast" : (segIndex == 1) ? @"Lunch" : @"Dinner";
     NSString* hallName = self.navigationItem.rightBarButtonItem.title;
     if(!hallName) {
         hallName = @"Dewick";
     }
     NSDictionary* hall;
-    if(dayIndex == SEGMENT_TODAY) {
+    if(dayIndex == TODAY_INDEX) {
         hall = [self.masterDict objectForKey:hallName];
-    } else if(dayIndex == SEGMENT_TOMORROW) {
+    } else if(dayIndex == TOMORROW_INDEX) {
         hall = [self.tomorrowsDict objectForKey:hallName];
     }
     if([hallName isEqualToString:@"Hodgdon"]) {
@@ -210,7 +220,7 @@ const int SEGMENT_TOMORROW = 1;
         NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"MM/dd"];
         NSString* mealsDate = [NSString stringWithFormat:@"Today(%@)", [dateFormat stringFromDate:self.lastUpdate]];
-        [(UISegmentedControl*)self.extraBar.topItem.titleView setTitle:mealsDate forSegmentAtIndex:SEGMENT_TODAY];
+        [self.todayBarButton setTitle:mealsDate];
     });
 
 }
@@ -363,10 +373,14 @@ const int SEGMENT_TOMORROW = 1;
 // Tony Kim is the jizz
 - (IBAction)showMyFood:(id)sender
 {
+    //UIBarButtonItem* myFoodBtn = self.extraBar.item FIX THIS STUFF SOON!!!!!!!
+    //[myFoodBtn setTintColor:[UIColor blackColor]];
+    /*
     MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food VC"];
     myFood.view.hidden = NO;
     myFood.tableView.backgroundColor = self.view.backgroundColor;
     [self.navigationController pushViewController:myFood animated:YES];
+     */
 }
 
 

@@ -20,10 +20,14 @@
 @property (nonatomic,strong) NSDate* lastUpdate;
 @property (nonatomic,strong) UIView* loadingView;
 @property (nonatomic,strong) UIView* noFood;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *dateSegment;
 @property (weak, nonatomic) IBOutlet UINavigationBar *extraBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSDictionary* diningHallInfo;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *todayBarButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tomorrowBarButton;
+@property (weak, nonatomic) IBOutlet UIButton *myFoodButton;
+
+
 
 - (void)loadData;
 - (void)parseData;

@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Tufts/MenuTableViewController.h"
-         timestampString = "372209583.429348"
+         timestampString = "372268019.012782"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
          landmarkName = "@interface MenuTableViewController"
          landmarkType = "2">
       </FileBreakpoint>
