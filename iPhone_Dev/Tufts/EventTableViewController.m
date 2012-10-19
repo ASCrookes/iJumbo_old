@@ -84,6 +84,9 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if([self.dataSource count] == 0) {
+        [self loadData];
+    }
     [self.tableView reloadData];
 }
 

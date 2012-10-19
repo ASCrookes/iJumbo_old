@@ -64,6 +64,10 @@
 		8E5320CE1561B18F0006C6CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5320CD1561B18F0006C6CA /* MapKit.framework */; };
 		8E5320D21561B2FB0006C6CA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5320D11561B2FB0006C6CA /* MapViewController.m */; };
 		8E6FE98E160E5A940024567A /* MyFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FE98D160E5A940024567A /* MyFoodViewController.m */; };
+		8E75423C1630B84900A00484 /* buildingCellButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E75423A1630B84900A00484 /* buildingCellButton.png */; };
+		8E75423D1630B84900A00484 /* buildingCellButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E75423B1630B84900A00484 /* buildingCellButton@2x.png */; };
+		8E7542401630B8FE00A00484 /* myFoodButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E75423E1630B8FE00A00484 /* myFoodButton.png */; };
+		8E7542411630B8FE00A00484 /* myFoodButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E75423F1630B8FE00A00484 /* myFoodButton@2x.png */; };
 		8E9A35F415EE8DBB0006DA20 /* darkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F215EE8DBB0006DA20 /* darkBackground.png */; };
 		8E9A35F515EE8DBB0006DA20 /* darkBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */; };
 		8EAC190A1561DAF90078F5CD /* BuildingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC19091561DAF90078F5CD /* BuildingAnnotation.m */; };
@@ -203,6 +207,10 @@
 		8E5320D11561B2FB0006C6CA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8E6FE98C160E5A940024567A /* MyFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFoodViewController.h; sourceTree = "<group>"; };
 		8E6FE98D160E5A940024567A /* MyFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFoodViewController.m; sourceTree = "<group>"; };
+		8E75423A1630B84900A00484 /* buildingCellButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buildingCellButton.png; sourceTree = "<group>"; };
+		8E75423B1630B84900A00484 /* buildingCellButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buildingCellButton@2x.png"; sourceTree = "<group>"; };
+		8E75423E1630B8FE00A00484 /* myFoodButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myFoodButton.png; sourceTree = "<group>"; };
+		8E75423F1630B8FE00A00484 /* myFoodButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myFoodButton@2x.png"; sourceTree = "<group>"; };
 		8E9A35F215EE8DBB0006DA20 /* darkBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkBackground.png; sourceTree = "<group>"; };
 		8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkBackground@2x.png"; sourceTree = "<group>"; };
 		8EAC19081561DAF90078F5CD /* BuildingAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingAnnotation.h; sourceTree = "<group>"; };
@@ -290,6 +298,10 @@
 		8E0C429715B79866009165E0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8E75423E1630B8FE00A00484 /* myFoodButton.png */,
+				8E75423F1630B8FE00A00484 /* myFoodButton@2x.png */,
+				8E75423A1630B84900A00484 /* buildingCellButton.png */,
+				8E75423B1630B84900A00484 /* buildingCellButton@2x.png */,
 				8E2DA28B161B5A0100EB19D0 /* feedback_email.png */,
 				8E9A35F215EE8DBB0006DA20 /* darkBackground.png */,
 				8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */,
@@ -642,6 +654,10 @@
 				8EAFB4B7160BA45A004C0003 /* Default-568h@2x.png in Resources */,
 				8E2DA28C161B5A0100EB19D0 /* feedback_email.png in Resources */,
 				8ED3C772162CB84D007C54C9 /* diningHallInfo.json in Resources */,
+				8E75423C1630B84900A00484 /* buildingCellButton.png in Resources */,
+				8E75423D1630B84900A00484 /* buildingCellButton@2x.png in Resources */,
+				8E7542401630B8FE00A00484 /* myFoodButton.png in Resources */,
+				8E7542411630B8FE00A00484 /* myFoodButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

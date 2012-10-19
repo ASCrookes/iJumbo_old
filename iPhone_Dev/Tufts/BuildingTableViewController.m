@@ -216,6 +216,7 @@
         [self.delegate selectedBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     } else {
         BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
+        bvc.view.backgroundColor = self.tableView.backgroundColor;
         bvc.allowsMap = YES;
         [bvc setBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
         [self.navigationController pushViewController:bvc animated:YES];

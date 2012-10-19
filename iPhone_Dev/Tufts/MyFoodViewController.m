@@ -44,19 +44,22 @@
         [self.tableView setEditing:NO animated:YES];
         self.editButtonItem.title = @"Edit";
     } else {
-        [self.tableView setEditing:!self.tableView.editing animated:YES];
+        [self.tableView setEditing:YES animated:YES];
         self.editButtonItem.title = @"Done";
     }
 }
 
 - (void)segmentChange
 {
+    if(self.tableView.editing) {
+        [self toggleTableEditMode];
+    }
+    self.editButtonItem.title = @"Edit";
     int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
     if(segmentIndex == 0) {
         self.dataSource = self.myFood;
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
     } else {
-        [self.tableView setEditing:NO animated:YES];
         self.dataSource = self.allFood;
         self.myFood = nil;
         self.navigationItem.rightBarButtonItem = nil;
@@ -66,11 +69,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
+    if(segmentIndex == 0) {
+        return 1;
+    }
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
+    if(section == 0 && segmentIndex != 0) {
+        return 1;
+    }
     return [self.dataSource count];
 }
 
@@ -80,6 +91,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
+    if(indexPath.section == 0 && segmentIndex != 0) {
+        cell.textLabel.text = @"Click a cell to subscribe to it";
+        return cell;
     }
     NSString* cellText = [self.dataSource objectAtIndex:indexPath.row];
     if(((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex == 0) {
@@ -94,7 +110,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
-    if(segmentIndex == 0){
+    if(segmentIndex == 0 || indexPath.section == 0){
         return;
     }
     NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
