@@ -379,7 +379,7 @@ const int TOMORROW_INDEX = 1;
     [self.navigationController pushViewController:myFood animated:YES];
 }
 
-/*
+
 + (void)subscribeToFood:(NSString*)foodName
 {
     NSString* channelName = [foodName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
@@ -393,7 +393,7 @@ const int TOMORROW_INDEX = 1;
         }
     }];
 }
-*/
+
 
 
 //*********************************************************

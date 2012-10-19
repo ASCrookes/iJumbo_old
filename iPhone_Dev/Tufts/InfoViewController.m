@@ -52,7 +52,6 @@
     } else if(indexPath.section == 4) {
         FeedbackViewController* feedbackView = [self.storyboard instantiateViewControllerWithIdentifier:@"Feedback Input View"];
         feedbackView.view.backgroundColor = self.view.backgroundColor;
-        [feedbackView.feedbackInputField becomeFirstResponder];
         feedbackView.title = @"Feedback";
         UINavigationController* navcon = [self navconWithRootViewController:feedbackView BackButtonTitle:@"Cancel"];
         [self presentModalViewController:navcon animated:YES];

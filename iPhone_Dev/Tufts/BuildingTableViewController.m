@@ -215,11 +215,8 @@
     if(_mapSelect) {
         [self.delegate selectedBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     } else {
-        BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
-        bvc.view.backgroundColor = self.tableView.backgroundColor;
-        bvc.allowsMap = YES;
-        [bvc setBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
-        [self.navigationController pushViewController:bvc animated:YES];
+        BuildingCell* cell = (BuildingCell*)[tableView cellForRowAtIndexPath:indexPath];
+        [cell infoButtonAction:nil];
     }
 }
 
@@ -227,14 +224,14 @@
 {
     BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
     bvc.allowsMap = YES;
-    [bvc setBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+    [bvc setBuilding:[[self.dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     bvc.view.backgroundColor = self.view.backgroundColor;
     [self.navigationController pushViewController:bvc animated:YES];
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString* sectionTitle = [[[[_buildings objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
+    NSString* sectionTitle = [[[[self.dataSource objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
     if([sectionTitle isEqualToString:@"1"]) {
         sectionTitle = @"123";
     }
@@ -250,7 +247,7 @@
 {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, 45)];
     label.backgroundColor = self.tableView.backgroundColor;
-    NSString* sectionTitle = [[[[_buildings objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
+    NSString* sectionTitle = [[[[self.dataSource objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
     if([sectionTitle isEqualToString:@"1"]) {
         sectionTitle = @"123";
     }

@@ -55,20 +55,27 @@
     [self loadInfo];
     if(self.allowsMap)
         [self addMapButton];
+    
     self.title = [self.building objectForKey:@"building_name"];
-    //UIBarButtonItem* google = [[UIBarButtonItem alloc] initWithTitle:@"GOOGLE" style:UIBarButtonItemStylePlain target:self action:@selector(getDirections)];
-    //self.navigationItem.titleView = google;
 }
                         
 - (void)getDirections
 {
+    NSString* url;
+    if([[[UIDevice currentDevice] systemVersion] doubleValue] >= 6) {
+        url = [NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@,%@&spn=8",
+               [self.building objectForKey:@"latitude"],
+               [self.building objectForKey:@"longitude"] ];
+    } else {
+        NSString* name = [self.building objectForKey:@"building_name"];
+        NSString * urlName = [name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        url = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@,+%@+(%@)",
+                [self.building objectForKey:@"latitude"],
+                [self.building objectForKey:@"longitude"],
+                urlName ];
+    }
+    NSLog(@"URL: %@", url);
     
-    //NSString* name = [self.building objectForKey:@"building_name"];
-    //NSString * urlName = [name stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    
-    NSString* url = [NSString stringWithFormat:@"http://maps.apple.com/maps?q=%@,%@&spn=8",
-                     [self.building objectForKey:@"latitude"],
-                     [self.building objectForKey:@"longitude"] ];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
@@ -146,7 +153,11 @@
 
 - (void)addMapButton
 {
-    UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithTitle:@"Apple Maps" style:UIBarButtonItemStylePlain target:self action:@selector(getDirections)];
+    NSString* mapType = @"Apple Maps";
+    if([[[UIDevice currentDevice] systemVersion] doubleValue] < 6) {
+        mapType = @"Google Maps";
+    }
+    UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithTitle:mapType style:UIBarButtonItemStylePlain target:self action:@selector(getDirections)];
     self.navigationItem.rightBarButtonItem = barButton;
 }
 

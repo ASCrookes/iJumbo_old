@@ -19,5 +19,7 @@
 @property (strong, nonatomic) UIViewController* viewController;
 
 - (void)setupCellWithBuilding:(NSDictionary*)building andViewController:(UIViewController*)vc;
+- (IBAction)infoButtonAction:(id)sender;
+
 
 @end

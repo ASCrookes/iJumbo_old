@@ -99,6 +99,8 @@
     }
     NSString* cellText = [self.dataSource objectAtIndex:indexPath.row];
     if(((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex == 0) {
+        NSLog(@"[%@]", [cellText substringFromIndex:4]);
+        cellText = [cellText substringFromIndex:4];
         cellText = [cellText stringByReplacingOccurrencesOfString:@"_" withString:@" "];
     }
     cell.textLabel.text = cellText;
@@ -115,6 +117,7 @@
     }
     NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
     channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"and"];
+    channel = [@"ASC_" stringByAppendingString:channel];
     [PFPush subscribeToChannelInBackground:channel];
 }
 
