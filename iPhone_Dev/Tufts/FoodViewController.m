@@ -93,7 +93,7 @@
 - (void)subscribeToFood
 {
     NSString* channelName = [[self.food objectForKey:@"FoodName"] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    channelName = [channelName stringByReplacingOccurrencesOfString:@"&" withString:@"and"];
+    channelName = [channelName stringByReplacingOccurrencesOfString:@"&" withString:@"-+and+-"];
     [PFPush subscribeToChannelInBackground:channelName block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"Successfully subscribed to the channel.");

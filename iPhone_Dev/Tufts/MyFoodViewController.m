@@ -29,6 +29,7 @@
     self.navigationItem.titleView = segControl;
     self.editButtonItem.target = self;
     self.editButtonItem.action = @selector(toggleTableEditMode);
+    // setup the view based on the UI so far
     [self segmentChange];
 }
 
@@ -87,8 +88,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Food Name Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"My Food Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -98,8 +99,8 @@
         return cell;
     }
     NSString* cellText = [self.dataSource objectAtIndex:indexPath.row];
+    // if the section is my food change the channel names to readable food
     if(((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex == 0) {
-        NSLog(@"[%@]", [cellText substringFromIndex:4]);
         cellText = [cellText substringFromIndex:4];
         cellText = [cellText stringByReplacingOccurrencesOfString:@"_" withString:@" "];
     }
@@ -116,7 +117,8 @@
         return;
     }
     NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"and"];
+    channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"-+and+-"];
+    // channels must start with a letter -> append my initials
     channel = [@"ASC_" stringByAppendingString:channel];
     [PFPush subscribeToChannelInBackground:channel];
 }
@@ -124,7 +126,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [PFPush unsubscribeFromChannelInBackground:[self.myFood objectAtIndex:indexPath.row]];
+        NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"-+and+-"];
+        // channels must start with a letter -> append my initials
+        channel = [@"ASC_" stringByAppendingString:channel];
+        [PFPush unsubscribeFromChannelInBackground:channel];
         NSMutableArray* editableList = [NSMutableArray arrayWithArray:self.myFood];
         [editableList removeObjectAtIndex:indexPath.row];
         self.myFood = editableList;
@@ -134,7 +140,8 @@
 }
 
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setTableView:nil];
     [super viewDidUnload];
 }
@@ -143,8 +150,12 @@
 {
     NSError* error;
     NSData* jsonData = [MyFoodViewController allFoodStoredData];
+    // if there was data saved onto disk reload it and show that. then load the data from the server and write it
     if(jsonData) {
         self.allFood = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }
     dispatch_queue_t queue = dispatch_queue_create("all food queue", nil);
     dispatch_async(queue, ^{
@@ -182,7 +193,17 @@
         _myFood = [foodSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
         NSMutableArray* foodChannels = [NSMutableArray arrayWithArray:_myFood];
         [foodChannels removeObject:@""];
+        for(int i = 0; i < [foodChannels count]; i++) {
+            NSString* foodName = [foodChannels objectAtIndex:i];
+            foodName = [foodName substringFromIndex:4];
+            foodName = [foodName stringByReplacingOccurrencesOfString:@"-+and+-" withString:@"&"];
+            foodName = [foodName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+            
+        }
         _myFood = foodChannels;
+        if(!_myFood) {
+            _myFood = [NSArray array];
+        }
     }
     return _myFood;
 }

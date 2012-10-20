@@ -384,7 +384,7 @@ const int TOMORROW_INDEX = 1;
 {
     NSString* channelName = [foodName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
     channelName = [@"_" stringByAppendingString:channelName];
-    channelName = [channelName stringByReplacingOccurrencesOfString:@"&" withString:@"and"];
+    channelName = [channelName stringByReplacingOccurrencesOfString:@"&" withString:@"-+and+-"];
     [PFPush subscribeToChannelInBackground:channelName block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"Successfully subscribed to the channel.");

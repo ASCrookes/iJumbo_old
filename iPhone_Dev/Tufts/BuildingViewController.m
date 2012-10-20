@@ -149,8 +149,6 @@
     return timeSpan;
 }
                                   
-                                  
-
 - (void)addMapButton
 {
     NSString* mapType = @"Apple Maps";
