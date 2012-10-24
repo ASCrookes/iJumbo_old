@@ -36,13 +36,14 @@
     self.author.text = [author isEqualToString:@"  "] ? @"Not Available" : author; 
     if([imageData length] > 0) {
         self.thumbnail.image = [UIImage imageWithData:imageData];
-    } else {
+    } else if([[story objectForKey:@"paperName"] isEqualToString:@"The Daily"]) {
         self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
+    } else {
+        self.thumbnail.image = [UIImage imageNamed:@"observerDefault.png"];
     }
     self.webVC   = nil;
     self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

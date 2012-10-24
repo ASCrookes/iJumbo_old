@@ -47,13 +47,23 @@
     // if the app is yet to launch then show a page with what is new to this version of the app
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
         // show the new stuff here!!!!
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"FIRST LAUNCH!!!!!" message:@"TUTORIAL SHIT" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
+        [self launchTutorial];
     }
     
     // Checking that the internet is available if not an alert will be shown
     [self pingInternet];
+}
+
+- (void)launchTutorial
+{
+    UIViewController* tutorialPage = [self.storyboard instantiateViewControllerWithIdentifier:@"First Launch Tutorial"];
+    tutorialPage.view.backgroundColor = self.backgroundColor;
+    UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:tutorialPage];
+    UIBarButtonItem* barBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
+    navcon.navigationItem.rightBarButtonItem = barBtn;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
+    
+    [self presentModalViewController:navcon animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -264,7 +274,7 @@
 {
     if(!_news) {
         _news = [self.storyboard instantiateViewControllerWithIdentifier:@"News Table"];
-        _news.title = @"The Daily";
+        _news.title = @"News";
     }
     return _news;
 }

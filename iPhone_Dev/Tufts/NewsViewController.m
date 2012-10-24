@@ -8,7 +8,7 @@
 
 #import "NewsViewController.h"
 
-const int UPDATE_TIME = 600; // 1800 is half an hour -> seconds
+const int UPDATE_TIME = 300; // 30 is 5 minutes -> seconds
 const int IMAGE_SIZE  = 90; // The images are squares
 
 @interface NewsViewController ()
@@ -76,7 +76,7 @@ const int IMAGE_SIZE  = 90; // The images are squares
     self.isLoading = YES;
     NSArray* storyToLoad = [self.storiesByType objectForKey:self.section.title];
     if(storyToLoad) {
-        self.imageDataSource = [self.storiesByType objectForKey:[self.section.title stringByAppendingString:@"Images"]];
+        self.imageDataSource = [self.storiesByType objectForKey:[self.section.title stringByAppendingString:@" Images"]];
         self.dataSource = storyToLoad;
         [self.tableView reloadData];
         return;
@@ -179,7 +179,7 @@ const int IMAGE_SIZE  = 90; // The images are squares
     self.dataSource = self.stories;
     self.imageDataSource = self.storyImages;
     [self.storiesByType setObject:self.dataSource forKey:self.section.title];
-    [self.storiesByType setObject:self.imageDataSource forKey:[self.section.title stringByAppendingString:@"Images"]];
+    [self.storiesByType setObject:self.imageDataSource forKey:[self.section.title stringByAppendingString:@" Images"]];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -193,27 +193,32 @@ const int IMAGE_SIZE  = 90; // The images are squares
 {
     // Regex this instead something like -> '^\n\n?$' -> get obj c regex syntax if so
     NSString* strippedText = [string stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    strippedText = [strippedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if([strippedText isEqualToString:@""] && ![self continueWithCurrentKey]) {
+
         return;
     }
     
     if([self.currentKey isEqualToString:@"item"]) {
         self.currentStory = [NSMutableDictionary dictionaryWithCapacity:4];
-        
     } else if([self.currentKey isEqualToString:@"title"]) {
+        //NSLog(@"TITLE: [%@]", string);
         [self.currentStory setObject:string forKey:@"title"];
-        
     } else if([self.currentKey isEqualToString:@"link"]) {
+        //NSLog(@"LINK: [%@]", string);
         [self.currentStory setObject:string forKey:@"link"];
-        
-    } else if([self.currentKey isEqualToString:@"author"]) {
+    } else if([self.currentKey isEqualToString:@"author"] || [self.currentKey isEqualToString:@"dc:creator"]) {
+        //NSLog(@"AUTHOR: [%@]", string);
         [self.currentStory setObject:string forKey:@"author"];
-        
     } else if([self.currentKey isEqualToString:@"media:thumbnail"]) {
         [self.currentStory setObject:string forKey:@"media:thumbnail"];
-        
-    } else if([self.currentKey isEqualToString:@"enclosure"]) {
+    } else if([self.currentKey isEqualToString:@"enclosure"] || [self.currentKey isEqualToString:@"slash:comments"]) {
         if(self.currentStory) {
+            
+            // this sets up the default image to display
+            NSString* paperName = self.section.title;
+            paperName = (paperName) ? paperName : @"The Daily";
+            [self.currentStory setObject:paperName forKey:@"paperName"];
             [self.stories addObject:self.currentStory];
             
             NSData* thumbnailData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.currentStory objectForKey:@"media:thumbnail"]]];
@@ -221,19 +226,18 @@ const int IMAGE_SIZE  = 90; // The images are squares
             [self.storyImages addObject:thumbnailData];
             self.currentStory = nil;
         }
-        
     }
 }
 
 - (BOOL)continueWithCurrentKey
 {
     // Make sure the key is one that we want to capture and it is not already set
-    return  ([self.currentKey isEqualToString:@"item"] && ![self.currentStory objectForKey:@"item"])                       || 
-            ([self.currentKey isEqualToString:@"title"] && ![self. currentStory objectForKey:@"title"])                    ||
-            ([self.currentKey isEqualToString:@"link"] && ![self.currentStory objectForKey:@"link"])                       ||
-            ([self.currentKey isEqualToString:@"author"] && ![self.currentStory objectForKey:@"author"])                   ||
-            ([self.currentKey isEqualToString:@"media:thumbnail"] && ![self.currentStory objectForKey:@"media:thumbnail"]) ||
-            ([self.currentKey isEqualToString:@"enclosure"] && ![self.currentStory objectForKey:@"enclosure"]);
+    return  ([self.currentKey isEqualToString:@"item"] && ![self.currentStory objectForKey:@"item"])
+            || ([self.currentKey isEqualToString:@"title"] && ![self. currentStory objectForKey:@"title"])
+            || ([self.currentKey isEqualToString:@"link"] && ![self.currentStory objectForKey:@"link"])
+            || (([self.currentKey isEqualToString:@"author"] || [self.currentKey isEqualToString:@"dc:creator"]) && ![self.currentStory objectForKey:@"author"])
+            || ([self.currentKey isEqualToString:@"media:thumbnail"] && ![self.currentStory objectForKey:@"media:thumbnail"])
+            || (([self.currentKey isEqualToString:@"enclosure"] || [self.currentKey isEqualToString:@"slash:comments"]) && ![self.currentStory objectForKey:@"enclosure"]);
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -247,6 +251,8 @@ const int IMAGE_SIZE  = 90; // The images are squares
 }
 
 // Stops the UI that show when the data is loading
+// only one line but maybe more UI will be used to show data is loading
+// this keeps one place of truth
 - (void)stopLoadingUI
 {
     self.navigationItem.rightBarButtonItem = self.section;
@@ -262,11 +268,9 @@ const int IMAGE_SIZE  = 90; // The images are squares
 
 - (void)changeSection
 {
-    UIActionSheet* aSheet = [[UIActionSheet alloc] initWithTitle:@"Select A Section" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"News",@"Features",@"Arts",@"Op-Ed",@"Sports",nil];
+    UIActionSheet* aSheet = [[UIActionSheet alloc] initWithTitle:@"Select A Section" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"The Daily",@"The Observer",nil];
     [aSheet showInView:self.view];
 }
-
-
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -279,7 +283,6 @@ const int IMAGE_SIZE  = 90; // The images are squares
     
     self.currentURL = [NSURL URLWithString:[self.urls objectForKey:self.section.title]];
     [self loadData];
-    
 }
 
 //*********************************************************
@@ -317,15 +320,13 @@ const int IMAGE_SIZE  = 90; // The images are squares
     return _storyImages;
 }
 
+// setups a link between the bar button item to select which newspaper feed to from
 - (NSDictionary*)urls
 {
     if(!_urls) {
         _urls = [NSDictionary dictionaryWithObjectsAndKeys:
-                 @"http://www.tuftsdaily.com/se/tufts-daily-rss-1.445827", @"News",
-                 @"http://www.tuftsdaily.com/se/tufts-daily-features-rss-1.445868",@"Features",
-                 @"http://www.tuftsdaily.com/se/tufts-daily-arts-rss-1.445870",@"Arts",
-                 @"http://www.tuftsdaily.com/se/tufts-daily-op-ed-rss-1.445869",@"Op-Ed",
-                 @"http://www.tuftsdaily.com/se/tufts-daily-sports-rss-1.445871",@"Sports",
+                 @"http://www.tuftsdaily.com/se/tufts-daily-rss-1.445827", @"The Daily",
+                 @"http://tuftsobserver.org/feed/", @"The Observer",
                  nil];
     }
     return _urls;
@@ -341,16 +342,10 @@ const int IMAGE_SIZE  = 90; // The images are squares
     
     if(!_storiesByType) {
         _storiesByType = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                          nil,@"News",
-                          nil,@"Features",
-                          nil,@"Arts",
-                          nil,@"Op-Ed",
-                          nil,@"Sports",
-                          nil,@"NewsImages",
-                          nil,@"FeaturesImages",
-                          nil,@"ArtsImages",
-                          nil,@"Op-EdImages",
-                          nil,@"SportsImages",
+                          nil,@"The Daily",
+                          nil,@"The Observer",
+                          nil,@"The Daily Images",
+                          nil,@"The Observer Images",
                           [NSDate date],@"createdDate",
                           nil];
     }
@@ -369,7 +364,7 @@ const int IMAGE_SIZE  = 90; // The images are squares
 - (UIBarButtonItem*)section
 {
     if(!_section) {
-        _section = [[UIBarButtonItem alloc] initWithTitle:@"News" style:UIBarButtonItemStylePlain target:self action:@selector(changeSection)];
+        _section = [[UIBarButtonItem alloc] initWithTitle:@"The Daily" style:UIBarButtonItemStylePlain target:self action:@selector(changeSection)];
     }
     return _section;
 }

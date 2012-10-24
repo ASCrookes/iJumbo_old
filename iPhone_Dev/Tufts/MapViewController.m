@@ -125,13 +125,13 @@
                             waitUntilDone:YES];
     });
     dispatch_release(queue);
-    
 }
 
 // Parse the data from the given json data
 - (void)parseData:(NSData *)responseData
 {
     if(responseData == nil) {
+        self.isLoading = NO;
         return;
     }
     
@@ -342,11 +342,6 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    /*
-    [self.searchBar resignFirstResponder];
-    NSArray* results = [self searchForBuildingByName:searchBar.text];
-    [self showTableWithBuildings:results];
-     */
     [self.delegate searchBuildingsByName:searchBar.text]; 
 }
 
