@@ -103,12 +103,12 @@
     if(((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex == 0) {
         cellText = [cellText substringFromIndex:4];
         cellText = [cellText stringByReplacingOccurrencesOfString:@"_" withString:@" "];
+        cellText = [cellText stringByReplacingOccurrencesOfString:@"--and--" withString:@"&"];
     }
     cell.textLabel.text = cellText;
     
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -116,18 +116,14 @@
     if(segmentIndex == 0 || indexPath.section == 0){
         return;
     }
-    NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"-+and+-"];
-    // channels must start with a letter -> append my initials
-    channel = [@"ASC_" stringByAppendingString:channel];
-    [PFPush subscribeToChannelInBackground:channel];
+    [MyFoodViewController subscribeToFood:[self.dataSource objectAtIndex:indexPath.row]];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"-+and+-"];
+        channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"--and--"];
         // channels must start with a letter -> append my initials
         channel = [@"ASC_" stringByAppendingString:channel];
         [PFPush unsubscribeFromChannelInBackground:channel];
@@ -183,11 +179,25 @@
     return localURL;
 }
 
+// single point of truth for subscribing to a food
+
++ (void)subscribeToFood:(NSString*)foodName
+{
+    NSString* channel = [foodName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+    channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"--and--"];
+    // channels must start with a letter -> append my initials
+    channel = [@"ASC_" stringByAppendingString:channel];
+    NSLog(@"CHANNEL: %@", channel);
+    [PFPush subscribeToChannelInBackground:channel];
+}
+
+
+// setters and getters
+
 
 - (NSArray*)myFood
 {
     if(!_myFood) {
-        // return [NSArray array]; // DELME -> only needed when testing on simulator
         NSSet* foodSet = [PFPush getSubscribedChannels:nil];
         NSSortDescriptor* sort = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(caseInsensitiveCompare:)];
         _myFood = [foodSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
@@ -196,7 +206,7 @@
         for(int i = 0; i < [foodChannels count]; i++) {
             NSString* foodName = [foodChannels objectAtIndex:i];
             foodName = [foodName substringFromIndex:4];
-            foodName = [foodName stringByReplacingOccurrencesOfString:@"-+and+-" withString:@"&"];
+            foodName = [foodName stringByReplacingOccurrencesOfString:@"--and--" withString:@"&"];
             foodName = [foodName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
             
         }

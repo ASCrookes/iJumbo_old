@@ -58,8 +58,10 @@
 {
     UIViewController* tutorialPage = [self.storyboard instantiateViewControllerWithIdentifier:@"First Launch Tutorial"];
     tutorialPage.view.backgroundColor = self.backgroundColor;
+    tutorialPage.title = @"Whats New?";
     UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:tutorialPage];
-    UIBarButtonItem* barBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
+    UIBarButtonItem* barBtn = [[UIBarButtonItem alloc] initWithTitle:@"Continue" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
+    tutorialPage.navigationItem.rightBarButtonItem = barBtn;
     navcon.navigationItem.rightBarButtonItem = barBtn;
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSeenTutorial"];
     

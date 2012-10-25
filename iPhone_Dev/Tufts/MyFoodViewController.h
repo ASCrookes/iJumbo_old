@@ -17,4 +17,6 @@
 @property (strong, nonatomic) NSArray* allFood;
 @property (strong, nonatomic) NSArray* dataSource;
 
++ (void)subscribeToFood:(NSString*)foodName;
+
 @end

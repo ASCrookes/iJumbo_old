@@ -36,10 +36,8 @@
     self.author.text = [author isEqualToString:@"  "] ? @"Not Available" : author; 
     if([imageData length] > 0) {
         self.thumbnail.image = [UIImage imageWithData:imageData];
-    } else if([[story objectForKey:@"paperName"] isEqualToString:@"The Daily"]) {
-        self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
     } else {
-        self.thumbnail.image = [UIImage imageNamed:@"observerDefault.png"];
+        self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
     }
     self.webVC   = nil;
     self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;

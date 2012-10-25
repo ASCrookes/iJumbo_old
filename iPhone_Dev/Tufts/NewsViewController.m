@@ -268,13 +268,26 @@ const int IMAGE_SIZE  = 90; // The images are squares
 
 - (void)changeSection
 {
-    UIActionSheet* aSheet = [[UIActionSheet alloc] initWithTitle:@"Select A Section" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"The Daily",@"The Observer",nil];
+    UIActionSheet* aSheet = [[UIActionSheet alloc] initWithTitle:@"Select A Section" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"The Daily",/*@"The Observer",*/@"Refresh",nil];
     [aSheet showInView:self.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+
     NSString* selectedTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if([selectedTitle isEqualToString:@"Refresh"]) {
+        // clear the data so that it has to load again
+        self.imageDataSource = nil;
+        self.dataSource = nil;
+        self.stories = nil;
+        self.storiesByType = nil;
+        // reload the table so that it does not try and load data no longer there
+        [self.tableView reloadData];
+        // fetch the fresh data
+        [self loadData];
+        return;
+    }
     if([selectedTitle isEqualToString:self.section.title] || [selectedTitle isEqualToString:@"Cancel"]) {
         return;
     } else {
@@ -326,7 +339,7 @@ const int IMAGE_SIZE  = 90; // The images are squares
     if(!_urls) {
         _urls = [NSDictionary dictionaryWithObjectsAndKeys:
                  @"http://www.tuftsdaily.com/se/tufts-daily-rss-1.445827", @"The Daily",
-                 @"http://tuftsobserver.org/feed/", @"The Observer",
+                 /*@"http://tuftsobserver.org/feed/", @"The Observer",*/
                  nil];
     }
     return _urls;
@@ -385,7 +398,6 @@ const int IMAGE_SIZE  = 90; // The images are squares
     });
     
 }
-          
 
 - (UIBarButtonItem*)webViewForwardButton
 {
