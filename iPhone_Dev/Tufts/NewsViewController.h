@@ -25,6 +25,9 @@
 @property (nonatomic,strong) UIBarButtonItem* webViewForwardButton;
 @property (nonatomic,strong) UIWebView* currentWebView;
 @property (nonatomic,strong) NSMutableDictionary* storiesByType;
+@property (nonatomic,strong) NSArray* theDailyActionSheetButtons;
+@property (nonatomic,strong) NSArray* theObserverActionSheetButtons;
+@property (nonatomic,strong) UISegmentedControl* newsSegment;
 @property (nonatomic) BOOL isLoading;
 
 

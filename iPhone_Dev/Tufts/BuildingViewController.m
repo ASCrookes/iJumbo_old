@@ -74,7 +74,6 @@
                 [self.building objectForKey:@"longitude"],
                 urlName ];
     }
-    NSLog(@"URL: %@", url);
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
