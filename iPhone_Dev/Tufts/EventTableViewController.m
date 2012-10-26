@@ -50,8 +50,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     if([self.dataSource count] == 0) {
         [self loadData];
     }
-    self.datePicker.center = CGPointMake(160, 524);
-    
     // Loading and no event views are added before the screen loads
     // they need to be deleted or else they will alwyas be there
     self.loadingView = nil;
@@ -61,8 +59,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         self.loadingView.hidden = NO;
     } else {
         [self.tableView reloadData];
-        self.noEvents.hidden = !([self.dataSource count] == 0);
+        if(!self.dataSource || [self.dataSource count] == 0) {
+            self.noEvents.hidden = NO;
+            [self loadData];
+        }
     }
+
 
     [self.dayBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
     self.date = [NSDate date];
@@ -107,7 +109,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     dispatch_queue_t queue = dispatch_queue_create("Event Table Load", NULL);
     dispatch_async(queue, ^{
         self.events = [NSMutableArray array];
-
         [self parseXMLFileAtURL:self.url];
         
     });
@@ -293,6 +294,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (BOOL)continueWithCurrentKey
 {
     // Make sure the key is one that we want to capture and it is not already set
+    if(!self.currentKey) { return NO; }
     return  ([self.currentKey isEqualToString:@"item"] && ![self.currentEvent objectForKey:@"item"])               || 
             ([self.currentKey isEqualToString:@"title"] && ![self. currentEvent objectForKey:@"title"])            ||
             ([self.currentKey isEqualToString:@"link"] && ![self.currentEvent objectForKey:@"link"])               ||
@@ -343,10 +345,13 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)showDatePicker:(id)sender
 {
     self.datePicker.date = self.date;
-    if(self.datePicker.center.y != 308) {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    if(self.datePicker.center.y > screenHeight) {
         [UIView animateWithDuration:0.3 animations:^{
             self.navigationItem.rightBarButtonItem.title = @"Hide Cal";
-            self.datePicker.center = CGPointMake(160, 308);
+            self.datePicker.center = CGPointMake(screenWidth/2, screenHeight-172);
         }];
     } else {
         [self resignDatePicker];
@@ -355,9 +360,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)resignDatePicker
 {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
     [UIView animateWithDuration:0.3 animations:^{
         self.navigationItem.rightBarButtonItem.title = @"Calendar";
-        self.datePicker.center = CGPointMake(160, 524);
+        self.datePicker.center = CGPointMake(screenWidth/2, screenHeight+44);
     }];
 }
 
@@ -417,7 +425,10 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         _datePicker = [[UIDatePicker alloc] init];
         [_datePicker setDatePickerMode:UIDatePickerModeDate];
         [_datePicker addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];
-        _datePicker.center = CGPointMake(160, 524);
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+        _datePicker.center = CGPointMake(screenWidth/2, screenHeight+44);
         [self.view addSubview:_datePicker];
     }
     return _datePicker;
@@ -500,6 +511,9 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     }
     return _loadingView;
 }
+
+
+
 
 
 @end

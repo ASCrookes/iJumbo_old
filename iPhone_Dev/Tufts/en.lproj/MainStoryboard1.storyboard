@@ -31,7 +31,7 @@
             <objects>
                 <viewController storyboardIdentifier="About Tufts" title="Tufts Vision" id="w4D-yA-MaL" customClass="AboutTuftsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yip-Fb-DFF">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="roundedTextView.png" id="bIj-cq-dh5">
@@ -89,7 +89,7 @@
             <objects>
                 <viewController storyboardIdentifier="Food View" id="bNb-aa-zf9" customClass="FoodViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3uz-7H-0hN">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="2kK-yC-HoN">
@@ -305,7 +305,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="INFO TABLE" title="About" id="9Eu-7p-i8o" customClass="InfoViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3Af-b2-sOk">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -409,7 +409,7 @@
             <objects>
                 <viewController storyboardIdentifier="Feedback Input View" id="1ca-rB-l4e" customClass="FeedbackViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ILa-bH-rOV">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="roundedTextView.png" id="NLj-UC-mbi">
@@ -450,11 +450,11 @@
             <objects>
                 <viewController storyboardIdentifier="Menu Table" id="7Dh-s2-RGW" customClass="MenuTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fty-ml-2Du">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="qMK-UN-cxA">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -539,11 +539,11 @@
             <objects>
                 <viewController storyboardIdentifier="My Food VC" id="ZXf-s3-fET" customClass="MyFoodViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Hl-tV-ice">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ui4-KR-eY9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -587,7 +587,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Joey Table" title="Transportation" id="XNp-Tx-BHy" customClass="JoeyTrackerTable" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="HzY-m0-Di4">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -654,7 +654,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="News Table" title="The Daily" id="s3N-tR-KcV" customClass="NewsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="Bo3-bf-FvV">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -717,7 +717,7 @@
             <objects>
                 <viewController storyboardIdentifier="Web View" title="Story" id="5mM-4i-5RP" customClass="WebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pFz-pU-adg">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" id="WrS-aD-ObF">
@@ -748,7 +748,7 @@
             <objects>
                 <viewController storyboardIdentifier="Event View" id="YHI-SR-lsQ" customClass="EventViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zJ8-lZ-gCd">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="eventDescription.png" id="HDN-gn-gvB">
@@ -843,7 +843,7 @@
             <objects>
                 <viewController storyboardIdentifier="Building View" id="B85-TP-hsM" customClass="BuildingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IlQ-2P-lcL">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Phone:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4mO-eq-dWp">
@@ -1029,11 +1029,11 @@
             <objects>
                 <viewController storyboardIdentifier="Detailed Building Table" id="ljJ-Xt-EhC" customClass="BuildingTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zyj-LD-mmJ">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="o1d-Dn-ch9">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1126,11 +1126,11 @@
             <objects>
                 <viewController storyboardIdentifier="Building Table" id="6jI-oK-NNj" customClass="BuildingTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fBt-pu-wG5">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="GNt-J1-Cz7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1171,11 +1171,11 @@
             <objects>
                 <viewController storyboardIdentifier="Event Table" title="Events" id="9bc-eR-Tt1" customClass="EventTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3wZ-s0-oJn">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qrb-Rq-uJs">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1246,11 +1246,11 @@
             <objects>
                 <viewController storyboardIdentifier="Map View" title="Map" id="Wvs-dc-Ur7" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NKr-XN-p7y">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="rCt-XK-KDc">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Wvs-dc-Ur7" id="WSh-Hv-e0N"/>
@@ -1282,7 +1282,7 @@
             <objects>
                 <viewController storyboardIdentifier="Sources View Controller" title="Sources" id="GyK-Uy-qB4" customClass="SourcesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G0K-7z-Lbh">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="khG-xZ-xUW">
@@ -1484,7 +1484,7 @@
             <objects>
                 <viewController storyboardIdentifier="First Launch Tutorial" id="Pph-aP-kfT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sDN-iG-cQg">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="◉" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="RQS-UU-Ok4">
@@ -1596,7 +1596,7 @@
             <objects>
                 <viewController title="TUFTS" id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NgC-dA-jTE">
@@ -1667,7 +1667,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7D3-7G-Uao">
-                                <rect key="frame" x="196" y="287" width="109" height="109"/>
+                                <rect key="frame" x="194" y="287" width="109" height="109"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="Webpage.png">
@@ -1795,9 +1795,163 @@
         <image name="newsDefault.png" width="90" height="90"/>
         <image name="roundedTextView.png" width="280" height="155"/>
     </resources>
+    <classes>
+        <class className="AboutTuftsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutTuftsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="foundingField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="visionStatementField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="BuildingCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingCell.h"/>
+            <relationships>
+                <relationship kind="action" name="infoButtonAction:"/>
+                <relationship kind="outlet" name="buildingName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="BuildingTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="BuildingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="building_name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="friday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="friday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="monday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="monday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phone_number" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="saturday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="saturday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="sunday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sunday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thursday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thursday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tuesday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tuesday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="website" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="wedbesday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wednesday_hours" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EventTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EventViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="eventTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="link" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="location" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="time" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FeedbackViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="FoodViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FoodViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="allergens" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="calories" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="carbs" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cholestoral" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fiber" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ingredients" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="protein" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="satFat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="servingSize" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sodium" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sugars" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="InfoViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+        </class>
+        <class className="JoeyTrackerTable" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoeyTrackerTable.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="MenuTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="extraBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="myFoodButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="todayBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tomorrowBarButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MyFoodViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyFoodViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NewsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thumbnail" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NewsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
+        </class>
+        <class className="SourcesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourcesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dayNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dayWord" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="forwardButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

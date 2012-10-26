@@ -37,7 +37,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = self.backgroundColor;
     [self setIcons];
-    [self.etvc loadData];
+    //[self.etvc loadData]; a relatively small amount of data to load beforehand
     [self.mtvc loadData];
     [self.map loadData];
     [self.news loadData];

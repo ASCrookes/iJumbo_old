@@ -122,11 +122,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        NSString* channel = [[self.dataSource objectAtIndex:indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"--and--"];
-        // channels must start with a letter -> append my initials
-        channel = [@"ASC_" stringByAppendingString:channel];
-        [PFPush unsubscribeFromChannelInBackground:channel];
+        [PFPush unsubscribeFromChannelInBackground:[self.dataSource objectAtIndex:indexPath.row]];
         NSMutableArray* editableList = [NSMutableArray arrayWithArray:self.myFood];
         [editableList removeObjectAtIndex:indexPath.row];
         self.myFood = editableList;

@@ -379,7 +379,8 @@ enum NewsSegment {
     if(!_urls) {
         _urls = [NSDictionary dictionaryWithObjectsAndKeys:
                  // the daily rss feed urls
-                 @"http://www.tuftsdaily.com/se/tufts-daily-rss-1.445827", @"Daily-News",
+                 @"http://www.tuftsdaily.com/se/tufts-daily-rss-1.445827", @"Daily-Main",
+                 @"http://www.tuftsdaily.com/se/tufts-daily-news-rss-1.445867", @"Daily-News",
                  @"http://www.tuftsdaily.com/se/tufts-daily-features-rss-1.445868",@"Daily-Features",
                  @"http://www.tuftsdaily.com/se/tufts-daily-arts-rss-1.445870",@"Daily-Arts",
                  @"http://www.tuftsdaily.com/se/tufts-daily-op-ed-rss-1.445869",@"Daily-Op-Ed",
@@ -391,7 +392,7 @@ enum NewsSegment {
                  @"http://tuftsobserver.org/category/off-campus/feed",@"Observer-Off Campus",
                  @"http://tuftsobserver.org/category/opinion/feed",@"Observer-Opinion",
                  @"http://tuftsobserver.org/category/poetry-prose/feed",@"Observer-Poetry",
-                 @"http://tuftsobserver.org/category/extras/feed",@"Observer-Extras", 
+                 @"http://tuftsobserver.org/category/extras/feed",@"Observer-Extras",
                  nil];
     }
     return _urls;
@@ -408,6 +409,7 @@ enum NewsSegment {
     if(!_storiesByType) {
         _storiesByType = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                           // keys for the daily news
+                          nil,@"Daily-Main",
                           nil,@"Daily-News",
                           nil,@"Daily-Features",
                           nil,@"Daily-Arts",
@@ -422,6 +424,7 @@ enum NewsSegment {
                           nil,@"Observer-Poetry",
                           nil,@"Observer-Extras",
                           // keys for the daily images
+                          nil,@"Daily-Main-Images",
                           nil,@"Daily-News-Images",
                           nil,@"Daily-Features-Images",
                           nil,@"Daily-Arts-Images",
@@ -444,7 +447,7 @@ enum NewsSegment {
 - (NSArray*)theDailyActionSheetButtons
 {
     if(!_theDailyActionSheetButtons) {
-        _theDailyActionSheetButtons = [NSArray arrayWithObjects:@"News",@"Features",@"Arts",@"Op-Ed",@"Sports",nil];
+        _theDailyActionSheetButtons = [NSArray arrayWithObjects:@"Main",@"News",@"Features",@"Arts",@"Op-Ed",@"Sports",nil];
     }
     return _theDailyActionSheetButtons;
 }
@@ -452,7 +455,7 @@ enum NewsSegment {
 - (NSArray*)theObserverActionSheetButtons
 {
     if(!_theObserverActionSheetButtons) {
-        _theObserverActionSheetButtons = [NSArray arrayWithObjects:@"Arts",@"Campus",@"News",@"Off Campus",@"Opinion",@"Poetry",@"Extras",nil];
+        _theObserverActionSheetButtons = [NSArray arrayWithObjects:@"News",@"Arts",@"Campus",@"Off Campus",@"Opinion",@"Poetry",@"Extras",nil];
     }
     return _theObserverActionSheetButtons;
 }
@@ -468,7 +471,7 @@ enum NewsSegment {
 - (UIBarButtonItem*)section
 {
     if(!_section) {
-        _section = [[UIBarButtonItem alloc] initWithTitle:@"News" style:UIBarButtonItemStylePlain target:self action:@selector(changeSection)];
+        _section = [[UIBarButtonItem alloc] initWithTitle:@"Main" style:UIBarButtonItemStylePlain target:self action:@selector(changeSection)];
     }
     return _section;
 }
