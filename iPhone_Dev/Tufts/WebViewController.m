@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 
     [self.navBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
 }
@@ -40,7 +41,9 @@
 - (void)setWebViewWithURL:(NSString*)url delegate:(id <UIWebViewDelegate>)del
 {
     self.url = url;
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, 370)];
+    int height = [[UIScreen mainScreen] bounds].size.height;
+    // the 2 navigation bars plus that status bar is 44 + 44 + 20 which is about 110
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, height-110)];
     self.webView.delegate = del;
     [self.view addSubview:self.webView];
     NSURL* webURL = [NSURL URLWithString:self.url];

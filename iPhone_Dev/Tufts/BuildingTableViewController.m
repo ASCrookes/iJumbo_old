@@ -38,6 +38,16 @@
     self.title = @"Places";
     UIBarButtonItem* mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(showMap)];
     self.navigationItem.rightBarButtonItem = mapButton;
+    if(!self.buildings || [self.buildings count] == 0) {
+        // do not have to check if file is there because the app starts with it there
+        NSURL* mainURL = [[NSBundle mainBundle] bundleURL];
+        NSURL* localURL = [NSURL URLWithString:@"buildings.json" relativeToURL:mainURL];
+        NSData* jsonData = [NSData dataWithContentsOfURL:localURL];
+        NSError* error;
+        self.buildings = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        [self.tableView reloadData];
+        [self loadData];
+    }
     //[self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
 }
 

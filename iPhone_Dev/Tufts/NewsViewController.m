@@ -165,7 +165,7 @@ enum NewsSegment {
     self.currentURL = nil;
     self.rssParser = [[NSXMLParser alloc] initWithContentsOfURL:self.currentURL];
     [self.rssParser setDelegate:self]; 
-    [self.rssParser setShouldProcessNamespaces:NO]; 
+    [self.rssParser setShouldProcessNamespaces:NO];
     [self.rssParser setShouldReportNamespacePrefixes:NO];
     [self.rssParser setShouldResolveExternalEntities:NO]; 
     [self.rssParser parse];
@@ -177,6 +177,11 @@ enum NewsSegment {
     self.currentKey = elementName;
     if([self.currentKey isEqualToString:@"media:thumbnail"]) {
         [self.currentStory setObject:[attributeDict objectForKey:@"url"] forKey:@"media:thumbnail"];
+        if(self.newsSegment.selectedSegmentIndex == NewsSegmentObserver) {
+            // this is where the observer's storyies should be saved
+            [self saveCurrentStory];
+        }
+        
     }
 }
 
@@ -201,6 +206,7 @@ enum NewsSegment {
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    //NSLog(@"KEY: %@", self.currentKey);
     // Regex this instead something like -> '^\n\n?$' -> get obj c regex syntax if so
     NSString* strippedText = [string stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     strippedText = [strippedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -217,33 +223,35 @@ enum NewsSegment {
         currentTitle = [currentTitle stringByAppendingString:string];
         [self.currentStory setObject:currentTitle forKey:@"title"];
     } else if([self.currentKey isEqualToString:@"link"]) {
-        //NSLog(@"LINK: [%@]", string);
         [self.currentStory setObject:string forKey:@"link"];
     } else if([self.currentKey isEqualToString:@"author"] || [self.currentKey isEqualToString:@"dc:creator"]) {
-        //NSLog(@"AUTHOR: [%@]", string);
         [self.currentStory setObject:string forKey:@"author"];
-    } else if([self.currentKey isEqualToString:@"media:thumbnail"]) {
-        [self.currentStory setObject:string forKey:@"media:thumbnail"];
-    } else if([self.currentKey isEqualToString:@"enclosure"] || [self.currentKey isEqualToString:@"slash:comments"]) {
+    } else if([self.currentKey isEqualToString:@"enclosure"]) {
+        // this is were the daily's stories should be saved
         if(self.currentStory) {
-            
-            // this sets up the default image to display
-            NSString* title = [self.currentStory objectForKey:@"title"];
-            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            [self.currentStory setObject:title forKey:@"title"];
-            
-            NSString* paperName = [self.newsSegment titleForSegmentAtIndex:self.newsSegment.selectedSegmentIndex];
-            paperName = (paperName) ? paperName : @"Daily";
-            [self.currentStory setObject:paperName forKey:@"paperName"];
-            [self.stories addObject:self.currentStory];
-            
-            NSData* thumbnailData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.currentStory objectForKey:@"media:thumbnail"]]];
-            if(!thumbnailData) { thumbnailData = [NSData data]; }
-            [self.storyImages addObject:thumbnailData];
-            self.currentStory = nil;
+            [self saveCurrentStory];
+
         }
     }
 }
+
+// takes the data collected from the current story and adds it to the list of stories
+- (void)saveCurrentStory
+{
+    // trim whitespace and newlines form the title
+    NSString* title = [self.currentStory objectForKey:@"title"];
+    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [self.currentStory setObject:title forKey:@"title"];
+
+    [self.stories addObject:self.currentStory];
+    
+    // adds the thumbnail data
+    NSData* thumbnailData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.currentStory objectForKey:@"media:thumbnail"]]];
+    if(!thumbnailData) { thumbnailData = [NSData data]; }
+    [self.storyImages addObject:thumbnailData];
+    self.currentStory = nil;
+}
+
 
 - (BOOL)continueWithCurrentKey
 {
@@ -269,11 +277,15 @@ enum NewsSegment {
 // Stops the UI that show when the data is loading
 // only one line but maybe more UI will be used to show data is loading
 // this keeps one place of truth
+// makes sure it is in the main thread
 - (void)stopLoadingUI
 {
-    self.navigationItem.titleView = self.newsSegment;
-    self.navigationItem.rightBarButtonItem = self.section;
-    self.navigationItem.title = @"News";
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.titleView = self.newsSegment;
+        self.navigationItem.rightBarButtonItem = self.section;
+        self.navigationItem.title = @"News";
+    });
+
 }
 
 
