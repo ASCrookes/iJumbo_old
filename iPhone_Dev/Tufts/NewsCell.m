@@ -33,12 +33,14 @@
     self.title.text = [story objectForKey:@"title"];
     NSString* author = [story objectForKey:@"author"];
     self.link = [story objectForKey:@"link"];
-    self.author.text = [author isEqualToString:@"  "] ? @"Not Available" : author; 
+    self.author.text = [author isEqualToString:@"  "] ? @"Not Available" : author;
+
     if([imageData length] > 0) {
         self.thumbnail.image = [UIImage imageWithData:imageData];
     } else {
         self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
     }
+    
     self.webVC   = nil;
     self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
