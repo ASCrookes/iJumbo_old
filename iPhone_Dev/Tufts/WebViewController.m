@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.webView setScalesPageToFit:YES];
 	// Do any additional setup after loading the view.
     
 

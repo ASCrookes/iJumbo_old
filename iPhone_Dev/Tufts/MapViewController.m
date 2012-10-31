@@ -183,12 +183,12 @@
     if(!buildingJSON) {
         return;
     }
-    
+    NSLog(@"animate!");
     BuildingAnnotation* pin = [BuildingAnnotation buildingWithJson:buildingJSON];
-    MKCoordinateRegion resetRegion = _mapView.region;
+    MKCoordinateRegion resetRegion = self.mapView.region;
     resetRegion.span.longitudeDelta = 0.007;
     resetRegion.span.latitudeDelta = 0.007;
-    _mapView.region = resetRegion;
+    self.mapView.region = resetRegion;
     [UIView animateWithDuration:0.8 animations:^{
         [self.mapView removeAnnotations:self.mapView.annotations];
         MKCoordinateSpan span;
@@ -198,9 +198,9 @@
         region.center.latitude  = [(NSString*)[buildingJSON objectForKey:@"latitude"] doubleValue];
         region.center.longitude = [(NSString*)[buildingJSON objectForKey:@"longitude"] doubleValue];
         region.span = span;
-        [_mapView setRegion:region animated:NO];
+        [self.mapView setRegion:region animated:YES];
     } completion:^(BOOL finished) {
-        [_mapView addAnnotation:pin];
+        [self.mapView addAnnotation:pin];
         [self.mapView setSelectedAnnotations:[NSArray arrayWithObject:pin]];
     }];
 }

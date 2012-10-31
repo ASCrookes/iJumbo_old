@@ -76,6 +76,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     self.webVC.navigationItem.rightBarButtonItem = nil;
+    //[webView stringByEvaluatingJavaScriptFromString:@"function setScale(){ var all_metas=document.getElementsByTagName('meta'); if (all_metas){ var k; for (k=0; k<all_metas.length;k++){ var meta_tag=all_metas[k]; var viewport= meta_tag.getAttribute('name'); if (viewport&& viewport=='viewport'){ meta_tag.setAttribute('content','width=device-width; initial-scale=1.0; maximum-scale=5.0; user-scalable=1;');}}}}"];
 }
 
 - (WebViewController*)webVC

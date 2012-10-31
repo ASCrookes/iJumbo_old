@@ -39,6 +39,9 @@
 - (IBAction)mapButtonAction:(id)sender
 {
     MapViewController* mvc = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
+    // have to load the view before dropping the pin to get the animation to work
+    [mvc loadView];
+    [mvc viewDidLoad];
     [mvc showBuilding:self.building];
     [self.viewController.navigationController pushViewController:mvc animated:YES];
 }

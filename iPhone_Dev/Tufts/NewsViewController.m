@@ -171,7 +171,6 @@ enum NewsSegment {
     [self.rssParser parse];
 }
 
-
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     self.currentKey = elementName;
@@ -206,8 +205,6 @@ enum NewsSegment {
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    //NSLog(@"KEY: %@", self.currentKey);
-    // Regex this instead something like -> '^\n\n?$' -> get obj c regex syntax if so
     NSString* strippedText = [string stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     strippedText = [strippedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if([strippedText isEqualToString:@""] && ![self continueWithCurrentKey]) {
@@ -499,10 +496,10 @@ enum NewsSegment {
 - (void)setDataSource:(NSArray *)dataSource
 {
     _dataSource = dataSource;
+    // when the data source is changed reload the table
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
-    
 }
 
 - (UIBarButtonItem*)webViewForwardButton
