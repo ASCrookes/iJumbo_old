@@ -7,6 +7,7 @@
 //
 
 #import "FoodViewController.h"
+#import "TestFlight.h"
 
 @interface FoodViewController ()
 
@@ -92,6 +93,7 @@
                                   
 - (void)subscribeToFood
 {
+    [TestFlight passCheckpoint:@"FOOD VC-SUBSCRIBE"];
     [MyFoodViewController subscribeToFood:[self.food objectForKey:@"FoodName"]];
 }
 

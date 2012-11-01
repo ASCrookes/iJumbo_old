@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TestFlight.h"
 
 @interface ViewController ()
 
@@ -96,36 +97,43 @@
 
 - (IBAction)getEvents:(id)sender 
 {
+    [TestFlight passCheckpoint:@"EVENTS"];
     [self.navigationController pushViewController:self.etvc animated:YES];
 }
 
 - (IBAction)getMenus:(id)sender 
 {
+    [TestFlight passCheckpoint:@"MENUS"];
     [self.navigationController pushViewController:self.mtvc animated:YES];
 }
 
 - (IBAction)getTrunk:(id)sender 
 {
+    [TestFlight passCheckpoint:@"TRUNK"];
     [self.navigationController pushViewController:self.trunk animated:YES];
 }
 
 - (IBAction)getJoey:(id)sender 
 {
+    [TestFlight passCheckpoint:@"JOEY"];
     [self.navigationController pushViewController:self.joey animated:YES];
 }
 
 - (IBAction)getMap:(id)sender 
 {
+    [TestFlight passCheckpoint:@"MAP"];
     [self.navigationController pushViewController:self.btvc animated:YES];
 }
 
 - (IBAction)getNews:(id)sender 
 {
+    [TestFlight passCheckpoint:@"NEWS"];
     [self.navigationController pushViewController:self.news animated:YES];
 }
 
 - (IBAction)getAppInfo:(id)sender 
 {
+    [TestFlight passCheckpoint:@"APP INFO"];
     InfoViewController* info = [self.storyboard instantiateViewControllerWithIdentifier:@"INFO TABLE"];
     info.tableView.backgroundColor = self.backgroundColor;
     [self.navigationController pushViewController:info animated:YES];

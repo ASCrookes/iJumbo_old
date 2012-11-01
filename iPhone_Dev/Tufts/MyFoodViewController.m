@@ -7,7 +7,7 @@
 //
 
 #import "MyFoodViewController.h"
-
+#import "TestFlight.h"
 
 @interface MyFoodViewController ()
 
@@ -113,15 +113,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
+    // this is the cell saying to click a cell to subscribe to it
     if(segmentIndex == 0 || indexPath.section == 0){
         return;
     }
+    [TestFlight passCheckpoint:@"MY FOOD-ALL FOOD SUBSCRIBE"];
     [MyFoodViewController subscribeToFood:[self.dataSource objectAtIndex:indexPath.row]];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [TestFlight passCheckpoint:@"MY FOOD-DELETE SUBSCRIBED"];
         [PFPush unsubscribeFromChannelInBackground:[self.dataSource objectAtIndex:indexPath.row]];
         NSMutableArray* editableList = [NSMutableArray arrayWithArray:self.myFood];
         [editableList removeObjectAtIndex:indexPath.row];

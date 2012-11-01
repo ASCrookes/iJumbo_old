@@ -8,6 +8,7 @@
 
 #import "BuildingCell.h"
 #import "MapViewController.h"
+#import "TestFlight.h"
 
 @implementation BuildingCell
 
@@ -38,6 +39,7 @@
 
 - (IBAction)mapButtonAction:(id)sender
 {
+    [TestFlight passCheckpoint:@"NEWS CELL MAP BTN"];
     MapViewController* mvc = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
     // have to load the view before dropping the pin to get the animation to work
     [mvc loadView];
@@ -48,6 +50,7 @@
 
 - (IBAction)infoButtonAction:(id)sender
 {
+    [TestFlight passCheckpoint:@"NEWS CELL INFO BTN"];
     BuildingViewController* bvc = [[UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:nil] instantiateViewControllerWithIdentifier:@"Building View"];
     bvc.allowsMap = YES;
     [bvc setBuilding:self.building];

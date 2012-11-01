@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "TestFlight.h"
 
 // Time in terms of seconds
 const int TIME_BETWEEN_CONNECTION_ALERT = 90;
@@ -25,6 +26,8 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
     [Parse setApplicationId:@"ctpSKiaBaM1DrFYqnknjV3ICFOfWcK5cD2GOB4Qc"
                   clientKey:@"YrPtqKjyvoWRoOMHFyPNLMhJgZbuXhzMu07JH1Qy"];
     
+    // Test flight for beta testing and bug reporting
+    [TestFlight takeOff:@"6795684bfd6dbf064e3dab7dba1bafac_MTUwMTExMjAxMi0xMS0wMSAxNTowNzoxNi4wODIwNjc"];
     // Register this device for push notifications from parse
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
                                                     UIRemoteNotificationTypeAlert|
