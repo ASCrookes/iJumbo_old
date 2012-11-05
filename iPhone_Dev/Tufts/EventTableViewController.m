@@ -79,15 +79,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     [self setTableView:nil];
     [self setNoEvents:nil];
     [self setLoadingView:nil];
+    [self setDatePicker:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self loadData];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

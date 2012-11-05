@@ -264,12 +264,12 @@ enum NewsSegment {
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    [self stopLoadingUI];
+    //[self stopLoadingUI];
 }
 
 - (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
 {
-    [self stopLoadingUI];
+    //[self stopLoadingUI];
 }
 
 // Stops the UI that show when the data is loading
@@ -360,7 +360,8 @@ enum NewsSegment {
 {
     if(!self.isLoading) {
         self.stories = nil;
-        self.rssParser = nil;
+        // the parser could be currently running
+        //self.rssParser = nil;
         self.currentStory = nil;
         self.currentKey = nil;
         self.storyImages = nil;

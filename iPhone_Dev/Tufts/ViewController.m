@@ -98,6 +98,7 @@
 - (IBAction)getEvents:(id)sender 
 {
     [TestFlight passCheckpoint:@"EVENTS"];
+    [self.etvc loadData];
     [self.navigationController pushViewController:self.etvc animated:YES];
 }
 
