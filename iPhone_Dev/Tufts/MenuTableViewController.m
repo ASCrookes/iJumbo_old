@@ -283,7 +283,6 @@ const int TOMORROW_INDEX = 1;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0) {
-        [TestFlight passCheckpoint:@"MENU-DINING HALL INFO"];
         BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
         bvc.allowsMap = YES;
         [bvc setBuilding:[self.diningHallInfo objectForKey:self.navigationItem.rightBarButtonItem.title]];
@@ -291,7 +290,6 @@ const int TOMORROW_INDEX = 1;
         [self.navigationController pushViewController:bvc animated:YES];
         return;
     }
-    [TestFlight passCheckpoint:@"MENU-FOOD FACTS"];
     FoodViewController* fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Food View"];
     [fvc setFood:[[[self.dataSource objectAtIndex:indexPath.section - 1] objectForKey:@"foods"] objectAtIndex:indexPath.row]];
     [fvc setTitle:[fvc.food objectForKey:@"FoodName"]];
@@ -373,10 +371,8 @@ const int TOMORROW_INDEX = 1;
     return number;
 }
 
-// Tony Kim is the jizz
 - (IBAction)showMyFood:(id)sender
 {
-    [TestFlight passCheckpoint:@"MENU-SHOW MY FOOD"];
     MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food VC"];
     myFood.view.hidden = NO;
     myFood.tableView.backgroundColor = self.view.backgroundColor;

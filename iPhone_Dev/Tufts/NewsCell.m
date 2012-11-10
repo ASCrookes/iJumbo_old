@@ -16,6 +16,7 @@
 @synthesize thumbnail = _thumbnail;
 @synthesize webVC = _webVC;
 @synthesize link = _link;
+@synthesize showLoadingUI = _showLoadingUI;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -30,6 +31,7 @@
 // story should contain media:thumbnail author and title
 - (void)setupCellWithStory:(NSDictionary*)story andImageData:(NSData*)imageData
 {
+    self.showLoadingUI = NO;
     self.title.text = [story objectForKey:@"title"];
     NSString* author = [story objectForKey:@"author"];
     self.link = [story objectForKey:@"link"];
@@ -65,7 +67,9 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    NSLog(@"yolo");
+    if(!self.showLoadingUI) {
+        return;
+    }
     UIActivityIndicatorView * activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
     [activityView sizeToFit];
     [activityView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)];
@@ -74,11 +78,20 @@
     self.webVC.navigationItem.rightBarButtonItem = loadingView;
 }
 
+// only show loading with navigation type other
+// this stop the activity indicator from spinning forever
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSLog(@"NOLO");
     self.webVC.navigationItem.rightBarButtonItem = nil;
-    //[webView stringByEvaluatingJavaScriptFromString:@"function setScale(){ var all_metas=document.getElementsByTagName('meta'); if (all_metas){ var k; for (k=0; k<all_metas.length;k++){ var meta_tag=all_metas[k]; var viewport= meta_tag.getAttribute('name'); if (viewport&& viewport=='viewport'){ meta_tag.setAttribute('content','width=device-width; initial-scale=1.0; maximum-scale=5.0; user-scalable=1;');}}}}"];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    // the initial load of a page falls into the navigation type "other"
+    NSLog(@"%i", navigationType);
+    self.showLoadingUI = (navigationType == UIWebViewNavigationTypeOther ||
+                          navigationType == UIWebViewNavigationTypeLinkClicked);
+    return YES;
 }
 
 - (WebViewController*)webVC

@@ -54,7 +54,6 @@
 
 - (void)showMap
 {
-    [TestFlight passCheckpoint:@"BTVC SHOW MAP"];
     MapViewController* map = [self.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
     map.delegate = self;
     map.buildings = self.buildings;
@@ -147,7 +146,6 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [TestFlight passCheckpoint:@"BTVC SEARCH"];
     [self.searchBar resignFirstResponder];
     self.dataSource = [self searchForBuildingByName:searchBar.text];
     [self.tableView reloadData];
@@ -224,7 +222,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [TestFlight passCheckpoint:@"BTVC SELECTED CELL"];
     [self.searchBar resignFirstResponder];
     if(_mapSelect) {
         [self.delegate selectedBuilding:[[_buildings objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];

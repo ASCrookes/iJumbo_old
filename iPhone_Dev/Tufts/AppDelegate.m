@@ -47,7 +47,6 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
         CGSize result = [[UIScreen mainScreen] bounds].size;
         CGFloat scale = [UIScreen mainScreen].scale;
         result = CGSizeMake(result.width * scale, result.height * scale);
-        NSLog(@"RESULT HEIGHT: %f", result.height);
         if(result.height == 1136){
             storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone5" bundle:nil];
             UIViewController *initViewController = [storyBoard instantiateInitialViewController];
@@ -123,15 +122,10 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
 {
-    [PFPush storeDeviceToken:newDeviceToken]; // Send parse the device token
+    // Send parse the device token
+    [PFPush storeDeviceToken:newDeviceToken];
     // Subscribe this user to the broadcast channel, ""
-    [PFPush subscribeToChannelInBackground:@"" block:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"Successfully subscribed to the broadcast channel.");
-        } else {
-            NSLog(@"Failed to subscribe to the broadcast channel.");
-        }
-    }];
+    [PFPush subscribeToChannelInBackground:@""];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error

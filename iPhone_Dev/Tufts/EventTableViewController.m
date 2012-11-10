@@ -46,12 +46,8 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     
     self.title = @"Tufts Life";
     // load the date picker so it doesnt randomly show up when the events page first displays
-    // find a way to do this without the error (move creation of datePicker into function
-    self.datePicker;
-    // If there is no data try and load it
-    if([self.dataSource count] == 0) {
-        [self loadData];
-    }
+    (void)self.datePicker;
+
     // Loading and no event views are added before the screen loads
     // they need to be deleted or else they will alwyas be there
     self.loadingView = nil;
@@ -61,7 +57,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         self.loadingView.hidden = NO;
     } else {
         [self.tableView reloadData];
-        if(!self.dataSource || [self.dataSource count] == 0) {
+        if([self.dataSource count] == 0) {
             self.noEvents.hidden = NO;
             [self loadData];
         }
@@ -102,10 +98,10 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)loadData
 {
-    //[self.rssParser abortParsing];
+    [self.rssParser abortParsing];
     self.dataSource = [NSArray array];
     //[self.tableView reloadData];
-    dispatch_queue_t queue = dispatch_queue_create("Event Table Load", NULL);
+    dispatch_queue_t queue = dispatch_queue_create("Event.Table.Load", NULL);
     dispatch_async(queue, ^{
         self.events = [NSMutableArray array];
         [self parseXMLFileAtURL:self.url];
@@ -398,7 +394,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)clearUnnecessary
 {
     if(!self.isLoading) {
-        NSLog(@"cleared that shit");
         self.events = nil;
         self.date = nil;
         self.url = nil;

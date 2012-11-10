@@ -296,7 +296,6 @@ enum NewsSegment {
 
 - (void)changeSection
 {
-    [TestFlight passCheckpoint:@"NEWS CHANGE SECTION"];
     UIActionSheet* aSheet = [[UIActionSheet alloc] initWithTitle:@"Select A Section" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     NSArray* actionSheetButtons;
     if(self.newsSegment.selectedSegmentIndex == NewsSegmentDaily) {
@@ -319,7 +318,6 @@ enum NewsSegment {
 
     NSString* selectedTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     if([selectedTitle isEqualToString:@"Refresh"]) {
-        [TestFlight passCheckpoint:@"NEWS REFRESH"];
         // clear the data so that it has to load again
         self.imageDataSource = nil;
         self.dataSource = nil;

@@ -18,6 +18,7 @@
 @synthesize myFood = _myFood;
 @synthesize allFood = _allFood;
 @synthesize dataSource = _dataSource;
+@synthesize isLoading = _isLoading;
 
 - (void)viewDidLoad
 {
@@ -58,11 +59,21 @@
     self.editButtonItem.title = @"Edit";
     int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
     if(segmentIndex == 0) {
-        self.dataSource = self.myFood;
+        self.myFood = nil;
+        self.dataSource = [NSArray array];
+        self.isLoading = YES;
+        dispatch_queue_t queue = dispatch_queue_create("loading view my food", nil);
+        dispatch_async(queue, ^{
+            self.dataSource = self.myFood;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.isLoading = NO;
+                [self.tableView reloadData];
+            });
+        });
+        dispatch_release(queue);
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
     } else {
         self.dataSource = self.allFood;
-        self.myFood = nil;
         self.navigationItem.rightBarButtonItem = nil;
     }
     [self.tableView reloadData];
@@ -117,14 +128,12 @@
     if(segmentIndex == 0 || indexPath.section == 0){
         return;
     }
-    [TestFlight passCheckpoint:@"MY FOOD-ALL FOOD SUBSCRIBE"];
     [MyFoodViewController subscribeToFood:[self.dataSource objectAtIndex:indexPath.row]];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [TestFlight passCheckpoint:@"MY FOOD-DELETE SUBSCRIBED"];
         [PFPush unsubscribeFromChannelInBackground:[self.dataSource objectAtIndex:indexPath.row]];
         NSMutableArray* editableList = [NSMutableArray arrayWithArray:self.myFood];
         [editableList removeObjectAtIndex:indexPath.row];
@@ -143,23 +152,31 @@
 
 - (void)loadData
 {
-    NSError* error;
+
     NSData* jsonData = [MyFoodViewController allFoodStoredData];
     // if there was data saved onto disk reload it and show that. then load the data from the server and write it
-    if(jsonData) {
-        self.allFood = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.isLoading = YES;
+        if(jsonData) {
+            NSError* error;
+            self.allFood = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
             [self.tableView reloadData];
-        });
-    }
+        }
+    });
+
     dispatch_queue_t queue = dispatch_queue_create("all food queue", nil);
     dispatch_async(queue, ^{
         NSURL* allFoodURL = [NSURL URLWithString:@"http://ijumboapp.com/api/allFood"];
         NSData* data = [NSData dataWithContentsOfURL:allFoodURL];
+        if(!data) {
+            self.isLoading = NO;
+            return;
+        }
         NSError* error;
         self.allFood = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         [data writeToURL:[MyFoodViewController storedFoodURL] atomically:YES];
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.isLoading = NO;
             [self.tableView reloadData];
         });
     });
@@ -186,7 +203,6 @@
     channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"--and--"];
     // channels must start with a letter -> append my initials
     channel = [@"ASC_" stringByAppendingString:channel];
-    NSLog(@"CHANNEL: %@", channel);
     [PFPush subscribeToChannelInBackground:channel];
 }
 
@@ -225,7 +241,59 @@
     return _allFood;
 }
 
+- (void)setIsLoading:(BOOL)isLoading
+{
+    _isLoading = isLoading;
+    if(_isLoading) {
+        [self startLoadingUI];
+    } else {
+        [self stopLoadingUI];
+    }
+}
+
+- (void)startLoadingUI
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIActivityIndicatorView * activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+        [activityView sizeToFit];
+        [activityView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)];
+        [activityView startAnimating];
+        UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
+        self.navigationItem.rightBarButtonItem = loadingView;
+    });
+
+}
+
+- (void)stopLoadingUI
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    });
+}
+
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

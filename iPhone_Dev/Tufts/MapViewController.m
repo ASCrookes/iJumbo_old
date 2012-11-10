@@ -183,7 +183,6 @@
     if(!buildingJSON) {
         return;
     }
-    NSLog(@"animate!");
     BuildingAnnotation* pin = [BuildingAnnotation buildingWithJson:buildingJSON];
     MKCoordinateRegion resetRegion = self.mapView.region;
     resetRegion.span.longitudeDelta = 0.007;
