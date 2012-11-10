@@ -88,7 +88,6 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     // the initial load of a page falls into the navigation type "other"
-    NSLog(@"%i", navigationType);
     self.showLoadingUI = (navigationType == UIWebViewNavigationTypeOther ||
                           navigationType == UIWebViewNavigationTypeLinkClicked);
     return YES;

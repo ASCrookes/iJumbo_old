@@ -8,7 +8,6 @@
 
 #import "BuildingTableViewController.h"
 #import "MapViewController.h"
-#import "TestFlight.h"
 
 
 @interface BuildingTableViewController () <MapViewDelegate>
@@ -91,7 +90,7 @@
 {
     dispatch_queue_t queue = dispatch_queue_create("Building Table Load", NULL);
     dispatch_async(queue, ^{
-        NSURL *url = [NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/buildings.json"];
+        NSURL *url = [NSURL URLWithString:@"http://ijumboapp.com/api/json/buildings"];
         
         // Set up a concurrent queue
         NSData *data = [NSData dataWithContentsOfURL:url];

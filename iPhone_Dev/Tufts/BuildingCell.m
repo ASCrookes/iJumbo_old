@@ -8,7 +8,6 @@
 
 #import "BuildingCell.h"
 #import "MapViewController.h"
-#import "TestFlight.h"
 
 @implementation BuildingCell
 

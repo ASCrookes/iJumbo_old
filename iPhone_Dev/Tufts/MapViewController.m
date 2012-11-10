@@ -112,7 +112,7 @@
     dispatch_async(queue, ^{
         
         self.isLoading = YES;
-        NSURL *url = [NSURL URLWithString:@"http://www.eecs.tufts.edu/~acrook01/files/buildings.json"];
+        NSURL *url = [NSURL URLWithString:@"http://ijumboapp.com/api/json/buildings"];
         // Load the local file and then load from the server
         // This way the map will still have data to funciton with if there is no internet and if anything on the file changes it gets the new one
         NSURL* mainURL = [[NSBundle mainBundle] bundleURL];

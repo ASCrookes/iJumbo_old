@@ -7,7 +7,6 @@
 //
 
 #import "FoodViewController.h"
-#import "TestFlight.h"
 
 @interface FoodViewController ()
 

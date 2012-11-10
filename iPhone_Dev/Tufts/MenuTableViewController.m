@@ -8,7 +8,6 @@
 
 #import "MenuTableViewController.h"
 #import "AppDelegate.h"
-#import "TestFlight.h"
 
 const int SECTION_HEIGHT = 45;
 const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;

@@ -68,9 +68,6 @@
 		8E5320CE1561B18F0006C6CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5320CD1561B18F0006C6CA /* MapKit.framework */; };
 		8E5320D21561B2FB0006C6CA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5320D11561B2FB0006C6CA /* MapViewController.m */; };
 		8E6FE98E160E5A940024567A /* MyFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FE98D160E5A940024567A /* MyFoodViewController.m */; };
-		8E758DD51643005800A2E318 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E758DD11643005800A2E318 /* libTestFlight.a */; };
-		8E758DD61643005800A2E318 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E758DD21643005800A2E318 /* README.md */; };
-		8E758DD71643005800A2E318 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 8E758DD31643005800A2E318 /* release_notes.md */; };
 		8E9A35F415EE8DBB0006DA20 /* darkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F215EE8DBB0006DA20 /* darkBackground.png */; };
 		8E9A35F515EE8DBB0006DA20 /* darkBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */; };
 		8EAC190A1561DAF90078F5CD /* BuildingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC19091561DAF90078F5CD /* BuildingAnnotation.m */; };
@@ -216,10 +213,6 @@
 		8E5320D11561B2FB0006C6CA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8E6FE98C160E5A940024567A /* MyFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFoodViewController.h; sourceTree = "<group>"; };
 		8E6FE98D160E5A940024567A /* MyFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFoodViewController.m; sourceTree = "<group>"; };
-		8E758DD11643005800A2E318 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		8E758DD21643005800A2E318 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		8E758DD31643005800A2E318 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		8E758DD41643005800A2E318 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		8E9A35F215EE8DBB0006DA20 /* darkBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkBackground.png; sourceTree = "<group>"; };
 		8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkBackground@2x.png"; sourceTree = "<group>"; };
 		8EAC19081561DAF90078F5CD /* BuildingAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingAnnotation.h; sourceTree = "<group>"; };
@@ -290,7 +283,6 @@
 				8E1E7A0E153C835800B126B8 /* UIKit.framework in Frameworks */,
 				8E1E7A10153C835800B126B8 /* Foundation.framework in Frameworks */,
 				8EEEBCC6160B6EFF00D702E6 /* Parse.framework in Frameworks */,
-				8E758DD51643005800A2E318 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +351,6 @@
 				8EE401BE15D1EC62004AD1F7 /* Default.png */,
 				8EE401BC15D1EC5E004AD1F7 /* Default@2x.png */,
 				8E3F13DE15D0B55800A558AB /* iconElephant@2x.png */,
-				8E758DD01643005800A2E318 /* TestFlightSDK1-1 */,
 				8E1E7A13153C835800B126B8 /* Tufts */,
 				8E1E7A31153C835800B126B8 /* TuftsTests */,
 				8E1E7A0C153C835800B126B8 /* Frameworks */,
@@ -556,18 +547,6 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
-		8E758DD01643005800A2E318 /* TestFlightSDK1-1 */ = {
-			isa = PBXGroup;
-			children = (
-				8E758DD11643005800A2E318 /* libTestFlight.a */,
-				8E758DD21643005800A2E318 /* README.md */,
-				8E758DD31643005800A2E318 /* release_notes.md */,
-				8E758DD41643005800A2E318 /* TestFlight.h */,
-			);
-			name = "TestFlightSDK1-1";
-			path = "Tufts/TestFlightSDK1-1";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -680,8 +659,6 @@
 				8E9A35F515EE8DBB0006DA20 /* darkBackground@2x.png in Resources */,
 				8E2DA28C161B5A0100EB19D0 /* feedback_email.png in Resources */,
 				8ED3C772162CB84D007C54C9 /* diningHallInfo.json in Resources */,
-				8E758DD61643005800A2E318 /* README.md in Resources */,
-				8E758DD71643005800A2E318 /* release_notes.md in Resources */,
 				8ED2008916476581001C525E /* allFood.json in Resources */,
 				8ED2008F16477056001C525E /* MainStoryboard_iPhone5.storyboard in Resources */,
 				8E293D1416483F4400A0812B /* buildingCellButton.png in Resources */,

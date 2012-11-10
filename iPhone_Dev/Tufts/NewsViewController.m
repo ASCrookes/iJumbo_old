@@ -7,7 +7,6 @@
 //
 
 #import "NewsViewController.h"
-#import "TestFlight.h"
 
 const int UPDATE_TIME = 300; // 30 is 5 minutes -> seconds
 const int IMAGE_SIZE  = 90; // The images are squares

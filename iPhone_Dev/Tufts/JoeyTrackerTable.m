@@ -171,7 +171,7 @@
 {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, 45)];
     label.backgroundColor = self.tableView.backgroundColor;
-    label.text = @"Joey Tracker";
+    label.text = @"Tufts Life Joey Tracker";
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldSystemFontOfSize:16];
     label.numberOfLines = 2;

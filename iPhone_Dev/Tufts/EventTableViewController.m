@@ -138,7 +138,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    
     id event = [self.dataSource objectAtIndex:indexPath.row];
     cell.textLabel.text = [event objectForKey:@"title"];
     cell.detailTextLabel.text = [EventTableViewController getTimeSpanFromEvent:event];
