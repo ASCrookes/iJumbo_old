@@ -146,7 +146,7 @@ enum NewsSegment {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewsCell* cell = (NewsCell*)[tableView cellForRowAtIndexPath:indexPath];
-    cell.webVC.title = [self.newsSegment titleForSegmentAtIndex:self.newsSegment.selectedSegmentIndex];
+    cell.webVC.title = @"News";
     [self.navigationController pushViewController:[cell getWebViewController] animated:YES];
 }
 

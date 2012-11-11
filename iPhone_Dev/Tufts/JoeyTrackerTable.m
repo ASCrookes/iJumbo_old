@@ -157,10 +157,10 @@
         [alert show];
         return;
     }
+    //[self.map loadView];
     [self.map viewDidLoad];
     self.map.allowAnnotationClick = NO;
-    self.map.searchBar.hidden = YES;
-    self.map.mapView.frame = CGRectMake(0, 0, 320, 460);
+    self.map.searchBar.userInteractionEnabled = NO;
     [self.map showBuilding:[[self.joeyInfo objectAtIndex:indexPath.row] objectForKey:@"geo"]];
     
     [self.navigationController pushViewController:self.map animated:YES];
