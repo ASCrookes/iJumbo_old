@@ -122,7 +122,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
     // Send parse the device token
     [PFPush storeDeviceToken:newDeviceToken];
     // Subscribe this user to the broadcast channel, ""
-    [PFPush subscribeToChannelInBackground:@""];
+    [PFPush subscribeToChannelInBackground:@"" block:^(BOOL succeeded, NSError *error) {
+        if(succeeded) {
+            NSLog(@"SUBSCRIBED TO BROADCAST CHANNEL");
+        }
+    }];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -130,8 +134,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
     NSLog(@":( [%@]",error);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSString* alertMsg = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:alertMsg message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

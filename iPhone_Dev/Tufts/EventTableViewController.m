@@ -310,7 +310,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
             ![strippedVal isEqualToString:@"/p"]);
 }
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Tab bar items
