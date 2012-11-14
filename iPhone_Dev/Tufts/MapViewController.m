@@ -108,7 +108,7 @@
 {
 
     // Set up a concurrent queue
-    dispatch_queue_t queue = dispatch_queue_create("Map Load Data", nil);
+    dispatch_queue_t queue = dispatch_queue_create("Map.Load.Data", nil);
     dispatch_async(queue, ^{
         
         self.isLoading = YES;

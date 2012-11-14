@@ -88,7 +88,7 @@
 
 - (void)loadData
 {
-    dispatch_queue_t queue = dispatch_queue_create("Building Table Load", NULL);
+    dispatch_queue_t queue = dispatch_queue_create("Building.Table.Load", NULL);
     dispatch_async(queue, ^{
         NSURL *url = [NSURL URLWithString:@"http://ijumboapp.com/api/json/buildings"];
         

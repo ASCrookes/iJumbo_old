@@ -92,7 +92,7 @@ enum NewsSegment {
     }
     [self setLoadingUI];
     [self.rssParser abortParsing];
-    dispatch_queue_t queue = dispatch_queue_create("load news data", nil);
+    dispatch_queue_t queue = dispatch_queue_create("load.news.data", nil);
     dispatch_async(queue, ^{
         [self parseXMLFileAtCurrentURL];
     });

@@ -58,7 +58,7 @@
     UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
     self.navigationItem.rightBarButtonItem = loadingView;
     self.navigationItem.leftBarButtonItem  = nil;
-    dispatch_queue_t queue = dispatch_queue_create("com.feedback.ijumbo", nil);
+    dispatch_queue_t queue = dispatch_queue_create("iJumbo.Feedback", nil);
     dispatch_async(queue, ^{
         [request startSynchronous];
         dispatch_async(dispatch_get_main_queue(), ^{

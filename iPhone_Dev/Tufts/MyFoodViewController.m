@@ -61,7 +61,7 @@
         self.myFood = nil;
         self.dataSource = [NSArray array];
         self.isLoading = YES;
-        dispatch_queue_t queue = dispatch_queue_create("loading view my food", nil);
+        dispatch_queue_t queue = dispatch_queue_create("my.food", nil);
         dispatch_async(queue, ^{
             self.dataSource = self.myFood;
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -163,7 +163,7 @@
         }
     });
 
-    dispatch_queue_t queue = dispatch_queue_create("all food queue", nil);
+    dispatch_queue_t queue = dispatch_queue_create("all.food.queue", nil);
     dispatch_async(queue, ^{
         NSURL* allFoodURL = [NSURL URLWithString:@"http://ijumboapp.com/api/allFood"];
         NSData* data = [NSData dataWithContentsOfURL:allFoodURL];

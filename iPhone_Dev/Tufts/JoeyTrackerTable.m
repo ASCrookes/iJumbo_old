@@ -73,7 +73,7 @@
     self.title = @"Refreshing...";
     
     // Set up a concurrent queue
-    dispatch_queue_t queue = dispatch_queue_create("Joey Load Data", nil);
+    dispatch_queue_t queue = dispatch_queue_create("Joey.Pull.Data", nil);
     dispatch_async(queue, ^{
         NSData *data = [NSData dataWithContentsOfURL:url];
         [self parseData:data];

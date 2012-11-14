@@ -183,7 +183,7 @@ const int TOMORROW_INDEX = 1;
     self.dataSource = [NSArray array];
     [self.tableView reloadData];
     // Load data in a background queue
-    dispatch_queue_t queue = dispatch_queue_create("Menu Table Load", nil);
+    dispatch_queue_t queue = dispatch_queue_create("Menu.Table.Load", nil);
     dispatch_async(queue, ^{
         [self parseData];
     });

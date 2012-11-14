@@ -93,7 +93,7 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
     if(self.alertedInternetIsNotAvailable && intervalSinceAlert < TIME_BETWEEN_CONNECTION_ALERT) {
         return;
     }    
-    dispatch_queue_t queue = dispatch_queue_create("Delegate pingServer", nil);
+    dispatch_queue_t queue = dispatch_queue_create("Delegate.ping.server", nil);
     dispatch_async(queue, ^{
         NSURL *url = [NSURL URLWithString:@"http://www.google.com/"];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
