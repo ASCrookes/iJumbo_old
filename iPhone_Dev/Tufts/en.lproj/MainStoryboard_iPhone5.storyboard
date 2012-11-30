@@ -1879,8 +1879,6 @@
         <class className="EventTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="leftBarButtonAction:"/>
-                <relationship kind="action" name="rightBarButtonAction:"/>
                 <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -1898,8 +1896,6 @@
         <class className="FeedbackViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancelAction:"/>
-                <relationship kind="action" name="sendAction:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
             </relationships>

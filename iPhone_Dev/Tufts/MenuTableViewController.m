@@ -363,6 +363,12 @@ const int TOMORROW_INDEX = 1;
 {
     NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://ijumboapp.com/api/json/mealDate"]];
     NSError* error;
+    if(!data) {
+        NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyyMMddhhmm"];
+        NSLog(@"MEAL DATE: %@", [dateFormat stringFromDate:[NSDate date]]);
+        return [NSNumber numberWithInt:[[dateFormat stringFromDate:[NSDate date]] intValue]];
+    }
     NSDictionary* dateDict = [NSJSONSerialization JSONObjectWithData:data
                                            options:0
                                              error:&error];

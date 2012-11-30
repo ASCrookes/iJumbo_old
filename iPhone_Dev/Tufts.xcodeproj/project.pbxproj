@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E021A0515B1056A00FBB153 /* JoeyTrackerTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A0415B1056A00FBB153 /* JoeyTrackerTable.m */; };
 		8E021A0615B1057600FBB153 /* JoeyTrackerTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A0415B1056A00FBB153 /* JoeyTrackerTable.m */; };
-		8E021A0D15B1081000FBB153 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A0C15B1081000FBB153 /* NewsViewController.m */; };
 		8E021A0E15B1086100FBB153 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A0C15B1081000FBB153 /* NewsViewController.m */; };
 		8E021A1115B131C300FBB153 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A1015B131C300FBB153 /* NewsCell.m */; };
 		8E0359D1161E71AF0038D61B /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0359D0161E71AF0038D61B /* WebViewController.m */; };
@@ -32,11 +30,6 @@
 		8E1E7A1E153C835800B126B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E7A1D153C835800B126B8 /* AppDelegate.m */; };
 		8E1E7A21153C835800B126B8 /* MainStoryboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E7A1F153C835800B126B8 /* MainStoryboard1.storyboard */; };
 		8E1E7A24153C835800B126B8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E7A23153C835800B126B8 /* ViewController.m */; };
-		8E1E7A2C153C835800B126B8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1E7A2B153C835800B126B8 /* SenTestingKit.framework */; };
-		8E1E7A2D153C835800B126B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1E7A0D153C835800B126B8 /* UIKit.framework */; };
-		8E1E7A2E153C835800B126B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1E7A0F153C835800B126B8 /* Foundation.framework */; };
-		8E1E7A36153C835800B126B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E1E7A34153C835800B126B8 /* InfoPlist.strings */; };
-		8E1E7A39153C835800B126B8 /* TuftsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1E7A38153C835800B126B8 /* TuftsTests.m */; };
 		8E26B69A153E734800994136 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26B699153E734800994136 /* MenuTableViewController.m */; };
 		8E293D1416483F4400A0812B /* buildingCellButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E293D1016483F4400A0812B /* buildingCellButton.png */; };
 		8E293D1516483F4400A0812B /* buildingCellButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E293D1116483F4400A0812B /* buildingCellButton@2x.png */; };
@@ -111,16 +104,6 @@
 		8EFF6CCC155C17A400C81B8E /* BuildingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF6CCB155C17A400C81B8E /* BuildingViewController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8E1E7A2F153C835800B126B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8E1E7A00153C835800B126B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E1E7A08153C835800B126B8;
-			remoteInfo = Tufts;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		8E021A0315B1056A00FBB153 /* JoeyTrackerTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoeyTrackerTable.h; sourceTree = "<group>"; };
 		8E021A0415B1056A00FBB153 /* JoeyTrackerTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoeyTrackerTable.m; sourceTree = "<group>"; };
@@ -155,7 +138,6 @@
 		8E1E7A20153C835800B126B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard1.storyboard; sourceTree = "<group>"; };
 		8E1E7A22153C835800B126B8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8E1E7A23153C835800B126B8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8E1E7A2A153C835800B126B8 /* TuftsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuftsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1E7A2B153C835800B126B8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8E1E7A33153C835800B126B8 /* TuftsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TuftsTests-Info.plist"; sourceTree = "<group>"; };
 		8E1E7A35153C835800B126B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -286,16 +268,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E1E7A26153C835800B126B8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8E1E7A2C153C835800B126B8 /* SenTestingKit.framework in Frameworks */,
-				8E1E7A2D153C835800B126B8 /* UIKit.framework in Frameworks */,
-				8E1E7A2E153C835800B126B8 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -362,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				8E1E7A09153C835800B126B8 /* iJumbo.app */,
-				8E1E7A2A153C835800B126B8 /* TuftsTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -567,25 +538,6 @@
 			productReference = 8E1E7A09153C835800B126B8 /* iJumbo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8E1E7A29153C835800B126B8 /* TuftsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8E1E7A3F153C835800B126B8 /* Build configuration list for PBXNativeTarget "TuftsTests" */;
-			buildPhases = (
-				8E1E7A25153C835800B126B8 /* Sources */,
-				8E1E7A26153C835800B126B8 /* Frameworks */,
-				8E1E7A27153C835800B126B8 /* Resources */,
-				8E1E7A28153C835800B126B8 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8E1E7A30153C835800B126B8 /* PBXTargetDependency */,
-			);
-			name = TuftsTests;
-			productName = TuftsTests;
-			productReference = 8E1E7A2A153C835800B126B8 /* TuftsTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -608,7 +560,6 @@
 			projectRoot = "";
 			targets = (
 				8E1E7A08153C835800B126B8 /* Tufts */,
-				8E1E7A29153C835800B126B8 /* TuftsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -669,31 +620,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E1E7A27153C835800B126B8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8E1E7A36153C835800B126B8 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8E1E7A28153C835800B126B8 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8E1E7A05153C835800B126B8 /* Sources */ = {
@@ -734,25 +661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E1E7A25153C835800B126B8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8E1E7A39153C835800B126B8 /* TuftsTests.m in Sources */,
-				8E021A0515B1056A00FBB153 /* JoeyTrackerTable.m in Sources */,
-				8E021A0D15B1081000FBB153 /* NewsViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8E1E7A30153C835800B126B8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8E1E7A08153C835800B126B8 /* Tufts */;
-			targetProxy = 8E1E7A2F153C835800B126B8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8E1E7A16153C835800B126B8 /* InfoPlist.strings */ = {
@@ -796,8 +705,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -813,6 +722,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = iJumbo;
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -823,8 +734,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -834,6 +745,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = iJumbo;
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -860,9 +773,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
-				"PROVISIONING_PROFILE[sdk=*]" = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -890,45 +803,11 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
-				"PROVISIONING_PROFILE[sdk=*]" = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		8E1E7A40153C835800B126B8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tufts.app/Tufts";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tufts/Tufts-Prefix.pch";
-				INFOPLIST_FILE = "TuftsTests/TuftsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		8E1E7A41153C835800B126B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tufts.app/Tufts";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tufts/Tufts-Prefix.pch";
-				INFOPLIST_FILE = "TuftsTests/TuftsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -938,8 +817,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -949,6 +828,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = iJumbo;
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -976,28 +857,11 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
-				"PROVISIONING_PROFILE[sdk=*]" = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ED99059B-C06A-4E3B-B04A-8802DBE20797";
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Distribution;
-		};
-		8EE401C215D22166004AD1F7 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Tufts.app/Tufts";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tufts/Tufts-Prefix.pch";
-				INFOPLIST_FILE = "TuftsTests/TuftsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Distribution;
 		};
@@ -1020,16 +884,6 @@
 				8E1E7A3D153C835800B126B8 /* Debug */,
 				8E1E7A3E153C835800B126B8 /* Release */,
 				8EE401C115D22166004AD1F7 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Distribution;
-		};
-		8E1E7A3F153C835800B126B8 /* Build configuration list for PBXNativeTarget "TuftsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8E1E7A40153C835800B126B8 /* Debug */,
-				8E1E7A41153C835800B126B8 /* Release */,
-				8EE401C215D22166004AD1F7 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Distribution;

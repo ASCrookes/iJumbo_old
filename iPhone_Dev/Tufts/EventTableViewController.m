@@ -53,15 +53,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.loadingView = nil;
     self.noEvents = nil;
     
-    if(self.isLoading) {
-        self.loadingView.hidden = NO;
-    } else {
-        [self.tableView reloadData];
-        if([self.dataSource count] == 0) {
-            self.noEvents.hidden = NO;
-            [self loadData];
-        }
-    }
+    
 
 
     [self.dayBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
@@ -79,8 +71,19 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     [self setLoadingView:nil];
     [self setDatePicker:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(self.isLoading) {
+        self.loadingView.hidden = NO;
+    } else {
+        [self.tableView reloadData];
+        if([self.dataSource count] == 0) {
+            self.noEvents.hidden = NO;
+            [self loadData];
+        }
+    }
 }
 
 
@@ -98,7 +101,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)loadData
 {
-    [self.rssParser abortParsing];
+    [self abortParser];
     self.dataSource = [NSArray array];
     //[self.tableView reloadData];
     dispatch_queue_t queue = dispatch_queue_create("Event.Table.Load", NULL);
@@ -212,8 +215,9 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     [self.rssParser setDelegate:self]; // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser. 
     [self.rssParser setShouldProcessNamespaces:NO]; 
     [self.rssParser setShouldReportNamespacePrefixes:NO]; 
-    [self.rssParser setShouldResolveExternalEntities:NO]; 
-    [self.rssParser parse]; 
+    [self.rssParser setShouldResolveExternalEntities:NO];
+    [self.rssParser parse];
+
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
@@ -233,8 +237,8 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser
 {
-    
     self.events = [NSMutableArray array];
+    NSLog(@"STARTING DOC");
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
@@ -251,12 +255,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+    //NSLog(@"FOUND: %@", string);
     if(![self continueWithCurrentKey] || ![self validEventValue:string]) {
         return;
     }
     
     if([self.currentKey isEqualToString:@"item"]) {
-        self.currentEvent = nil;
         self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
     } else if([self.currentKey isEqualToString:@"title"]) {
         [self.currentEvent setObject:string forKey:@"title"];
@@ -284,6 +288,18 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     }
 }
 
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    NSLog(@"PARSER ERROR: %@", parseError);
+    [self abortParser];
+}
+
+- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
+{
+    NSLog(@"VALIDATION ERROR: %@", validationError);
+    [self abortParser];
+}
+
 
 - (BOOL)continueWithCurrentKey
 {
@@ -308,6 +324,16 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
             ![strippedVal isEqualToString:@">"]    &&
             ![strippedVal isEqualToString:@"br /"] &&
             ![strippedVal isEqualToString:@"/p"]);
+}
+
+- (void)abortParser {
+    self.isLoading = NO;
+    self.rssParser = nil;
+    self.dataSource = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.loadingView.hidden = YES;
+        [self.tableView reloadData];
+    });
 }
 
 //*********************************************************
@@ -372,7 +398,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     
     self.noEvents.hidden = YES;
     self.loadingView.hidden = YES;
-    [self.rssParser abortParsing];
+    [self abortParser];
     self.dataSource = [NSArray array];
     [self.tableView reloadData];
     self.events = [NSMutableArray array];
@@ -392,15 +418,10 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)clearUnnecessary
 {
     if(!self.isLoading) {
-        self.events = nil;
-        self.date = nil;
-        self.url = nil;
+        NSLog(@"CLEARING");
         self.noEvents = nil;
         self.loadingView = nil;
         self.datePicker = nil;
-        self.rssParser = nil;
-        self.currentEvent = nil;
-        self.currentKey = nil;
     }
 }
 
@@ -504,10 +525,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     }
     return _loadingView;
 }
-
-
-
-
 
 @end
 

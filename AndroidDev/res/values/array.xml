@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menu_list">
+        <item>Dewick</item>
+        <item>Hodgdon</item>
+        <item>Carmichael</item>
+   	</string-array>
+   	<string-array name="meal_list">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+   	</string-array>
+   	<string-array name="news_list">
+        <item>The Daily</item>
+        <item>The Observer</item>
+   	</string-array>
+</resources>
