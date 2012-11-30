@@ -10,11 +10,7 @@ iJumbo App
 - Tufts Life Events
 - Trunk
 
-
 Soon
 
-- MBTA T map
-- Joey schudule
-- Food notifications
 - Android
  
