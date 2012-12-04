@@ -20,7 +20,6 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
         setContentView(R.layout.activity_joey_table);
         System.out.println("IN ON CREATE FOR JOEY TABLE");
         new Thread(new ActivityLoadThread(this)).start();
-        //this.loadData();
     }
 
     @Override
@@ -54,13 +53,11 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
 
 	@Override
 	public void stopLoadingUI() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
 	public void startLoadingUI() {
 		// TODO Auto-generated method stub
-		
 	}
 }

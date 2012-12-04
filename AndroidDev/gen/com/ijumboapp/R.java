@@ -9,9 +9,11 @@ package com.ijumboapp;
 
 public final class R {
     public static final class array {
+        public static final int daily_sections=0x7f040003;
         public static final int meal_list=0x7f040001;
         public static final int menu_list=0x7f040000;
         public static final int news_list=0x7f040002;
+        public static final int observer_sections=0x7f040004;
     }
     public static final class attr {
     }
@@ -55,6 +57,7 @@ public final class R {
         public static final int menu_spinner=0x7f080025;
         public static final int newsButton=0x7f080017;
         public static final int newsList=0x7f08001f;
+        public static final int newsSectionSpinner=0x7f08002a;
         public static final int newsSpinner=0x7f080029;
         public static final int protein=0x7f080015;
         public static final int satFat=0x7f08000f;
@@ -80,7 +83,8 @@ public final class R {
         public static final int listview_item_row=0x7f030009;
         public static final int meals_spinner=0x7f03000a;
         public static final int menu_spinner=0x7f03000b;
-        public static final int news_spinner=0x7f03000c;
+        public static final int news_sections_spinner=0x7f03000c;
+        public static final int news_spinner=0x7f03000d;
     }
     public static final class menu {
         public static final int activity_events=0x7f070000;

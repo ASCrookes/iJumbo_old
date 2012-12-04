@@ -11,7 +11,24 @@
         <item>Dinner</item>
    	</string-array>
    	<string-array name="news_list">
-        <item>The Daily</item>
-        <item>The Observer</item>
+        <item>Daily</item>
+        <item>Observer</item>
+   	</string-array>
+   	<string-array name="daily_sections">
+        <item>Main</item>
+        <item>News</item>
+        <item>Features</item>
+        <item>Arts</item>
+        <item>Op-Ed</item>
+        <item>Sports</item>
+   	</string-array>
+   	<string-array name="observer_sections">
+        <item>Arts</item>
+        <item>Campus</item>
+        <item>News</item>
+        <item>Off Campus</item>
+        <item>Opinion</item>
+        <item>Poetry</item>
+        <item>Extras</item>
    	</string-array>
 </resources>

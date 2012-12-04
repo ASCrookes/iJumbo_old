@@ -208,7 +208,6 @@ enum NewsSegment {
     NSString* strippedText = [string stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     strippedText = [strippedText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if([strippedText isEqualToString:@""] && ![self continueWithCurrentKey]) {
-
         return;
     }
     
@@ -227,7 +226,6 @@ enum NewsSegment {
         // this is were the daily's stories should be saved
         if(self.currentStory) {
             [self saveCurrentStory];
-
         }
     }
 }

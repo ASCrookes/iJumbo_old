@@ -15,6 +15,7 @@ public class Article {
 		this.imageURL = "N/A";
 	}
 	
+	// the adapter has a list of Article objects so this is what prints to the lsit
 	public String toString() {
 		return this.title + "\nAuthor: " + this.author;
 	}
@@ -22,7 +23,7 @@ public class Article {
 	public void addFieldFromRss(String rssTag, String value) {
 		if(rssTag.equals("title"))
 			this.title = value;
-		else if(rssTag.equals("author"))
+		else if(rssTag.equals("author") || rssTag.equals("dc:creator"))
 			this.author = value;
 		else if(rssTag.equals("link"))
 			this.link = value;
