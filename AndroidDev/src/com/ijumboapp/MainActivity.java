@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 	
 	public void getTrunk(View view) {
 		Intent intent = new Intent(this, WebActivity.class);
-		intent.putExtra("url", "https://trunk.tufts.edu/xsl-portal");
+		intent.putExtra("url", "https://www.trunk.tufts.edu/");
 		startActivity(intent);
 	}
 	

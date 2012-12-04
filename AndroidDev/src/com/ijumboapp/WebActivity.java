@@ -11,22 +11,16 @@ public class WebActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        WebView webView = new WebView(this);
-        // set the webView as this activity's main view
-        
+
         Intent intent = getIntent();
-        String url = intent.getStringExtra("url");
-
-        webView.getSettings().setBuiltInZoomControls(true);
-       	webView.setInitialScale(1);
-       	webView.getSettings().setAppCacheEnabled(false);
-       	webView.getSettings().setJavaScriptEnabled(true);
-       	webView.loadUrl(url);
-       	
-       	if(url != null)
+        String url = intent.getStringExtra("url");     	
+       	if(url != null) {
+       		// set the webView as this activity's main view
+       		WebView webView = new WebView(this);
+       		webView.loadUrl(url);
        		setContentView(webView);
+       	}
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

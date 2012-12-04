@@ -13,10 +13,12 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -35,6 +37,17 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        ListView lView = (ListView) findViewById(R.id.newsList);
+        lView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent intent = new Intent(NewsActivity.this, WebActivity.class);
+				intent.putExtra("url", NewsActivity.this.articles.get(arg2).link);
+				NewsActivity.this.startActivity(intent);
+			}
+		});
     }
 
     @Override
@@ -76,7 +89,22 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     
     public void loadData() {
     	// get the xml
-    	System.out.println("THE URL FROM THE UI: " + this.getURL());
+    	List <Article> requestedArticles = this.getStories().get(this.getKeyFromUI());
+    	// if this breaks make the below function (shoudl load) return false always
+    	if(this.shouldUseSavedArticles() && requestedArticles != null) {
+    		final ListView listV = (ListView) findViewById(R.id.newsList);
+    		Article[] articlesList = new Article[requestedArticles.size()];
+            requestedArticles.toArray(articlesList);
+            this.articles = requestedArticles;
+            final ArrayAdapter<Article> adapter =  new ArrayAdapter<Article>(this, android.R.layout.simple_list_item_1, android.R.id.text1, articlesList);
+            this.runOnUiThread(new Runnable() {
+    			@Override
+    			public void run() {
+    				listV.setAdapter(adapter);
+    			}
+    		});
+            return;
+    	}
     	String xml = new RequestManager().get(this.getURL());
     	// load binary of the xml into a stream
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
@@ -92,10 +120,18 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			System.out.print(e);
 		}
     	
+    	// if it did parse save the articles (this.articles)
+    	// into the list of already loaded stories 
     	if(didParse) {
-    		// TODO -- add the data to a hash table of already loaded news stories for faster loads in e future
+    		String key = this.getKeyFromUI();
+    		this.getStories().put(key, this.articles);
     	}
-     }
+    }
+    
+    private boolean shouldUseSavedArticles() {
+    	// TODO -- find out how long the data has been sitting and reset it if necessary
+    	return true;
+    }
     
     // just load the data by calling the background thread
     private void displayDataBasedOnUI() {
@@ -107,12 +143,16 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     // change this so it grabs stuff from the UI and gets the correct url
     // put in big if else instead of grabbing the url from a hashtable
     private String getURL() {
-    	String urlKey = this.newsSpinner.getSelectedItem().toString() + "-" + 
-    					this.newsSectionsSpinner.getSelectedItem().toString();
+    	String urlKey = this.getKeyFromUI();
     	System.out.println("the news url key that is going to be used: " + urlKey);
     	// the getter will create the hash table if it does not exist yet
     	// then return the url from that hash table
     	return this.getUrls().get(urlKey);
+    }
+    
+    private String getKeyFromUI() {
+    	return this.newsSpinner.getSelectedItem().toString() + "-" + 
+			   this.newsSectionsSpinner.getSelectedItem().toString();
     }
     
     private void parseThatIsh(InputStream inStream) throws XmlPullParserException, IOException {
@@ -123,7 +163,6 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
         xpp.setInput(inStream, null);
         int eventType = xpp.getEventType();
         while (eventType != XmlPullParser.END_DOCUMENT) {
-        	//System.out.println("GOING THROUGH THE XML");
         	if(eventType == XmlPullParser.START_DOCUMENT) {
         		this.articles = new ArrayList<Article>();
         		this.currentArticle = new Article();
@@ -210,9 +249,5 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 		return urls;
 	}
 
-	public void setUrls(Map<String, String> urls) {
-		this.urls = urls;
-	}
 	
-
 }

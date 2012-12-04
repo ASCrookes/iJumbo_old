@@ -16,11 +16,14 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class EventsActivity extends Activity implements LoadActivityInterface {
 
+
+public class EventsActivity extends Activity implements LoadActivityInterface {
+	final long MILLISECONDS_IN_DAY = 86400000;
 	private Date date;
 	private String currentTag;
 	private Event currentEvent;
@@ -28,6 +31,8 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 	private List <Event> events;
 	// data source is what the table uses
 	//private List <Event> dataSource;
+	// TODO -- is the below needed to change the title on the date menu item
+	//private MenuItem dateItem;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,9 +48,29 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_events, menu);
+        //this.dateItem = menu.getItem(R.id.eventDate);
         return true;
     }
     
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	// by using set date in the functions it will 
+    	// reload the data after changing the date
+        switch (item.getItemId()) {
+        	case R.id.eventsPrevious:
+        		this.setDate(new Date(this.date.getTime() - MILLISECONDS_IN_DAY));
+        		return true;
+        	case R.id.eventNext:
+        		this.setDate(new Date(this.date.getTime() + MILLISECONDS_IN_DAY));
+        		return true;
+        	case R.id.eventDate:
+        		this.setDate(new Date());
+        		return true;
+    		default:
+    			return super.onOptionsItemSelected(item);
+        }
+    }
+        
     public void loadData() {
     	System.out.println("LOADING DATA FOR THE EVENTS");
     	// get the xml
@@ -69,7 +94,7 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     	String url = "https://www.tuftslife.com/occurrences.rss?date=";
     	SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM+d%2'C'+y", Locale.US);
     	url = url + dateFormat.format(this.date);
-    	url = "https://www.tuftslife.com/occurrences.rss?date=November+26%2C+2012";
+    	//url = "https://www.tuftslife.com/occurrences.rss?date=November+26%2C+2012";
     	return url;
     }
     
@@ -141,4 +166,11 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 		// TODO Auto-generated method stub
 	}
     
+	public void setDate(Date newDate) {
+		this.date = newDate;
+		new Thread(new ActivityLoadThread(this)).start();
+		//SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d", Locale.US);
+    	//this.dateItem.setTitle(dateFormat.format(this.date));
+	}
+	
 }
