@@ -32,23 +32,23 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 	// data source is what the table uses
 	//private List <Event> dataSource;
 	// TODO -- is the below needed to change the title on the date menu item
-	//private MenuItem dateItem;
+	private MenuItem dateItem;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);
-        this.date = new Date();
-        // the below line calls this.loadData in a background thread
-        new Thread(new ActivityLoadThread(this)).start();
-        //this.loadData();
-        
+        setContentView(R.layout.activity_events);        
     }
-
+    
+    // data loading relies on the ui, some of that gets initially set here
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_events, menu);
-        //this.dateItem = menu.getItem(R.id.eventDate);
+        // TODO -- the buttons should display arrows (images) not Left and Right
+        this.dateItem = menu.findItem(R.id.eventDate);
+        this.setDate(new Date());
+        // the below line calls this.loadData in a background thread
+        new Thread(new ActivityLoadThread(this)).start();
         return true;
     }
     
@@ -128,9 +128,7 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         	}
         	eventType = xpp.next();
         }
-        System.out.println("FINISHED GRABING DATA");
         
-        System.out.println(this.events);
         final ListView listV = (ListView) findViewById(R.id.eventsList);
         Event[] eventsList = new Event[this.events.size()];
         this.events.toArray(eventsList);
@@ -155,7 +153,8 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     			|| (tag.equals("link") && event.link.equals("N/A"))
     			|| (tag.equals("event_date") && event.date.equals("N/A"));
     }
-
+    // force the loading UI functions into the ui thread
+    // the are called from a background thread
 	@Override
 	public void stopLoadingUI() {
 		// TODO Auto-generated method stub
@@ -169,8 +168,9 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 	public void setDate(Date newDate) {
 		this.date = newDate;
 		new Thread(new ActivityLoadThread(this)).start();
-		//SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d", Locale.US);
-    	//this.dateItem.setTitle(dateFormat.format(this.date));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d", Locale.US);
+		this.dateItem.setTitle(dateFormat.format(this.date));
+
 	}
 	
 }
