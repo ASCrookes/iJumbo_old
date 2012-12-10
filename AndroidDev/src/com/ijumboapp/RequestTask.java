@@ -2,6 +2,7 @@ package com.ijumboapp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpResponse;

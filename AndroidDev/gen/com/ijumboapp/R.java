@@ -18,12 +18,14 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int events=0x7f020000;
-        public static final int greybus=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int map=0x7f020003;
-        public static final int news=0x7f020004;
-        public static final int webpage=0x7f020005;
+        public static final int back_arrow=0x7f020000;
+        public static final int events=0x7f020001;
+        public static final int forward_arrow=0x7f020002;
+        public static final int greybus=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int map=0x7f020005;
+        public static final int news=0x7f020006;
+        public static final int webpage=0x7f020007;
     }
     public static final class id {
         public static final int TextView01=0x7f080002;
@@ -36,32 +38,32 @@ public final class R {
         public static final int TextView08=0x7f080007;
         public static final int TextView09=0x7f08000a;
         public static final int TextView10=0x7f08000b;
-        public static final int btnOk=0x7f080021;
+        public static final int btnOk=0x7f080022;
         public static final int calories=0x7f08000c;
         public static final int carbs=0x7f080012;
         public static final int cholestoral=0x7f080010;
-        public static final int diningHallSpinner=0x7f08002b;
-        public static final int eventDate=0x7f080028;
-        public static final int eventNext=0x7f080029;
+        public static final int diningHallSpinner=0x7f08002c;
+        public static final int eventDate=0x7f080029;
+        public static final int eventNext=0x7f08002a;
         public static final int eventsButton=0x7f08001b;
         public static final int eventsList=0x7f080000;
-        public static final int eventsPrevious=0x7f080027;
+        public static final int eventsPrevious=0x7f080028;
         public static final int fatCalories=0x7f08000e;
         public static final int fiber=0x7f080013;
-        public static final int imgIcon=0x7f080023;
+        public static final int imgIcon=0x7f080024;
         public static final int joeyButton=0x7f080019;
         public static final int joeyList=0x7f080016;
         public static final int mapButton=0x7f080018;
         public static final int mapview=0x7f08001d;
-        public static final int mealSpinner=0x7f08002a;
+        public static final int mealSpinner=0x7f08002b;
         public static final int menuButton=0x7f08001c;
         public static final int menuList=0x7f08001e;
-        public static final int menu_settings=0x7f080026;
-        public static final int menu_spinner=0x7f080025;
+        public static final int menu_settings=0x7f080027;
+        public static final int menu_spinner=0x7f080026;
         public static final int newsButton=0x7f080017;
         public static final int newsList=0x7f08001f;
         public static final int newsSectionSpinner=0x7f08002d;
-        public static final int newsSpinner=0x7f08002c;
+        public static final int placesList=0x7f080020;
         public static final int protein=0x7f080015;
         public static final int satFat=0x7f08000f;
         public static final int servingSize=0x7f08000d;
@@ -69,9 +71,9 @@ public final class R {
         public static final int sugars=0x7f080014;
         public static final int textView1=0x7f080001;
         public static final int trunkButton=0x7f08001a;
-        public static final int txtHeader=0x7f080022;
-        public static final int txtTitle=0x7f080024;
-        public static final int webview=0x7f080020;
+        public static final int txtHeader=0x7f080023;
+        public static final int txtTitle=0x7f080025;
+        public static final int webview=0x7f080021;
     }
     public static final class layout {
         public static final int activity_events=0x7f030000;
@@ -81,13 +83,14 @@ public final class R {
         public static final int activity_map_view=0x7f030004;
         public static final int activity_menu=0x7f030005;
         public static final int activity_news=0x7f030006;
-        public static final int activity_web=0x7f030007;
-        public static final int listview_header_row=0x7f030008;
-        public static final int listview_item_row=0x7f030009;
-        public static final int meals_spinner=0x7f03000a;
-        public static final int menu_spinner=0x7f03000b;
-        public static final int news_sections_spinner=0x7f03000c;
-        public static final int news_spinner=0x7f03000d;
+        public static final int activity_places=0x7f030007;
+        public static final int activity_web=0x7f030008;
+        public static final int listview_header_row=0x7f030009;
+        public static final int listview_item_row=0x7f03000a;
+        public static final int meals_spinner=0x7f03000b;
+        public static final int menu_spinner=0x7f03000c;
+        public static final int news_sections_spinner=0x7f03000d;
+        public static final int news_spinner=0x7f03000e;
     }
     public static final class menu {
         public static final int activity_events=0x7f070000;
@@ -97,7 +100,8 @@ public final class R {
         public static final int activity_map_view=0x7f070004;
         public static final int activity_menu=0x7f070005;
         public static final int activity_news=0x7f070006;
-        public static final int activity_web=0x7f070007;
+        public static final int activity_places=0x7f070007;
+        public static final int activity_web=0x7f070008;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
@@ -110,6 +114,7 @@ public final class R {
         public static final int title_activity_map_view=0x7f050008;
         public static final int title_activity_menu=0x7f050007;
         public static final int title_activity_news=0x7f050004;
+        public static final int title_activity_places=0x7f05000b;
         public static final int title_activity_web=0x7f050006;
     }
     public static final class style {

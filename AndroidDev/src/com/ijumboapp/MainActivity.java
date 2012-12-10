@@ -28,8 +28,8 @@ public class MainActivity extends Activity {
 	}
 	
 	public void getMap(View view) {
-		//Intent intent = new Intent(this, MapViewActivity.class);
-		//startActivity(intent);
+		Intent intent = new Intent(this, PlacesActivity.class);
+		startActivity(intent);
 	}
 	
 	public void getEvents(View view) {
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 	
 	public void getTrunk(View view) {
 		Intent intent = new Intent(this, WebActivity.class);
-		intent.putExtra("url", "https://www.trunk.tufts.edu/");
+		intent.putExtra("url", "https://trunk.tufts.edu/xsl-portal");
 		startActivity(intent);
 	}
 	

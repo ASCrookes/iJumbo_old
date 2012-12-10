@@ -30,7 +30,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 	private String currentTag;
 	private Map<String, List<Article> > stories;
 	private Map<String, String> urls;
-	private Spinner newsSpinner;
+	//private Spinner newsSpinner;
 	private Spinner newsSectionsSpinner;
 	
     @Override
@@ -53,7 +53,8 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_news, menu);
-        this.newsSpinner = (Spinner) menu.findItem(R.id.newsSpinner).getActionView();
+        //this sets up the news source spinner
+        //this.newsSpinner = (Spinner) menu.findItem(R.id.newsSpinner).getActionView();
         this.newsSectionsSpinner = (Spinner) menu.findItem(R.id.newsSectionSpinner).getActionView();
         this.newsSectionsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
@@ -63,7 +64,8 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {}
         });
-        
+        /*
+         * this changes the adapter used in the sections and reload the data
         this.newsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -82,6 +84,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {}
 		});
+		*/
         new Thread(new ActivityLoadThread(this)).start();
         
         return true;
@@ -151,7 +154,9 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     }
     
     private String getKeyFromUI() {
-    	return this.newsSpinner.getSelectedItem().toString() + "-" + 
+    	// Format: NewsSource-NewsSection
+    	return /*this.newsSpinner.getSelectedItem().toString()*/
+    			"Daily" + "-" + 
 			   this.newsSectionsSpinner.getSelectedItem().toString();
     }
     
@@ -238,6 +243,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			urls.put("Daily-Op-Ed", "http://www.tuftsdaily.com/se/tufts-daily-op-ed-rss-1.445869");
 			urls.put("Daily-Sports", "http://www.tuftsdaily.com/se/tufts-daily-sports-rss-1.445871");
 			// The Observer
+			/*
 			urls.put("Observer-Arts", "http://tuftsobserver.org/category/arts-culture/feed");
 			urls.put("Observer-Campus", "http://tuftsobserver.org/category/campus/feed");
 			urls.put("Observer-News", "http://tuftsobserver.org/category/news-features/feed");
@@ -245,6 +251,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			urls.put("Observer-Opinion", "http://tuftsobserver.org/category/opinion/feed");
 			urls.put("Observer-Poetry", "http://tuftsobserver.org/category/poetry-prose/feed");
 			urls.put("Observer-Extras", "http://tuftsobserver.org/category/extras/feed");
+			*/
 		}
 		return urls;
 	}

@@ -137,7 +137,7 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 			@Override
 			public void run() {
 				System.out.println("ADDING ADAPTER TO THE LIST");
-				listV.setAdapter(adapter);			
+				listV.setAdapter(adapter);	
 			}
 		});
         //listV.setAdapter(adapter);
@@ -170,7 +170,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 		new Thread(new ActivityLoadThread(this)).start();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d", Locale.US);
 		this.dateItem.setTitle(dateFormat.format(this.date));
-
 	}
 	
 }

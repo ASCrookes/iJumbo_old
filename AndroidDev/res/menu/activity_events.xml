@@ -8,6 +8,7 @@
     
     <item android:id="@+id/eventsPrevious"
         android:title="Left"
+        android:icon="@drawable/back_arrow"
         android:orderInCategory="1"
         android:showAsAction="always" />
   
@@ -17,6 +18,7 @@
         android:showAsAction="always" />
     
     <item android:id="@+id/eventNext"
+        android:icon="@drawable/forward_arrow"
         android:title="Right"
         android:orderInCategory="1"
         android:showAsAction="always" />

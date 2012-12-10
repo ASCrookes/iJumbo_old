@@ -18,7 +18,7 @@ public class WebActivity extends Activity {
        		// set the webView as this activity's main view
        		WebView webView = new WebView(this);
        		webView.loadUrl(url);
-       		setContentView(webView);
+       		this.setContentView(webView);
        	}
 	}
 
@@ -28,5 +28,4 @@ public class WebActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_web, menu);
 		return true;
 	}
-
 }

@@ -12,5 +12,6 @@
     <string name="title_activity_map_view">MapViewActivity</string>
     <string name="title_activity_food">FoodActivity</string>
     <string name="notAvailable">N/A</string>
+    <string name="title_activity_places">PlacesActivity</string>
 
 </resources>
