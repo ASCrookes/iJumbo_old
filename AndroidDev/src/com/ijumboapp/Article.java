@@ -7,6 +7,7 @@ public class Article {
 	protected String author;
 	//private ImageData 
 	protected String imageURL;
+
 	
 	public Article() {
 		this.title = "N/A";
@@ -27,8 +28,11 @@ public class Article {
 			this.author = value;
 		else if(rssTag.equals("link"))
 			this.link = value;
-		else if(rssTag.equals("media:thumbnail"))
+		else if(rssTag.equals("media:thumbnail")) {
 			this.imageURL = value;
+			//String data = new RequestManager().get(this.imageURL);
+			//System.out.println(data);
+		}
 	}
 }
 

@@ -1,15 +1,11 @@
 package com.ijumboapp;
 
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class PlacesActivity extends Activity implements LoadActivityInterface {
@@ -34,12 +30,12 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 	public void loadData() throws JSONException {
 		final ListView listV = (ListView) findViewById(R.id.placesList);
         try {
-			JSONArray buildings = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/buildings");
+			this.buildings = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/buildings");
 			Object[] places = new Object[buildings.length()];
 			for(int i = 0; i < buildings.length(); i++) {
 				places[i] = buildings.get(i);
 			}
-			final ArrayAdapter<Object> adapter = new ArrayAdapter<Object>(this, android.R.layout.simple_list_item_1, android.R.id.text1, places);
+			final PlacesAdapter adapter = new PlacesAdapter(this, R.layout.listview_item_row, this.buildings);
 	        this.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {

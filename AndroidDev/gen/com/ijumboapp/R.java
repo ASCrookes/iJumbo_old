@@ -42,27 +42,28 @@ public final class R {
         public static final int calories=0x7f08000c;
         public static final int carbs=0x7f080012;
         public static final int cholestoral=0x7f080010;
-        public static final int diningHallSpinner=0x7f08002c;
-        public static final int eventDate=0x7f080029;
-        public static final int eventNext=0x7f08002a;
+        public static final int diningHallSpinner=0x7f08002e;
+        public static final int eventDate=0x7f08002b;
+        public static final int eventNext=0x7f08002c;
         public static final int eventsButton=0x7f08001b;
         public static final int eventsList=0x7f080000;
-        public static final int eventsPrevious=0x7f080028;
+        public static final int eventsPrevious=0x7f08002a;
         public static final int fatCalories=0x7f08000e;
         public static final int fiber=0x7f080013;
         public static final int imgIcon=0x7f080024;
+        public static final int imgIconNews=0x7f080027;
         public static final int joeyButton=0x7f080019;
         public static final int joeyList=0x7f080016;
         public static final int mapButton=0x7f080018;
         public static final int mapview=0x7f08001d;
-        public static final int mealSpinner=0x7f08002b;
+        public static final int mealSpinner=0x7f08002d;
         public static final int menuButton=0x7f08001c;
         public static final int menuList=0x7f08001e;
-        public static final int menu_settings=0x7f080027;
+        public static final int menu_settings=0x7f080029;
         public static final int menu_spinner=0x7f080026;
         public static final int newsButton=0x7f080017;
         public static final int newsList=0x7f08001f;
-        public static final int newsSectionSpinner=0x7f08002d;
+        public static final int newsSectionSpinner=0x7f08002f;
         public static final int placesList=0x7f080020;
         public static final int protein=0x7f080015;
         public static final int satFat=0x7f08000f;
@@ -73,6 +74,7 @@ public final class R {
         public static final int trunkButton=0x7f08001a;
         public static final int txtHeader=0x7f080023;
         public static final int txtTitle=0x7f080025;
+        public static final int txtTitleNews=0x7f080028;
         public static final int webview=0x7f080021;
     }
     public static final class layout {
@@ -89,8 +91,9 @@ public final class R {
         public static final int listview_item_row=0x7f03000a;
         public static final int meals_spinner=0x7f03000b;
         public static final int menu_spinner=0x7f03000c;
-        public static final int news_sections_spinner=0x7f03000d;
-        public static final int news_spinner=0x7f03000e;
+        public static final int news_listview_row=0x7f03000d;
+        public static final int news_sections_spinner=0x7f03000e;
+        public static final int news_spinner=0x7f03000f;
     }
     public static final class menu {
         public static final int activity_events=0x7f070000;

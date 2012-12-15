@@ -13,6 +13,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -99,16 +100,18 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     		Article[] articlesList = new Article[requestedArticles.size()];
             requestedArticles.toArray(articlesList);
             this.articles = requestedArticles;
-            final ArrayAdapter<Article> adapter =  new ArrayAdapter<Article>(this, android.R.layout.simple_list_item_1, android.R.id.text1, articlesList);
-            this.runOnUiThread(new Runnable() {
+            //final ArrayAdapter<Article> adapter =  new ArrayAdapter<Article>(this, android.R.layout.simple_list_item_1, android.R.id.text1, articlesList);
+            //final NewsAdapter adapter2 = new NewsAdapter(this, R.layout.news_listview_row, articlesList);
+            /*this.runOnUiThread(new Runnable() {
     			@Override
     			public void run() {
-    				listV.setAdapter(adapter);
+    				listV.setAdapter(adapter2);
     			}
-    		});
+    		});*/
             return;
     	}
     	String xml = new RequestManager().get(this.getURL());
+    	//System.out.println("THE XML FILE: " + xml);
     	// load binary of the xml into a stream
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
     	boolean didParse = true;
@@ -139,7 +142,6 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     // just load the data by calling the background thread
     private void displayDataBasedOnUI() {
     	// TODO -> implement this to to shit
-    	System.out.println("LOADING DATA BASED ON THE UI\n----------DO SOME SHIT HERE----------");
     	new Thread(new ActivityLoadThread(this)).start();
     }
     
@@ -147,7 +149,6 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     // put in big if else instead of grabbing the url from a hashtable
     private String getURL() {
     	String urlKey = this.getKeyFromUI();
-    	System.out.println("the news url key that is going to be used: " + urlKey);
     	// the getter will create the hash table if it does not exist yet
     	// then return the url from that hash table
     	return this.getUrls().get(urlKey);
@@ -171,34 +172,39 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
         	if(eventType == XmlPullParser.START_DOCUMENT) {
         		this.articles = new ArrayList<Article>();
         		this.currentArticle = new Article();
+        		if(xpp.getName() != null && xpp.getName().equals("thumbnail")) {
+        			//this.currentArticle.addFieldFromRss(, value)
+        		}
         	} else if(eventType == XmlPullParser.START_TAG) {
         		this.currentTag = xpp.getName();
         		if(this.currentTag.equals("item")) {
         			this.currentArticle = new Article();
+        		} else if(this.currentTag.equals("media:thumbnail")) {
         		}
         	} else if(eventType == XmlPullParser.END_TAG) {
         		String endTag = xpp.getName();
         		if(endTag.equals("item")) {
         			this.articles.add(this.currentArticle);
-        			System.out.println("ADDING THE ARtiCLE");
         		}
         	} else if(eventType == XmlPullParser.TEXT) {
         		if(isValidTag(this.currentTag, this.currentArticle)) {
         			this.currentArticle.addFieldFromRss(this.currentTag, xpp.getText());
         		}
         	}
+    		if(xpp.getName() != null && xpp.getName().equals("thumbnail") && xpp.getAttributeCount() > 1) {
+    			this.currentArticle.addFieldFromRss("media:thumbnail", xpp.getAttributeValue(null, "url"));
+    		}
         	eventType = xpp.next();
         }
-        System.out.println("AT THE END OF THIS BITCH");
-        System.out.println("THE ARTICLES WE GOT: " + this.articles);
         final ListView listV = (ListView) findViewById(R.id.newsList);
         Article[] articlesList = new Article[this.articles.size()];
         this.articles.toArray(articlesList);
-        final ArrayAdapter<Article> adapter =  new ArrayAdapter<Article>(this, android.R.layout.simple_list_item_1, android.R.id.text1, articlesList);
+        //final ArrayAdapter<Article> adapter =  new ArrayAdapter<Article>(this, android.R.layout.simple_list_item_1, android.R.id.text1, articlesList);
+        final NewsAdapter adapter2 = new NewsAdapter(this, R.layout.news_listview_row, articlesList);
         this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				listV.setAdapter(adapter);
+				listV.setAdapter(adapter2);
 			}
 		});
         
@@ -220,20 +226,31 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 	@Override
 	public void startLoadingUI() {
 		// TODO Auto-generated method stub
+		this.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				ProgressDialog mDialog = new ProgressDialog(getApplicationContext());
+		        mDialog.setMessage("Please wait...");
+		        mDialog.setCancelable(false);
+		        mDialog.show();
+				
+			}
+		});
+
 	}
 
 	public Map<String, List<Article> > getStories() {
-		System.out.println("GETTING STORIES");
 		if(stories == null) {
-			System.out.println("STORIES WAS NULL SO I CREATED ONE");
 			stories = new HashMap< String, List<Article> >();
 		}
 		return stories;
 	}
-
+	
+	// remove this and make a switch over the values and just return a string
+	// no need for a data structure to do this
 	public Map<String, String> getUrls() {
 		if(urls == null) {
-			System.out.println("urls was null so i made one");
 			urls = new HashMap<String, String>();
 			// The Daily
 			urls.put("Daily-Main", "http://www.tuftsdaily.com/se/tufts-daily-rss-1.445827");
