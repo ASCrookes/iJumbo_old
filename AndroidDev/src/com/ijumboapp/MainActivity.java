@@ -12,6 +12,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		this.setupIcons();
 		System.out.println("CREATED THE MAIN VIEW");
 	}
 
@@ -20,6 +21,11 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	// puts the date on top of the calendar icon
+	private void setupIcons() {
+		
 	}
 
 	public void getNews(View view) {

@@ -2,6 +2,8 @@ package com.ijumboapp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
@@ -52,6 +54,16 @@ class RequestManager {
 		} catch (JSONException e) {}
 		return jsonArray;
 	}
+	
+	public InputStream getStream(String url) {
+		InputStream stream = null;
+		try {
+			stream = new RequestStream().execute(url).get();
+		} catch (InterruptedException e) {
+		} catch (ExecutionException e) {
+		}
+		return stream;
+	}
 }
 
 class RequestTask extends AsyncTask<String, String, String>{
@@ -84,6 +96,29 @@ class RequestTask extends AsyncTask<String, String, String>{
 
     @Override
     protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        //Do anything with response..
+    }
+}
+
+class RequestStream extends AsyncTask<String, String, InputStream>{
+
+    @Override
+    protected InputStream doInBackground(String... uri) {
+    	try {
+			return (InputStream)new URL(uri[0]).getContent();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
+    }
+
+    @Override
+    protected void onPostExecute(InputStream result) {
         super.onPostExecute(result);
         //Do anything with response..
     }

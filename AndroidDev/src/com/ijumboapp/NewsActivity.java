@@ -65,27 +65,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {}
         });
-        /*
-         * this changes the adapter used in the sections and reload the data
-        this.newsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				// change the array used in the news sections spinner then reload the data
-			     String[] sections = null; 
-			     if(NewsActivity.this.newsSpinner.getSelectedItem().toString().equals("Observer")) {
-			    	 sections = getResources().getStringArray(R.array.observer_sections);
-			     } else if(NewsActivity.this.newsSpinner.getSelectedItem().toString().equals("Daily")) {
-			    	 sections = getResources().getStringArray(R.array.daily_sections); 
-			     }
-			     ArrayAdapter<String> adapter = new ArrayAdapter<String>(NewsActivity.this, android.R.layout.simple_spinner_dropdown_item, sections);
-		    	 NewsActivity.this.newsSectionsSpinner.setAdapter(adapter);
-		    	 NewsActivity.this.displayDataBasedOnUI();
-			}
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {}
-		});
-		*/
+
         new Thread(new ActivityLoadThread(this)).start();
         
         return true;
@@ -192,7 +172,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
         		}
         	}
     		if(xpp.getName() != null && xpp.getName().equals("thumbnail") && xpp.getAttributeCount() > 1) {
-    			this.currentArticle.addFieldFromRss("media:thumbnail", xpp.getAttributeValue(null, "url"));
+    			this.currentArticle.addFieldFromRss("thumbnail", xpp.getAttributeValue(null, "url"));
     		}
         	eventType = xpp.next();
         }
