@@ -3,7 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewsActivity" >
-
+	
+    <ProgressBar
+         android:id="@+id/newsPD"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         style="@android:style/Widget.ProgressBar.Small"
+         android:visibility="invisible"
+         android:layout_marginRight="5dp" />
+    <!-- align this to the far right -->
+    
     <ListView
         android:id="@+id/newsList"
         android:layout_width="match_parent"

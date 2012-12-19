@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 public class NewsActivity extends Activity implements LoadActivityInterface {
@@ -33,12 +34,16 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 	private Map<String, String> urls;
 	//private Spinner newsSpinner;
 	private Spinner newsSectionsSpinner;
+	private ProgressDialog progress;
+	private ProgressBar progressBar;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         ListView lView = (ListView) findViewById(R.id.newsList);
+        this.stories = (HashMap<String, List<Article>>) getIntent().getSerializableExtra("newsStories");
+        System.out.println("Got the stories: " + this.stories);
         lView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -81,13 +86,13 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
             requestedArticles.toArray(articlesList);
             this.articles = requestedArticles;
             //final ArrayAdapter<Article> adapter =  new ArrayAdapter<Article>(this, android.R.layout.simple_list_item_1, android.R.id.text1, articlesList);
-            //final NewsAdapter adapter2 = new NewsAdapter(this, R.layout.news_listview_row, articlesList);
-            /*this.runOnUiThread(new Runnable() {
+            final NewsAdapter adapter2 = new NewsAdapter(this, R.layout.news_listview_row, articlesList);
+            this.runOnUiThread(new Runnable() {
     			@Override
     			public void run() {
     				listV.setAdapter(adapter2);
     			}
-    		});*/
+    		});
             return;
     	}
     	String xml = new RequestManager().get(this.getURL());
@@ -114,6 +119,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
     	}
     }
     
+    // do something based on the time the data was FIRST pulled in
     private boolean shouldUseSavedArticles() {
     	// TODO -- find out how long the data has been sitting and reset it if necessary
     	return true;
@@ -200,21 +206,27 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 
 	@Override
 	public void stopLoadingUI() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void startLoadingUI() {
-		// TODO Auto-generated method stub
 		this.runOnUiThread(new Runnable() {
 			
 			@Override
 			public void run() {
-				ProgressDialog mDialog = new ProgressDialog(getApplicationContext());
-		        mDialog.setMessage("Please wait...");
-		        mDialog.setCancelable(false);
-		        mDialog.show();
-				
+				ProgressBar pBar = (ProgressBar) findViewById(R.id.newsPD);
+				pBar.setVisibility(View.INVISIBLE);
+			}
+		});
+	}
+
+	@Override
+	public void startLoadingUI() {
+		
+		this.runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				ProgressBar pBar = (ProgressBar) findViewById(R.id.newsPD);
+				pBar.setVisibility(View.VISIBLE);
+				// NewsActivity.this.progressBar = new ProgressBar(NewsActivity.this, null, android.R.attr.progressBarStyleSmall);
+				//NewsActivity.this.progress = ProgressDialog.show(NewsActivity.this, "Loading...", "", true);
 			}
 		});
 

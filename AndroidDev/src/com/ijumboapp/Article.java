@@ -1,12 +1,10 @@
 package com.ijumboapp;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 public class Article {
 	
@@ -56,23 +54,38 @@ public class Article {
 			if(this.imageURL.equals("") || this.imageBitmap != null) {
 				return;
 			}
-			Something about getting the image adds articles mutliple times
-			and rearranges them.
-			System.out.println("GETTING AN IMAGE--THE URL: " + this.title);
+			// Something about getting the image adds articles mutliple times
+			// and rearranges them.
 			URL url = null;
 			HttpURLConnection connection = null;
 			InputStream is = null;
-			
+			/*
 			try {
+				
 				url = new URL(this.imageURL);
 				connection = (HttpURLConnection) url.openConnection();
+				connection.setChunkedStreamingMode(10000);
 				is = connection.getInputStream();
-				this.imageBitmap = BitmapFactory.decodeStream(is); 
+				this.imageBitmap = BitmapFactory.decodeStream(is);
+				
+				
+				URLConnection connection = new URI(this.imageURL).toURL().openConnection();
+				connection.connect();
+				InputStream is = connection.getInputStream();
+				BufferedInputStream bis = new BufferedInputStream(is, 8 * 1024);
+				this.imageBitmap = BitmapFactory.decodeStream(bis);
+				bis.close();
+				is.close(); 
+				
 			} catch (IOException e) {
 				this.imageBitmap = null;
 				e.printStackTrace();
 				System.out.println("Artilce thumbnail EXCEPTION: " + e);
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			*/
 		}
 	}
 }

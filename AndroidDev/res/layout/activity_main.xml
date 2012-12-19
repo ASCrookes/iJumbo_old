@@ -60,9 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_launcher"
-        android:onClick="getMenu" />
-        <!-- Once there is a menu image make the background transparent
-        android:background="@null" />  -->
+        android:src="@drawable/burger"
+        android:onClick="getMenu"
+        android:background="@null" />
         
 </RelativeLayout>

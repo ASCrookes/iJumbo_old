@@ -17,8 +17,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 
 
@@ -33,11 +35,13 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 	//private List <Event> dataSource;
 	// TODO -- is the below needed to change the title on the date menu item
 	private MenuItem dateItem;
+	private int loadingThreads; // used to stop the loading ui once all threads are done
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events);        
+        setContentView(R.layout.activity_events); 
+        this.loadingThreads = 0;
     }
     
     // data loading relies on the ui, some of that gets initially set here
@@ -80,7 +84,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
     	try {
     		// parse through it
-    		System.out.println("ABOUT TO CALL PARSE THAT ISH");
 			this.parseThatIsh(inStream);
 		} catch (XmlPullParserException e) {
 			System.out.print(e);
@@ -120,7 +123,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         		if(endTag.equals("item")) {
         			this.events.add(this.currentEvent);
         		}
-        		System.out.println(endTag);
         	} else if(eventType == XmlPullParser.TEXT) {
         		if(isValidTag(this.currentTag, this.currentEvent)) {
         			this.currentEvent.addFieldFromRss(this.currentTag, xpp.getText());
@@ -157,12 +159,31 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     // the are called from a background thread
 	@Override
 	public void stopLoadingUI() {
-		// TODO Auto-generated method stub
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				EventsActivity.this.loadingThreads--;
+				if(EventsActivity.this.loadingThreads == 0) {
+					ProgressBar pb = (ProgressBar) findViewById(R.id.eventsPD);
+					pb.setVisibility(View.INVISIBLE);
+				}
+				
+			}
+		});
 	}
 
 	@Override
 	public void startLoadingUI() {
-		// TODO Auto-generated method stub
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				if(EventsActivity.this.loadingThreads == 0) {
+					ProgressBar pb = (ProgressBar) findViewById(R.id.eventsPD);
+					pb.setVisibility(View.VISIBLE);
+				}
+				EventsActivity.this.loadingThreads++;
+			}
+		});
 	}
     
 	public void setDate(Date newDate) {
