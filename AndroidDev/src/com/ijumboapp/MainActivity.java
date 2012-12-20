@@ -1,7 +1,10 @@
 package com.ijumboapp;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import org.json.JSONArray;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,9 +16,16 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 	
-	final int NEWS_ACTIVITY_RESULT = 0;
-	final int MENU_ACTIVITY_RESULT = 1;
+	final static int   NEWS_ACTIVITY_RESULT = 0;
+	final static int   MENU_ACTIVITY_RESULT = 1;
+	final static int EVENTS_ACTIVITY_RESULT = 2;
+
+	
+	// data to simulate activity persistance
 	private HashMap<String, List<Article> > newsStories;
+	private Date eventDate;
+	//this is the json string of the data source since jsonobjects cannot be passed with extras
+	private String menuDataSource;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +33,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		this.setupIcons();
 		this.newsStories = null;
+		this.menuDataSource = "{}";
 		System.out.println("CREATED THE MAIN VIEW");
 	}
 
@@ -35,26 +46,24 @@ public class MainActivity extends Activity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		how do i pass data back to the main activity to store data in RAM
-		so that is does not have to load everytime
-		
-		Also, how do I write to the file system, to save things like the buildings list
-		
+		System.out.println("on activity: " + requestCode);
+		if(resultCode != Activity.RESULT_OK) {
+			System.out.println("THE RESULT WAS NOT OK");
+			return;
+		}
 		switch(requestCode) {
 		case NEWS_ACTIVITY_RESULT:
 			this.newsStories = (HashMap<String, List<Article> >) data.getSerializableExtra("newsStories");
 			break;
 		case MENU_ACTIVITY_RESULT:
+			System.out.println("GOT THE MENU ACTIVITY RESULT");
+			this.menuDataSource = data.getStringExtra("menuDataSource");
+			System.out.println("MENU ACTIVITY CLOSED" + this.menuDataSource);
 			break;
 		
-		
-		
-		
 		}
-		
-		
 	}
-	
+
 	// puts the date on top of the calendar icon
 	private void setupIcons() {
 		
@@ -83,7 +92,8 @@ public class MainActivity extends Activity {
 	
 	public void getMenu(View view) {
 		Intent intent = new Intent(this, MenuActivity.class);
-		startActivity(intent);
+		intent.putExtra("menuDataSource", this.menuDataSource);
+		startActivityForResult(intent, MENU_ACTIVITY_RESULT);
 	}
 	
 	public void getTrunk(View view) {

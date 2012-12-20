@@ -28,6 +28,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	Set<Integer> sectionLocations;
 	String diningHall;
 	
+	// TODO -- change this to take the MenuActivity.dataSource.class
 	public MenuAdapter(Context context, int textViewResourceId, JSONObject[] objects, String diningHall) {
 		super(context, textViewResourceId, objects);
 		this.context = context;

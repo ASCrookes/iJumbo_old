@@ -1,12 +1,15 @@
 package com.ijumboapp;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.graphics.Bitmap;
 
-public class Article {
+public class Article implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	protected String title;
 	protected String link;

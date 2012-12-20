@@ -3,6 +3,7 @@ package com.ijumboapp;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,6 +76,16 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
         
         return true;
     }
+	
+	@Override
+	public void onBackPressed() {
+		System.out.println("BACK BUTTON WAS PRESSED");
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra("newsStories", (Serializable) this.stories);
+		setResult(Activity.RESULT_OK, resultIntent);
+		finish();
+	}
+	
     
     public void loadData() {
     	// get the xml

@@ -1,5 +1,6 @@
 package com.ijumboapp;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -29,7 +31,13 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
         setContentView(R.layout.activity_menu);
         this.lastUpdate = -1;
         this.dataSource = null;
-        this.masterDict = null;	
+        try {
+        	this.masterDict = new JSONObject(getIntent().getStringExtra("menuDataSource"));
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+			System.out.println("MENU ACTIVITY ERROR: " + e1);
+		}
+        System.out.println("THE RECEIVED MASTER DICT: " + this.masterDict);
         try {
 			this.loadDataBasedOnDate();
 		} catch (JSONException e) {
@@ -68,11 +76,25 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
         return true;
     }
     
+	@Override
+	public void onBackPressed() {
+		System.out.println("MENU BACK BUTTON WAS PRESSED");
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra("menuDataSource", this.masterDict.toString().substring(0, 265970));
+		System.out.println(resultIntent.getStringExtra("menuDataSource").length());
+		setResult(Activity.RESULT_OK, resultIntent);
+		finish();
+	}
+    
     private void loadDataBasedOnDate() throws JSONException {
     	long serversUpdate = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/mealDate").getLong("date");
     	// if the server updated more recently than the device pulled load the data again
-    	if(serversUpdate >= this.lastUpdate || !(this.dataSource == null) || this.dataSource.length() == 0) {
+    	// or if this activity does not have the data load again
+    	if(serversUpdate >= this.lastUpdate || this.dataSource == null || 
+    		  this.dataSource.length() == 0 || this.masterDict == null || this.masterDict.length() == 0) {
     		new Thread(new ActivityLoadThread(this)).start();
+    	} else {
+    		this.displayDataSource();
     	}
     }
 
@@ -85,6 +107,10 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     	JSONObject diningHall  = (JSONObject) this.masterDict.get(this.getDiningHall());
     	JSONObject meal = (JSONObject) diningHall.get( (this.getDiningHall().equals("Hodgdon")) ? "Breakfast" : this.getMeal());
     	this.dataSource  = (JSONArray) meal.get("sections");
+    	this.displayDataSource();
+    }
+    
+    private void displayDataSource() throws JSONException {
     	JSONObject[] dataList = new JSONObject[this.dataSource.length()];
     	// make a custom adapter that will grab this information from the data source as opposed to manually getting it
     	for(int i = 0; i < this.dataSource.length(); i++) {
