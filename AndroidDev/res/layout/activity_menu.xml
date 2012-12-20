@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity" >
     
+    <ProgressBar
+         android:id="@+id/menuPD"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         style="@android:style/Widget.ProgressBar.Small"
+         android:visibility="invisible"
+         android:layout_marginRight="5dp" />
+    <!-- align this to the far right -->
+    
     <ListView
         android:id="@+id/menuList"
         android:layout_width="match_parent"

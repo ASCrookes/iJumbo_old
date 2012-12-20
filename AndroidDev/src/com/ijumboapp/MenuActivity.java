@@ -1,6 +1,5 @@
 package com.ijumboapp;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 public class MenuActivity extends Activity implements LoadActivityInterface {
@@ -31,18 +31,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
         setContentView(R.layout.activity_menu);
         this.lastUpdate = -1;
         this.dataSource = null;
-        try {
-        	this.masterDict = new JSONObject(getIntent().getStringExtra("menuDataSource"));
-		} catch (JSONException e1) {
-			e1.printStackTrace();
-			System.out.println("MENU ACTIVITY ERROR: " + e1);
-		}
-        System.out.println("THE RECEIVED MASTER DICT: " + this.masterDict);
-        try {
-			this.loadDataBasedOnDate();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+        
     }
     
 
@@ -54,8 +43,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
         // the item listener used by the spinners in the action bar
         AdapterView.OnItemSelectedListener spinnerItemListener = new AdapterView.OnItemSelectedListener() {
 			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					                   int arg2, long arg3) {
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				try {
 					if(MenuActivity.this.dataSource == null) {
 						MenuActivity.this.loadData();
@@ -73,6 +61,21 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
         this.hallSpinner.setOnItemSelectedListener(spinnerItemListener);
         this.mealSpinner.setOnItemSelectedListener(spinnerItemListener);
         
+        // sometimes the data that loads relies on the menu spinners
+        // so load after the spinners have been inflated from xml
+        try {
+        	this.masterDict = new JSONObject(new String(getIntent().getByteArrayExtra("menuDataSource")));
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+			System.out.println("MENU ACTIVITY ERROR: " + e1);
+		}
+        System.out.println("THE RECEIVED MASTER DICT: " + this.masterDict);
+        try {
+			this.loadDataBasedOnDate();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+        
         return true;
     }
     
@@ -80,8 +83,8 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
 	public void onBackPressed() {
 		System.out.println("MENU BACK BUTTON WAS PRESSED");
 		Intent resultIntent = new Intent();
-		resultIntent.putExtra("menuDataSource", this.masterDict.toString().substring(0, 265970));
-		System.out.println(resultIntent.getStringExtra("menuDataSource").length());
+		resultIntent.putExtra("menuDataSource", this.masterDict.toString().getBytes());
+		resultIntent.putExtra("menuLastUpdate", this.lastUpdate);
 		setResult(Activity.RESULT_OK, resultIntent);
 		finish();
 	}
@@ -90,11 +93,12 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     	long serversUpdate = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/mealDate").getLong("date");
     	// if the server updated more recently than the device pulled load the data again
     	// or if this activity does not have the data load again
-    	if(serversUpdate >= this.lastUpdate || this.dataSource == null || 
-    		  this.dataSource.length() == 0 || this.masterDict == null || this.masterDict.length() == 0) {
+    	if(serversUpdate >= this.lastUpdate || this.masterDict == null || this.masterDict.length() == 0) {
+    		System.out.println("LOADING THAT BITCH AGAIN< YE DIGG");
     		new Thread(new ActivityLoadThread(this)).start();
     	} else {
-    		this.displayDataSource();
+    		System.out.println("Loading the data based on display");
+    		this.displayDataBasedOnUI();
     	}
     }
 
@@ -147,12 +151,24 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
 
 	@Override
 	public void stopLoadingUI() {
-		// TODO Auto-generated method stub
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pb = (ProgressBar) findViewById(R.id.menuPD);
+				pb.setVisibility(View.INVISIBLE);
+			}
+		});
 	}
 
 
 	@Override
 	public void startLoadingUI() {
-		// TODO Auto-generated method stub
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pb = (ProgressBar) findViewById(R.id.menuPD);
+				pb.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 }

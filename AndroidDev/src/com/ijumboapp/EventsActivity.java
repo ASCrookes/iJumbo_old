@@ -3,6 +3,7 @@ package com.ijumboapp;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +43,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events); 
-        this.loadingThreads = 0;
     }
     
     // data loading relies on the ui, some of that gets initially set here
@@ -50,8 +51,14 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         getMenuInflater().inflate(R.menu.activity_events, menu);
         // TODO -- the buttons should display arrows (images) not Left and Right
         this.dateItem = menu.findItem(R.id.eventDate);
-        this.setDate(new Date());
+        long dateString = getIntent().getLongExtra("eventDateString", -1);
+        if(dateString == -1) {
+        	this.setDate(new Date());
+        } else {
+        	this.setDate(new Date(dateString));
+        }
         // the below line calls this.loadData in a background thread
+        this.loadingThreads = 0;
         new Thread(new ActivityLoadThread(this)).start();
         return true;
     }
@@ -74,11 +81,16 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     			return super.onOptionsItemSelected(item);
         }
     }
+    
+    @Override
+	public void onBackPressed() {
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra("eventDateString", this.date.getTime());
+		setResult(Activity.RESULT_OK, resultIntent);
+		finish();
+	}
         
     public void loadData() {
-    	System.out.println("LOADING DATA FOR THE EVENTS");
-    	// get the xml
-    	
     	String xml = new RequestManager().get(this.getURL());
     	// load it into a stream
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
@@ -90,7 +102,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 		} catch (IOException e) {
 			System.out.print(e);
 		}
-    	System.out.println("DONE LOADING THE EVENTS DATA");
      }
     
     private String getURL() {
@@ -102,14 +113,15 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     }
     
     private void parseThatIsh(InputStream inStream) throws XmlPullParserException, IOException {
-    	System.out.println("STARTING TO PARSE THAT ISH");
+    	// keep track of the threads when this starts, if that changes--STOP
+    	int currentThreads = this.loadingThreads;
     	XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
         	
         xpp.setInput(inStream, null);
         int eventType = xpp.getEventType();
-        while (eventType != XmlPullParser.END_DOCUMENT) {
+        while (eventType != XmlPullParser.END_DOCUMENT && this.loadingThreads == currentThreads) {
         	if(eventType == XmlPullParser.START_DOCUMENT) {
         		this.events = new ArrayList<Event>();
         		this.currentEvent = new Event();
@@ -130,6 +142,11 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         	}
         	eventType = xpp.next();
         }
+        // stop the another thread was loaded to grab data
+        if(currentThreads != this.loadingThreads) {
+        	System.out.println("ANOTHER THREAD STARTED SO I STOPPED");
+        	return;
+        }
         
         final ListView listV = (ListView) findViewById(R.id.eventsList);
         Event[] eventsList = new Event[this.events.size()];
@@ -138,8 +155,9 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println("ADDING ADAPTER TO THE LIST");
-				listV.setAdapter(adapter);	
+				if(EventsActivity.this.loadingThreads == 1) {
+					listV.setAdapter(adapter);	
+				}
 			}
 		});
         //listV.setAdapter(adapter);

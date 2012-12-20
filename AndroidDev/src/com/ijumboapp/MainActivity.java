@@ -1,10 +1,7 @@
 package com.ijumboapp;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import org.json.JSONArray;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,9 +20,10 @@ public class MainActivity extends Activity {
 	
 	// data to simulate activity persistance
 	private HashMap<String, List<Article> > newsStories;
-	private Date eventDate;
+	private long eventDate; // store the date used in milliseconds
 	//this is the json string of the data source since jsonobjects cannot be passed with extras
-	private String menuDataSource;
+	private byte[] menuDataSource;
+	private long menuLastUpdate;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		this.setupIcons();
 		this.newsStories = null;
-		this.menuDataSource = "{}";
+		this.menuDataSource = new byte[0];
+		this.eventDate = -1;
+		this.menuLastUpdate = -1;
 		System.out.println("CREATED THE MAIN VIEW");
 	}
 
@@ -57,8 +57,12 @@ public class MainActivity extends Activity {
 			break;
 		case MENU_ACTIVITY_RESULT:
 			System.out.println("GOT THE MENU ACTIVITY RESULT");
-			this.menuDataSource = data.getStringExtra("menuDataSource");
+			this.menuDataSource = data.getByteArrayExtra("menuDataSource");
 			System.out.println("MENU ACTIVITY CLOSED" + this.menuDataSource);
+			this.menuLastUpdate = data.getLongExtra("menuLastUpdate", -1);
+			break;
+		case EVENTS_ACTIVITY_RESULT:
+			this.eventDate = data.getLongExtra("eventDateString", -1);
 			break;
 		
 		}
@@ -82,7 +86,8 @@ public class MainActivity extends Activity {
 	
 	public void getEvents(View view) {
 		Intent intent = new Intent(this, EventsActivity.class);
-		startActivity(intent);
+		intent.putExtra("eventDateString", this.eventDate);
+		startActivityForResult(intent, EVENTS_ACTIVITY_RESULT);
 	}
 	
 	public void getJoey(View view) {
