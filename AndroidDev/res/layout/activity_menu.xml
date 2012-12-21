@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity" >
+    tools:context=".MenuActivity" 
+    android:background="@drawable/background" >
     
     <ProgressBar
          android:id="@+id/menuPD"
@@ -18,8 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-
+        android:layout_alignParentTop="true"
+        android:divider="#000000"
+        android:dividerHeight="1dp" >
+<!--         android:background="#696969"
+ -->        
+        
     </ListView>
 
 </RelativeLayout>

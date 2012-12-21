@@ -11,16 +11,12 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import com.ijumboapp.MenuAdapter.FoodHolder;
 
 public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 
@@ -47,7 +43,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		for(int i = 0; i < sections.length(); i++) {
 			JSONArray section = sections.getJSONArray(i);
 			JSONObject sectionHeader = new JSONObject();
-			sectionHeader.put("sectionName", getSectionTitle(section));
+			sectionHeader.put("SectionName", getSectionTitle(section));
 			// add the header right here
 			placesWithSections.add(sectionHeader);
 			this.sectionLocations.add(placesWithSections.size() - 1);
@@ -55,7 +51,6 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 				placesWithSections.add(section.getJSONObject(j));
 			}
 		}
-		System.out.println("THE SET: " + this.sectionLocations);
 		this.data = new JSONObject[placesWithSections.size()];
 		for(int i = 0; i < placesWithSections.size(); i++) {
 			this.data[i] = placesWithSections.get(i);
@@ -77,66 +72,28 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		return sectionTitle;
 	}
 
-	 @Override
-	 public View getView(int position, View convertView, ViewGroup parent) {
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
 		 View cell = convertView;
-		 PlaceDataHolder holder = null;
+		 LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 		 final boolean isHeader = this.sectionLocations.contains(Integer.valueOf(position));
-		 if(cell == null) {
-			 	LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-			 	if(isHeader) {
-			 		// TODO -- give a specific id for a section header cell
-			 		// create a section header in xml
-			 	} else {
-			 		// give the cell the normal id for a cell
-			 	}
-			 	
-	            cell = inflater.inflate(this.resourceID, parent, false);
-	            
-	            holder = new PlaceDataHolder();
-	            holder.placeData = this.data[position];
-	            holder.textV = (TextView) cell.findViewById(R.id.txtTitle);
-	            //System.out.println("THE TEXT VIEW: " + holder.textV);
-	            holder.index = (isHeader) ? -1 : position;
-	            cell.setTag(holder);
-	            final Context context = getContext();
-	   		 	cell.setOnClickListener(new OnClickListener() {
-	   		 		@Override
-	   		 		public void onClick(View v) {
-	   		 			// TODO -- add functionality to go to a view specific to the building selected
-	   		 		}
-	   		 	});  
-		 } else {
-			 holder = (PlaceDataHolder)cell.getTag();
-		 }
-		 // because the dining hall info this has to be offset
-		 // TODO -- change the adapters so that this only happens when the cell is created to avoid moving data a lot
 		 JSONObject cellData = this.data[position];
-		 try {
-			 if(isHeader) {
-				 holder.textV.setText(cellData.getString("sectionName"));
-				 holder.textV.setBackgroundColor(Color.GRAY);
-				 
-			 } else {
-				 holder.textV.setText(cellData.getString("building_name"));
-				 holder.textV.setBackgroundColor(Color.TRANSPARENT);
-			 }
-		 } catch (JSONException e) {
-			 holder.textV.setText("THERE WAS AN ERROR IN PLACEADAPTER");
-			 System.out.println("PlaceAdapter.getView Error: " + e);
-			 System.out.println("THE DATA USED: " + holder.placeData);
-		}
-		 
+		 if(isHeader) {
+			 cell = inflater.inflate(R.layout.listview_header_row, parent, false);
+			 try {
+				((TextView)cell.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
+			} catch (JSONException e) {}
+		 } else {
+			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
+			 try {
+				((TextView)cell.findViewById(R.id.txtTitle)).setText(cellData.getString("building_name"));
+			} catch (JSONException e) {}
+		 }
+
 		return cell;
-	 }
-	
-	 
-	 
-	static class PlaceDataHolder {
-		TextView textV;
-		JSONObject placeData;
-		int index;
 	}
+	
+
 	
 	@Override
 	public int getCount() {

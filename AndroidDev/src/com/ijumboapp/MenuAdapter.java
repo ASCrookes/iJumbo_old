@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,14 +48,14 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		JSONObject hallCell   = new JSONObject();
 		hallCell.put("FoodName", this.diningHall + " Info");
 		JSONObject hallHeader = new JSONObject();
-		hallHeader.put("sectionName", "Dining Hall Info");
+		hallHeader.put("SectionName", "Dining Hall Info");
 		foodWithSections.add(hallHeader);
 		foodWithSections.add(hallCell);
 		this.sectionLocations.add(Integer.valueOf(0));
 		// add all of the food as well
 		for(JSONObject section : objects) {
 			JSONObject sectionData = new JSONObject();
-			sectionData.put("sectionName", section.get("SectionName"));
+			sectionData.put("SectionName", section.get("SectionName"));
 			foodWithSections.add(sectionData);
 			this.sectionLocations.add(foodWithSections.size() - 1);
 			System.out.println("Added location to set: " + (foodWithSections.size() - 1));
@@ -76,67 +75,43 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	 @Override
 	 public View getView(int position, View convertView, ViewGroup parent) {
 		 View cell = convertView;
-		 FoodHolder holder = null;
-		 boolean isHeader = this.sectionLocations.contains(Integer.valueOf(position));
-		 if(cell == null) {
-			 	LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-			 	int resourceID = (isHeader) ? R.layout.listview_header_row : R.layout.listview_item_row;
-	            cell = inflater.inflate(resourceID, parent, false);
-	            
-	            holder = new FoodHolder();
-	            holder.foodData = this.data[position];
-	            holder.textV = (TextView) ((isHeader) ?  cell.findViewById(R.id.txtHeader) : cell.findViewById(R.id.txtTitle));
-	            holder.index = (isHeader) ? -1 : position;
-	            cell.setTag(holder);
-	            final Context context = getContext();
-	   		 cell.setOnClickListener(new OnClickListener() {
-	        	 @Override
-	        	 public void onClick(View v) {
-	        		FoodHolder holder = (FoodHolder) v.getTag();
-	        		Intent intent = null;
-		  		 	if(holder.index > 1) {
-		  		 		intent = new Intent(context, FoodActivity.class);
-		  		 		intent.putExtra("data", holder.foodData.toString());
-		  		 		context.startActivity(intent);
-		  		 	} else if(holder.index == 1) {
-		  		 		//intent = new Intent(context, SOMEWHERE ELSE);
-		  		 	}
-	        	 }
-			});
-		 } else {
-			 holder = (FoodHolder)cell.getTag();
-		 }
-		 // because the dining hall info this has to be offset
-
+		 LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 		 JSONObject cellData = this.data[position];
-		 try {
-			 if(isHeader) {
-				 cell.res
-				 holder.textV.setText(cellData.getString("sectionName"));
-				 //holder.textV.setBackgroundColor(Color.GRAY);
-				 holder.index = -1;
-			 } else {
-				 holder.textV.setText(cellData.getString("FoodName"));
-				 //holder.textV.setBackgroundColor(Color.TRANSPARENT);
-				 holder.index = position;
-				 holder.foodData = data[position];
-			 }
-		 } catch (JSONException e) {
-			 holder.textV.setText("THERE WAS AN ERROR IN MENUADAPTER");
-			 System.out.println("MenuAdapter.getView Error: " + e);
-		}
+		 boolean isHeader = this.sectionLocations.contains(Integer.valueOf(position));
+		 if(isHeader) {
+			 cell = inflater.inflate(R.layout.listview_header_row, parent, false);
+	   		 cell.setOnClickListener(null);
+	   		 try {
+				((TextView)cell.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
+			} catch (JSONException e) {}
+		 } else {
+			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
+			 cell.setOnClickListener(this.itemListener(position));
+			 try {
+				((TextView)cell.findViewById(R.id.txtTitle)).setText(cellData.getString("FoodName"));
+			} catch (JSONException e) {}
+		 }
 		 
 		return cell;
 	 }
-	
 	 
+	 private OnClickListener itemListener(final int position) {
+		 // if the position is the dining hall info cell
+		 if(position == 1) {
+			 // TODO -- return a listener to push an activity showing info on a place
+			 return null;
+		 }
+		 return new OnClickListener() {
+        	 @Override
+        	 public void onClick(View v) {
+        		Intent intent = null;
+	  		 	intent = new Intent(context, FoodActivity.class);
+	  		 	intent.putExtra("data", MenuAdapter.this.data[position].toString());
+	  		 	context.startActivity(intent);
+        	 }
+		 };
+	 }
 	 
-	static class FoodHolder {
-		TextView textV;
-		JSONObject foodData;
-		int index;
-	}
-	
 	@Override
 	public int getCount() {
 		return this.data.length;

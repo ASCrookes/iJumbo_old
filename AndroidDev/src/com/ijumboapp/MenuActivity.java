@@ -109,7 +109,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     
     private void displayDataBasedOnUI() throws JSONException {
     	JSONObject diningHall  = (JSONObject) this.masterDict.get(this.getDiningHall());
-    	JSONObject meal = (JSONObject) diningHall.get( (this.getDiningHall().equals("Hodgdon")) ? "Breakfast" : this.getMeal());
+    	JSONObject meal = (JSONObject) diningHall.get((this.getDiningHall().equals("Hodgdon")) ? "Breakfast" : this.getMeal());
     	this.dataSource  = (JSONArray) meal.get("sections");
     	this.displayDataSource();
     }

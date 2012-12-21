@@ -1,9 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/joeyRefresh"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/menu_settings"/>
+        android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_rotate"
+        android:title="refresh"/>
 
 </menu>

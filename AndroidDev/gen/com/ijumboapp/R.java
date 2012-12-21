@@ -19,14 +19,15 @@ public final class R {
     }
     public static final class drawable {
         public static final int back_arrow=0x7f020000;
-        public static final int burger=0x7f020001;
-        public static final int events=0x7f020002;
-        public static final int forward_arrow=0x7f020003;
-        public static final int greybus=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int map=0x7f020006;
-        public static final int news=0x7f020007;
-        public static final int webpage=0x7f020008;
+        public static final int background=0x7f020001;
+        public static final int burger=0x7f020002;
+        public static final int events=0x7f020003;
+        public static final int forward_arrow=0x7f020004;
+        public static final int greybus=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int map=0x7f020007;
+        public static final int news=0x7f020008;
+        public static final int webpage=0x7f020009;
     }
     public static final class id {
         public static final int TextView01=0x7f080003;
@@ -44,26 +45,26 @@ public final class R {
         public static final int carbs=0x7f080013;
         public static final int cholestoral=0x7f080011;
         public static final int diningHallSpinner=0x7f080031;
-        public static final int eventDate=0x7f08002e;
-        public static final int eventNext=0x7f08002f;
+        public static final int eventDate=0x7f08002d;
+        public static final int eventNext=0x7f08002e;
         public static final int eventsButton=0x7f08001c;
         public static final int eventsList=0x7f080001;
         public static final int eventsPD=0x7f080000;
-        public static final int eventsPrevious=0x7f08002d;
+        public static final int eventsPrevious=0x7f08002c;
         public static final int fatCalories=0x7f08000f;
         public static final int fiber=0x7f080014;
-        public static final int imgIcon=0x7f080027;
-        public static final int imgIconNews=0x7f08002a;
+        public static final int imgIconNews=0x7f080029;
         public static final int joeyButton=0x7f08001a;
         public static final int joeyList=0x7f080017;
+        public static final int joeyRefresh=0x7f08002f;
         public static final int mapButton=0x7f080019;
         public static final int mapview=0x7f08001e;
         public static final int mealSpinner=0x7f080030;
         public static final int menuButton=0x7f08001d;
         public static final int menuList=0x7f080020;
         public static final int menuPD=0x7f08001f;
-        public static final int menu_settings=0x7f08002c;
-        public static final int menu_spinner=0x7f080029;
+        public static final int menu_settings=0x7f08002b;
+        public static final int menu_spinner=0x7f080028;
         public static final int newsButton=0x7f080018;
         public static final int newsList=0x7f080022;
         public static final int newsPD=0x7f080021;
@@ -77,8 +78,8 @@ public final class R {
         public static final int textView1=0x7f080002;
         public static final int trunkButton=0x7f08001b;
         public static final int txtHeader=0x7f080026;
-        public static final int txtTitle=0x7f080028;
-        public static final int txtTitleNews=0x7f08002b;
+        public static final int txtTitle=0x7f080027;
+        public static final int txtTitleNews=0x7f08002a;
         public static final int webview=0x7f080024;
     }
     public static final class layout {
