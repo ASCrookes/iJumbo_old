@@ -102,7 +102,7 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 		} catch (IOException e) {
 			System.out.print(e);
 		}
-     }
+    }
     
     private String getURL() {
     	String url = "https://www.tuftslife.com/occurrences.rss?date=";
@@ -173,6 +173,7 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     			|| (tag.equals("link") && event.link.equals("N/A"))
     			|| (tag.equals("event_date") && event.date.equals("N/A"));
     }
+    
     // force the loading UI functions into the ui thread
     // the are called from a background thread
 	@Override
@@ -185,7 +186,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 					ProgressBar pb = (ProgressBar) findViewById(R.id.eventsPD);
 					pb.setVisibility(View.INVISIBLE);
 				}
-				
 			}
 		});
 	}
@@ -210,5 +210,4 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d", Locale.US);
 		this.dateItem.setTitle(dateFormat.format(this.date));
 	}
-	
 }

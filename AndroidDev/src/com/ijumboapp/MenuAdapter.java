@@ -80,11 +80,12 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		 boolean isHeader = this.sectionLocations.contains(Integer.valueOf(position));
 		 if(cell == null) {
 			 	LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-	            cell = inflater.inflate(this.resourceID, parent, false);
+			 	int resourceID = (isHeader) ? R.layout.listview_header_row : R.layout.listview_item_row;
+	            cell = inflater.inflate(resourceID, parent, false);
 	            
 	            holder = new FoodHolder();
 	            holder.foodData = this.data[position];
-	            holder.textV = (TextView)cell.findViewById(R.id.txtTitle);
+	            holder.textV = (TextView) ((isHeader) ?  cell.findViewById(R.id.txtHeader) : cell.findViewById(R.id.txtTitle));
 	            holder.index = (isHeader) ? -1 : position;
 	            cell.setTag(holder);
 	            final Context context = getContext();
@@ -102,7 +103,6 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		  		 	}
 	        	 }
 			});
-		        
 		 } else {
 			 holder = (FoodHolder)cell.getTag();
 		 }
@@ -111,12 +111,13 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		 JSONObject cellData = this.data[position];
 		 try {
 			 if(isHeader) {
+				 cell.res
 				 holder.textV.setText(cellData.getString("sectionName"));
-				 holder.textV.setBackgroundColor(Color.GRAY);
+				 //holder.textV.setBackgroundColor(Color.GRAY);
 				 holder.index = -1;
 			 } else {
 				 holder.textV.setText(cellData.getString("FoodName"));
-				 holder.textV.setBackgroundColor(Color.TRANSPARENT);
+				 //holder.textV.setBackgroundColor(Color.TRANSPARENT);
 				 holder.index = position;
 				 holder.foodData = data[position];
 			 }

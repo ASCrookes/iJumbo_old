@@ -47,6 +47,7 @@ enum NewsSegment {
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
