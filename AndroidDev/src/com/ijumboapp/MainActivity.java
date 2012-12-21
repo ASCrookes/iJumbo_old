@@ -98,6 +98,7 @@ public class MainActivity extends Activity {
 	public void getMenu(View view) {
 		Intent intent = new Intent(this, MenuActivity.class);
 		intent.putExtra("menuDataSource", this.menuDataSource);
+		intent.putExtra("menuLastUpdate", this.menuLastUpdate);
 		startActivityForResult(intent, MENU_ACTIVITY_RESULT);
 	}
 	
@@ -106,5 +107,4 @@ public class MainActivity extends Activity {
 		intent.putExtra("url", "https://trunk.tufts.edu/xsl-portal");
 		startActivity(intent);
 	}
-	
 }

@@ -2,6 +2,7 @@ package com.ijumboapp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,6 +11,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.DateTimeKeyListener;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,10 +30,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-        this.lastUpdate = -1;
-        this.dataSource = null;
-        
+        setContentView(R.layout.activity_menu);      
     }
     
 
@@ -64,12 +63,13 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
         // sometimes the data that loads relies on the menu spinners
         // so load after the spinners have been inflated from xml
         try {
-        	this.masterDict = new JSONObject(new String(getIntent().getByteArrayExtra("menuDataSource")));
+        	Intent intent = getIntent();
+        	this.masterDict = new JSONObject(new String(intent.getByteArrayExtra("menuDataSource")));
+        	this.lastUpdate = intent.getLongExtra("menuLastUpdate", -1);
 		} catch (JSONException e1) {
 			e1.printStackTrace();
 			System.out.println("MENU ACTIVITY ERROR: " + e1);
 		}
-        System.out.println("THE RECEIVED MASTER DICT: " + this.masterDict);
         try {
 			this.loadDataBasedOnDate();
 		} catch (JSONException e) {
@@ -81,7 +81,6 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     
 	@Override
 	public void onBackPressed() {
-		System.out.println("MENU BACK BUTTON WAS PRESSED");
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("menuDataSource", this.masterDict.toString().getBytes());
 		resultIntent.putExtra("menuLastUpdate", this.lastUpdate);
@@ -94,10 +93,8 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     	// if the server updated more recently than the device pulled load the data again
     	// or if this activity does not have the data load again
     	if(serversUpdate >= this.lastUpdate || this.masterDict == null || this.masterDict.length() == 0) {
-    		System.out.println("LOADING THAT BITCH AGAIN< YE DIGG");
     		new Thread(new ActivityLoadThread(this)).start();
     	} else {
-    		System.out.println("Loading the data based on display");
     		this.displayDataBasedOnUI();
     	}
     }
@@ -134,7 +131,9 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     }
 
     private void setLastUpdate(Date date) {
-    	SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMddHmm");
+    	SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMddHHmm");
+    	// the server puts the date in USA eastern time
+    	dateFormatter.setTimeZone(TimeZone.getTimeZone("America/New_York"));
     	this.lastUpdate = Long.parseLong(dateFormatter.format(date));
     }
     
@@ -159,7 +158,6 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
 			}
 		});
 	}
-
 
 	@Override
 	public void startLoadingUI() {

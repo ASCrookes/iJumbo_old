@@ -28,22 +28,21 @@ public class NewsAdapter extends ArrayAdapter<JSONObject> {
 	 @Override
 	 public View getView(int position, View convertView, ViewGroup parent) {
 		 View cell = convertView;
+		 // use a holder so that findViewById does not need to be called everytime
 		 Holder holder = null;
 		 if(cell == null) {
 			 	LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-	            cell = inflater.inflate(this.resourceID, parent, false);
-	            
+	            cell = inflater.inflate(R.layout.news_listview_row, parent, false);
 	            holder = new Holder();
 	            holder.textV = (TextView) cell.findViewById(R.id.txtTitleNews);
 	            holder.imageV = (ImageView) cell.findViewById(R.id.imgIconNews);
-	            
 	            cell.setTag(holder);
 		 } else {
 			 holder = (Holder) cell.getTag();
 		 }
 		 
 		 holder.textV.setText(data[position].toString());
-		 holder.imageV.setImageBitmap(data[position].imageBitmap);
+		 //holder.imageV.setImageBitmap(null/*data[position].imageBitmap*/);
 
 		 return cell;
 	 }

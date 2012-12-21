@@ -7,8 +7,11 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 public class JoeyTableActivity extends Activity implements LoadActivityInterface {
 
@@ -28,6 +31,19 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
         return true;
     }
     
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.joeyRefreshMenuItem:
+        	new Thread(new ActivityLoadThread(this)).start();
+        	return true;   
+        default:
+        	return super.onOptionsItemSelected(item);
+        }
+    }
+        
+        
     // gets the data from the server
     // loads it into the table
     public void loadData() {
@@ -39,8 +55,9 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
 				JSONObject jsonObj = (JSONObject) this.dataSource.get(i);
 				etas[i] = jsonObj.get("location") + ": " + jsonObj.get("ETA");
 			}
-			final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, etas);
-	        this.runOnUiThread(new Runnable() {
+			//final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, etas);
+	        final ListViewAdapter adapter = new ListViewAdapter(this, android.R.layout.simple_list_item_1, etas);
+			this.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
 					listV.setAdapter(adapter);				
@@ -53,11 +70,23 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
 
 	@Override
 	public void stopLoadingUI() {
-		// TODO Auto-generated method stub	
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pb = (ProgressBar) findViewById(R.id.joeyPD);
+				pb.setVisibility(View.INVISIBLE);
+			}
+		});
 	}
 
 	@Override
 	public void startLoadingUI() {
-		// TODO Auto-generated method stub
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pb = (ProgressBar) findViewById(R.id.joeyPD);
+				pb.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 }

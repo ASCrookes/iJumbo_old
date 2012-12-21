@@ -27,7 +27,6 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	Set<Integer> sectionLocations;
 	String diningHall;
 	
-	// TODO -- change this to take the MenuActivity.dataSource.class
 	public MenuAdapter(Context context, int textViewResourceId, JSONObject[] objects, String diningHall) {
 		super(context, textViewResourceId, objects);
 		this.context = context;
@@ -58,7 +57,6 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 			sectionData.put("SectionName", section.get("SectionName"));
 			foodWithSections.add(sectionData);
 			this.sectionLocations.add(foodWithSections.size() - 1);
-			System.out.println("Added location to set: " + (foodWithSections.size() - 1));
 			JSONArray sectionFood = section.getJSONArray("foods"); 
 			int foodLength = sectionFood.length();
 			// grab the array and add the entire thing
