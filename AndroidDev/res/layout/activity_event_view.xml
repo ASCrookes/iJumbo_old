@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventView" 
+    android:background="@drawable/background" >
+
+    <TextView
+        android:id="@+id/eventTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:lines="1"
+        android:textSize="26dp"
+        android:textColor="#FFFFFF"
+        android:text="Event Title" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/eventLocation"
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:text="Link:" />
+
+    <TextView
+        android:id="@+id/eventLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:textColor="#FFFFFF"
+        android:text="LINK GOES HERE" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/eventLink"
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:text="Description:" />
+
+    <TextView
+        android:id="@+id/eventDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView2"
+        android:maxLines = "10"
+        android:scrollbars = "vertical"
+        android:textColor="#000000"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_text_view"
+        android:text="DESCRIPTION GOES HERE" />
+
+    <TextView
+        android:id="@+id/eventTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/eventTitle"
+        android:layout_marginTop="22dp"
+        android:textColor="#FFFFFF"
+        android:text="TIME GOES HERE" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/eventTime"
+        android:layout_alignParentLeft="true"
+        android:textColor="#FFFFFF"
+        android:text="Time:" />
+
+    <TextView
+        android:id="@+id/eventLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
+        android:text="LOCATION GOES HERE" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/eventLocation"
+        android:layout_alignParentLeft="true"
+        android:textColor="#FFFFFF"
+        android:text="Location:" />
+
+</RelativeLayout>

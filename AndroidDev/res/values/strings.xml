@@ -13,5 +13,7 @@
     <string name="title_activity_food">FoodActivity</string>
     <string name="notAvailable">N/A</string>
     <string name="title_activity_places">PlacesActivity</string>
+    <string name="title_activity_event_view">EventView</string>
+    <string name="title_activity_place_view">PlaceView</string>
 
 </resources>

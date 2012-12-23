@@ -1,7 +1,12 @@
 package com.ijumboapp;
 
-public class Event extends Object {
+import java.io.Serializable;
+
+import android.text.Html;
+
+public class Event extends Object implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	protected String title;
 	protected String startTime;
 	protected String endTime;
@@ -59,7 +64,7 @@ public class Event extends Object {
 		else if(rssTag.equals("event_end"))
 			this.endTime = this.get12HourTime(value);
 		else if(rssTag.equals("description"))
-			this.description = value;
+			this.description = Html.fromHtml(value).toString();
 		else if(rssTag.equals("location"))
 			this.location = value;
 		else if(rssTag.equals("link"))

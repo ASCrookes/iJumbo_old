@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ public class NewsAdapter extends ArrayAdapter<JSONObject> {
 	Context context;
 	int resourceID;
 	Article[] data;
+	
 	
 	public NewsAdapter(Context context, int textViewResourceId, Article[] objects) {
 		super(context, textViewResourceId);
@@ -42,8 +45,13 @@ public class NewsAdapter extends ArrayAdapter<JSONObject> {
 		 }
 		 
 		 holder.textV.setText(data[position].toString());
-		 //holder.imageV.setImageBitmap(null/*data[position].imageBitmap*/);
-
+		 Bitmap bitmap = data[position].getImageBitmap();
+		 if(bitmap == null) {
+			 bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.news_default_white);
+		 }
+		 
+		 holder.imageV.setImageBitmap(bitmap);
+		 
 		 return cell;
 	 }
 	 

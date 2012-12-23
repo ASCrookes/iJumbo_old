@@ -1,13 +1,17 @@
 package com.ijumboapp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 
 
@@ -70,7 +74,11 @@ public class MainActivity extends Activity {
 
 	// puts the date on top of the calendar icon
 	private void setupIcons() {
-		
+		Date date = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
+		((TextView)findViewById(R.id.iconDay)).setText(dateFormat.format(date));
+		dateFormat = new SimpleDateFormat("d", Locale.US);
+		((TextView)findViewById(R.id.iconDayNumber)).setText(dateFormat.format(date));		
 	}
 
 	public void getNews(View view) {

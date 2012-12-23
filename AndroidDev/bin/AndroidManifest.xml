@@ -51,12 +51,20 @@
             android:label="@string/title_activity_map_view" >
         </activity>
         <activity
-            android:name="com.ijumboapp.FoodActivity"
+            android:name="com.ijumboapp.FoodView"
             android:label="@string/title_activity_food" >
         </activity>
         <activity
             android:name="com.ijumboapp.PlacesActivity"
             android:label="@string/title_activity_places" >
+        </activity>
+        <activity
+            android:name="com.ijumboapp.EventView"
+            android:label="@string/title_activity_event_view" >
+        </activity>
+        <activity
+            android:name="com.ijumboapp.PlaceView"
+            android:label="@string/title_activity_place_view" >
         </activity>
     </application>
 

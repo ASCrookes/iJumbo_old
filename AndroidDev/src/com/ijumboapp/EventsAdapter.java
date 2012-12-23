@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class ListViewAdapter extends ArrayAdapter<Object> {
+public class EventsAdapter extends ArrayAdapter<Object> {
 
 	private Object[] data;
 	private Context context;
 	
-	public ListViewAdapter(Context context, int textViewResourceId, Object[] objects) {
+	public EventsAdapter(Context context, int textViewResourceId, Object[] objects) {
 		super(context, textViewResourceId);
 		this.data = objects;
 		this.context = context;
@@ -25,9 +25,9 @@ public class ListViewAdapter extends ArrayAdapter<Object> {
 		 LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 		 Holder holder = null;
 		 if(cell == null) {
-			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
+			 cell = inflater.inflate(R.layout.events_item_row, parent, false);
 			 holder = new Holder();
-			 holder.tView = (TextView) cell.findViewById(R.id.txtTitle);
+			 holder.tView = (TextView) cell.findViewById(R.id.txtTitleEvents);
 			 cell.setTag(holder);
 		 } else {
 			 holder = (Holder) cell.getTag();
@@ -44,8 +44,5 @@ public class ListViewAdapter extends ArrayAdapter<Object> {
 	static class Holder {
 		TextView tView;
 	}
-	
-	
-	
 }
 

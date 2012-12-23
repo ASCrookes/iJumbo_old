@@ -11,6 +11,7 @@
          android:layout_height="wrap_content"
          style="@android:style/Widget.ProgressBar.Small"
          android:visibility="invisible"
+         android:layout_alignParentRight="true"
          android:layout_marginRight="5dp" />
     <!-- align this to the far right -->
     
@@ -19,7 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:divider="#6699CC"
+        android:dividerHeight="1dp" >
 
     </ListView>
 

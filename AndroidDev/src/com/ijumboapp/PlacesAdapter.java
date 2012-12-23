@@ -11,12 +11,15 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 
@@ -36,6 +39,22 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 			System.out.println("MenuAdapter.parseData Error: " + e);
 		}
 		System.out.println("DATA COUNT FOR ADAPTER: " + this.getCount());
+		final PlacesActivity activity = (PlacesActivity) context;
+		ListView lView = (ListView) activity.findViewById(R.id.placesList);
+		lView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				// do nothing if a section was selected
+				if(PlacesAdapter.this.sectionLocations.contains(arg2)) {
+					return;
+				}
+				System.out.println("CLOCKED THAT BITCH!");
+				Intent intent = new Intent(activity, PlaceView.class);
+				intent.putExtra("place", PlacesAdapter.this.data[arg2].toString());
+				System.out.println("THE PLACE IN THE INTENT: " + intent.getStringExtra("place"));
+				activity.startActivity(intent);
+			}
+		});
 	}
 	
 	private void parseData(JSONArray sections) throws JSONException {

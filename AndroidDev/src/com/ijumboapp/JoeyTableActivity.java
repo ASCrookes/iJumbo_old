@@ -9,7 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -55,8 +56,7 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
 				JSONObject jsonObj = (JSONObject) this.dataSource.get(i);
 				etas[i] = jsonObj.get("location") + ": " + jsonObj.get("ETA");
 			}
-			//final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, etas);
-	        final ListViewAdapter adapter = new ListViewAdapter(this, android.R.layout.simple_list_item_1, etas);
+	        final EventsAdapter adapter = new EventsAdapter(this, android.R.layout.simple_list_item_1, etas);
 			this.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {

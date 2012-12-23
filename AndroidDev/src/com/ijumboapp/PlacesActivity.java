@@ -4,18 +4,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class PlacesActivity extends Activity implements LoadActivityInterface {
 
-	private JSONArray buildings;
+	protected JSONArray buildings;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_places);
+		ListView lView = (ListView) findViewById(R.id.placesList);
 		new ActivityLoadThread(this).run();
 	}
 
@@ -28,15 +33,19 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 
 	@Override
 	public void loadData() throws JSONException {
-		final ListView listV = (ListView) findViewById(R.id.placesList);
-        try {
-			this.buildings = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/buildings");
-			Object[] places = new Object[buildings.length()];
-			for(int i = 0; i < buildings.length(); i++) {
-				places[i] = buildings.get(i);
+		this.buildings = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/buildings");
+		this.showBuildingsInListView();	
+	}
+	
+	private void showBuildingsInListView() {
+		try {
+			Object[] places = new Object[this.buildings.length()];
+			for(int i = 0; i < this.buildings.length(); i++) {
+				places[i] = this.buildings.get(i);
 			}
+			final ListView listV = (ListView) findViewById(R.id.placesList);
 			final PlacesAdapter adapter = new PlacesAdapter(this, R.layout.listview_item_row, this.buildings);
-	        this.runOnUiThread(new Runnable() {
+	        this.runOnUiThread(new Runnable() { 
 				@Override
 				public void run() {
 					listV.setAdapter(adapter);				
@@ -46,7 +55,7 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public void stopLoadingUI() {
 		// TODO Auto-generated method stub		
@@ -56,7 +65,4 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 	public void startLoadingUI() {
 		// TODO Auto-generated method stub
 	}
-	
-	
-
 }

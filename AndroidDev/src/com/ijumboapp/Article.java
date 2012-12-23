@@ -1,11 +1,14 @@
 package com.ijumboapp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class Article implements Serializable {
 	
@@ -16,7 +19,7 @@ public class Article implements Serializable {
 	protected String author;
 	//private ImageData 
 	protected String imageURL;
-	protected Bitmap imageBitmap;
+	protected byte[] imageBytes;
 
 	
 	public Article() {
@@ -24,7 +27,7 @@ public class Article implements Serializable {
 		this.link = "N/A";
 		this.author = "N/A";
 		this.imageURL = "N/A";
-		this.imageBitmap = null;
+		this.imageBytes = null;
 	}
 	
 	// the adapter has a list of Article objects so this is what prints to the lsit
@@ -54,41 +57,36 @@ public class Article implements Serializable {
 		else if(rssTag.equals("thumbnail")) {
 			// strip url of whitespace
 			this.imageURL = value.replaceAll("\\s*", "");
-			if(this.imageURL.equals("") || this.imageBitmap != null) {
-				return;
-			}
-			// Something about getting the image adds articles mutliple times
-			// and rearranges them.
-			URL url = null;
-			HttpURLConnection connection = null;
-			InputStream is = null;
-			/*
-			try {
-				
-				url = new URL(this.imageURL);
-				connection = (HttpURLConnection) url.openConnection();
-				connection.setChunkedStreamingMode(10000);
-				is = connection.getInputStream();
-				this.imageBitmap = BitmapFactory.decodeStream(is);
-				
-				
-				URLConnection connection = new URI(this.imageURL).toURL().openConnection();
-				connection.connect();
-				InputStream is = connection.getInputStream();
-				BufferedInputStream bis = new BufferedInputStream(is, 8 * 1024);
-				this.imageBitmap = BitmapFactory.decodeStream(bis);
-				bis.close();
-				is.close(); 
-				
-			} catch (IOException e) {
-				this.imageBitmap = null;
-				e.printStackTrace();
-				System.out.println("Artilce thumbnail EXCEPTION: " + e);
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			*/
 		}
+	}
+	
+	public void downloadImage() {
+		if(this.imageURL.equals("") || this.imageBytes != null) {
+			return;
+		}
+		// Something about getting the image adds articles mutliple times
+		// and rearranges them.
+		
+		try {
+			URL url = new URL(this.imageURL);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setChunkedStreamingMode(10000); // TODO -- is this necessary
+			InputStream is = connection.getInputStream();
+			Bitmap bitmap = BitmapFactory.decodeStream(is);
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+			this.imageBytes = stream.toByteArray();			
+		} catch (IOException e) {
+			this.imageBytes = null;
+			e.printStackTrace();
+			System.out.println("Artilce thumbnail EXCEPTION: " + e);
+		}
+	}
+	
+	public Bitmap getImageBitmap() {
+		if(this.imageBytes == null) {
+			return null;
+		}
+		return BitmapFactory.decodeByteArray(this.imageBytes, 0, this.imageBytes.length);
 	}
 }

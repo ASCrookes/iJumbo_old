@@ -21,7 +21,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -50,6 +49,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				System.out.println("ON ITEM CLICK NEWS VIEW");
 				Intent intent = new Intent(NewsActivity.this, WebActivity.class);
 				intent.putExtra("url", NewsActivity.this.articles.get(arg2).link);
 				NewsActivity.this.startActivity(intent);
@@ -196,12 +196,14 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
         final ListView listV = (ListView) findViewById(R.id.newsList);
         Article[] articlesList = new Article[this.articles.size()];
         this.articles.toArray(articlesList);
-        //final ArrayAdapter<Article> adapter =  new ArrayAdapter<Article>(this, android.R.layout.simple_list_item_1, android.R.id.text1, articlesList);
-        final NewsAdapter adapter2 = new NewsAdapter(this, R.layout.news_listview_row, articlesList);
+        for(int i = 0; i < articlesList.length; i++) {
+        	articlesList[i].downloadImage();
+        }
+        final NewsAdapter adapter = new NewsAdapter(this, R.layout.news_listview_row, articlesList);
         this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				listV.setAdapter(adapter2);
+				listV.setAdapter(adapter);
 			}
 		});
         
@@ -223,24 +225,28 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 			public void run() {
 				ProgressBar pBar = (ProgressBar) findViewById(R.id.newsPD);
 				pBar.setVisibility(View.INVISIBLE);
+				NewsActivity.this.newsSectionsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+						NewsActivity.this.displayDataBasedOnUI();
+					}
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {}
+		        });
 			}
 		});
 	}
 
 	@Override
 	public void startLoadingUI() {
-		
 		this.runOnUiThread(new Runnable() {
-			
 			@Override
 			public void run() {
 				ProgressBar pBar = (ProgressBar) findViewById(R.id.newsPD);
 				pBar.setVisibility(View.VISIBLE);
-				// NewsActivity.this.progressBar = new ProgressBar(NewsActivity.this, null, android.R.attr.progressBarStyleSmall);
-				//NewsActivity.this.progress = ProgressDialog.show(NewsActivity.this, "Loading...", "", true);
+				NewsActivity.this.newsSectionsSpinner.setOnItemSelectedListener(null);
 			}
 		});
-
 	}
 
 	public Map<String, List<Article> > getStories() {

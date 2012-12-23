@@ -11,9 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/news"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@null"
         android:onClick="getNews"
-        android:background="@null" />
+        android:src="@drawable/news" />
 
     <ImageButton
         android:id="@+id/mapButton"
@@ -21,9 +23,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/map"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@null"
         android:onClick="getMap"
-        android:background="@null" />
+        android:src="@drawable/map" />
 
     <ImageButton
         android:id="@+id/joeyButton"
@@ -31,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"
         android:src="@drawable/greybus"
         android:onClick="getJoey"
         android:background="@null" />
@@ -41,6 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
         android:src="@drawable/webpage"
         android:onClick="getTrunk"
         android:background="@null" />
@@ -51,18 +58,121 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
         android:src="@drawable/events"
         android:onClick="getEvents"
         android:background="@null" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/mapButton"
+        android:layout_alignRight="@+id/mapButton"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:text="Map/Places" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignRight="@+id/joeyButton"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:text="Transportation" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignLeft="@+id/trunkButton"
+        android:layout_alignRight="@+id/trunkButton"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp"
+        android:gravity="center"
+        android:text="Trunk" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eventsButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView3"
+        android:gravity="center"
+        android:text="Events"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/menuButton"
+        android:layout_alignRight="@+id/menuButton"
+        android:layout_below="@+id/joeyButton"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:text="Menus"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newsButton"
+        android:layout_alignRight="@+id/newsButton"
+        android:layout_below="@+id/mapButton"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:text="News"
+        android:textColor="#FFFFFF"
+        android:textSize="10dp" />
 
     <ImageButton
         android:id="@+id/menuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/burger"
+        android:layout_alignBottom="@+id/joeyButton"
+        android:layout_alignLeft="@+id/textView1"
+        android:background="@null"
         android:onClick="getMenu"
-        android:background="@null" />
+        android:src="@drawable/burger" />
+
+    <TextView
+        android:id="@+id/iconDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eventsButton"
+        android:layout_alignRight="@+id/eventsButton"
+        android:layout_alignTop="@+id/eventsButton"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:textSize="15dp"
+        android:text="Friday" />
+
+    <TextView
+        android:id="@+id/iconDayNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iconDay"
+        android:layout_alignRight="@+id/eventsButton"
+        android:layout_alignTop="@+id/trunkButton"
+        android:gravity="center_horizontal"
+        android:text="00"
+        android:textSize="55dp" />
         
 </RelativeLayout>

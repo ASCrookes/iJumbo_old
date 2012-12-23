@@ -1,0 +1,237 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".PlaceView" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFFFFF"
+        android:text="Address:" />
+
+    <TextView
+        android:id="@+id/placeAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/textView1"
+        android:gravity="right"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeAddress"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#FFFFFF"
+        android:text="Website:" />
+
+    <TextView
+        android:id="@+id/placeWebsite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginRight="5dp"
+        android:gravity="right"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeWebsite"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#FFFFFF"
+        android:text="Phone:" />
+
+    <TextView
+        android:id="@+id/placePhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginRight="5dp"
+        android:gravity="right"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/placeLabelHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placePhone"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Hours:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeLabelMonday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeLabelHours"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="14dp"
+        android:text="Monday:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeLabelTuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeLabelMonday"
+        android:layout_marginLeft="20dp"
+        android:text="Tuesday:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeLabelWednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeLabelMonday"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="18dp"
+        android:text="Wednesday:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeLabelThursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeLabelWednesday"
+        android:layout_marginLeft="20dp"
+        android:text="Thursday:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeLabelFriday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeLabelWednesday"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="20dp"
+        android:text="Friday:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeLabelSaturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeLabelThursday"
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="20dp"
+        android:text="Saturday:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeLabelSunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/placeLabelFriday"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="20dp"
+        android:text="Sunday:"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/placeMonday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/placeLabelWednesday"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/placeTuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/placeLabelTuesday"
+        android:layout_alignBottom="@+id/placeLabelTuesday"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/placeWednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/placeLabelWednesday"
+        android:layout_alignBottom="@+id/placeLabelWednesday"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/placeThursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/placeLabelThursday"
+        android:layout_alignBottom="@+id/placeLabelThursday"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/placeFriday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/placeLabelSunday"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/placeSaturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/placeLabelSaturday"
+        android:layout_alignBottom="@+id/placeLabelSaturday"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/placeSunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/placeLabelSunday"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textColor="#FFFFFF"
+        android:text="N/A" />
+
+</RelativeLayout>

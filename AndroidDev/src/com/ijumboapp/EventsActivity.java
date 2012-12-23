@@ -3,7 +3,6 @@ package com.ijumboapp;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +19,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -43,6 +43,18 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events); 
+        ListView lView = (ListView) findViewById(R.id.eventsList);
+        lView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Event event = EventsActivity.this.events.get(arg2);
+				Intent intent = new Intent(EventsActivity.this, EventView.class);
+				intent.putExtra("event", event);
+				System.out.println("EVENT CELL CLICKED");
+				EventsActivity.this.startActivity(intent);
+			}
+		});
     }
     
     // data loading relies on the ui, some of that gets initially set here
@@ -57,6 +69,9 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         } else {
         	this.setDate(new Date(dateString));
         }
+        
+        
+        
         // the below line calls this.loadData in a background thread
         this.loadingThreads = 0;
         new Thread(new ActivityLoadThread(this)).start();
@@ -151,7 +166,8 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         final ListView listV = (ListView) findViewById(R.id.eventsList);
         Event[] eventsList = new Event[this.events.size()];
         this.events.toArray(eventsList);
-        final ArrayAdapter<Event> adapter =  new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, android.R.id.text1, eventsList);
+        final EventsAdapter adapter = new EventsAdapter(this, 0, eventsList);
+        //final ArrayAdapter<Event> adapter =  new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, android.R.id.text1, eventsList);
         this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -207,7 +223,7 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 	public void setDate(Date newDate) {
 		this.date = newDate;
 		new Thread(new ActivityLoadThread(this)).start();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/d", Locale.US);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd", Locale.US);
 		this.dateItem.setTitle(dateFormat.format(this.date));
 	}
 }

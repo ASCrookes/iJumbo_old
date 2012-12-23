@@ -64,6 +64,11 @@ class RequestManager {
 		}
 		return stream;
 	}
+	
+	protected String getInCurrentThread(String url) {
+		RequestTask task =  new RequestTask();
+		return task.getInCurrentThread(url);
+	}
 }
 
 class RequestTask extends AsyncTask<String, String, String>{
@@ -98,6 +103,31 @@ class RequestTask extends AsyncTask<String, String, String>{
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         //Do anything with response..
+    }
+    
+    protected String getInCurrentThread(String url) {
+    	 HttpClient httpclient = new DefaultHttpClient();
+         HttpResponse response;
+         String responseString = null;
+         try {
+             response = httpclient.execute(new HttpGet(url));
+             StatusLine statusLine = response.getStatusLine();
+             if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                 ByteArrayOutputStream out = new ByteArrayOutputStream();
+                 response.getEntity().writeTo(out);
+                 out.close();
+                 responseString = out.toString();
+             } else{
+                 //Closes the connection.
+                 response.getEntity().getContent().close();
+                 throw new IOException(statusLine.getReasonPhrase());
+             }
+         } catch (ClientProtocolException e) {
+             //TODO Handle problems..
+         } catch (IOException e) {
+             //TODO Handle problems..
+         }
+         return responseString;
     }
 }
 

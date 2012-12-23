@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
-public class FoodActivity extends Activity {
+public class FoodView extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

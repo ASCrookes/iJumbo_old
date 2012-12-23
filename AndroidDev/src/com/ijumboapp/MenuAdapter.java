@@ -103,7 +103,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
         	 @Override
         	 public void onClick(View v) {
         		Intent intent = null;
-	  		 	intent = new Intent(context, FoodActivity.class);
+	  		 	intent = new Intent(context, FoodView.class);
 	  		 	intent.putExtra("data", MenuAdapter.this.data[position].toString());
 	  		 	context.startActivity(intent);
         	 }
