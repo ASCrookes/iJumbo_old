@@ -42,10 +42,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		this.sectionLocations = new HashSet<Integer>();
 		try {
 			this.parseData(objects);
-		} catch (JSONException e) {
-			System.out.println("MenuAdapter.parseData Error: " + e);
-		}
-		System.out.println("DATA COUNT FOR ADAPTER: " + this.getCount());
+		} catch (JSONException e) {}
 		final PlacesActivity activity = (PlacesActivity) context;
 		ListView lView = (ListView) activity.findViewById(R.id.placesList);
 		lView.setOnItemClickListener(new OnItemClickListener() {
@@ -55,10 +52,8 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 				if(PlacesAdapter.this.sectionLocations.contains(arg2)) {
 					return;
 				}
-				System.out.println("CLOCKED THAT BITCH!");
 				Intent intent = new Intent(activity, PlaceView.class);
 				intent.putExtra("place", PlacesAdapter.this.data[arg2].toString());
-				System.out.println("THE PLACE IN THE INTENT: " + intent.getStringExtra("place"));
 				activity.startActivity(intent);
 			}
 		});
@@ -126,10 +121,6 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		} else {
 			holder = (Holder) cell.getTag();
 		}
-
-		if(holder == null) {
-			System.out.println("HOLDER IS NULL!!!!");
-		}
 		
 		try {
 			holder.tView.setText(cellData.getString("building_name"));
@@ -170,8 +161,6 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapQuery));
 					Activity activity = (Activity) PlacesAdapter.this.context;
 					activity.startActivity(intent);
-				} else {
-					System.out.println("A MAP QUERY WAS NOT FORMED!?!?!?!?!?");
 				}
 			}
 		};

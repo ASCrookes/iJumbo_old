@@ -36,10 +36,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		this.diningHall = diningHall;
 		try {
 			this.parseData(objects);
-		} catch (JSONException e) {
-			System.out.println("MenuAdapter.parseData Error: " + e);
-		}
-		System.out.println("DATA COUNT FOR ADAPTER: " + this.getCount());
+		} catch (JSONException e) {}
 	}
 	
 	private void parseData(JSONObject[] objects) throws JSONException {

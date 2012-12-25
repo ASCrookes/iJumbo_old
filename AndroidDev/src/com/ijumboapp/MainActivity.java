@@ -50,9 +50,7 @@ public class MainActivity extends Activity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		System.out.println("on activity: " + requestCode);
 		if(resultCode != Activity.RESULT_OK) {
-			System.out.println("THE RESULT WAS NOT OK");
 			return;
 		}
 		switch(requestCode) {
@@ -60,9 +58,7 @@ public class MainActivity extends Activity {
 			this.newsStories = (HashMap<String, List<Article> >) data.getSerializableExtra("newsStories");
 			break;
 		case MENU_ACTIVITY_RESULT:
-			System.out.println("GOT THE MENU ACTIVITY RESULT");
 			this.menuDataSource = data.getByteArrayExtra("menuDataSource");
-			System.out.println("MENU ACTIVITY CLOSED" + this.menuDataSource);
 			this.menuLastUpdate = data.getLongExtra("menuLastUpdate", -1);
 			break;
 		case EVENTS_ACTIVITY_RESULT:

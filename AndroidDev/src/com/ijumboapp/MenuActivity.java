@@ -49,9 +49,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
 					} else {
 						MenuActivity.this.displayDataBasedOnUI();
 					}
-				} catch (JSONException e) {
-					System.out.println("MENU ACTIVITY ERROR: " + e);
-				}
+				} catch (JSONException e) {}
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {}
@@ -66,10 +64,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
         	Intent intent = getIntent();
         	this.masterDict = new JSONObject(new String(intent.getByteArrayExtra("menuDataSource")));
         	this.lastUpdate = intent.getLongExtra("menuLastUpdate", -1);
-		} catch (JSONException e1) {
-			e1.printStackTrace();
-			System.out.println("MENU ACTIVITY ERROR: " + e1);
-		}
+		} catch (JSONException e1) {}
         try {
 			this.loadDataBasedOnDate();
 		} catch (JSONException e) {

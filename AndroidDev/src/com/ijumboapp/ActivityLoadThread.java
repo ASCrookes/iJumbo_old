@@ -21,14 +21,8 @@ public class ActivityLoadThread implements Runnable {
 			this.activity.startLoadingUI();
 			try {
 				this.activity.loadData();
-			} catch (JSONException e) {
-				System.out.println("ActivityLoadThread loadData Error: " + e);
-				e.printStackTrace();
-			}
+			} catch (JSONException e) {}
 			this.activity.stopLoadingUI();
-		} else {
-			System.out.println("ActivityLoadThread: There is no activity to run loadData on!");
 		}
-		
 	}
 }

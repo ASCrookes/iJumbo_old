@@ -42,13 +42,11 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
         setContentView(R.layout.activity_news);
         ListView lView = (ListView) findViewById(R.id.newsList);
         this.stories = (HashMap<String, List<Article>>) getIntent().getSerializableExtra("newsStories");
-        System.out.println("Got the stories: " + this.stories);
         lView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				System.out.println("ON ITEM CLICK NEWS VIEW");
 				Intent intent = new Intent(NewsActivity.this, WebActivity.class);
 				intent.putExtra("url", NewsActivity.this.articles.get(arg2).link);
 				intent.putExtra("title", "News");
@@ -79,7 +77,6 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 	
 	@Override
 	public void onBackPressed() {
-		System.out.println("BACK BUTTON WAS PRESSED");
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("newsStories", (Serializable) this.stories);
 		setResult(Activity.RESULT_OK, resultIntent);
@@ -107,19 +104,15 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
             return;
     	}
     	String xml = new RequestManager().get(this.getURL());
-    	//System.out.println("THE XML FILE: " + xml);
     	// load binary of the xml into a stream
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
     	boolean didParse = true;
     	try {
-    		// parse through it
 			this.parseThatIsh(inStream);
 		} catch (XmlPullParserException e) {
 			didParse = false;
-			System.out.print(e);
 		} catch (IOException e) {
 			didParse = false;
-			System.out.print(e);
 		}
     	
     	// if it did parse save the articles (this.articles)

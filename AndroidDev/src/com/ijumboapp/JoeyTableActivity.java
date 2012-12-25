@@ -21,7 +21,6 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joey_table);
-        System.out.println("IN ON CREATE FOR JOEY TABLE");
         new Thread(new ActivityLoadThread(this)).start();
     }
 

@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
@@ -23,7 +24,6 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_places);
-		ListView lView = (ListView) findViewById(R.id.placesList);
 		new ActivityLoadThread(this).run();
 	}
 
@@ -74,7 +74,6 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 			// keep it consistent with the json file
 			fis = openFileInput("buildings");
 		} catch (FileNotFoundException e) {
-			System.out.println("DID NOT FIND FILE: " + e);
 			return null;
 		}
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -95,7 +94,6 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 			fileBuildings = null;
 			e.printStackTrace();
 		}
-		System.out.println("THE BUILDING RECEIVED: " + fileBuildings);
 		
 		return fileBuildings;
 	}
@@ -103,17 +101,11 @@ public class PlacesActivity extends Activity implements LoadActivityInterface {
 	private void writeBuildingsToStorage(JSONArray buildingsList) {
 		FileOutputStream fos = null;
 		try {
-			fos = openFileOutput("buildings", this.MODE_PRIVATE);
-		} catch (FileNotFoundException e) {
-			System.out.println("WRITE BUILDINGS: " + e);
-			e.printStackTrace();
-		}
+			fos = openFileOutput("buildings", Context.MODE_PRIVATE);
+		} catch (FileNotFoundException e) {}
 		try {
 			fos.write(buildingsList.toString().getBytes());
-		} catch (IOException e) {
-			System.out.println("FOS WRITE: " + e);
-			e.printStackTrace();
-		}
+		} catch (IOException e) {}
 	}
 	
 	@Override

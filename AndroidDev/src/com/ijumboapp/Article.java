@@ -79,8 +79,6 @@ public class Article implements Serializable {
 			this.imageBytes = stream.toByteArray();			
 		} catch (IOException e) {
 			this.imageBytes = null;
-			e.printStackTrace();
-			System.out.println("Artilce thumbnail EXCEPTION: " + e);
 		}
 	}
 	

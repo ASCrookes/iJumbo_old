@@ -50,7 +50,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
 				Event event = EventsActivity.this.events.get(arg2);
 				Intent intent = new Intent(EventsActivity.this, EventView.class);
 				intent.putExtra("event", event);
-				System.out.println("EVENT CELL CLICKED");
 				EventsActivity.this.startActivity(intent);
 			}
 		});
@@ -109,11 +108,8 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     	try {
     		// parse through it
 			this.parseThatIsh(inStream);
-		} catch (XmlPullParserException e) {
-			System.out.print(e);
-		} catch (IOException e) {
-			System.out.print(e);
-		}
+		} catch (XmlPullParserException e) {} 
+    	  catch (IOException e) {}
     }
     
     private String getURL() {
@@ -156,7 +152,6 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
         }
         // stop the another thread was loaded to grab data
         if(currentThreads != this.loadingThreads) {
-        	System.out.println("ANOTHER THREAD STARTED SO I STOPPED");
         	return;
         }
         

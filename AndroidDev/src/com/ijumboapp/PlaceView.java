@@ -23,9 +23,7 @@ public class PlaceView extends Activity {
 		try {
 			place = new JSONObject(intent.getStringExtra("place"));
 			this.setupViewForLocation(place);
-		} catch (JSONException e) {
-			System.out.println("PLACE VIEW ON CREATE ERROR: " + e);
-		}
+		} catch (JSONException e) {}
 		
 	}
 
