@@ -40,6 +40,7 @@ public class PlaceView extends Activity {
 		if(location == null) {
 			return;
 		}
+		this.setTitle(location.getString("building_name"));
 		((TextView)findViewById(R.id.placeAddress)).setText(location.getString("address"));
 		((TextView)findViewById(R.id.placeWebsite)).setText(location.getString("website"));
 		((TextView)findViewById(R.id.placePhone)).setText(location.getString("phone_number"));

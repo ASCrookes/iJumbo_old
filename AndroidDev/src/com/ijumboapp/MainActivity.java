@@ -85,6 +85,7 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, NewsActivity.class);
 		intent.putExtra("newsStories", this.newsStories);
 		startActivityForResult(intent, NEWS_ACTIVITY_RESULT);
+		this.newsStories = null;
 	}
 	
 	
@@ -114,6 +115,7 @@ public class MainActivity extends Activity {
 	public void getTrunk(View view) {
 		Intent intent = new Intent(this, WebActivity.class);
 		intent.putExtra("url", "https://trunk.tufts.edu/xsl-portal");
+		intent.putExtra("title", "Trunk");
 		startActivity(intent);
 	}
 }

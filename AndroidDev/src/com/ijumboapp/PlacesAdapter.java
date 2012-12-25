@@ -121,6 +121,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 			holder.mapButton  = cell.findViewById(R.id.placesRowMapButton);
 			holder.infoButton.setOnClickListener(this.infoOnClickListener());
 			holder.mapButton.setOnClickListener(this.mapOnClickListener());
+			cell.setOnClickListener(this.cellOnClickListener());
 			cell.setTag(holder);
 		} else {
 			holder = (Holder) cell.getTag();
@@ -135,6 +136,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		} catch (JSONException e) {}
 		holder.infoButton.setTag(position);
 		holder.mapButton.setTag(position);
+		holder.position = position;
 		 
 		return cell;
 	}
@@ -174,6 +176,19 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 			}
 		};
 	}
+	
+	private OnClickListener cellOnClickListener() {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Holder holder = (Holder) v.getTag();
+				Activity activity = (Activity)PlacesAdapter.this.context;
+				Intent intent = new Intent(activity, PlaceView.class);
+				intent.putExtra("place", PlacesAdapter.this.data[holder.position].toString());
+				activity.startActivity(intent);
+			}
+		};
+	}
 
 	
 	@Override
@@ -198,6 +213,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		TextView tView;
 		View mapButton;
 		View infoButton;
+		int position;
 	}
 }
 

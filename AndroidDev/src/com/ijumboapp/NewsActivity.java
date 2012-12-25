@@ -35,8 +35,6 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 	private Map<String, String> urls;
 	//private Spinner newsSpinner;
 	private Spinner newsSectionsSpinner;
-	private ProgressDialog progress;
-	private ProgressBar progressBar;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +51,7 @@ public class NewsActivity extends Activity implements LoadActivityInterface {
 				System.out.println("ON ITEM CLICK NEWS VIEW");
 				Intent intent = new Intent(NewsActivity.this, WebActivity.class);
 				intent.putExtra("url", NewsActivity.this.articles.get(arg2).link);
+				intent.putExtra("title", "News");
 				NewsActivity.this.startActivity(intent);
 			}
 		});

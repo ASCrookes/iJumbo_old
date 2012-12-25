@@ -22,6 +22,10 @@ public class WebActivity extends Activity {
        		webView.loadUrl(url);
        		this.setContentView(webView);
        	}
+       	String title = intent.getStringExtra("title");
+       	if(title != null) {
+       		setTitle(title);
+       	}
 	}
 
 	@Override
