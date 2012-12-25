@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+
 public class EventsAdapter extends ArrayAdapter<Object> {
 
 	private Object[] data;

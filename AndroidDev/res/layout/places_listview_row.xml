@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal" >
+
+    <ImageButton
+         android:layout_width="35dp"
+         android:layout_height="35dp"
+         android:layout_gravity="right"
+         android:src="@drawable/places_map_button"
+         android:id="@+id/placesRowMapButton"
+         />
+    
+    <ImageButton
+         android:layout_width="35dp"
+         android:layout_height="35dp"
+         android:layout_gravity="right"
+         android:src="@drawable/places_info_button"
+         android:id="@+id/placesRowInfoButton"
+         />
+    
+     <TextView android:id="@+id/txtTitle_place"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:lines="1"
+        android:textSize="18dp"
+        android:textColor="#FFFFFF" />
+     
+     
+     
+
+</LinearLayout>

@@ -14,18 +14,18 @@ import android.view.View;
 import android.widget.TextView;
 
 
-
 public class MainActivity extends Activity {
 	
 	final static int   NEWS_ACTIVITY_RESULT = 0;
 	final static int   MENU_ACTIVITY_RESULT = 1;
 	final static int EVENTS_ACTIVITY_RESULT = 2;
+	final int       GOOGLE_API_ERROR_DIALOG = 3;
 
 	
 	// data to simulate activity persistance
 	private HashMap<String, List<Article> > newsStories;
 	private long eventDate; // store the date used in milliseconds
-	//this is the json string of the data source since jsonobjects cannot be passed with extras
+	//this is the JSON string of the data source since jsonobjects cannot be passed with extras
 	private byte[] menuDataSource;
 	private long menuLastUpdate;
 	
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 		this.menuLastUpdate = -1;
 		System.out.println("CREATED THE MAIN VIEW");
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -68,17 +68,17 @@ public class MainActivity extends Activity {
 		case EVENTS_ACTIVITY_RESULT:
 			this.eventDate = data.getLongExtra("eventDateString", -1);
 			break;
-		
 		}
 	}
 
-	// puts the date on top of the calendar icon
+	
 	private void setupIcons() {
+		// puts the current date on top of the calendar icon
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
 		((TextView)findViewById(R.id.iconDay)).setText(dateFormat.format(date));
 		dateFormat = new SimpleDateFormat("d", Locale.US);
-		((TextView)findViewById(R.id.iconDayNumber)).setText(dateFormat.format(date));		
+		((TextView)findViewById(R.id.iconDayNumber)).setText(dateFormat.format(date));	
 	}
 
 	public void getNews(View view) {
@@ -86,6 +86,7 @@ public class MainActivity extends Activity {
 		intent.putExtra("newsStories", this.newsStories);
 		startActivityForResult(intent, NEWS_ACTIVITY_RESULT);
 	}
+	
 	
 	public void getMap(View view) {
 		Intent intent = new Intent(this, PlacesActivity.class);

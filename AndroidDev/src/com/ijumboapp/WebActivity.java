@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.webkit.WebView;
 
+
+
 public class WebActivity extends Activity {
 
 	@Override

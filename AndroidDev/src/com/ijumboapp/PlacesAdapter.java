@@ -12,17 +12,24 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+
 
 public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 
+	final int HEADER_ITEM_VIEW_TYPE = 0;
+	final int ROW_ITEM_VIEW_TYPE = 1;
+	
 	Context context;
 	int resourceID;
 	JSONObject data[];
@@ -93,31 +100,105 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		 View cell = convertView;
-		 LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-		 final boolean isHeader = this.sectionLocations.contains(Integer.valueOf(position));
-		 JSONObject cellData = this.data[position];
-		 if(isHeader) {
-			 cell = inflater.inflate(R.layout.listview_header_row, parent, false);
-			 try {
-				((TextView)cell.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
+		View cell = convertView;
+		LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+		final boolean isHeader = this.sectionLocations.contains(Integer.valueOf(position));
+		JSONObject cellData = this.data[position];
+		// if it is the header just create a new view and return it
+		if(isHeader) {
+			View cellHeader = inflater.inflate(R.layout.listview_header_row, parent, false);
+			try {
+				((TextView)cellHeader.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
 			} catch (JSONException e) {}
-		 } else {
-			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
-			 try {
-				((TextView)cell.findViewById(R.id.txtTitle)).setText(cellData.getString("building_name"));
-			} catch (JSONException e) {}
-		 }
+			return cellHeader;
+		}
+		Holder holder;
+		if(cell == null || cell.getId() == R.layout.listview_header_row) {
+			cell = inflater.inflate(R.layout.places_listview_row, parent, false);
+			holder = new Holder();
+			holder.tView = (TextView) cell.findViewById(R.id.txtTitle_place);
+			holder.infoButton = cell.findViewById(R.id.placesRowInfoButton);
+			holder.mapButton  = cell.findViewById(R.id.placesRowMapButton);
+			holder.infoButton.setOnClickListener(this.infoOnClickListener());
+			holder.mapButton.setOnClickListener(this.mapOnClickListener());
+			cell.setTag(holder);
+		} else {
+			holder = (Holder) cell.getTag();
+		}
 
+		if(holder == null) {
+			System.out.println("HOLDER IS NULL!!!!");
+		}
+		
+		try {
+			holder.tView.setText(cellData.getString("building_name"));
+		} catch (JSONException e) {}
+		holder.infoButton.setTag(position);
+		holder.mapButton.setTag(position);
+		 
 		return cell;
 	}
 	
+	private OnClickListener infoOnClickListener() {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int position = (Integer) v.getTag();
+				Activity activity = (Activity)PlacesAdapter.this.context;
+				Intent intent = new Intent(activity, PlaceView.class);
+				intent.putExtra("place", PlacesAdapter.this.data[position].toString());
+				activity.startActivity(intent);
+			}
+		};
+	}
+	
+	private OnClickListener mapOnClickListener() {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int position = (Integer) v.getTag();
+				JSONObject place = PlacesAdapter.this.data[position];
+				String mapQuery = null;
+				try {
+					mapQuery = String.format("http://maps.google.com/maps?q=%s,+%s+(%s)", place.getString("latitude"), place.getString("longitude"), place.getString("building_name"));
+				} catch(JSONException e) {
+					mapQuery = null;
+				}
+				if(mapQuery != null) {
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapQuery));
+					Activity activity = (Activity) PlacesAdapter.this.context;
+					activity.startActivity(intent);
+				} else {
+					System.out.println("A MAP QUERY WAS NOT FORMED!?!?!?!?!?");
+				}
+			}
+		};
+	}
 
 	
 	@Override
 	public int getCount() {
 		return this.data.length;
 	}	
+	
+	@Override 
+	public int getViewTypeCount() {
+		return 2;
+	}
+	
+	@Override
+	public int getItemViewType(int position) {
+		if(this.sectionLocations.contains(position)) {
+			return HEADER_ITEM_VIEW_TYPE;
+		}
+		return ROW_ITEM_VIEW_TYPE;
+	}
+	
+	private class Holder {
+		TextView tView;
+		View mapButton;
+		View infoButton;
+	}
 }
 
 

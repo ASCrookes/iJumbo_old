@@ -25,7 +25,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 
-
 public class EventsActivity extends Activity implements LoadActivityInterface {
 	final long MILLISECONDS_IN_DAY = 86400000;
 	private Date date;
@@ -80,21 +79,19 @@ public class EventsActivity extends Activity implements LoadActivityInterface {
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	// by using set date in the functions it will 
-    	// reload the data after changing the date
-        switch (item.getItemId()) {
-        	case R.id.eventsPrevious:
-        		this.setDate(new Date(this.date.getTime() - MILLISECONDS_IN_DAY));
-        		return true;
-        	case R.id.eventNext:
-        		this.setDate(new Date(this.date.getTime() + MILLISECONDS_IN_DAY));
-        		return true;
-        	case R.id.eventDate:
-        		this.setDate(new Date());
-        		return true;
-    		default:
-    			return super.onOptionsItemSelected(item);
-        }
+    	int itemId = item.getItemId();
+		if (itemId == R.id.eventsPrevious) {
+			this.setDate(new Date(this.date.getTime() - MILLISECONDS_IN_DAY));
+			return true;
+		} else if (itemId == R.id.eventNext) {
+			this.setDate(new Date(this.date.getTime() + MILLISECONDS_IN_DAY));
+			return true;
+		} else if (itemId == R.id.eventDate) {
+			this.setDate(new Date());
+			return true;
+		} else {
+			return super.onOptionsItemSelected(item);
+		}
     }
     
     @Override

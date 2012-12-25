@@ -25,6 +25,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+
 public class NewsActivity extends Activity implements LoadActivityInterface {
 
 	private List <Article> articles;

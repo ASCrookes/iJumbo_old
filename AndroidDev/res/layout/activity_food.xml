@@ -102,7 +102,7 @@
         android:layout_alignLeft="@+id/servingSize"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/servingSize"
@@ -111,7 +111,7 @@
         android:layout_above="@+id/TextView01"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/fatCalories"
@@ -121,7 +121,7 @@
         android:layout_alignLeft="@+id/calories"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/satFat"
@@ -131,7 +131,7 @@
         android:layout_alignLeft="@+id/fatCalories"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/cholestoral"
@@ -141,7 +141,7 @@
         android:layout_alignLeft="@+id/satFat"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/sodium"
@@ -151,7 +151,7 @@
         android:layout_alignBottom="@+id/TextView04"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/carbs"
@@ -160,7 +160,7 @@
         android:layout_above="@+id/TextView07"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/fiber"
@@ -169,7 +169,7 @@
         android:layout_above="@+id/TextView06"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/sugars"
@@ -178,7 +178,7 @@
         android:layout_above="@+id/TextView09"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
     <TextView
         android:id="@+id/protein"
@@ -188,6 +188,6 @@
         android:layout_alignBottom="@+id/TextView09"
         android:layout_alignParentRight="true"
         android:gravity="right"
-        android:text="@string/notAvailable" />
+        android:text="notAvailable" />
 
 </RelativeLayout>

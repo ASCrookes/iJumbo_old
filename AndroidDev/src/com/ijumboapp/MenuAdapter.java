@@ -1,4 +1,5 @@
 package com.ijumboapp;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -97,6 +98,8 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		 // if the position is the dining hall info cell
 		 if(position == 1) {
 			 // TODO -- return a listener to push an activity showing info on a place
+			 //Intent intent = new Intent((Activity)this.context, PlaceView.class);
+			 //intent.putExtra("place", /*get the place json object string*/);
 			 return null;
 		 }
 		 return new OnClickListener() {

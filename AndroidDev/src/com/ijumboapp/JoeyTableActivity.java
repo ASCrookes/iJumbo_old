@@ -9,10 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+
 
 public class JoeyTableActivity extends Activity implements LoadActivityInterface {
 
@@ -34,14 +33,13 @@ public class JoeyTableActivity extends Activity implements LoadActivityInterface
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-        case R.id.joeyRefreshMenuItem:
-        	new Thread(new ActivityLoadThread(this)).start();
-        	return true;   
-        default:
-        	return super.onOptionsItemSelected(item);
-        }
+        int itemId = item.getItemId();
+		if (itemId == R.id.joeyRefreshMenuItem) {
+			new Thread(new ActivityLoadThread(this)).start();
+			return true;
+		} else {
+			return super.onOptionsItemSelected(item);
+		}
     }
         
         

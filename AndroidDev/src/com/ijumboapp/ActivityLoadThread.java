@@ -2,7 +2,6 @@ package com.ijumboapp;
 
 import org.json.JSONException;
 
-import android.app.ProgressDialog;
 
 public class ActivityLoadThread implements Runnable {
 	

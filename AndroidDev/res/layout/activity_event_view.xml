@@ -13,13 +13,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:lines="1"
-        android:textSize="26dp"
+        android:lines="2"
+        android:textSize="24dp"
         android:textColor="#FFFFFF"
         android:text="Event Title" />
 
     <TextView
         android:id="@+id/textView1"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -30,9 +31,9 @@
 
     <TextView
         android:id="@+id/eventLink"
+        android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
         android:textColor="#FFFFFF"
@@ -40,6 +41,7 @@
 
     <TextView
         android:id="@+id/textView2"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -56,17 +58,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView2"
-        android:maxLines = "10"
+        android:maxLines = "11"
         android:scrollbars = "vertical"
         android:textColor="#000000"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_text_view"
         android:text="DESCRIPTION GOES HERE" />
 
     <TextView
         android:id="@+id/eventTime"
+        android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -77,6 +80,7 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/eventTime"
@@ -86,6 +90,7 @@
 
     <TextView
         android:id="@+id/eventLocation"
+        android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -96,6 +101,7 @@
 
     <TextView
         android:id="@+id/textView4"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/eventLocation"

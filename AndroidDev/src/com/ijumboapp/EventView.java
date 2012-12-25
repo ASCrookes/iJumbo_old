@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.widget.TextView;
 
+
 public class EventView extends Activity {
 	
 	@Override

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
+
 public class FoodView extends Activity {
 
 	@Override

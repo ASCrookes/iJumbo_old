@@ -1,16 +1,17 @@
 package com.ijumboapp;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
 
 public class PlacesActivity extends Activity implements LoadActivityInterface {
 

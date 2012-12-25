@@ -10,6 +10,7 @@ import java.net.URL;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+
 public class Article implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
