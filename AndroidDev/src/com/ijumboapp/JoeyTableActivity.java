@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +12,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 
-public class JoeyTableActivity extends Activity implements LoadActivityInterface {
+public class JoeyTableActivity extends IJumboActivity implements LoadActivityInterface {
 
 	private JSONArray dataSource;
 	

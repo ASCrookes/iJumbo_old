@@ -27,13 +27,16 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	JSONObject data[];
 	Set<Integer> sectionLocations;
 	String diningHall;
+	JSONObject diningHallInfo;
 	
-	public MenuAdapter(Context context, int textViewResourceId, JSONObject[] objects, String diningHall) {
+	public MenuAdapter(Context context, int textViewResourceId, JSONObject[] objects, String diningHall, JSONObject diningHallInfo) {
 		super(context, textViewResourceId, objects);
 		this.context = context;
 		this.resourceID = textViewResourceId;
 		this.sectionLocations = new HashSet<Integer>();
 		this.diningHall = diningHall;
+		this.diningHallInfo = diningHallInfo;
+		
 		try {
 			this.parseData(objects);
 		} catch (JSONException e) {}
@@ -94,17 +97,31 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	 private OnClickListener itemListener(final int position) {
 		 // if the position is the dining hall info cell
 		 if(position == 1) {
-			 // TODO -- return a listener to push an activity showing info on a place
-			 //Intent intent = new Intent((Activity)this.context, PlaceView.class);
-			 //intent.putExtra("place", /*get the place json object string*/);
-			 return null;
+			 return new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if(MenuAdapter.this.diningHallInfo == null) {
+						System.out.println("YOLO");
+						return;
+					}
+					System.out.println("THE HALL IS " + MenuAdapter.this.diningHall); 
+					Intent intent = null;
+					try {
+						intent = new Intent(context, PlaceView.class);
+						
+						intent.putExtra("place", MenuAdapter.this.diningHallInfo.getJSONObject(MenuAdapter.this.diningHall).toString());
+					} catch (JSONException e) {}
+					if(intent != null) {
+						context.startActivity(intent);
+					}
+				}
+			};
 		 }
 		 return new OnClickListener() {
         	 @Override
         	 public void onClick(View v) {
-        		Intent intent = null;
-	  		 	intent = new Intent(context, FoodView.class);
-	  		 	intent.putExtra("data", MenuAdapter.this.data[position].toString());
+        		Intent intent = new Intent(context, FoodView.class);
+	  		 	intent.putExtra("foodItem", MenuAdapter.this.data[position].toString());
 	  		 	context.startActivity(intent);
         	 }
 		 };

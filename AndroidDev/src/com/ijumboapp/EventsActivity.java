@@ -25,7 +25,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 
-public class EventsActivity extends Activity implements LoadActivityInterface {
+public class EventsActivity extends IJumboActivity implements LoadActivityInterface {
 	final long MILLISECONDS_IN_DAY = 86400000;
 	private Date date;
 	private String currentTag;

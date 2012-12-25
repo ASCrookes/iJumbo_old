@@ -16,7 +16,7 @@ import android.view.Menu;
 import android.widget.ListView;
 
 
-public class PlacesActivity extends Activity implements LoadActivityInterface {
+public class PlacesActivity extends IJumboActivity implements LoadActivityInterface {
 
 	protected JSONArray buildings;
 	

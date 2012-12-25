@@ -3,14 +3,13 @@ package com.ijumboapp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
 
-public class FoodView extends Activity {
+public class FoodView extends IJumboActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +19,7 @@ public class FoodView extends Activity {
 		Intent intent = getIntent();
 		JSONObject obj = null;
 		try {
-			obj = new JSONObject(intent.getStringExtra("data"));
+			obj = new JSONObject(intent.getStringExtra("foodItem"));
 			this.displayData(obj);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -36,6 +35,7 @@ public class FoodView extends Activity {
 	}
 	
 	private void displayData(JSONObject data) throws JSONException {
+		this.setTitle(data.getString("FoodName"));
 		((TextView)findViewById(R.id.calories)).setText(data.getString("calories"));
 		((TextView)findViewById(R.id.servingSize)).setText(data.getString("serving_size"));
 		((TextView)findViewById(R.id.fatCalories)).setText(data.getString("fat_calories"));

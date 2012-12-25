@@ -1,6 +1,5 @@
 package com.ijumboapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,12 +7,12 @@ import android.webkit.WebView;
 
 
 
-public class WebActivity extends Activity {
+public class WebActivity extends IJumboActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");     	
        	if(url != null) {

@@ -1,5 +1,10 @@
 package com.ijumboapp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -9,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,18 +25,19 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 
-public class MenuActivity extends Activity implements LoadActivityInterface {
+public class MenuActivity extends IJumboActivity implements LoadActivityInterface {
 
 	private JSONObject masterDict;
 	private JSONArray dataSource;
 	private long lastUpdate;
 	private Spinner hallSpinner;
 	private Spinner mealSpinner;
+	private JSONObject diningHallInfo;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);      
+        setContentView(R.layout.activity_menu);
     }
     
 
@@ -70,6 +77,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+        this.diningHallInfo = this.getDiningHallInfoFromStorage();
         
         return true;
     }
@@ -95,8 +103,12 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     }
 
     public void loadData() throws JSONException {
-    	this.masterDict = new JSONObject(new RequestManager().get("http://ijumboapp.com/api/json/meals"/* change this url! */));
+    	if(this.diningHallInfo == null) {
+    		this.diningHallInfo = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo");
+    	}
+    	this.masterDict = new JSONObject(new RequestManager().get("http://ijumboapp.com/api/json/meals"));
     	this.displayDataBasedOnUI();
+    	this.writeDiningHallInfoToStorage(new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo"));
     }
     
     private void displayDataBasedOnUI() throws JSONException {
@@ -114,7 +126,7 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
     	}
     	final ListView listV = (ListView) findViewById(R.id.menuList);
     	//Make this work to create the correct adapter
-    	final MenuAdapter adapter = new MenuAdapter(this, R.layout.listview_item_row, dataList, this.getDiningHall());
+    	final MenuAdapter adapter = new MenuAdapter(this, R.layout.listview_item_row, dataList, this.getDiningHall(), this.diningHallInfo);
         this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -164,4 +176,45 @@ public class MenuActivity extends Activity implements LoadActivityInterface {
 			}
 		});
 	}
+	
+	// gets the data from internal stoarge and returns it 
+		private JSONObject getDiningHallInfoFromStorage() {
+			FileInputStream fis = null;
+			try {
+				// keep it consistent with the json file
+				fis = openFileInput("diningHallInfo");
+			} catch (FileNotFoundException e) {
+				return null;
+			}
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			byte[] b = new byte[1024];
+			int bytesRead = 0;
+			try {
+				while ((bytesRead = fis.read(b)) != -1) {
+				   bos.write(b, 0, bytesRead);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			byte[] bytes = bos.toByteArray();
+			JSONObject diningHallInfo = null;
+			try {
+				diningHallInfo = new JSONObject(new String(bytes));
+			} catch (JSONException e) {
+				diningHallInfo = null;
+				e.printStackTrace();
+			}
+			
+			return diningHallInfo;
+		}
+		
+		private void writeDiningHallInfoToStorage(JSONObject diningHallInfo) {
+			FileOutputStream fos = null;
+			try {
+				fos = openFileOutput("diningHallInfo", Context.MODE_PRIVATE);
+			} catch (FileNotFoundException e) {}
+			try {
+				fos.write(diningHallInfo.toString().getBytes());
+			} catch (IOException e) {}
+		}
 }

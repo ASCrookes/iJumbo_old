@@ -13,8 +13,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
+import com.parse.Parse;
+import com.parse.PushService;
 
-public class MainActivity extends Activity {
+
+public class MainActivity extends IJumboActivity {
 	
 	final static int   NEWS_ACTIVITY_RESULT = 0;
 	final static int   MENU_ACTIVITY_RESULT = 1;
@@ -22,10 +25,10 @@ public class MainActivity extends Activity {
 	final int       GOOGLE_API_ERROR_DIALOG = 3;
 
 	
-	// data to simulate activity persistance
+	// data to simulate activity persistence
 	private HashMap<String, List<Article> > newsStories;
 	private long eventDate; // store the date used in milliseconds
-	//this is the JSON string of the data source since jsonobjects cannot be passed with extras
+	//this is the JSON string of the data source since JSONObjects cannot be passed with extras
 	private byte[] menuDataSource;
 	private long menuLastUpdate;
 	
@@ -33,6 +36,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Parse.initialize(this, "ctpSKiaBaM1DrFYqnknjV3ICFOfWcK5cD2GOB4Qc",
+							   "YrPtqKjyvoWRoOMHFyPNLMhJgZbuXhzMu07JH1Qy");
+		PushService.subscribe(this, "", MainActivity.class);
+		PushService.setDefaultPushCallback(this, MainActivity.class);
 		this.setupIcons();
 		this.newsStories = null;
 		this.menuDataSource = new byte[0];
