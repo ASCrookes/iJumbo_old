@@ -150,29 +150,5 @@
         android:background="@null"
         android:onClick="getMenu"
         android:src="@drawable/burger" />
-
-    <TextView
-        android:id="@+id/iconDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/eventsButton"
-        android:layout_alignRight="@+id/eventsButton"
-        android:layout_alignTop="@+id/eventsButton"
-        android:gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="2dp"
-        android:textSize="13dp"
-        android:text="Friday" />
-
-    <TextView
-        android:id="@+id/iconDayNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iconDay"
-        android:layout_alignRight="@+id/eventsButton"
-        android:layout_alignTop="@+id/trunkButton"
-        android:gravity="center_horizontal"
-        android:text="00"
-        android:textSize="55dp" />
-        
+          
 </RelativeLayout>

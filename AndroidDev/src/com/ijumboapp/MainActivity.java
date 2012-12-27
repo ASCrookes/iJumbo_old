@@ -1,10 +1,7 @@
 package com.ijumboapp;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,7 +12,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 
 import com.parse.Parse;
 import com.parse.PushService;
@@ -26,8 +22,7 @@ public class MainActivity extends IJumboActivity {
 	final static int   NEWS_ACTIVITY_RESULT = 0;
 	final static int   MENU_ACTIVITY_RESULT = 1;
 	final static int EVENTS_ACTIVITY_RESULT = 2;
-	final int       GOOGLE_API_ERROR_DIALOG = 3;
-
+	
 	
 	// data to simulate activity persistence
 	private HashMap<String, List<Article> > newsStories;
@@ -61,7 +56,6 @@ public class MainActivity extends IJumboActivity {
 		} else {
 			System.out.println("INTERNET WAS FOUND!");
 		}
-		
 	}
 	
 	@Override
@@ -93,11 +87,13 @@ public class MainActivity extends IJumboActivity {
 	
 	private void setupIcons() {
 		// puts the current date on top of the calendar icon
+		/*
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
 		((TextView)findViewById(R.id.iconDay)).setText(dateFormat.format(date));
 		dateFormat = new SimpleDateFormat("d", Locale.US);
 		((TextView)findViewById(R.id.iconDayNumber)).setText(dateFormat.format(date));	
+		*/
 	}
 
 	public void getNews(View view) {
