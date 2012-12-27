@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/foodAlert"
+    <item android:id="@+id/myFood_spinner"
+        android:title="Dewick"
         android:orderInCategory="1"
         android:showAsAction="always"
-        android:title="Get Alerts!"/>
+        android:actionLayout="@layout/my_food_spinner" />
 
 </menu>

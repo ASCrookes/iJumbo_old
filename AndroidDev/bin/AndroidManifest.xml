@@ -82,6 +82,10 @@
             android:name="com.ijumboapp.IJumboActivity"
             android:label="@string/title_activity_ijumbo" >
         </activity>
+        <activity
+            android:name="com.ijumboapp.MyFoodActivity"
+            android:label="@string/title_activity_my_food" >
+        </activity>
     </application>
 
 </manifest>

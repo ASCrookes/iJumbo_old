@@ -16,5 +16,6 @@
     <string name="title_activity_event_view">Event</string>
     <string name="title_activity_place_view">Place</string>
     <string name="title_activity_ijumbo">IJumboActivity</string>
+    <string name="title_activity_my_food">MyFoodActivity</string>
 
 </resources>

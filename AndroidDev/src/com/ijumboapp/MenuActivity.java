@@ -18,11 +18,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+
+import com.parse.PushService;
 
 
 public class MenuActivity extends IJumboActivity implements LoadActivityInterface {
@@ -74,11 +77,24 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 		} catch (JSONException e1) {}
         try {
 			this.loadDataBasedOnDate();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		} catch (JSONException e) {}
         this.diningHallInfo = this.getDiningHallInfoFromStorage();
         
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.myFoodMenuItem:
+        	Intent intent = new Intent(this, MyFoodActivity.class);
+        	this.startActivity(intent);
+        	break;
+        default:
+        	
+        	break;
+        }
         return true;
     }
     
@@ -216,5 +232,30 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 			try {
 				fos.write(diningHallInfo.toString().getBytes());
 			} catch (IOException e) {}
+		}
+		
+		static public void subscribeToFood(String foodName, Context context) {
+			if(foodName == null) {
+				return;
+			}
+			String channel = MenuActivity.getFoodChannel(foodName);
+			PushService.subscribe(context, channel, MenuActivity.class);
+			MainActivity.showAlert("Subscribed to " + foodName , (Activity) context);
+		}
+		
+		static public void unsubscribeToFood(String foodName, Context context) {
+			if(foodName == null) {
+				return;
+			}
+			String channel = MenuActivity.getFoodChannel(foodName);
+			PushService.unsubscribe(context, channel);
+			MainActivity.showAlert("Unsubscribed from " + foodName + "\nIt may still be visible for a little", (Activity) context);
+		}
+		
+		static private String getFoodChannel(String foodName) {
+			String channel = foodName.replace("&", "--and--")
+					 				 .replace(" ", "_");
+			channel = "ASC_" + channel;
+			return channel;
 		}
 }

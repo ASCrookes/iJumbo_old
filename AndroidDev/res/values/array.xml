@@ -31,4 +31,8 @@
         <item>Poetry</item>
         <item>Extras</item>
    	</string-array>
+   	<string-array name="myFood_sections">
+   	   <item >My Food</item>
+   	   <item >All Food</item>
+   	</string-array>
 </resources>

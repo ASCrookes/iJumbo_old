@@ -56,7 +56,7 @@ public class NewsAdapter extends ArrayAdapter<JSONObject> {
 		 return cell;
 	 }
 	 
-	static class Holder {
+	private class Holder {
 		TextView textV;
 		ImageView imageV;
 	}

@@ -30,10 +30,10 @@ class RequestManager {
 		try {
 			title = task.get();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
+			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		}
 		return title;
@@ -61,7 +61,9 @@ class RequestManager {
 		try {
 			stream = new RequestStream().execute(url).get();
 		} catch (InterruptedException e) {
+			System.out.println("RequestTask Error 4: " + e);
 		} catch (ExecutionException e) {
+			System.out.println("RequestTask Error 4: " + e);
 		}
 		return stream;
 	}
@@ -93,9 +95,9 @@ class RequestTask extends AsyncTask<String, String, String>{
                 throw new IOException(statusLine.getReasonPhrase());
             }
         } catch (ClientProtocolException e) {
-            //TODO Handle problems..
+            System.out.println("RequestTask Error: " + e);
         } catch (IOException e) {
-            //TODO Handle problems..
+        	System.out.println("RequestTask Error: " + e);
         }
         return responseString;
     }
@@ -124,9 +126,9 @@ class RequestTask extends AsyncTask<String, String, String>{
                  throw new IOException(statusLine.getReasonPhrase());
              }
          } catch (ClientProtocolException e) {
-             //TODO Handle problems..
+        	 System.out.println("RequestTask Error 2: " + e);
          } catch (IOException e) {
-             //TODO Handle problems..
+        	 System.out.println("RequestTask Error 2: " + e);
          }
          return responseString;
     }
@@ -139,10 +141,10 @@ class RequestStream extends AsyncTask<String, String, InputStream>{
     	try {
 			return (InputStream)new URL(uri[0]).getContent();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		}
     	return null;

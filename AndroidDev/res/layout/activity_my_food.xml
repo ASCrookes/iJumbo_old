@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity" 
+    tools:context=".MyFoodActivity"
     android:background="@drawable/background" >
-    
+
     <ProgressBar
-         android:id="@+id/menuPD"
+         android:id="@+id/myFoodPD"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          style="@android:style/Widget.ProgressBar.Small"
@@ -15,16 +15,14 @@
          android:layout_marginRight="5dp" />
     
     <ListView
-        android:id="@+id/menuList"
+        android:id="@+id/myFoodList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:divider="#000000"
         android:dividerHeight="1dp" >
-<!--         android:background="#696969"
- -->        
-        
+
     </ListView>
 
 </RelativeLayout>

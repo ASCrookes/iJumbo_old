@@ -126,7 +126,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/servingSize"
@@ -137,7 +137,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/fatCalories"
@@ -149,7 +149,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/satFat"
@@ -161,7 +161,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/cholestoral"
@@ -173,7 +173,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/sodium"
@@ -185,7 +185,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/carbs"
@@ -196,7 +196,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/fiber"
@@ -207,7 +207,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/sugars"
@@ -218,7 +218,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/protein"
@@ -230,7 +230,7 @@
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="#FFFFFF"
-        android:text="notAvailable" />
+        android:text="N/A" />
 
     <TextView
         android:id="@+id/ingredients"

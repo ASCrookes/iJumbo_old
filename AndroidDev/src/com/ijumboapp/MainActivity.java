@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -46,6 +50,18 @@ public class MainActivity extends IJumboActivity {
 		this.eventDate = -1;
 		this.menuLastUpdate = -1;
 		System.out.println("CREATED THE MAIN VIEW");
+		
+		ConnectivityManager con = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		// TODO -- test that this actually knows when the phone is connected to the internet
+		//         then move this to the request manager so it returns null from the background process
+		//         and the wrapper functions will then deal with that
+		if (con.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
+                && con.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
+			System.out.println("INTERNET NOT AVAILABLE");
+		} else {
+			System.out.println("INTERNET WAS FOUND!");
+		}
+		
 	}
 	
 	@Override
@@ -120,5 +136,11 @@ public class MainActivity extends IJumboActivity {
 		intent.putExtra("url", "https://trunk.tufts.edu/xsl-portal");
 		intent.putExtra("title", "Trunk");
 		startActivity(intent);
+	}
+	
+	static public void showAlert(String alert, Activity activity) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(alert);      
+        builder.create().show();
 	}
 }
