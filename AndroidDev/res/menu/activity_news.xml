@@ -4,14 +4,7 @@
         android:title="The Daily"
         android:orderInCategory="1"
         android:showAsAction="always" />
-    <!-- Uncomment this and comment out the above item to allow spinner
-         to select the news source
-    <item android:id="@+id/newsSpinner"
-        android:title="Daily"
-        android:orderInCategory="1"
-        android:showAsAction="always"
-        android:actionLayout="@layout/news_spinner" />
-    -->
+
     <item android:id="@+id/newsSectionSpinner"
         android:title="Daily"
         android:orderInCategory="1"
