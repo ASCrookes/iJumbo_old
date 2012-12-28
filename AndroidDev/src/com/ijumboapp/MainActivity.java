@@ -81,6 +81,8 @@ public class MainActivity extends IJumboActivity {
 		case EVENTS_ACTIVITY_RESULT:
 			this.eventDate = data.getLongExtra("eventDateString", -1);
 			break;
+		default:
+			break;
 		}
 	}
 

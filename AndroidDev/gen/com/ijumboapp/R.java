@@ -23,9 +23,9 @@ public final class R {
         public static final int background=0x7f020001;
         public static final int building_cell_button=0x7f020002;
         public static final int burger=0x7f020003;
-        public static final int events=0x7f020004;
-        public static final int forward_arrow=0x7f020005;
-        public static final int greybus=0x7f020006;
+        public static final int bus=0x7f020004;
+        public static final int events=0x7f020005;
+        public static final int forward_arrow=0x7f020006;
         public static final int ic_launcher=0x7f020007;
         public static final int map=0x7f020008;
         public static final int nav_bar=0x7f020009;
@@ -60,7 +60,7 @@ public final class R {
         public static final int eventNext=0x7f080051;
         public static final int eventTime=0x7f080006;
         public static final int eventTitle=0x7f080000;
-        public static final int eventsButton=0x7f080026;
+        public static final int eventsButton=0x7f080025;
         public static final int eventsList=0x7f08000a;
         public static final int eventsPD=0x7f080009;
         public static final int eventsPrevious=0x7f08004f;
@@ -69,7 +69,7 @@ public final class R {
         public static final int foodAlert=0x7f080052;
         public static final int imgIconNews=0x7f080049;
         public static final int ingredients=0x7f08001f;
-        public static final int joeyButton=0x7f080024;
+        public static final int joeyButton=0x7f080028;
         public static final int joeyList=0x7f080021;
         public static final int joeyPD=0x7f080020;
         public static final int joeyRefreshMenuItem=0x7f080053;
@@ -119,9 +119,9 @@ public final class R {
         public static final int textView2=0x7f080004;
         public static final int textView3=0x7f080007;
         public static final int textView4=0x7f080008;
-        public static final int textView6=0x7f080028;
+        public static final int textView6=0x7f080026;
         public static final int textView7=0x7f080027;
-        public static final int trunkButton=0x7f080025;
+        public static final int trunkButton=0x7f080024;
         public static final int txtHeader=0x7f080045;
         public static final int txtTitle=0x7f080046;
         public static final int txtTitleEvents=0x7f080044;
