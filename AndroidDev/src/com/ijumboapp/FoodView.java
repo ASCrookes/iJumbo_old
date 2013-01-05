@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -18,6 +19,9 @@ public class FoodView extends IJumboActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_food);
+		
+		TextView tView = (TextView) findViewById(R.id.ingredients);
+		tView.setMovementMethod(new ScrollingMovementMethod());
 		
 		Intent intent = getIntent();
 		JSONObject obj = null;
@@ -63,6 +67,7 @@ public class FoodView extends IJumboActivity {
 		((TextView)findViewById(R.id.cholestoral)).setText(data.getString("cholesterol"));
 		((TextView)findViewById(R.id.protein)).setText(data.getString("protein"));
 		((TextView)findViewById(R.id.sodium)).setText(data.getString("sodium"));
+		((TextView)findViewById(R.id.ingredients)).setText(data.getString("ingredients"));
 	}
 
 }

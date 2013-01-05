@@ -1,6 +1,8 @@
 package com.ijumboapp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import org.json.JSONArray;
@@ -103,22 +105,19 @@ public class MyFoodActivity extends IJumboActivity implements LoadActivityInterf
 	
 	private String[] getMyFood() {
 		Set<String> myFoodSet = PushService.getSubscriptions(this);
-		
 		Object[] myFoodObjs =  myFoodSet.toArray();
-		String[] myFood = new String[myFoodObjs.length - 1];
-		int myFoodCounter = 0;
+		
+		List<String> myFoodList = new ArrayList<String>();
 		for(int i = 0; i < myFoodObjs.length; i++) {
 			// all subscribers have the master channel ""
-			
 			if(!myFoodObjs[i].equals("")) {
-				myFood[myFoodCounter] =  myFoodObjs[i].toString()
-									  	.replace("ASC_", "")
-									  	.replace("_", " ")
-									  	.replace("--and--", "&");
-				myFoodCounter++;
+				myFoodList.add(myFoodObjs[i].toString()
+					  			.replace("ASC_", "")
+					  			.replace("_", " ")
+					  			.replace("--and--", "&"));
 			}
 		}
-		return myFood;
+		return myFoodList.toArray(new String[myFoodList.size()]);
 	}
 	
 	private String[] getAllFoodFromServer() {

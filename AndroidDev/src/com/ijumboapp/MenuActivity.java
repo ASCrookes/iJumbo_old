@@ -122,7 +122,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
     	if(this.diningHallInfo == null) {
     		this.diningHallInfo = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo");
     	}
-    	this.masterDict = new JSONObject(new RequestManager().get("http://ijumboapp.com/api/json/meals"));
+    	this.masterDict = new JSONObject(new RequestManager().get("http://ijumboapp.com/api/json/devMeals"));
     	this.displayDataBasedOnUI();
     	this.writeDiningHallInfoToStorage(new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo"));
     }
@@ -249,7 +249,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 			}
 			String channel = MenuActivity.getFoodChannel(foodName);
 			PushService.unsubscribe(context, channel);
-			MainActivity.showAlert("Unsubscribed from " + foodName + "\nIt may still be visible for a little", (Activity) context);
+			MainActivity.showAlert("Unsubscribed from " + foodName, (Activity) context);
 		}
 		
 		static private String getFoodChannel(String foodName) {

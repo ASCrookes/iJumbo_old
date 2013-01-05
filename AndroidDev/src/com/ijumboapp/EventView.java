@@ -19,7 +19,7 @@ public class EventView extends IJumboActivity {
 		Event event = (Event) intent.getSerializableExtra("event");
 		if(event != null) {
 			this.showEventInUI(event);
-		}
+		}		
 	}
 
 	@Override
