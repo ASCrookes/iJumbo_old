@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -159,7 +160,8 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
         this.setLastUpdate(new Date());
     }
 
-    private void setLastUpdate(Date date) {
+    @SuppressLint("SimpleDateFormat")
+	private void setLastUpdate(Date date) {
     	SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyyMMddHHmm");
     	// the server puts the date in USA eastern time
     	dateFormatter.setTimeZone(TimeZone.getTimeZone("America/New_York"));

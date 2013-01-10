@@ -13,7 +13,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -83,7 +82,6 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		try {
 			sectionTitle = section.getJSONObject(0).getString("building_name");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		sectionTitle = sectionTitle.substring(0, 1);

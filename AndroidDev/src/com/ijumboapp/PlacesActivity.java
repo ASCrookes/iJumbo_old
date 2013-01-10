@@ -9,7 +9,6 @@ import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
@@ -44,7 +43,7 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 		this.showBuildingsInListView();
 	}
 	
-	// TODO -- if search is enabled make this take an argument
+	// If search is enabled make this take an argument
 	private void showBuildingsInListView() {
 		if(this.buildings == null) {
 			return;
@@ -99,6 +98,9 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 	}
 	
 	private void writeBuildingsToStorage(JSONArray buildingsList) {
+		if(buildingsList == null) {
+			return;
+		}
 		FileOutputStream fos = null;
 		try {
 			fos = openFileOutput("buildings", Context.MODE_PRIVATE);
@@ -110,11 +112,9 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 	
 	@Override
 	public void stopLoadingUI() {
-		// TODO Auto-generated method stub		
 	}
 
 	@Override
 	public void startLoadingUI() {
-		// TODO Auto-generated method stub
 	}
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,11 +32,13 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
 	private Article currentArticle;
 	private String currentTag;
 	private Map<String, List<Article> > stories;
+	private Date storiesCreated;
 	private Map<String, String> urls;
 	//private Spinner newsSpinner;
 	private Spinner newsSectionsSpinner;
 	
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
@@ -104,6 +106,10 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
             return;
     	}
     	String xml = new RequestManager().get(this.getURL());
+    	if(xml == null) {
+    		System.out.println("news got null from the server");
+    		return;
+    	}
     	// load binary of the xml into a stream
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
     	boolean didParse = true;
@@ -123,15 +129,13 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
     	}
     }
     
-    // do something based on the time the data was FIRST pulled in
     private boolean shouldUseSavedArticles() {
-    	// TODO -- find out how long the data has been sitting and reset it if necessary
-    	return true;
+    	// if the data has been around for more than 10 minutes 
+    	// (600000 milliseconds) do not use the saved articles
+    	return (new Date().getTime() - this.storiesCreated.getTime() < 600000);
     }
     
-    // just load the data by calling the background thread
     private void displayDataBasedOnUI() {
-    	// TODO -> implement this to to shit
     	new Thread(new ActivityLoadThread(this)).start();
     }
     
@@ -155,7 +159,6 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
     	XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
-        // TODO -- THIS CRASHES FOR SOME REASON WHEN USING THE OBSERVER
         xpp.setInput(inStream, null);
         int eventType = xpp.getEventType();
         while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -245,6 +248,7 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
 	public Map<String, List<Article> > getStories() {
 		if(stories == null) {
 			stories = new HashMap< String, List<Article> >();
+			this.storiesCreated = new Date();
 		}
 		return stories;
 	}

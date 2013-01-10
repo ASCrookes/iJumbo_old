@@ -71,7 +71,7 @@ public class Article implements Serializable {
 		try {
 			URL url = new URL(this.imageURL);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setChunkedStreamingMode(10000); // TODO -- is this necessary
+			connection.setChunkedStreamingMode(10000); // Is this necessary
 			InputStream is = connection.getInputStream();
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();

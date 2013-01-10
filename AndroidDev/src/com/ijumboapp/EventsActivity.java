@@ -34,7 +34,6 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
 	private List <Event> events;
 	// data source is what the table uses
 	//private List <Event> dataSource;
-	// TODO -- is the below needed to change the title on the date menu item
 	private MenuItem dateItem;
 	private int loadingThreads; // used to stop the loading ui once all threads are done
 	
@@ -59,7 +58,6 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_events, menu);
-        // TODO -- the buttons should display arrows (images) not Left and Right
         this.dateItem = menu.findItem(R.id.eventDate);
         long dateString = getIntent().getLongExtra("eventDateString", -1);
         if(dateString == -1) {

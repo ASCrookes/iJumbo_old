@@ -52,10 +52,7 @@ public class MyFoodActivity extends IJumboActivity implements LoadActivityInterf
 			}
 
 			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void onNothingSelected(AdapterView<?> arg0) {}
 		});
 		new Thread(new ActivityLoadThread(this)).start();
 		return true;
@@ -91,6 +88,9 @@ public class MyFoodActivity extends IJumboActivity implements LoadActivityInterf
 				this.allFood = foodItems;
 				this.allFoodDownload = new Date();
 			}
+		}
+		if(foodItems == null) {
+			return;
 		}
 
 		final MyFoodAdapter adapter = new MyFoodAdapter(this, R.layout.listview_item_row, foodItems, myFoodList, this);

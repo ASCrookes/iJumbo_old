@@ -65,6 +65,7 @@ public class MainActivity extends IJumboActivity {
 		return true;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(resultCode != Activity.RESULT_OK) {
