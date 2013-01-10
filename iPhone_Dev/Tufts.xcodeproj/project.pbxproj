@@ -370,7 +370,6 @@
 				8E1E7A1F153C835800B126B8 /* MainStoryboard1.storyboard */,
 				8ED2008D16477056001C525E /* MainStoryboard_iPhone5.storyboard */,
 				8E4DC31C1603CBCB00EC14BF /* ASI */,
-				8E5B22DE1593B84500C7C49E /* Home View */,
 				8E3FCD1D1597B19F00A9EE0F /* Categories */,
 				8E0C429715B79866009165E0 /* UI */,
 				8E5B22DD1593B81E00C7C49E /* Specific View */,
@@ -455,6 +454,8 @@
 		8E5B22DC1593B80600C7C49E /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
+				8E1E7A22153C835800B126B8 /* ViewController.h */,
+				8E1E7A23153C835800B126B8 /* ViewController.m */,
 				8E021A0315B1056A00FBB153 /* JoeyTrackerTable.h */,
 				8E021A0415B1056A00FBB153 /* JoeyTrackerTable.m */,
 				8E021A0B15B1081000FBB153 /* NewsViewController.h */,
@@ -494,15 +495,6 @@
 				8E0359D0161E71AF0038D61B /* WebViewController.m */,
 			);
 			name = "Specific View";
-			sourceTree = "<group>";
-		};
-		8E5B22DE1593B84500C7C49E /* Home View */ = {
-			isa = PBXGroup;
-			children = (
-				8E1E7A22153C835800B126B8 /* ViewController.h */,
-				8E1E7A23153C835800B126B8 /* ViewController.m */,
-			);
-			name = "Home View";
 			sourceTree = "<group>";
 		};
 		8E5B22E01593B87500C7C49E /* Other */ = {
@@ -755,9 +747,9 @@
 		8E1E7A3D153C835800B126B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -773,9 +765,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -784,9 +776,9 @@
 		8E1E7A3E153C835800B126B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -803,9 +795,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -838,9 +830,9 @@
 		8EE401C115D22166004AD1F7 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -857,9 +849,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

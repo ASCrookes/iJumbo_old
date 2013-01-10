@@ -47,6 +47,10 @@ public class JoeyTableActivity extends IJumboActivity implements LoadActivityInt
     	final ListView listV = (ListView) findViewById(R.id.joeyList);
         try {
 			this.dataSource = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/joey");
+			if(this.dataSource == null) {
+				System.out.println("joey xml is null");
+				return;
+			}
 			String[] etas = new String[this.dataSource.length()];
 			for(int i = 0; i < this.dataSource.length(); i++) {
 				JSONObject jsonObj = (JSONObject) this.dataSource.get(i);

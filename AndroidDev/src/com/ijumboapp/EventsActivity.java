@@ -104,6 +104,10 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
     public void loadData() {
     	String xml = new RequestManager().get(this.getURL());
     	// load it into a stream
+    	if(xml == null) {
+    		System.out.println("Events xml was null");
+    		return;
+    	}
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
     	try {
     		// parse through it

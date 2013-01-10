@@ -151,7 +151,6 @@ enum NewsSegment {
     [self.navigationController pushViewController:[cell getWebViewController] animated:YES];
 }
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - RSS XML Parsing
@@ -248,7 +247,6 @@ enum NewsSegment {
     self.currentStory = nil;
 }
 
-
 - (BOOL)continueWithCurrentKey
 {
     // Make sure the key is one that we want to capture and it is not already set
@@ -281,16 +279,13 @@ enum NewsSegment {
         self.navigationItem.rightBarButtonItem = self.section;
         self.navigationItem.title = @"News";
     });
-
 }
-
 
 //*********************************************************
 //*********************************************************
 #pragma mark - Action Sheet Selection
 //*********************************************************
 //*********************************************************
-
 
 - (void)changeSection
 {

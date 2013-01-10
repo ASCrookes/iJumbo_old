@@ -210,7 +210,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         self.noEvents.hidden = YES;
         self.loadingView.hidden = NO;
     });
-    NSURL *xmlURL = [NSURL URLWithString:self.url]; // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error // this may be necessary only for the toolchain 
+    NSURL *xmlURL = [NSURL URLWithString:self.url]; // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error // this may be necessary only for the toolchain
     self.rssParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL]; // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks. 
     [self.rssParser setDelegate:self]; // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser. 
     [self.rssParser setShouldProcessNamespaces:NO]; 

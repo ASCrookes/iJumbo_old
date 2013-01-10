@@ -290,7 +290,6 @@
 - (UIColor*)backgroundColor
 {
     if(!_backgroundColor) {
-        //_backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"darkBackground.png"]];
         _backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
     }
     return _backgroundColor;

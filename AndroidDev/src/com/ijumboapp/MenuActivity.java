@@ -122,12 +122,15 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
     	if(this.diningHallInfo == null) {
     		this.diningHallInfo = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo");
     	}
-    	this.masterDict = new JSONObject(new RequestManager().get("http://ijumboapp.com/api/json/devMeals"));
+    	this.masterDict = new JSONObject(new RequestManager().get("http://ijumboapp.com/api/json/meals"));
     	this.displayDataBasedOnUI();
     	this.writeDiningHallInfoToStorage(new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo"));
     }
     
     private void displayDataBasedOnUI() throws JSONException {
+    	if(this.masterDict == null) {
+    		return;
+    	}
     	JSONObject diningHall  = (JSONObject) this.masterDict.get(this.getDiningHall());
     	JSONObject meal = (JSONObject) diningHall.get((this.getDiningHall().equals("Hodgdon")) ? "Breakfast" : this.getMeal());
     	this.dataSource  = (JSONArray) meal.get("sections");
@@ -135,6 +138,9 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
     }
     
     private void displayDataSource() throws JSONException {
+    	if(this.dataSource == null) {
+    		return;
+    	}
     	JSONObject[] dataList = new JSONObject[this.dataSource.length()];
     	// make a custom adapter that will grab this information from the data source as opposed to manually getting it
     	for(int i = 0; i < this.dataSource.length(); i++) {
