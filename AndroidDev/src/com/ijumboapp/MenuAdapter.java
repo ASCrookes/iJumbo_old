@@ -39,7 +39,9 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		
 		try {
 			this.parseData(objects);
-		} catch (JSONException e) {}
+		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("MenuAdapter", "", e.toString());
+		}
 	}
 	
 	private void parseData(JSONObject[] objects) throws JSONException {
@@ -69,6 +71,10 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		for(int i = 0; i < foodWithSections.size(); i++) {
 			this.data[i] = foodWithSections.get(i);
 		}
+		// two jsonobjects are added at the beginning
+		if(foodWithSections.size() == 2) {
+			MainActivity.showAlert("This menu is not available", (Activity) this.context);
+		}
 	}
 
 	 @Override
@@ -82,13 +88,17 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	   		 cell.setOnClickListener(null);
 	   		 try {
 				((TextView)cell.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
-			} catch (JSONException e) {}
+			} catch (JSONException e) {
+				MainActivity.addErrorToDatabase("MenuAdapter", "getView", e.toString());
+			}
 		 } else {
 			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
 			 cell.setOnClickListener(this.itemListener(position));
 			 try {
 				((TextView)cell.findViewById(R.id.txtTitle)).setText(cellData.getString("FoodName"));
-			} catch (JSONException e) {}
+			} catch (JSONException e) {
+				MainActivity.addErrorToDatabase("MenuAdapter", "getView", e.toString());
+			}
 		 }
 		 
 		return cell;
@@ -108,9 +118,10 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 					Intent intent = null;
 					try {
 						intent = new Intent(context, PlaceView.class);
-						
 						intent.putExtra("place", MenuAdapter.this.diningHallInfo.getJSONObject(MenuAdapter.this.diningHall).toString());
-					} catch (JSONException e) {}
+					} catch (JSONException e) {
+						MainActivity.addErrorToDatabase("MenuAdapter", "itemListener", e.toString());
+					}
 					if(intent != null) {
 						context.startActivity(intent);
 					}

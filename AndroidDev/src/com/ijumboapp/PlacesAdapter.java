@@ -41,7 +41,9 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		this.sectionLocations = new HashSet<Integer>();
 		try {
 			this.parseData(objects);
-		} catch (JSONException e) {}
+		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("PlacesAdapter", "PlacesAdapater", e.toString());
+		}
 		final PlacesActivity activity = (PlacesActivity) context;
 		ListView lView = (ListView) activity.findViewById(R.id.placesList);
 		lView.setOnItemClickListener(new OnItemClickListener() {
@@ -82,6 +84,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		try {
 			sectionTitle = section.getJSONObject(0).getString("building_name");
 		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("PlacesAdapter", "getSectionTitle", e.toString());
 			e.printStackTrace();
 		}
 		sectionTitle = sectionTitle.substring(0, 1);
@@ -102,7 +105,9 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 			View cellHeader = inflater.inflate(R.layout.listview_header_row, parent, false);
 			try {
 				((TextView)cellHeader.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
-			} catch (JSONException e) {}
+			} catch (JSONException e) {
+				MainActivity.addErrorToDatabase("PlacesAdapter", "getView", e.toString());
+			}
 			return cellHeader;
 		}
 		Holder holder;
@@ -122,7 +127,9 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		
 		try {
 			holder.tView.setText(cellData.getString("building_name"));
-		} catch (JSONException e) {}
+		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("PlacesAdapter", "getView", e.toString());
+		}
 		holder.infoButton.setTag(position);
 		holder.mapButton.setTag(position);
 		holder.position = position;
@@ -153,6 +160,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 				try {
 					mapQuery = String.format("http://maps.google.com/maps?q=%s,+%s+(%s)", place.getString("latitude"), place.getString("longitude"), place.getString("building_name"));
 				} catch(JSONException e) {
+					MainActivity.addErrorToDatabase("PlacesAdapter", "mapOnClickListener", e.toString());
 					mapQuery = null;
 				}
 				if(mapQuery != null) {

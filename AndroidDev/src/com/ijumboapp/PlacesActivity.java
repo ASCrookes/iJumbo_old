@@ -62,6 +62,7 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 				}
 			});			
         } catch (JSONException e) {
+        	MainActivity.addErrorToDatabase("PlacesActivity", "showBuildingsInListView", e.toString());
 			e.printStackTrace();
 		}
 	}
@@ -73,6 +74,7 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 			// keep it consistent with the json file
 			fis = openFileInput("buildings");
 		} catch (FileNotFoundException e) {
+			MainActivity.addErrorToDatabase("PlacesActivity", "getBuildingsFromStorage", e.toString());
 			return null;
 		}
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -83,6 +85,7 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 			   bos.write(b, 0, bytesRead);
 			}
 		} catch (IOException e) {
+			MainActivity.addErrorToDatabase("PlacesActivity", "getBuildingsFromStorage", e.toString());
 			e.printStackTrace();
 		}
 		byte[] bytes = bos.toByteArray();
@@ -91,6 +94,7 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 			fileBuildings = new JSONArray(new String(bytes));
 		} catch (JSONException e) {
 			fileBuildings = null;
+			MainActivity.addErrorToDatabase("PlacesActivity", "getBuildingsFromStorage", e.toString());
 			e.printStackTrace();
 		}
 		
@@ -104,10 +108,14 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 		FileOutputStream fos = null;
 		try {
 			fos = openFileOutput("buildings", Context.MODE_PRIVATE);
-		} catch (FileNotFoundException e) {}
+		} catch (FileNotFoundException e) {
+			MainActivity.addErrorToDatabase("PlacesActivity", "writeBuildingsToStorage", e.toString());
+		}
 		try {
 			fos.write(buildingsList.toString().getBytes());
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			MainActivity.addErrorToDatabase("PlacesActivity", "writeBuildingsToStorage", e.toString());
+		}
 	}
 	
 	@Override

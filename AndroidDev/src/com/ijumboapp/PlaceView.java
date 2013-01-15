@@ -22,7 +22,9 @@ public class PlaceView extends IJumboActivity {
 		try {
 			place = new JSONObject(intent.getStringExtra("place"));
 			this.setupViewForLocation(place);
-		} catch (JSONException e) {}
+		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("PlacesView", "onCreate", e.toString());
+		}
 		
 	}
 
@@ -86,7 +88,9 @@ public class PlaceView extends IJumboActivity {
 			((TextView)findViewById(R.id.placeFriday)).setText(getTimeSpan(hours.getString(8), hours.getString(9)));
 			((TextView)findViewById(R.id.placeSaturday)).setText(getTimeSpan(hours.getString(10), hours.getString(11)));
 			((TextView)findViewById(R.id.placeSunday)).setText(getTimeSpan(hours.getString(12), hours.getString(13)));
-		} catch (JSONException e) {}
+		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("PlacesView", "displayHours", e.toString());
+		}
 	}
 
 }

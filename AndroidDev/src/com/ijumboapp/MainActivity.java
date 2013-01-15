@@ -9,11 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
 import com.parse.PushService;
 
 
@@ -131,9 +133,12 @@ public class MainActivity extends IJumboActivity {
 	}
 	
 	public void getTrunk(View view) {
+		/*
 		Intent intent = new Intent(this, WebActivity.class);
 		intent.putExtra("url", "https://trunk.tufts.edu/xsl-portal");
 		intent.putExtra("title", "Trunk");
+		*/
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://trunk.tufts.edu/xsl-portal"));
 		startActivity(intent);
 	}
 	
@@ -141,5 +146,13 @@ public class MainActivity extends IJumboActivity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setMessage(alert);      
         builder.create().show();
+	}
+	
+	static public void addErrorToDatabase(String theClass, String function, String errorMsg) {
+		ParseObject error = new ParseObject("Error");
+		error.put("class", theClass);
+		error.put("function", function);
+		error.put("errorMessage", errorMsg);
+		error.saveEventually();
 	}
 }

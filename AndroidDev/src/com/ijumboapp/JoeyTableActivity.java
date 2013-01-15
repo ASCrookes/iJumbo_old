@@ -38,8 +38,7 @@ public class JoeyTableActivity extends IJumboActivity implements LoadActivityInt
 		} else {
 			return super.onOptionsItemSelected(item);
 		}
-    }
-        
+    }    
         
     // gets the data from the server
     // loads it into the table

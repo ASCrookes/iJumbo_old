@@ -30,9 +30,11 @@ class RequestManager {
 		try {
 			title = task.get();
 		} catch (InterruptedException e) {
+			MainActivity.addErrorToDatabase("RequestTask", "get", e.toString());
 			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		} catch (ExecutionException e) {
+			MainActivity.addErrorToDatabase("RequestTask", "get", e.toString());
 			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		}
@@ -44,7 +46,9 @@ class RequestManager {
 		JSONObject jsonOBJ = null;
 		try {
 			jsonOBJ = new JSONObject(this.get(url));
-		} catch (JSONException e) {}
+		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("RequestTask", "getJSONObject", e.toString());
+		}
 		return jsonOBJ;
 	}
 	
@@ -52,7 +56,9 @@ class RequestManager {
 		JSONArray jsonArray = null;
 		try {
 			jsonArray = new JSONArray(this.get(url));
-		} catch (JSONException e) {}
+		} catch (JSONException e) {
+			MainActivity.addErrorToDatabase("RequestTask", "getJSONArray", e.toString());
+		}
 		return jsonArray;
 	}
 	
@@ -61,8 +67,10 @@ class RequestManager {
 		try {
 			stream = new RequestStream().execute(url).get();
 		} catch (InterruptedException e) {
+			MainActivity.addErrorToDatabase("RequestTask", "getStream", e.toString());
 			System.out.println("RequestTask Error 4: " + e);
 		} catch (ExecutionException e) {
+			MainActivity.addErrorToDatabase("RequestTask", "getStream", e.toString());
 			System.out.println("RequestTask Error 4: " + e);
 		}
 		return stream;
@@ -95,8 +103,10 @@ class RequestTask extends AsyncTask<String, String, String>{
                 throw new IOException(statusLine.getReasonPhrase());
             }
         } catch (ClientProtocolException e) {
+        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground", e.toString());
             System.out.println("RequestTask Error: " + e);
         } catch (IOException e) {
+        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground", e.toString());
         	System.out.println("RequestTask Error: " + e);
         }
         return responseString;
@@ -126,8 +136,10 @@ class RequestTask extends AsyncTask<String, String, String>{
                  throw new IOException(statusLine.getReasonPhrase());
              }
          } catch (ClientProtocolException e) {
+        	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread", e.toString());
         	 System.out.println("RequestTask Error 2: " + e);
          } catch (IOException e) {
+        	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread", e.toString());
         	 System.out.println("RequestTask Error 2: " + e);
          }
          return responseString;
@@ -141,9 +153,11 @@ class RequestStream extends AsyncTask<String, String, InputStream>{
     	try {
 			return (InputStream)new URL(uri[0]).getContent();
 		} catch (MalformedURLException e) {
+			MainActivity.addErrorToDatabase("RequestStream", "doInBackground", e.toString());
 			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		} catch (IOException e) {
+			MainActivity.addErrorToDatabase("RequestStream", "doInBackground", e.toString());
 			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		}
