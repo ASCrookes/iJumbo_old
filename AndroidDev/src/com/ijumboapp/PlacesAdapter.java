@@ -106,7 +106,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 			try {
 				((TextView)cellHeader.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
 			} catch (JSONException e) {
-				MainActivity.addErrorToDatabase("PlacesAdapter", "getView", e.toString());
+				MainActivity.addErrorToDatabase("PlacesAdapter", "getView1", e.toString());
 			}
 			return cellHeader;
 		}
@@ -128,7 +128,7 @@ public class PlacesAdapter  extends ArrayAdapter<JSONObject> {
 		try {
 			holder.tView.setText(cellData.getString("building_name"));
 		} catch (JSONException e) {
-			MainActivity.addErrorToDatabase("PlacesAdapter", "getView", e.toString());
+			MainActivity.addErrorToDatabase("PlacesAdapter", "getView2", e.toString());
 		}
 		holder.infoButton.setTag(position);
 		holder.mapButton.setTag(position);

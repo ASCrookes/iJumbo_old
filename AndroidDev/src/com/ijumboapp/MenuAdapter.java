@@ -40,7 +40,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		try {
 			this.parseData(objects);
 		} catch (JSONException e) {
-			MainActivity.addErrorToDatabase("MenuAdapter", "", e.toString());
+			MainActivity.addErrorToDatabase("MenuAdapter", "MenuAdapter", e.toString());
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	   		 try {
 				((TextView)cell.findViewById(R.id.txtHeader)).setText(cellData.getString("SectionName"));
 			} catch (JSONException e) {
-				MainActivity.addErrorToDatabase("MenuAdapter", "getView", e.toString());
+				MainActivity.addErrorToDatabase("MenuAdapter", "getView1", e.toString());
 			}
 		 } else {
 			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
@@ -97,7 +97,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 			 try {
 				((TextView)cell.findViewById(R.id.txtTitle)).setText(cellData.getString("FoodName"));
 			} catch (JSONException e) {
-				MainActivity.addErrorToDatabase("MenuAdapter", "getView", e.toString());
+				MainActivity.addErrorToDatabase("MenuAdapter", "getView2", e.toString());
 			}
 		 }
 		 

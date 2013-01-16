@@ -61,7 +61,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 						MenuActivity.this.displayDataBasedOnUI();
 					}
 				} catch (JSONException e) {
-					MainActivity.addErrorToDatabase("MenuActivity", "onCreateOptionsMenu", e.toString());
+					MainActivity.addErrorToDatabase("MenuActivity", "onCreateOptionsMenu1", e.toString());
 				}
 			}
 			@Override
@@ -78,12 +78,12 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
         	this.masterDict = new JSONObject(new String(intent.getByteArrayExtra("menuDataSource")));
         	this.lastUpdate = intent.getLongExtra("menuLastUpdate", -1);
 		} catch (JSONException e) {
-			MainActivity.addErrorToDatabase("MenuActivity", "onCreateOptionsMenu", e.toString());
+			MainActivity.addErrorToDatabase("MenuActivity", "onCreateOptionsMenu2", e.toString());
 		}
         try {
 			this.loadDataBasedOnDate();
 		} catch (JSONException e) {
-			MainActivity.addErrorToDatabase("MenuActivity", "onCreateOptionsMenu", e.toString());
+			MainActivity.addErrorToDatabase("MenuActivity", "onCreateOptionsMenu3", e.toString());
 		}
         this.diningHallInfo = this.getDiningHallInfoFromStorage();
         
@@ -225,7 +225,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 				   bos.write(b, 0, bytesRead);
 				}
 			} catch (IOException e) {
-				MainActivity.addErrorToDatabase("MenuActivity", "getDiningHallInfoFromStorage", e.toString());
+				MainActivity.addErrorToDatabase("MenuActivity", "getDiningHallInfoFromStorage2", e.toString());
 				e.printStackTrace();
 			}
 			byte[] bytes = bos.toByteArray();
@@ -234,7 +234,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 				
 				diningHallInfo = new JSONObject(new String(bytes));
 			} catch (JSONException e) {
-				MainActivity.addErrorToDatabase("MenuActivity", "getDiningHallInfFromStorage", e.toString());
+				MainActivity.addErrorToDatabase("MenuActivity", "getDiningHallInfFromStorage3", e.toString());
 				diningHallInfo = null;
 				e.printStackTrace();
 			}
@@ -247,12 +247,12 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 			try {
 				fos = openFileOutput("diningHallInfo", Context.MODE_PRIVATE);
 			} catch (FileNotFoundException e) {
-				MainActivity.addErrorToDatabase("MenuActivity", "writeDiningHallInfoToStorage", e.toString());
+				MainActivity.addErrorToDatabase("MenuActivity", "writeDiningHallInfoToStorage1", e.toString());
 			}
 			try {
 				fos.write(diningHallInfo.toString().getBytes());
 			} catch (IOException e) {
-				MainActivity.addErrorToDatabase("MenuActivity", "writeDiningHallInfoToStorage", e.toString());
+				MainActivity.addErrorToDatabase("MenuActivity", "writeDiningHallInfoToStorage2", e.toString());
 			}
 		}
 		

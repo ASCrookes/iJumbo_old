@@ -76,7 +76,6 @@ public final class R {
         public static final int menuButton=0x7f080029;
         public static final int menuList=0x7f08002b;
         public static final int menuPD=0x7f08002a;
-        public static final int menu_settings=0x7f080058;
         public static final int menu_spinner=0x7f080047;
         public static final int myFoodList=0x7f08002d;
         public static final int myFoodMenuItem=0x7f080053;

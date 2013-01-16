@@ -116,10 +116,10 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
     	try {
 			this.parseThatIsh(inStream);
 		} catch (XmlPullParserException e) {
-			MainActivity.addErrorToDatabase("NewsActivity", "loadData", e.toString());
+			MainActivity.addErrorToDatabase("NewsActivity", "loadData1", e.toString());
 			didParse = false;
 		} catch (IOException e) {
-			MainActivity.addErrorToDatabase("NewsActivity", "loadData", e.toString());
+			MainActivity.addErrorToDatabase("NewsActivity", "loadData2", e.toString());
 			didParse = false;
 		}
     	

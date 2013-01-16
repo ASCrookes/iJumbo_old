@@ -30,11 +30,11 @@ class RequestManager {
 		try {
 			title = task.get();
 		} catch (InterruptedException e) {
-			MainActivity.addErrorToDatabase("RequestTask", "get", e.toString());
+			MainActivity.addErrorToDatabase("RequestTask1", "get", e.toString());
 			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			MainActivity.addErrorToDatabase("RequestTask", "get", e.toString());
+			MainActivity.addErrorToDatabase("RequestTask2", "get", e.toString());
 			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		}
@@ -67,10 +67,10 @@ class RequestManager {
 		try {
 			stream = new RequestStream().execute(url).get();
 		} catch (InterruptedException e) {
-			MainActivity.addErrorToDatabase("RequestTask", "getStream", e.toString());
+			MainActivity.addErrorToDatabase("RequestTask", "getStream1", e.toString());
 			System.out.println("RequestTask Error 4: " + e);
 		} catch (ExecutionException e) {
-			MainActivity.addErrorToDatabase("RequestTask", "getStream", e.toString());
+			MainActivity.addErrorToDatabase("RequestTask", "getStream2", e.toString());
 			System.out.println("RequestTask Error 4: " + e);
 		}
 		return stream;
@@ -103,10 +103,10 @@ class RequestTask extends AsyncTask<String, String, String>{
                 throw new IOException(statusLine.getReasonPhrase());
             }
         } catch (ClientProtocolException e) {
-        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground", e.toString());
+        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground1", e.toString());
             System.out.println("RequestTask Error: " + e);
         } catch (IOException e) {
-        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground", e.toString());
+        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground2", e.toString());
         	System.out.println("RequestTask Error: " + e);
         }
         return responseString;
@@ -136,10 +136,10 @@ class RequestTask extends AsyncTask<String, String, String>{
                  throw new IOException(statusLine.getReasonPhrase());
              }
          } catch (ClientProtocolException e) {
-        	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread", e.toString());
+        	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread1", e.toString());
         	 System.out.println("RequestTask Error 2: " + e);
          } catch (IOException e) {
-        	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread", e.toString());
+        	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread2", e.toString());
         	 System.out.println("RequestTask Error 2: " + e);
          }
          return responseString;
@@ -153,11 +153,11 @@ class RequestStream extends AsyncTask<String, String, InputStream>{
     	try {
 			return (InputStream)new URL(uri[0]).getContent();
 		} catch (MalformedURLException e) {
-			MainActivity.addErrorToDatabase("RequestStream", "doInBackground", e.toString());
+			MainActivity.addErrorToDatabase("RequestStream", "doInBackground1", e.toString());
 			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		} catch (IOException e) {
-			MainActivity.addErrorToDatabase("RequestStream", "doInBackground", e.toString());
+			MainActivity.addErrorToDatabase("RequestStream", "doInBackground2", e.toString());
 			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		}
