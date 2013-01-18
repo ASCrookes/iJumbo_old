@@ -3,6 +3,8 @@ package com.ijumboapp;
 import java.util.HashMap;
 import java.util.List;
 
+import org.xml.sax.ErrorHandler;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +16,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.nullwire.trace.ExceptionHandler;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.PushService;
@@ -41,6 +44,7 @@ public class MainActivity extends IJumboActivity {
 							   "YrPtqKjyvoWRoOMHFyPNLMhJgZbuXhzMu07JH1Qy");
 		PushService.subscribe(this, "", MainActivity.class);
 		PushService.setDefaultPushCallback(this, MainActivity.class);
+		ExceptionHandler.register(this, "http://ijumboapp.com/api/error");
 		this.setupIcons();
 		this.newsStories = null;
 		this.menuDataSource = new byte[0];
