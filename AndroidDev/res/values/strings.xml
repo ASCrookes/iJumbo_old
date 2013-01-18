@@ -8,7 +8,7 @@
     <string name="title_activity_news">News</string>
     <string name="title_activity_joey_table">Transportation</string>
     <string name="title_activity_web">Web</string>
-    <string name="title_activity_menu">Menus</string>
+    <string name="title_activity_menu"></string>
     <string name="title_activity_map_view">Map</string>
     <string name="title_activity_food">Food</string>
     <string name="notAvailable">N/A</string>

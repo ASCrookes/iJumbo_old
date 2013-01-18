@@ -154,7 +154,6 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
         if(currentThreads != this.loadingThreads) {
         	return;
         }
-        
         final ListView listV = (ListView) findViewById(R.id.eventsList);
         Event[] eventsList = new Event[this.events.size()];
         this.events.toArray(eventsList);
@@ -169,8 +168,6 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
 				}
 			}
 		});
-        //listV.setAdapter(adapter);
-        //this.dataSource = this.events;
     }
     
     static private boolean isValidTag(String tag, Event event) {
