@@ -134,7 +134,7 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
     private boolean shouldUseSavedArticles() {
     	// if the data has been around for more than 10 minutes 
     	// (600000 milliseconds) do not use the saved articles
-    	return (new Date().getTime() - this.storiesCreated.getTime() < 600000);
+    	return (this.storiesCreated != null && new Date().getTime() - this.storiesCreated.getTime() < 600000);
     }
     
     private void displayDataBasedOnUI() {

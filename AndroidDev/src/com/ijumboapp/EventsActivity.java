@@ -66,8 +66,6 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
         	this.setDate(new Date(dateString));
         }
         
-        
-        
         // the below line calls this.loadData in a background thread
         this.loadingThreads = 0;
         new Thread(new ActivityLoadThread(this)).start();
@@ -160,9 +158,7 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
         final ListView listV = (ListView) findViewById(R.id.eventsList);
         Event[] eventsList = new Event[this.events.size()];
         this.events.toArray(eventsList);
-        if(this.events.size() == 0) {
-        	MainActivity.showAlert("No Events", this);
-        }
+
         final EventsAdapter adapter = new EventsAdapter(this, 0, eventsList);
         //final ArrayAdapter<Event> adapter =  new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, android.R.id.text1, eventsList);
         this.runOnUiThread(new Runnable() {
