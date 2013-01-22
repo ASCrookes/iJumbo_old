@@ -3,8 +3,6 @@ package com.ijumboapp;
 import java.util.HashMap;
 import java.util.List;
 
-import org.xml.sax.ErrorHandler;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
