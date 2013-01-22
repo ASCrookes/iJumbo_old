@@ -57,6 +57,7 @@ public class MainActivity extends IJumboActivity {
 		if (con.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
                 && con.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
 			System.out.println("INTERNET NOT AVAILABLE");
+			MainActivity.showAlert("Could not access the internet", this);
 		} else {
 			System.out.println("INTERNET WAS FOUND!");
 		}

@@ -71,10 +71,6 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		for(int i = 0; i < foodWithSections.size(); i++) {
 			this.data[i] = foodWithSections.get(i);
 		}
-		// two jsonobjects are added at the beginning
-		if(foodWithSections.size() == 2) {
-			MainActivity.showAlert("This menu is not available", (Activity) this.context);
-		}
 	}
 
 	 @Override
