@@ -79,6 +79,8 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
         	this.lastUpdate = intent.getLongExtra("menuLastUpdate", -1);
 		} catch (JSONException e) {
 			MainActivity.addErrorToDatabase("MenuActivity", "onCreateOptionsMenu2", e.toString());
+			this.lastUpdate = 0;
+			this.masterDict = null;
 		}
         try {
 			this.loadDataBasedOnDate();
