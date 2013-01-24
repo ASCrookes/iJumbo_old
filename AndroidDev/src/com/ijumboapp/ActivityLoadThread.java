@@ -24,7 +24,6 @@ public class ActivityLoadThread implements Runnable {
 	@Override
 	public void run() {
 		if(this.activity != null && MainActivity.isNetworkAvailable((Activity) this.activity)) {
-			System.out.println("going to load data");
 			this.activity.startLoadingUI();
 			try {
 				this.activity.loadData();

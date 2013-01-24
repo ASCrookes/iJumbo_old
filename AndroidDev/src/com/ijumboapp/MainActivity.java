@@ -136,10 +136,15 @@ public class MainActivity extends IJumboActivity {
 		startActivity(intent);
 	}
 	
-	static public void showAlert(String alert, Activity activity) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage(alert);      
-        builder.create().show();
+	static public void showAlert(final String alert, final Activity activity) {
+		activity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+		        builder.setMessage(alert);      
+		        builder.create().show();
+			}
+		});
 	}
 	
 	static public void addErrorToDatabase(String theClass, String function, String errorMsg) {
