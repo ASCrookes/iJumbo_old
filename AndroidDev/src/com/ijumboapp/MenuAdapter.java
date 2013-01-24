@@ -107,10 +107,8 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 				@Override
 				public void onClick(View v) {
 					if(MenuAdapter.this.diningHallInfo == null) {
-						System.out.println("YOLO");
 						return;
 					}
-					System.out.println("THE HALL IS " + MenuAdapter.this.diningHall); 
 					Intent intent = null;
 					try {
 						intent = new Intent(context, PlaceView.class);

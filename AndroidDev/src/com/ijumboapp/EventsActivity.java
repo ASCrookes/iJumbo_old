@@ -101,7 +101,6 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
     	String xml = new RequestManager().get(this.getURL());
     	// load it into a stream
     	if(xml == null) {
-    		System.out.println("Events xml was null");
     		return;
     	}
     	InputStream inStream = new ByteArrayInputStream(xml.getBytes());
@@ -154,6 +153,7 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
         if(currentThreads != this.loadingThreads) {
         	return;
         }
+
         final ListView listV = (ListView) findViewById(R.id.eventsList);
         Event[] eventsList = new Event[this.events.size()];
         this.events.toArray(eventsList);

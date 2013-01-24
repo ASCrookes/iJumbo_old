@@ -48,7 +48,6 @@ public class MainActivity extends IJumboActivity {
 		this.menuDataSource = new byte[0];
 		this.eventDate = -1;
 		this.menuLastUpdate = -1;
-		System.out.println("CREATED THE MAIN VIEW");
 		if(!MainActivity.isNetworkAvailable(this)) {
 			MainActivity.showAlert("The internet is not available", this);
 		}
@@ -158,7 +157,6 @@ public class MainActivity extends IJumboActivity {
 	static public boolean isNetworkAvailable(Activity activity) {
 	    ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-	    System.out.println("Network Info: " + activeNetworkInfo);
 	    return activeNetworkInfo != null;
 	}
 }

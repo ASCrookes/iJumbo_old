@@ -31,11 +31,9 @@ class RequestManager {
 			title = task.get();
 		} catch (InterruptedException e) {
 			MainActivity.addErrorToDatabase("RequestTask1", "get", e.toString());
-			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			MainActivity.addErrorToDatabase("RequestTask2", "get", e.toString());
-			System.out.println("RequestTask Error 5: " + e);
 			e.printStackTrace();
 		}
 		return title;
@@ -70,10 +68,8 @@ class RequestManager {
 			stream = new RequestStream().execute(url).get();
 		} catch (InterruptedException e) {
 			MainActivity.addErrorToDatabase("RequestTask", "getStream1", e.toString());
-			System.out.println("RequestTask Error 4: " + e);
 		} catch (ExecutionException e) {
 			MainActivity.addErrorToDatabase("RequestTask", "getStream2", e.toString());
-			System.out.println("RequestTask Error 4: " + e);
 		}
 		return stream;
 	}
@@ -94,7 +90,6 @@ class RequestTask extends AsyncTask<String, String, String>{
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        //Do anything with response..
     }
     
     protected String getInCurrentThread(String url) {
@@ -116,10 +111,8 @@ class RequestTask extends AsyncTask<String, String, String>{
              }
          } catch (ClientProtocolException e) {
         	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread1", e.toString());
-        	 System.out.println("RequestTask Error 2: " + e);
          } catch (IOException e) {
         	 MainActivity.addErrorToDatabase("RequestTask", "getInCurrentThread2", e.toString());
-        	 System.out.println("RequestTask Error 2: " + e);
          }
          return responseString;
     }
@@ -133,11 +126,9 @@ class RequestStream extends AsyncTask<String, String, InputStream>{
 			return (InputStream)new URL(uri[0]).getContent();
 		} catch (MalformedURLException e) {
 			MainActivity.addErrorToDatabase("RequestStream", "doInBackground1", e.toString());
-			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		} catch (IOException e) {
 			MainActivity.addErrorToDatabase("RequestStream", "doInBackground2", e.toString());
-			System.out.println("RequestTask Error 3: " + e);
 			e.printStackTrace();
 		}
     	return null;
@@ -146,6 +137,5 @@ class RequestStream extends AsyncTask<String, String, InputStream>{
     @Override
     protected void onPostExecute(InputStream result) {
         super.onPostExecute(result);
-        //Do anything with response..
     }
 }

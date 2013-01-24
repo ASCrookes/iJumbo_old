@@ -107,7 +107,6 @@ public class NewsActivity extends IJumboActivity implements LoadActivityInterfac
     	}
     	String xml = new RequestManager().get(this.getURL());
     	if(xml == null) {
-    		System.out.println("news got null from the server");
     		return;
     	}
     	// load binary of the xml into a stream

@@ -47,7 +47,6 @@ public class JoeyTableActivity extends IJumboActivity implements LoadActivityInt
         try {
 			this.dataSource = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/joey");
 			if(this.dataSource == null) {
-				System.out.println("joey xml is null");
 				return;
 			}
 			String[] etas = new String[this.dataSource.length()];
