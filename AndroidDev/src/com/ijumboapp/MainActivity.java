@@ -49,17 +49,8 @@ public class MainActivity extends IJumboActivity {
 		this.eventDate = -1;
 		this.menuLastUpdate = -1;
 		System.out.println("CREATED THE MAIN VIEW");
-		
-		ConnectivityManager con = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		// TODO -- test that this actually knows when the phone is connected to the internet
-		//         then move this to the request manager so it returns null from the background process
-		//         and the wrapper functions will then deal with that
-		if (con.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
-                && con.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
-			System.out.println("INTERNET NOT AVAILABLE");
-			MainActivity.showAlert("Could not access the internet", this);
-		} else {
-			System.out.println("INTERNET WAS FOUND!");
+		if(!MainActivity.isNetworkAvailable(this)) {
+			MainActivity.showAlert("The internet is not available", this);
 		}
 	}
 	
@@ -157,5 +148,12 @@ public class MainActivity extends IJumboActivity {
 		error.put("function", function);
 		error.put("errorMessage", errorMsg);
 		error.saveEventually();
+	}
+	
+	static public boolean isNetworkAvailable(Activity activity) {
+	    ConnectivityManager connectivityManager = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+	    System.out.println("Network Info: " + activeNetworkInfo);
+	    return activeNetworkInfo != null;
 	}
 }

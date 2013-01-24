@@ -56,7 +56,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				try {
 					if(MenuActivity.this.dataSource == null) {
-						MenuActivity.this.loadData();
+						new Thread(new ActivityLoadThread(MenuActivity.this)).start();
 					} else {
 						MenuActivity.this.displayDataBasedOnUI();
 					}
@@ -110,13 +110,16 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 	@Override
 	public void onBackPressed() {
 		Intent resultIntent = new Intent();
-		resultIntent.putExtra("menuDataSource", this.masterDict.toString().getBytes());
+		resultIntent.putExtra("menuDataSource", (this.masterDict != null) ? this.masterDict.toString().getBytes() : null);
 		resultIntent.putExtra("menuLastUpdate", this.lastUpdate);
 		setResult(Activity.RESULT_OK, resultIntent);
 		finish();
 	}
-    
+	
     private void loadDataBasedOnDate() throws JSONException {
+    	if(!MainActivity.isNetworkAvailable(this)) {
+    		return;
+    	}
     	long serversUpdate = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/mealDate").getLong("date");
     	// if the server updated more recently than the device pulled load the data again
     	// or if this activity does not have the data load again

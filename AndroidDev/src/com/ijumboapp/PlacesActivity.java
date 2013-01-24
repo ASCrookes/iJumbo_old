@@ -12,7 +12,9 @@ import org.json.JSONException;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 
 public class PlacesActivity extends IJumboActivity implements LoadActivityInterface {
@@ -23,6 +25,8 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_places);
+		this.buildings = this.getBuildingsFromStorage();
+		this.showBuildingsInListView();
 		new ActivityLoadThread(this).run();
 	}
 
@@ -36,8 +40,6 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 	@Override
 	public void loadData() throws JSONException {
 		// load it locally and display then load it from the server in case anything has changed
-		this.buildings = this.getBuildingsFromStorage();
-		this.showBuildingsInListView();
 		this.buildings = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/buildings");
 		this.writeBuildingsToStorage(this.buildings);
 		this.showBuildingsInListView();
@@ -120,9 +122,23 @@ public class PlacesActivity extends IJumboActivity implements LoadActivityInterf
 	
 	@Override
 	public void stopLoadingUI() {
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pb = (ProgressBar) findViewById(R.id.placesPD);
+				pb.setVisibility(View.INVISIBLE);
+			}
+		});
 	}
 
 	@Override
 	public void startLoadingUI() {
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pb = (ProgressBar) findViewById(R.id.placesPD);
+				pb.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 }

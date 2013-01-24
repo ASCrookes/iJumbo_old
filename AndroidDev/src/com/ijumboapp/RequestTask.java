@@ -47,6 +47,7 @@ class RequestManager {
 		try {
 			jsonOBJ = new JSONObject(this.get(url));
 		} catch (JSONException e) {
+			jsonOBJ = null;
 			MainActivity.addErrorToDatabase("RequestTask", "getJSONObject", e.toString());
 		}
 		return jsonOBJ;
@@ -57,6 +58,7 @@ class RequestManager {
 		try {
 			jsonArray = new JSONArray(this.get(url));
 		} catch (JSONException e) {
+			jsonArray = null;
 			MainActivity.addErrorToDatabase("RequestTask", "getJSONArray", e.toString());
 		}
 		return jsonArray;
@@ -86,30 +88,7 @@ class RequestTask extends AsyncTask<String, String, String>{
 
     @Override
     protected String doInBackground(String... uri) {
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpResponse response;
-        String responseString = null;
-        try {
-            response = httpclient.execute(new HttpGet(uri[0]));
-            StatusLine statusLine = response.getStatusLine();
-            if(statusLine.getStatusCode() == HttpStatus.SC_OK){
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                response.getEntity().writeTo(out);
-                out.close();
-                responseString = out.toString();
-            } else{
-                //Closes the connection.
-                response.getEntity().getContent().close();
-                throw new IOException(statusLine.getReasonPhrase());
-            }
-        } catch (ClientProtocolException e) {
-        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground1", e.toString());
-            System.out.println("RequestTask Error: " + e);
-        } catch (IOException e) {
-        	MainActivity.addErrorToDatabase("RequestTask", "doInBackground2", e.toString());
-        	System.out.println("RequestTask Error: " + e);
-        }
-        return responseString;
+        return new RequestTask().getInCurrentThread(uri[0]);
     }
 
     @Override
