@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -580,7 +580,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0d-in-Ikh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="274" y="750"/>
+            <point key="canvasLocation" x="274" y="822"/>
         </scene>
         <!--Joey Tracker Table - Transportation-->
         <scene sceneID="xMw-CK-8hU">
@@ -1175,7 +1175,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qrb-Rq-uJs">
-                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1210,30 +1210,10 @@
                                     <outlet property="delegate" destination="9bc-eR-Tt1" id="TKe-AL-aBB"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="zir-Hq-WUP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.47058826679999999" green="0.76470595600000002" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
-                                <items>
-                                    <navigationItem title="Title" id="yJO-4y-5wX">
-                                        <barButtonItem key="leftBarButtonItem" image="back arrow.png" id="NsD-mM-UTe">
-                                            <connections>
-                                                <action selector="leftBarButtonAction:" destination="9bc-eR-Tt1" id="LWl-qz-KOC"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="forward arrow.png" id="WyN-pe-qkb">
-                                            <connections>
-                                                <action selector="rightBarButtonAction:" destination="9bc-eR-Tt1" id="pfy-m3-dnA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="dayBar" destination="zir-Hq-WUP" id="qVX-Nq-qOs"/>
                         <outlet property="tableView" destination="Qrb-Rq-uJs" id="j2w-ga-0et"/>
                     </connections>
                 </viewController>
@@ -1814,13 +1794,11 @@
     <resources>
         <image name="Bus.png" width="115" height="106"/>
         <image name="Webpage.png" width="120" height="116"/>
-        <image name="back arrow.png" width="20" height="20"/>
         <image name="buildingCellButton.png" width="42" height="42"/>
         <image name="burger.png" width="130" height="91"/>
         <image name="event.png" width="132" height="129"/>
         <image name="eventDescription.png" width="280" height="200"/>
         <image name="feedback_email.png" width="300" height="30"/>
-        <image name="forward arrow.png" width="20" height="20"/>
         <image name="map.png" width="110" height="110"/>
         <image name="myFoodButton.png" width="92" height="34"/>
         <image name="news.png" width="115" height="105"/>
@@ -1879,6 +1857,8 @@
         <class className="EventTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
             <relationships>
+                <relationship kind="action" name="leftBarButtonAction:"/>
+                <relationship kind="action" name="rightBarButtonAction:"/>
                 <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -1896,6 +1876,8 @@
         <class className="FeedbackViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
             <relationships>
+                <relationship kind="action" name="cancelAction:"/>
+                <relationship kind="action" name="sendAction:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
             </relationships>

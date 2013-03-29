@@ -56,11 +56,11 @@
 
 -(void)setUp
 {
-    self.description.text = [self.event objectForKey:@"description"];
-    self.eventTitle.text  = [self.event objectForKey:@"title"];
-    self.location.text    = [self.event objectForKey:@"location"];
-    self.link.text        = [self.event objectForKey:@"link"];
-    self.time.text        = [self getTimeSpanFromEvent:self.event];
+    self.description.text = self.event[@"event"][@"description"];
+    self.eventTitle.text  = self.event[@"event"][@"title"];
+    self.location.text    = self.event[@"event"][@"location"];
+    //self.link.text        = self.event[@"link"];
+    self.time.text        = [[self.event[@"starts"] stringByAppendingString:@"-"] stringByAppendingString:self.event[@"ends"]];
     
 }
 

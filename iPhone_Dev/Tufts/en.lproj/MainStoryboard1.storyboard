@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -1215,18 +1215,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.47058826679999999" green="0.76470595600000002" blue="0.98431378599999997" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
-                                    <navigationItem title="Title" id="yJO-4y-5wX">
-                                        <barButtonItem key="leftBarButtonItem" image="back arrow.png" id="NsD-mM-UTe">
-                                            <connections>
-                                                <action selector="leftBarButtonAction:" destination="9bc-eR-Tt1" id="LWl-qz-KOC"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="forward arrow.png" id="WyN-pe-qkb">
-                                            <connections>
-                                                <action selector="rightBarButtonAction:" destination="9bc-eR-Tt1" id="pfy-m3-dnA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Title" id="yJO-4y-5wX"/>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -1814,19 +1803,173 @@
     <resources>
         <image name="Bus.png" width="115" height="106"/>
         <image name="Webpage.png" width="120" height="116"/>
-        <image name="back arrow.png" width="20" height="20"/>
         <image name="buildingCellButton.png" width="42" height="42"/>
         <image name="burger.png" width="130" height="91"/>
         <image name="event.png" width="132" height="129"/>
         <image name="eventDescription.png" width="280" height="200"/>
         <image name="feedback_email.png" width="300" height="30"/>
-        <image name="forward arrow.png" width="20" height="20"/>
         <image name="map.png" width="110" height="110"/>
         <image name="myFoodButton.png" width="92" height="34"/>
         <image name="news.png" width="115" height="105"/>
         <image name="newsDefault.png" width="90" height="90"/>
         <image name="roundedTextView.png" width="280" height="155"/>
     </resources>
+    <classes>
+        <class className="AboutTuftsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutTuftsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="foundingField" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="visionStatementField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="BuildingCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingCell.h"/>
+            <relationships>
+                <relationship kind="action" name="infoButtonAction:"/>
+                <relationship kind="outlet" name="buildingName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="BuildingTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="BuildingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="building_name" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="friday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="friday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="monday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="monday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="phone_number" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="saturday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="saturday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="sunday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sunday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thursday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thursday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tuesday_hours" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tuesday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="website" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="wedbesday_label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="wednesday_hours" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EventTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="leftBarButtonAction:"/>
+                <relationship kind="action" name="rightBarButtonAction:"/>
+                <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="EventViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EventViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="description" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="eventTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="link" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="location" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="time" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FeedbackViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="FoodViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FoodViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="allergens" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="calories" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="carbs" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cholestoral" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fiber" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="ingredients" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="protein" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="satFat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="servingSize" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sodium" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sugars" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="InfoViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InfoViewController.h"/>
+        </class>
+        <class className="JoeyTrackerTable" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JoeyTrackerTable.h"/>
+        </class>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="MenuTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="extraBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="myFoodButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="todayBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tomorrowBarButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MyFoodViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MyFoodViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NewsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="author" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="thumbnail" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NewsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewsViewController.h"/>
+        </class>
+        <class className="SourcesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SourcesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dayNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dayWord" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="forwardButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

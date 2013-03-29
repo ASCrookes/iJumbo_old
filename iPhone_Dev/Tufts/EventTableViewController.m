@@ -7,6 +7,7 @@
 //
 
 #import "EventTableViewController.h"
+#import "AppDelegate.h"
 
 const int SECONDS_IN_DAY = 86400;
 const int HEIGHT_OF_HELPER_VIEWS = 186;
@@ -101,13 +102,22 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)loadData
 {
-    [self abortParser];
     self.dataSource = [NSArray array];
     //[self.tableView reloadData];
     dispatch_queue_t queue = dispatch_queue_create("Event.Table.Load", NULL);
     dispatch_async(queue, ^{
-        self.events = [NSMutableArray array];
-        [self parseXMLFileAtURL:self.url];
+        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://www.tuftslife.com/events.json"]];
+        if(data == nil) {
+            AppDelegate* del = [[UIApplication sharedApplication] delegate];
+            [del pingServer];
+            return;
+        }
+        NSError* error;
+        self.dataSource = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:0 error:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
         
     });
     dispatch_release(queue);
@@ -129,7 +139,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 {
     int rows = [self.dataSource count];
     self.noEvents.hidden = !(rows == 0);
-
     return rows;
 }
 
@@ -142,8 +151,8 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     }
     // Configure the cell...
     id event = [self.dataSource objectAtIndex:indexPath.row];
-    cell.textLabel.text = [event objectForKey:@"title"];
-    cell.detailTextLabel.text = [EventTableViewController getTimeSpanFromEvent:event];
+    cell.textLabel.text = event[@"event"][@"title"];
+    cell.detailTextLabel.text = event[@"starts"];
     
     return cell;
 }
@@ -194,147 +203,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 }
 
 
-//*********************************************************
-//*********************************************************
-#pragma mark - RSS XML Parsing
-//*********************************************************
-//*********************************************************
-
-
-- (void)parseXMLFileAtURL:(NSString *)URL 
-{ 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.dataSource = [NSArray array];
-        self.events = [NSMutableArray array];
-        self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
-        self.noEvents.hidden = YES;
-        self.loadingView.hidden = NO;
-    });
-    NSURL *xmlURL = [NSURL URLWithString:self.url]; // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error // this may be necessary only for the toolchain
-    self.rssParser = [[NSXMLParser alloc] initWithContentsOfURL:xmlURL]; // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks. 
-    [self.rssParser setDelegate:self]; // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser. 
-    [self.rssParser setShouldProcessNamespaces:NO]; 
-    [self.rssParser setShouldReportNamespacePrefixes:NO]; 
-    [self.rssParser setShouldResolveExternalEntities:NO];
-    [self.rssParser parse];
-
-}
-
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    self.currentKey = elementName;
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if([elementName isEqualToString:@"description"] && self.currentEvent && [self.currentEvent count] >= 7) {
-        if(![[self.currentEvent objectForKey:@"title"] isEqualToString:@"TuftsLife Calendar Feed"]) {
-            [self.events addObject:self.currentEvent];
-        }
-        self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
-    }
-}
-
-- (void)parserDidStartDocument:(NSXMLParser *)parser
-{
-    self.events = [NSMutableArray array];
-    NSLog(@"STARTING DOC");
-}
-
-- (void)parserDidEndDocument:(NSXMLParser *)parser
-{
-    self.dataSource = self.events;
-    self.events = [NSMutableArray array];
-    self.isLoading = NO;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.loadingView.hidden = YES;
-        [self.tableView reloadData];
-    });
-}
-
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    //NSLog(@"FOUND: %@", string);
-    if(![self continueWithCurrentKey] || ![self validEventValue:string]) {
-        return;
-    }
-    
-    if([self.currentKey isEqualToString:@"item"]) {
-        self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
-    } else if([self.currentKey isEqualToString:@"title"]) {
-        [self.currentEvent setObject:string forKey:@"title"];
-        
-    } else if([self.currentKey isEqualToString:@"link"]) {
-        [self.currentEvent setObject:string forKey:@"link"];
-        
-    } else if([self.currentKey isEqualToString:@"location"]) {
-        [self.currentEvent setObject:string forKey:@"location"];
-        
-    } else if([self.currentKey isEqualToString:@"event_date"]) {
-        [self.currentEvent setObject:string forKey:@"event_date"];
-        
-    } else if([self.currentKey isEqualToString:@"event_start"]) {
-        [self.currentEvent setObject:string forKey:@"event_start"];
-        
-    } else if([self.currentKey isEqualToString:@"event_end"]) {
-        [self.currentEvent setObject:string forKey:@"event_end"];
-    } 
-    else if([self.currentKey isEqualToString:@"description"]) {
-        NSString* desc = ([self validEventValue:string]) ? [[self.currentEvent objectForKey:@"description"] stringByAppendingString:string] : nil;
-        if(desc) {
-            [self.currentEvent setObject:desc forKey:@"description"];
-        }
-    }
-}
-
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{
-    NSLog(@"PARSER ERROR: %@", parseError);
-    [self abortParser];
-}
-
-- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
-{
-    NSLog(@"VALIDATION ERROR: %@", validationError);
-    [self abortParser];
-}
-
-
-- (BOOL)continueWithCurrentKey
-{
-    // Make sure the key is one that we want to capture and it is not already set
-    if(!self.currentKey) { return NO; }
-    return  ([self.currentKey isEqualToString:@"item"] && ![self.currentEvent objectForKey:@"item"])               || 
-            ([self.currentKey isEqualToString:@"title"] && ![self. currentEvent objectForKey:@"title"])            ||
-            ([self.currentKey isEqualToString:@"link"] && ![self.currentEvent objectForKey:@"link"])               ||
-            ([self.currentKey isEqualToString:@"location"] && ![self.currentEvent objectForKey:@"location"])       ||
-            ([self.currentKey isEqualToString:@"event_date"] && ![self.currentEvent objectForKey:@"event_date"])   ||
-            ([self.currentKey isEqualToString:@"event_start"] && ![self.currentEvent objectForKey:@"event_start"]) ||
-            ([self.currentKey isEqualToString:@"event_end"] && ![self.currentEvent objectForKey:@"event_end"])     ||
-            ([self.currentKey isEqualToString:@"description"]);
-}
-
-- (BOOL)validEventValue:(NSString*)value
-{
-    NSString* strippedVal = [value stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    return ( ![strippedVal isEqualToString:@""]    && 
-            ![strippedVal isEqualToString:@"<"]    && 
-            ![strippedVal isEqualToString:@"p"]    && 
-            ![strippedVal isEqualToString:@">"]    &&
-            ![strippedVal isEqualToString:@"br /"] &&
-            ![strippedVal isEqualToString:@"/p"]);
-}
-
-- (void)abortParser {
-    self.isLoading = NO;
-    self.rssParser = nil;
-    self.dataSource = nil;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.loadingView.hidden = YES;
-        [self.tableView reloadData];
-    });
-}
 
 //*********************************************************
 //*********************************************************
@@ -398,7 +266,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     
     self.noEvents.hidden = YES;
     self.loadingView.hidden = YES;
-    [self abortParser];
     self.dataSource = [NSArray array];
     [self.tableView reloadData];
     self.events = [NSMutableArray array];
