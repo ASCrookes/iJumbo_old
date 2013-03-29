@@ -30,7 +30,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-- (void)parseXMLFileAtURL:(NSString *)URL; 
 - (void)loadData;
 - (void)clearUnnecessary;
 

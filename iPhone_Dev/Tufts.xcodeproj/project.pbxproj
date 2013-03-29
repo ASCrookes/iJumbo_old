@@ -747,9 +747,9 @@
 		8E1E7A3D153C835800B126B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -765,9 +765,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -776,9 +776,9 @@
 		8E1E7A3E153C835800B126B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -795,9 +795,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -830,9 +830,9 @@
 		8EE401C115D22166004AD1F7 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -849,9 +849,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=*]" = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
