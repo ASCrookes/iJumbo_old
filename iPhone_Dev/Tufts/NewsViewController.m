@@ -237,8 +237,8 @@ enum NewsSegment {
     NSString* title = [self.currentStory objectForKey:@"title"];
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.currentStory setObject:title forKey:@"title"];
-
-    [self.stories addObject:self.currentStory];
+    if(self.currentStory)
+        [self.stories addObject:self.currentStory];
     
     // adds the thumbnail data
     NSData* thumbnailData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.currentStory objectForKey:@"media:thumbnail"]]];

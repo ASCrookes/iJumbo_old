@@ -17,7 +17,6 @@
 
 @synthesize joeyInfo = _joeyInfo;
 @synthesize map = _map;
-@synthesize updateTimer = _updateTimer;
 @synthesize reload = _reload;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -35,9 +34,6 @@
     self.tableView.scrollEnabled = NO;
     self.navigationItem.rightBarButtonItem = self.reload;
     [self loadData];
-    if(![self.updateTimer isValid]) {
-        [self.updateTimer fire];
-    }
 }
 
 - (void)viewDidUnload
@@ -45,7 +41,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [self.updateTimer invalidate];
     self.tableView.scrollEnabled = NO;
 }
 
@@ -118,30 +113,36 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = [self.joeyInfo count];
-    if(count == 0) {
-        return 1;
+    if(section == 1) {
+        int count = [self.joeyInfo count];
+        if(count == 0) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Joey Tracker is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        return count;
     }
-    return count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // If there is no data just show a cell with a spinner saying the data is loading
-    if(indexPath.section == 0 && [self.joeyInfo count] == 0) {
-        return [tableView dequeueReusableCellWithIdentifier:@"Joey Loading Cell"];
-    }
     static NSString *CellIdentifier = @"Joey Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
     }
-
+    if(indexPath.section == 0) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"schedule"];
+        cell.textLabel.text = @"Schedule";
+        cell.userInteractionEnabled = YES;
+        return cell;
+    }
     NSDictionary* joeyDict = [self.joeyInfo objectAtIndex:indexPath.row];
     cell.textLabel.text = [joeyDict objectForKey:@"location"];
     cell.detailTextLabel.text  = [joeyDict objectForKey:@"ETA"];
@@ -152,12 +153,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self.joeyInfo count] == 0) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"The Joey tracker is unavailable" message:@"or you do not have internet"  delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+    if(indexPath.section == 0) {
+        WebViewController* webView = [self.storyboard instantiateViewControllerWithIdentifier:@"Web View"];
+        [webView setWebViewWithURL:@"http://publicsafety.tufts.edu/adminsvc/day-schedule-monday-friday/" delegate:nil];
+        webView.title = @"Joey Schedule";
+        [self.navigationController pushViewController:webView animated:YES];
         return;
     }
-    //[self.map loadView];
     [self.map viewDidLoad];
     self.map.allowAnnotationClick = NO;
     self.map.searchBar.userInteractionEnabled = NO;
@@ -171,7 +173,7 @@
 {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, 45)];
     label.backgroundColor = self.tableView.backgroundColor;
-    label.text = @"Tufts Life Joey Tracker";
+    label.text = (section == 0) ? @"Tufts Life Joey Tracker" : @"Joey Tracker Schedule";
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldSystemFontOfSize:16];
     label.numberOfLines = 2;
@@ -223,14 +225,6 @@
         _map = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
     }
     return _map;
-}
-
-- (NSTimer*)updateTimer
-{
-    if(!_updateTimer) {
-        _updateTimer = [NSTimer scheduledTimerWithTimeInterval:55 target:self selector:@selector(loadData) userInfo:nil repeats:YES];
-    }
-    return _updateTimer;
 }
 
 

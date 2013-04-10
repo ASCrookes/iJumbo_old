@@ -32,6 +32,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 @synthesize loadingView = _loadingView;
 @synthesize datePicker = _datePicker;
 @synthesize isLoading = _isLoading;
+@synthesize lastDownload = _lastDownload;
 
 //*********************************************************
 //*********************************************************
@@ -48,6 +49,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.title = @"Tufts Life";
     // load the date picker so it doesnt randomly show up when the events page first displays
     (void)self.datePicker;
+    [self.extraNavBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LowerNavBar.png"]]];
 
     // Loading and no event views are added before the screen loads
     // they need to be deleted or else they will alwyas be there
@@ -71,19 +73,22 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     [self setNoEvents:nil];
     [self setLoadingView:nil];
     [self setDatePicker:nil];
+    [self setExtraNavBar:nil];
+    [self setNextButton:nil];
+    [self setPreviousButton:nil];
     [super viewDidUnload];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if(!self.date) {
+        self.date = [NSDate date];
+    }
     if(self.isLoading) {
         self.loadingView.hidden = NO;
-    } else {
-        [self.tableView reloadData];
-        if([self.dataSource count] == 0) {
-            self.noEvents.hidden = NO;
-            [self loadData];
-        }
+    } else if(self.lastDownload == nil || [self.lastDownload timeIntervalSinceNow] < -600) { //havent loaded data in 15 minutes
+        self.events = [NSArray array];
+        [self loadData];
     }
 }
 
@@ -102,25 +107,39 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)loadData
 {
-    self.dataSource = [NSArray array];
+    self.dataSource = [NSDictionary dictionary];
+    self.events = [NSArray array];
     //[self.tableView reloadData];
+    [self showActivityIndicator];
     dispatch_queue_t queue = dispatch_queue_create("Event.Table.Load", NULL);
     dispatch_async(queue, ^{
         NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://www.tuftslife.com/events.json"]];
         if(data == nil) {
             AppDelegate* del = [[UIApplication sharedApplication] delegate];
             [del pingServer];
+            self.dayBar.topItem.titleView = nil;
             return;
         }
         NSError* error;
+        self.lastDownload = [NSDate date];
         self.dataSource = [NSJSONSerialization JSONObjectWithData:data
                                                           options:0 error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.dayBar.topItem.titleView = nil;
+            [self changeDateToDate:self.date];
             [self.tableView reloadData];
         });
         
     });
     dispatch_release(queue);
+}
+
+- (void)showActivityIndicator {
+    UIActivityIndicatorView * activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [activityView sizeToFit];
+    [activityView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)];
+    [activityView startAnimating];
+    self.dayBar.topItem.titleView = activityView;
 }
 
 //*********************************************************
@@ -137,7 +156,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int rows = [self.dataSource count];
+    int rows = [self.events count];
     self.noEvents.hidden = !(rows == 0);
     return rows;
 }
@@ -150,11 +169,23 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    id event = [self.dataSource objectAtIndex:indexPath.row];
+    id event = [self.events objectAtIndex:indexPath.row];
     cell.textLabel.text = event[@"event"][@"title"];
-    cell.detailTextLabel.text = event[@"starts"];
-    
+    NSString* time = @"";
+    if(![event[@"starts"] isEqual:[NSNull null]])
+        time = [EventTableViewController timeFromString:event[@"starts"]];
+    if(![event[@"ends"] isEqual:[NSNull null]]) {
+        time = [time stringByAppendingString:@" - "];
+        time = [time stringByAppendingString:[EventTableViewController timeFromString:event[@"ends"]]];
+    }
+    cell.detailTextLabel.text = time;
     return cell;
+}
+
++ (NSString*)timeFromString:(NSString*)date {
+    NSLog(@"DATE STRING: [%@]", date);
+    NSArray* words = [date componentsSeparatedByString:@" "];
+    return [words[words.count - 2] stringByAppendingString:words[words.count -1]];
 }
 
 + (NSString*)getTimeSpanFromEvent:(NSDictionary*)event
@@ -195,7 +226,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     [self resignDatePicker];
     EventViewController* eventPage = [self.storyboard instantiateViewControllerWithIdentifier:@"Event View"];
     [eventPage loadView];
-    [eventPage setEvent:[self.dataSource objectAtIndex:indexPath.row]];
+    [eventPage setEvent:[self.events objectAtIndex:indexPath.row]];
     [eventPage setUp];
     eventPage.title = @"Events";
     eventPage.view.backgroundColor = self.tableView.backgroundColor;
@@ -263,17 +294,16 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 - (void)changeDateToDate:(NSDate*)newDate
 {
-    
-    self.noEvents.hidden = YES;
-    self.loadingView.hidden = YES;
-    self.dataSource = [NSArray array];
-    [self.tableView reloadData];
-    self.events = [NSMutableArray array];
-    self.currentEvent = [NSMutableDictionary dictionaryWithObject:@"" forKey:@"description"];
-    
     self.date = newDate;
-    [self loadData];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString* key = [dateFormatter stringFromDate:self.date];
+    self.events = [self.dataSource objectForKey:key];
+
+    [self.tableView reloadData];
+    self.date = newDate;
 }
+
 
 
 //*********************************************************
@@ -348,10 +378,10 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     return _url;
 }
 
-- (NSArray*)dataSource
+- (NSDictionary*)dataSource
 {
     if(!_dataSource) {
-        _dataSource = [NSArray array];
+        _dataSource = [NSDictionary dictionary];
     }
     return _dataSource;
 }

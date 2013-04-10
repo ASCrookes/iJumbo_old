@@ -60,8 +60,8 @@
     self.eventTitle.text  = self.event[@"event"][@"title"];
     self.location.text    = self.event[@"event"][@"location"];
     //self.link.text        = self.event[@"link"];
-    self.time.text        = [[self.event[@"starts"] stringByAppendingString:@"-"] stringByAppendingString:self.event[@"ends"]];
-    
+    NSString* time = self.event[@"starts"];
+    self.time.text = time;
 }
 
 - (NSString*)getTimeSpanFromEvent:(NSDictionary*)event

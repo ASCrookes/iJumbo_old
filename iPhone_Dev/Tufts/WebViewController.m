@@ -45,7 +45,7 @@
     int height = [[UIScreen mainScreen] bounds].size.height;
     // the 2 navigation bars plus that status bar is 44 + 44 + 20 which is about 110
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, 320, height-110)];
-    self.webView.delegate = del;
+    self.webView.delegate = self;
     [self.view addSubview:self.webView];
     NSURL* webURL = [NSURL URLWithString:self.url];
     [self.webView loadRequest:[NSURLRequest requestWithURL:webURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30]];
@@ -69,6 +69,35 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+//*********************************************************
+//*********************************************************
+#pragma mark - Web View Delegate 
+//*********************************************************
+//*********************************************************
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    UIActivityIndicatorView * activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [activityView sizeToFit];
+    [activityView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)];
+    [activityView startAnimating];
+    UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
+    self.navigationItem.rightBarButtonItem = loadingView;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    self.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Could not load" message:@"Try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 

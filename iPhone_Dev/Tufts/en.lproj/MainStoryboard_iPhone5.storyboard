@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="euB-7V-168">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -1175,7 +1175,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qrb-Rq-uJs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1210,10 +1210,31 @@
                                     <outlet property="delegate" destination="9bc-eR-Tt1" id="TKe-AL-aBB"/>
                                 </connections>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" id="CBd-aM-VWh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="m4j-Eq-bKA">
+                                        <barButtonItem key="leftBarButtonItem" image="back arrow.png" id="NJi-E0-NfP">
+                                            <connections>
+                                                <action selector="leftBarButtonAction:" destination="9bc-eR-Tt1" id="Dew-gF-474"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" image="forward arrow.png" id="RG0-ZI-8mq">
+                                            <connections>
+                                                <action selector="rightBarButtonAction:" destination="9bc-eR-Tt1" id="hg8-AJ-Jgs"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="dayBar" destination="CBd-aM-VWh" id="PF2-G8-HsZ"/>
+                        <outlet property="nextButton" destination="RG0-ZI-8mq" id="Hd3-Cb-vN2"/>
+                        <outlet property="previousButton" destination="NJi-E0-NfP" id="zJX-oi-wU8"/>
                         <outlet property="tableView" destination="Qrb-Rq-uJs" id="j2w-ga-0et"/>
                     </connections>
                 </viewController>
@@ -1794,11 +1815,13 @@
     <resources>
         <image name="Bus.png" width="115" height="106"/>
         <image name="Webpage.png" width="120" height="116"/>
+        <image name="back arrow.png" width="20" height="20"/>
         <image name="buildingCellButton.png" width="42" height="42"/>
         <image name="burger.png" width="130" height="91"/>
         <image name="event.png" width="132" height="129"/>
         <image name="eventDescription.png" width="280" height="200"/>
         <image name="feedback_email.png" width="300" height="30"/>
+        <image name="forward arrow.png" width="20" height="20"/>
         <image name="map.png" width="110" height="110"/>
         <image name="myFoodButton.png" width="92" height="34"/>
         <image name="news.png" width="115" height="105"/>
@@ -1860,6 +1883,9 @@
                 <relationship kind="action" name="leftBarButtonAction:"/>
                 <relationship kind="action" name="rightBarButtonAction:"/>
                 <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="extraNavBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="nextButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="previousButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

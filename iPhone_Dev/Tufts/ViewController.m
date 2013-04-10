@@ -101,7 +101,6 @@
 
 - (IBAction)getEvents:(id)sender 
 {
-    [self.etvc loadData];
     [self.navigationController pushViewController:self.etvc animated:YES];
 }
 

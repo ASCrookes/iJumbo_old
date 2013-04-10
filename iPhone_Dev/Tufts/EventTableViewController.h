@@ -12,7 +12,7 @@
 
 @interface EventTableViewController : UIViewController <NSXMLParserDelegate, UITableViewDataSource, UITabBarDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic,strong) NSArray* dataSource;
+@property (nonatomic,strong) NSDictionary* dataSource;
 @property (nonatomic,strong) NSMutableArray* events;
 @property (nonatomic,strong) NSDate* date;
 @property (nonatomic,strong) NSString* url;
@@ -20,6 +20,10 @@
 @property (nonatomic,strong) UIView* loadingView;
 @property (strong, nonatomic) UIDatePicker* datePicker;
 @property (nonatomic) BOOL isLoading;
+@property (weak, nonatomic) IBOutlet UINavigationBar *extraNavBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *previousButton;
+@property (strong, nonatomic) NSDate* lastDownload;
 
 // For getting the info from the rss feed
 @property (nonatomic,strong) NSXMLParser* rssParser;
