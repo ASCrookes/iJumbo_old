@@ -1809,7 +1809,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BuildingCell.h"/>
             <relationships>
                 <relationship kind="action" name="infoButtonAction:"/>
-                <relationship kind="action" name="mapButtonAction:"/>
                 <relationship kind="outlet" name="buildingName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mapButton" candidateClass="UIButton"/>
@@ -1850,8 +1849,6 @@
         <class className="EventTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EventTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="leftBarButtonAction:"/>
-                <relationship kind="action" name="rightBarButtonAction:"/>
                 <relationship kind="outlet" name="dayBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="extraNavBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="nextButton" candidateClass="UIBarButtonItem"/>
@@ -1872,8 +1869,6 @@
         <class className="FeedbackViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FeedbackViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancelAction:"/>
-                <relationship kind="action" name="sendAction:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="feedbackInputField" candidateClass="UITextView"/>
             </relationships>
@@ -1912,8 +1907,6 @@
         <class className="MenuTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="dateButtonAction:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="showMyFood:"/>
                 <relationship kind="outlet" name="extraBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="myFoodButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
@@ -1947,13 +1940,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="getAppInfo:"/>
-                <relationship kind="action" name="getEvents:"/>
-                <relationship kind="action" name="getJoey:"/>
-                <relationship kind="action" name="getMap:"/>
-                <relationship kind="action" name="getMenus:"/>
-                <relationship kind="action" name="getNews:"/>
-                <relationship kind="action" name="getTrunk:"/>
                 <relationship kind="outlet" name="dayNum" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dayWord" candidateClass="UILabel"/>
             </relationships>
