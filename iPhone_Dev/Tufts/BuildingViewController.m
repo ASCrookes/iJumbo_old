@@ -58,7 +58,12 @@
     
     self.title = [self.building objectForKey:@"building_name"];
 }
-                        
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
+}
+
 - (void)getDirections
 {
     NSString* url;
@@ -176,10 +181,5 @@
     [self setupHours];
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end

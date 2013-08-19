@@ -42,7 +42,11 @@
     [super viewDidLoad];
     [self setupView];
     [self.mapView setDelegate:self];
+}
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (void)viewDidUnload
@@ -51,11 +55,6 @@
     [self setSearchBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 //*********************************************************
@@ -279,6 +278,9 @@
 
 - (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
     MKAnnotationView* aView = [_mapView dequeueReusableAnnotationViewWithIdentifier:@"Map Annotation"];
     if(!aView)
     {

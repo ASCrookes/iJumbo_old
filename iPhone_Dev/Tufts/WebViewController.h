@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
 @property (strong, nonatomic) NSString* url;
+@property (strong, nonatomic) UIBarButtonItem* safari;
 
 - (void)setWebViewWithURL:(NSString*)url delegate:(id <UIWebViewDelegate>)del;
 

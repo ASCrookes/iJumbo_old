@@ -17,7 +17,7 @@
 @synthesize etvc = _etvc;
 @synthesize mtvc = _mtvc;
 @synthesize btvc = _btvc;
-@synthesize trunk = _trunk;
+@synthesize links = _links;
 @synthesize joey = _joey;
 @synthesize dayNum = _dayNum;
 @synthesize dayWord = _dayWord;
@@ -42,7 +42,7 @@
     [self.map loadData];
     [self.news loadData];
     [self.btvc loadData];
-    self.trunk.title = @"Trunk";
+    [self.links loadData];
     
     // if the app is yet to launch then show a page with what is new to this version of the app
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
@@ -52,6 +52,10 @@
     
     // Checking that the internet is available if not an alert will be shown
     [self pingInternet];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (void)launchTutorial
@@ -87,12 +91,6 @@
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Pushing View Controllers
@@ -109,9 +107,9 @@
     [self.navigationController pushViewController:self.mtvc animated:YES];
 }
 
-- (IBAction)getTrunk:(id)sender 
+- (IBAction)getLinks:(id)sender
 {
-    [self.navigationController pushViewController:self.trunk animated:YES];
+    [self.navigationController pushViewController:self.links animated:YES];
 }
 
 - (IBAction)getJoey:(id)sender 
@@ -167,6 +165,7 @@
 //*********************************************************
 //*********************************************************
 
+/*
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     UIActivityIndicatorView * activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -186,6 +185,7 @@
 {
     self.trunk = nil;
 }
+ */
 
 
 //*********************************************************
@@ -196,7 +196,6 @@
 
 - (void)didReceiveMemoryWarning
 {
-    self.trunk = nil;
     [self.etvc clearUnnecessary];
     [self.mtvc clearUnnecessary];
     [self.joey clearUnnecessary];
@@ -238,7 +237,6 @@
         _btvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Detailed Building Table"];
         _btvc.mapSelect = NO;
         _btvc.hasDetailedCells = YES;
-        // DELME -> find another way to do this
         [_btvc loadView];
         [_btvc viewDidLoad];
         _btvc.tableView.backgroundColor = self.backgroundColor;
@@ -247,13 +245,15 @@
     return _btvc;
 }
 
-- (WebViewController*)trunk
-{
-    if(!_trunk) {
-        _trunk = [self.storyboard instantiateViewControllerWithIdentifier:@"Web View"];
-        [_trunk setWebViewWithURL:@"https://trunk.tufts.edu/xsl-portal" delegate:self];
+- (LinksTableViewController*)links {
+    if (!_links) {
+        _links = [self.storyboard instantiateViewControllerWithIdentifier:@"LinksTable"];
+        _links.backgroundColor = self.backgroundColor;
+        _links.view.backgroundColor = self.backgroundColor;
+        _links.tableView.backgroundColor = self.backgroundColor;
+        _links.title = @"Links";
     }
-    return _trunk;
+    return _links;
 }
 
 - (JoeyTrackerTable*)joey

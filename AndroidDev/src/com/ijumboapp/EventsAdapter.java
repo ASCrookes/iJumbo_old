@@ -1,5 +1,9 @@
 package com.ijumboapp;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,12 +15,12 @@ import android.widget.TextView;
 
 public class EventsAdapter extends ArrayAdapter<Object> {
 
-	private Object[] data;
+	private JSONArray events;
 	private Context context;
 	
-	public EventsAdapter(Context context, int textViewResourceId, Object[] objects) {
+	public EventsAdapter(Context context, int textViewResourceId, JSONArray objects) {
 		super(context, textViewResourceId);
-		this.data = objects;
+		this.events = objects;
 		this.context = context;
 	}
 
@@ -33,13 +37,19 @@ public class EventsAdapter extends ArrayAdapter<Object> {
 		 } else {
 			 holder = (Holder) cell.getTag();
 		 }
-		 holder.tView.setText(this.data[position].toString());
-		 return cell;
+		 JSONObject event;
+		try {
+			event = (JSONObject) this.events.getJSONObject(position).getJSONObject("event");
+			holder.tView.setText(event.getString("title"));
+		} catch (JSONException e) {
+			holder.tView.setText("Title is unavailable");
+		}
+		return cell;
 	 }
 	 
 	@Override
 	public int getCount() {
-		return this.data.length;
+		return this.events.length();
 	}	
 	
 	static class Holder {

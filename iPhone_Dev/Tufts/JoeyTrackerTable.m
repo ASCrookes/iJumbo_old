@@ -28,6 +28,11 @@
     return self;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,12 +48,6 @@
     // e.g. self.myOutlet = nil;
     self.tableView.scrollEnabled = NO;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 
 //*********************************************************
 //*********************************************************
@@ -95,6 +94,7 @@
         self.title = @"Transportation";
         self.navigationItem.rightBarButtonItem = self.reload;
         [self.tableView reloadData];
+        [self stopLoadingUI];
     });
 }
 
@@ -121,6 +121,7 @@
     if(section == 1) {
         int count = [self.joeyInfo count];
         if(count == 0) {
+            NSLog(@"SHOW IT");
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Joey Tracker is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
@@ -155,7 +156,7 @@
 {
     if(indexPath.section == 0) {
         WebViewController* webView = [self.storyboard instantiateViewControllerWithIdentifier:@"Web View"];
-        [webView setWebViewWithURL:@"http://publicsafety.tufts.edu/adminsvc/day-schedule-monday-friday/" delegate:nil];
+        [webView setWebViewWithURL:[JoeyTrackerTable getScheduleURLBasedOnDate] delegate:nil];
         webView.title = @"Joey Schedule";
         [self.navigationController pushViewController:webView animated:YES];
         return;
@@ -167,6 +168,31 @@
     
     [self.navigationController pushViewController:self.map animated:YES];
 
+}
+
++ (NSString*)getScheduleURLBasedOnDate {
+    NSString* url = @"";
+    NSDate* date = [NSDate date];
+    NSCalendar* cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents* comps = [cal components:NSHourCalendarUnit fromDate:date];
+    NSInteger hour = [comps hour];
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"c"];
+    int day_of_week = [[formatter stringFromDate:date] intValue];
+    if (day_of_week == 1) {
+        url = @"http://publicsafety.tufts.edu/adminsvc/sunday-schedule-2/";
+    } else if (day_of_week == 7) {
+        url = @"http://publicsafety.tufts.edu/adminsvc/saturday-schedule-2/";
+    } else {
+        if (hour < 18) {
+            url = @"http://publicsafety.tufts.edu/adminsvc/day-schedule-monday-friday/";
+        } else if (day_of_week < 5) {
+            url = @"http://publicsafety.tufts.edu/adminsvc/night-schedule-monday-wednesday-2/";
+        } else {
+            url = @"http://publicsafety.tufts.edu/adminsvc/night-schedule-thursday-friday-2/";
+        }
+    }
+    return url;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -199,8 +225,7 @@
 
 // The map is easily created
 // data cannot be removed because it contains info for when the cell is clikced on
-- (void)clearUnnecessary
-{
+- (void)clearUnnecessary {
     self.map = nil;
 }
 
@@ -211,16 +236,14 @@
 //*********************************************************
 //*********************************************************
 
-- (NSArray*)joeyInfo
-{
+- (NSArray*)joeyInfo {
     if(!_joeyInfo) {
         _joeyInfo = [NSArray array];
     }
     return _joeyInfo;
 }
 
-- (MapViewController*)map
-{
+- (MapViewController*)map {
     if(!_map) {
         _map = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
     }
@@ -228,8 +251,7 @@
 }
 
 
-- (UIBarButtonItem*)reload
-{
+- (UIBarButtonItem*)reload {
     if(!_reload) {
         _reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
     }

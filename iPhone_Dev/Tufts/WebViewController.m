@@ -18,6 +18,7 @@
 @synthesize webView = _webView;
 @synthesize backButton;
 @synthesize forwardButton;
+@synthesize safari = _safari;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,11 +67,14 @@
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
 }
 
+- (void)openInSafari {
+    NSString *currentURL = self.webView.request.URL.absoluteString;
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:currentURL]];
+}
 
 //*********************************************************
 //*********************************************************
@@ -78,8 +82,7 @@
 //*********************************************************
 //*********************************************************
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
+- (void)webViewDidStartLoad:(UIWebView *)webView {
     UIActivityIndicatorView * activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
     [activityView sizeToFit];
     [activityView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)];
@@ -90,15 +93,21 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = self.safari;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Could not load" message:@"Try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
-    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = self.safari;
 }
 
+- (UIBarButtonItem*)safari {
+    if (!_safari) {
+        _safari = [[UIBarButtonItem alloc] initWithTitle:@"Safari" style:UIBarButtonItemStylePlain target:self action:@selector(openInSafari)];
+    }
+    return _safari;
+}
 
 @end

@@ -15,6 +15,7 @@
 @implementation MyFoodViewController
 
 @synthesize myFood = _myFood;
+@synthesize foodSet = _foodSet;
 @synthesize allFood = _allFood;
 @synthesize dataSource = _dataSource;
 @synthesize isLoading = _isLoading;
@@ -31,6 +32,11 @@
     self.editButtonItem.action = @selector(toggleTableEditMode);
     // setup the view based on the UI so far
     [self segmentChange];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -109,13 +115,18 @@
         return cell;
     }
     NSString* cellText = [self.dataSource objectAtIndex:indexPath.row];
+    UIColor* textColor = [UIColor blackColor];
     // if the section is my food change the channel names to readable food
     if(((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex == 0) {
         cellText = [cellText substringFromIndex:4];
         cellText = [cellText stringByReplacingOccurrencesOfString:@"_" withString:@" "];
         cellText = [cellText stringByReplacingOccurrencesOfString:@"--and--" withString:@"&"];
+    } else if([self.foodSet containsObject:cellText]) {
+        NSLog(@"changing the color");
+        textColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1];
     }
     cell.textLabel.text = cellText;
+    cell.textLabel.textColor = textColor;
     
     return cell;
 }
@@ -124,10 +135,10 @@
 {
     int segmentIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
     // this is the cell saying to click a cell to subscribe to it
-    if(segmentIndex == 0 || indexPath.section == 0){
-        return;
+    if(segmentIndex != 0 && indexPath.section != 0) {
+        [MyFoodViewController subscribeToFood:[self.dataSource objectAtIndex:indexPath.row]];
     }
-    [MyFoodViewController subscribeToFood:[self.dataSource objectAtIndex:indexPath.row]];
+
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -203,6 +214,10 @@
     // channels must start with a letter -> append my initials
     channel = [@"ASC_" stringByAppendingString:channel];
     [PFPush subscribeToChannelInBackground:channel];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[@"Subscribed to " stringByAppendingString:foodName] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    });
 }
 
 
@@ -212,9 +227,8 @@
 - (NSArray*)myFood
 {
     if(!_myFood) {
-        NSSet* foodSet = [PFPush getSubscribedChannels:nil];
         NSSortDescriptor* sort = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-        _myFood = [foodSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+        _myFood = [self.foodSet sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
         NSMutableArray* foodChannels = [NSMutableArray arrayWithArray:_myFood];
         [foodChannels removeObject:@""];
         for(int i = 0; i < [foodChannels count]; i++) {
@@ -238,6 +252,13 @@
         _allFood = [NSArray array];
     }
     return _allFood;
+}
+
+- (NSSet*)foodSet {
+    if(!_foodSet) {
+        _foodSet = [PFPush getSubscribedChannels:nil];
+    }
+    return _foodSet;
 }
 
 - (void)setIsLoading:(BOOL)isLoading

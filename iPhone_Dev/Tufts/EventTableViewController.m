@@ -56,14 +56,16 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.loadingView = nil;
     self.noEvents = nil;
     
-    
-
-
     [self.dayBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
     self.date = [NSDate date];
     UIBarButtonItem* datePicker = [[UIBarButtonItem alloc] initWithTitle:@"Calendar" style:UIBarButtonItemStylePlain target:self action:@selector(showDatePicker:)];
     [self.navigationItem setRightBarButtonItem:datePicker];
     [self.tableView reloadData];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (void)viewDidUnload
@@ -91,13 +93,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         [self loadData];
     }
 }
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 
 //*********************************************************
 //*********************************************************
@@ -315,7 +310,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)clearUnnecessary
 {
     if(!self.isLoading) {
-        NSLog(@"CLEARING");
         self.noEvents = nil;
         self.loadingView = nil;
         self.datePicker = nil;

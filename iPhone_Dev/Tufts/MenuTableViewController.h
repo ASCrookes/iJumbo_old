@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *todayBarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tomorrowBarButton;
 @property (weak, nonatomic) IBOutlet UIButton *myFoodButton;
+@property (nonatomic,strong) NSSet* foodSet;
 
 
 

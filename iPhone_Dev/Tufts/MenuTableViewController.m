@@ -29,6 +29,7 @@ const int TOMORROW_INDEX = 1;
 @synthesize extraBar = _extraBar;
 @synthesize tableView = _tableView;
 @synthesize diningHallInfo = _diningHallInfo;
+@synthesize foodSet = _foodSet;
 
 //*********************************************************
 //*********************************************************
@@ -49,6 +50,11 @@ const int TOMORROW_INDEX = 1;
         [self loadData];
     }
     [self loadDataBasedOnDate];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -88,13 +94,6 @@ const int TOMORROW_INDEX = 1;
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Segments, Action Sheets, & bar buttons
@@ -120,7 +119,7 @@ const int TOMORROW_INDEX = 1;
                                 delegate:self
                        cancelButtonTitle:@"Cancel"
                   destructiveButtonTitle:nil
-                       otherButtonTitles:@"Dewick", @"Hodgdon", @"Carmichael", nil];
+                       otherButtonTitles:@"Dewick", @"Hodgdon", @"Carmichael", @"Refresh", nil];
     
     // Show the sheet
     [sheet showInView:self.view];
@@ -131,10 +130,14 @@ const int TOMORROW_INDEX = 1;
     NSString* diningHall = [actionSheet buttonTitleAtIndex:buttonIndex];
     if([self.navigationItem.rightBarButtonItem.title isEqualToString:diningHall] || 
        [[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"]    ) {
-        return;
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Refresh"]) {
+        self.masterDict = nil;
+        self.dataSource = nil;
+        [self loadData];
+    } else {
+        self.navigationItem.rightBarButtonItem.title = diningHall;
+        [self setDataSourceFromMaster];
     }
-    self.navigationItem.rightBarButtonItem.title = diningHall;
-    [self setDataSourceFromMaster];
 }
 
 
@@ -186,6 +189,7 @@ const int TOMORROW_INDEX = 1;
     dispatch_queue_t queue = dispatch_queue_create("Menu.Table.Load", nil);
     dispatch_async(queue, ^{
         [self parseData];
+        [self loadFoodSet];
     });
     dispatch_release(queue);
 }
@@ -262,12 +266,19 @@ const int TOMORROW_INDEX = 1;
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    NSString* cellText;
+    UIColor* textColor = [UIColor blackColor];
     
     if(indexPath.section == 0) {
-        cell.textLabel.text = [self.navigationItem.rightBarButtonItem.title stringByAppendingString:@" Info"];
+        cellText = [self.navigationItem.rightBarButtonItem.title stringByAppendingString:@" Info"];
     } else {
-        cell.textLabel.text = [[[[self.dataSource objectAtIndex:indexPath.section - 1] objectForKey:@"foods"] objectAtIndex:indexPath.row] objectForKey:@"FoodName"];
+        cellText = [[[[self.dataSource objectAtIndex:indexPath.section - 1] objectForKey:@"foods"] objectAtIndex:indexPath.row] objectForKey:@"FoodName"];
+        if ([self.foodSet containsObject:cellText]) {
+            textColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1];
+        }
     }
+    cell.textLabel.text = cellText;
+    cell.textLabel.textColor = textColor;
     return cell;
 }
 
@@ -318,8 +329,7 @@ const int TOMORROW_INDEX = 1;
     return header;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return SECTION_HEIGHT;
 }
 
@@ -333,8 +343,7 @@ const int TOMORROW_INDEX = 1;
 // was before 2:00 then load the data again.
 // To be safe it checks if it is after 3
 // compares the dates with ints (yyyymmddhh)
-- (void)loadDataBasedOnDate
-{
+- (void)loadDataBasedOnDate {
     if(!self.lastUpdate || !self.dataSource) {
         [self loadData];
         return;
@@ -347,8 +356,7 @@ const int TOMORROW_INDEX = 1;
     }
 }
  
-+ (NSNumber*)getNumericalDate:(NSDate*)date
-{
++ (NSNumber*)getNumericalDate:(NSDate*)date {
     NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyyMMddHHmm"];
     NSString* dateString = [dateFormat stringFromDate:date];
@@ -359,14 +367,12 @@ const int TOMORROW_INDEX = 1;
     return dateNum;
 }
 
-+ (NSNumber*)getServersLastUpdateTime
-{
++ (NSNumber*)getServersLastUpdateTime {
     NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://ijumboapp.com/api/json/mealDate"]];
     NSError* error;
     if(!data) {
         NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyyMMddhhmm"];
-        NSLog(@"MEAL DATE: %@", [dateFormat stringFromDate:[NSDate date]]);
         return [NSNumber numberWithInt:[[dateFormat stringFromDate:[NSDate date]] intValue]];
     }
     NSDictionary* dateDict = [NSJSONSerialization JSONObjectWithData:data
@@ -376,17 +382,15 @@ const int TOMORROW_INDEX = 1;
     return number;
 }
 
-- (IBAction)showMyFood:(id)sender
-{
+- (IBAction)showMyFood:(id)sender {
     MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food VC"];
     myFood.view.hidden = NO;
     myFood.tableView.backgroundColor = self.view.backgroundColor;
+    myFood.foodSet = self.foodSet;
     [self.navigationController pushViewController:myFood animated:YES];
 }
 
-
-+ (void)subscribeToFood:(NSString*)foodName
-{
++ (void)subscribeToFood:(NSString*)foodName {
     [MyFoodViewController subscribeToFood:foodName];
 }
 
@@ -398,8 +402,7 @@ const int TOMORROW_INDEX = 1;
 //*********************************************************
 //*********************************************************
 
-- (void)clearUnnecessary
-{
+- (void)clearUnnecessary {
     [self setNoFood:nil];
     [self setLoadingView:nil];
     [self setDiningHallInfo:nil];
@@ -465,6 +468,16 @@ const int TOMORROW_INDEX = 1;
         dispatch_release(queue);
     }
     return _diningHallInfo;
+}
+
+- (NSSet*)foodSet {
+    if (!_foodSet)
+        [self loadFoodSet];
+    return _foodSet;
+}
+
+- (void)loadFoodSet {
+    [self setFoodSet:[PFPush getSubscribedChannels:nil]];
 }
 
 @end

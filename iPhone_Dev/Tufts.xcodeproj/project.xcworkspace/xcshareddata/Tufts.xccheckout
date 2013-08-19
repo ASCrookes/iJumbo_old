@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>22117A07-85BF-497D-BDBA-5CD411F8DFFE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tufts</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>710D1244-4538-4B8C-8ECE-E3CBB7F8F4DD</key>
+		<string>ssh://github.com/ASCrookes/iJumbo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iPhone_Dev/Tufts.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>710D1244-4538-4B8C-8ECE-E3CBB7F8F4DD</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/ASCrookes/iJumbo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>710D1244-4538-4B8C-8ECE-E3CBB7F8F4DD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>710D1244-4538-4B8C-8ECE-E3CBB7F8F4DD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iJumbo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

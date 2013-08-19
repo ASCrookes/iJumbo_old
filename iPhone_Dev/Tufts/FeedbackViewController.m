@@ -24,6 +24,11 @@
 	[self.emailField becomeFirstResponder];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
+}
+
 - (void)viewDidUnload
 {
     [self setFeedbackInputField:nil];
@@ -31,11 +36,6 @@
     [self setEmailField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (IBAction)sendAction:(id)sender 

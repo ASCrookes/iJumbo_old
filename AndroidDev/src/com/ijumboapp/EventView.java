@@ -1,5 +1,8 @@
 package com.ijumboapp;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -16,10 +19,16 @@ public class EventView extends IJumboActivity {
 		TextView tView = (TextView) findViewById(R.id.eventDescription);
 		tView.setMovementMethod(new ScrollingMovementMethod());
 		Intent intent = getIntent();
-		Event event = (Event) intent.getSerializableExtra("event");
-		if(event != null) {
-			this.showEventInUI(event);
-		}		
+		JSONObject event;
+		try {
+			event = new JSONObject(intent.getStringExtra("event"));
+			if(event != null) {
+				this.showEventInUI(event);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+				
 	}
 
 	@Override
@@ -30,12 +39,13 @@ public class EventView extends IJumboActivity {
 	}
 	
 	// take data in an Event object and display it
-	public void showEventInUI(Event event) {
-		((TextView)findViewById(R.id.eventTitle)).setText(event.title);
-		((TextView)findViewById(R.id.eventTime)).setText(event.startTime + "-" + event.endTime);
-		((TextView)findViewById(R.id.eventLocation)).setText(event.location);
-		((TextView)findViewById(R.id.eventLink)).setText(event.link);
-		((TextView)findViewById(R.id.eventDescription)).setText(event.description);
+	public void showEventInUI(JSONObject event) throws JSONException {
+		JSONObject innerEvent = event.getJSONObject("event");
+		((TextView)findViewById(R.id.eventTitle)).setText(innerEvent.getString("title"));
+		((TextView)findViewById(R.id.eventTime)).setText(event.getString("starts") + "-" + event.getString("ends"));
+		((TextView)findViewById(R.id.eventLocation)).setText(event.getString("location"));
+		((TextView)findViewById(R.id.eventLink)).setText("https://www.tuftslife.com/events/" + event.getInt("event_id"));
+		((TextView)findViewById(R.id.eventDescription)).setText(event.getString("description"));
 	}
 
 }

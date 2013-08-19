@@ -93,6 +93,7 @@
 		8EE401BB15D1EBF3004AD1F7 /* whiteBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE401B915D1EBF3004AD1F7 /* whiteBackground.png */; };
 		8EE401BD15D1EC5E004AD1F7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE401BC15D1EC5E004AD1F7 /* Default@2x.png */; };
 		8EE401BF15D1EC62004AD1F7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE401BE15D1EC62004AD1F7 /* Default.png */; };
+		8EE67FEF17C01FA000CD35AD /* LinksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE67FEE17C01FA000CD35AD /* LinksTableViewController.m */; };
 		8EECBEC4153D2DB20087B139 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EECBEC3153D2DB20087B139 /* EventViewController.m */; };
 		8EEEBCC6160B6EFF00D702E6 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCC5160B6EFF00D702E6 /* Parse.framework */; };
 		8EEEBCC9160B6F7600D702E6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EEEBCC7160B6F6300D702E6 /* AudioToolbox.framework */; };
@@ -231,6 +232,8 @@
 		8EE401B915D1EBF3004AD1F7 /* whiteBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBackground.png; sourceTree = "<group>"; };
 		8EE401BC15D1EC5E004AD1F7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8EE401BE15D1EC62004AD1F7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8EE67FED17C01FA000CD35AD /* LinksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinksTableViewController.h; sourceTree = "<group>"; };
+		8EE67FEE17C01FA000CD35AD /* LinksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinksTableViewController.m; sourceTree = "<group>"; };
 		8EECBEC2153D2DB20087B139 /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
 		8EECBEC3153D2DB20087B139 /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
 		8EEEBCC5160B6EFF00D702E6 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -466,6 +469,8 @@
 				8EB8632B155B70EF00A88B14 /* BuildingTableViewController.m */,
 				8E26B698153E734800994136 /* MenuTableViewController.h */,
 				8E26B699153E734800994136 /* MenuTableViewController.m */,
+				8EE67FED17C01FA000CD35AD /* LinksTableViewController.h */,
+				8EE67FEE17C01FA000CD35AD /* LinksTableViewController.m */,
 				8E18AC6615CB8AD20054284B /* InfoViewController.h */,
 				8E18AC6715CB8AD20054284B /* InfoViewController.m */,
 				8E5320D01561B2FB0006C6CA /* MapViewController.h */,
@@ -650,6 +655,7 @@
 				8E6FE98E160E5A940024567A /* MyFoodViewController.m in Sources */,
 				8E0359D1161E71AF0038D61B /* WebViewController.m in Sources */,
 				8ED3C778162DB91D007C54C9 /* BuildingCell.m in Sources */,
+				8EE67FEF17C01FA000CD35AD /* LinksTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,9 +753,9 @@
 		8E1E7A3D153C835800B126B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -765,9 +771,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				PROVISIONING_PROFILE = "945FD24D-6019-499D-88B2-BB3214365959";
+				"PROVISIONING_PROFILE[sdk=*]" = "945FD24D-6019-499D-88B2-BB3214365959";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "945FD24D-6019-499D-88B2-BB3214365959";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -776,9 +782,9 @@
 		8E1E7A3E153C835800B126B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -795,9 +801,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				PROVISIONING_PROFILE = "945FD24D-6019-499D-88B2-BB3214365959";
+				"PROVISIONING_PROFILE[sdk=*]" = "945FD24D-6019-499D-88B2-BB3214365959";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "945FD24D-6019-499D-88B2-BB3214365959";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -830,9 +836,9 @@
 		8EE401C115D22166004AD1F7 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes (NR3QK94585)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -849,9 +855,9 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
+				PROVISIONING_PROFILE = "945FD24D-6019-499D-88B2-BB3214365959";
+				"PROVISIONING_PROFILE[sdk=*]" = "945FD24D-6019-499D-88B2-BB3214365959";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "945FD24D-6019-499D-88B2-BB3214365959";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

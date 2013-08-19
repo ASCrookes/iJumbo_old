@@ -13,6 +13,7 @@
 @interface MyFoodViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic,strong) NSArray* myFood;
+@property (nonatomic,strong) NSSet* foodSet;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray* allFood;
 @property (strong, nonatomic) NSArray* dataSource;

@@ -67,19 +67,17 @@ enum NewsSegment {
     }
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 
 - (void)loadData
 {
@@ -451,7 +449,7 @@ enum NewsSegment {
 - (NSArray*)theDailyActionSheetButtons
 {
     if(!_theDailyActionSheetButtons) {
-        _theDailyActionSheetButtons = [NSArray arrayWithObjects:@"Main",@"News",@"Features",@"Arts",@"Op-Ed",@"Sports",nil];
+        _theDailyActionSheetButtons = [NSArray arrayWithObjects:@"News",@"Main",@"Features",@"Arts",@"Op-Ed",@"Sports",nil];
     }
     return _theDailyActionSheetButtons;
 }
@@ -475,7 +473,7 @@ enum NewsSegment {
 - (UIBarButtonItem*)section
 {
     if(!_section) {
-        _section = [[UIBarButtonItem alloc] initWithTitle:@"Main" style:UIBarButtonItemStylePlain target:self action:@selector(changeSection)];
+        _section = [[UIBarButtonItem alloc] initWithTitle:@"News" style:UIBarButtonItemStylePlain target:self action:@selector(changeSection)];
     }
     return _section;
 }
