@@ -27,7 +27,7 @@ public class LinksActivity extends IJumboActivity implements LoadActivityInterfa
 					String url = LinksActivity.this.links.getJSONObject(arg2).getString("link");
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					startActivity(intent);
-				} catch (JSONException e) {}
+				} catch (JSONException e) {} 
 				
 			}
 		});
@@ -35,7 +35,6 @@ public class LinksActivity extends IJumboActivity implements LoadActivityInterfa
         	new Thread(new ActivityLoadThread(this)).start();
         }
     }
-	
 	
 	@Override
 	public void loadData() throws JSONException, JSONException {
