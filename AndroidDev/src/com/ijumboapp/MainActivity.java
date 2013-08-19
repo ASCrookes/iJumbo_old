@@ -125,13 +125,8 @@ public class MainActivity extends IJumboActivity {
 		startActivityForResult(intent, MENU_ACTIVITY_RESULT);
 	}
 	
-	public void getTrunk(View view) {
-		/*
-		Intent intent = new Intent(this, WebActivity.class);
-		intent.putExtra("url", "https://trunk.tufts.edu/xsl-portal");
-		intent.putExtra("title", "Trunk");
-		*/
-		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://trunk.tufts.edu/xsl-portal"));
+	public void getLinks(View view) {
+		Intent intent = new Intent(this, LinksActivity.class);
 		startActivity(intent);
 	}
 	

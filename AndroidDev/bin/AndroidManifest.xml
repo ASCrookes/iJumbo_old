@@ -50,6 +50,10 @@
             android:label="@string/title_activity_menu" >
         </activity>
         <activity
+            android:name="com.ijumboapp.LinksActivity"
+            android:label="@string/title_activity_links" >
+        </activity>
+        <activity
             android:name="com.ijumboapp.MapViewActivity"
             android:label="@string/title_activity_map_view" >
         </activity>

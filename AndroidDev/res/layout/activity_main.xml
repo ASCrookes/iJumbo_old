@@ -38,7 +38,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/webpage"
-        android:onClick="getTrunk"
+        android:onClick="getLinks"
         android:background="@null" />
 
     <ImageButton
