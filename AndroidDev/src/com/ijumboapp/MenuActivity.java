@@ -101,7 +101,6 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
         	this.startActivity(intent);
         	break;
         default:
-        	
         	break;
         }
         return true;
@@ -117,7 +116,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 	}
 	
     private void loadDataBasedOnDate() throws JSONException {
-    	if(!MainActivity.isNetworkAvailable(this)) {
+    	if (!MainActivity.isNetworkAvailable(this)) {
     		return;
     	}
     	long serversUpdate = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/mealDate").getLong("date");

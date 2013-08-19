@@ -45,10 +45,9 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
 					events = EventsActivity.this.eventsDict.getJSONArray(key);
 					JSONObject event = events.getJSONObject(arg2);
 					Intent intent = new Intent(EventsActivity.this, EventView.class);
-					intent.putExtra("event", event.toString().getBytes());
+					intent.putExtra("event", event.toString());
 					EventsActivity.this.startActivity(intent);
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -103,8 +102,13 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
     	String url = "https://www.tuftslife.com/events.json";
     	this.eventsDict = new RequestManager().getJSONObject(url);
     	String dateKey = this.getDatedKey();
-    	System.out.printf(dateKey);
-    	JSONArray eventsList = (JSONArray) this.eventsDict.get(dateKey);
+    	System.out.println(dateKey);
+    	JSONArray eventsList;
+    	if (this.eventsDict.has(dateKey))
+    		eventsList = (JSONArray) this.eventsDict.get(dateKey);
+    	else
+    		eventsList = new JSONArray();
+    		
     	final EventsAdapter adapter = new EventsAdapter(this, 0, eventsList);
         //final ArrayAdapter<Event> adapter =  new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, android.R.id.text1, eventsList);
     	final ListView listV = (ListView) findViewById(R.id.eventsList);

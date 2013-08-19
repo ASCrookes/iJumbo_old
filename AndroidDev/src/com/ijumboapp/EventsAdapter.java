@@ -49,6 +49,8 @@ public class EventsAdapter extends ArrayAdapter<Object> {
 	 
 	@Override
 	public int getCount() {
+		if (this.events == null)
+			return 0;
 		return this.events.length();
 	}	
 	

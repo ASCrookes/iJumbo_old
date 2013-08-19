@@ -17,12 +17,15 @@ public class EventView extends IJumboActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_view);
 		TextView tView = (TextView) findViewById(R.id.eventDescription);
+		if (tView == null)
+			System.out.println("NULL SON");
 		tView.setMovementMethod(new ScrollingMovementMethod());
 		Intent intent = getIntent();
 		JSONObject event;
 		try {
+			System.out.println(intent.getStringExtra("event"));
 			event = new JSONObject(intent.getStringExtra("event"));
-			if(event != null) {
+			if (event != null) {
 				this.showEventInUI(event);
 			}
 		} catch (JSONException e) {
@@ -43,9 +46,9 @@ public class EventView extends IJumboActivity {
 		JSONObject innerEvent = event.getJSONObject("event");
 		((TextView)findViewById(R.id.eventTitle)).setText(innerEvent.getString("title"));
 		((TextView)findViewById(R.id.eventTime)).setText(event.getString("starts") + "-" + event.getString("ends"));
-		((TextView)findViewById(R.id.eventLocation)).setText(event.getString("location"));
+		((TextView)findViewById(R.id.eventLocation)).setText(innerEvent.getString("location"));
 		((TextView)findViewById(R.id.eventLink)).setText("https://www.tuftslife.com/events/" + event.getInt("event_id"));
-		((TextView)findViewById(R.id.eventDescription)).setText(event.getString("description"));
+		((TextView)findViewById(R.id.eventDescription)).setText(innerEvent.getString("description"));
 	}
 
 }
