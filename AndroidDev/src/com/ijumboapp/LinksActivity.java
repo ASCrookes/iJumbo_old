@@ -23,8 +23,10 @@ public class LinksActivity extends IJumboActivity implements LoadActivityInterfa
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 									long arg3) {
+				if (arg2 % 2 != 0)
+					return;
 				try {
-					String url = LinksActivity.this.links.getJSONObject(arg2).getString("link");
+					String url = LinksActivity.this.links.getJSONObject(arg2/2).getString("link");
 					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 					startActivity(intent);
 				} catch (JSONException e) {} 

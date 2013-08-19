@@ -26,16 +26,29 @@ public class LinksAdapter extends ArrayAdapter<Object> {
 		 View cell = convertView;
 		 LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 		 Holder holder = null;
-		 if(cell == null) {
-			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
-			 holder = new Holder();
-			 holder.tView = (TextView) cell.findViewById(R.id.txtTitle);
-			 cell.setTag(holder);
-		 } else {
-			 holder = (Holder) cell.getTag();
+		 if (position % 2 == 0) {  // Actual item.
+			 if(cell == null || cell.getId() == R.layout.listview_header_row) {
+				 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
+				 holder = new Holder();
+				 holder.tView = (TextView) cell.findViewById(R.id.txtTitle);
+				 cell.setTag(holder);
+			 } else {
+				 holder = (Holder) cell.getTag();
+			 }
+		 } else {  // Blue divider.
+			 if (cell == null || cell.getId() == R.layout.listview_item_row) {
+				 cell = inflater.inflate(R.layout.listview_header_row, parent, false);
+				 holder = new Holder();
+				 holder.tView = (TextView) cell.findViewById(R.id.txtHeader);
+				 cell.setTag(holder);
+			 } else {
+				 holder = (Holder) cell.getTag();
+			 }
+			 holder.tView.setText("");
+			 return cell;
 		 }
 		 try {
-			holder.tView.setText(links.getJSONObject(position).getString("name"));
+			holder.tView.setText(links.getJSONObject(position/2).getString("name"));
 		} catch (JSONException e) {
 			holder.tView.setText("Name not available");
 		}
@@ -45,7 +58,7 @@ public class LinksAdapter extends ArrayAdapter<Object> {
 	 
 	@Override
 	public int getCount() {
-		return this.links.length();
+		return (this.links.length() * 2) - 1;
 	}	
 	
 	static class Holder {
