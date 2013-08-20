@@ -56,6 +56,7 @@ enum NewsSegment {
     [super viewDidLoad];
     self.tableView.separatorColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1];
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"whiteBackground.png"]];
+    self.view.backgroundColor = self.tableView.backgroundColor;
     [self.tableView reloadData];
     self.navigationItem.rightBarButtonItem = self.section;
     /* UNCOMMENT

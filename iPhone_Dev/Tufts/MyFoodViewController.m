@@ -236,7 +236,6 @@
             foodName = [foodName substringFromIndex:4];
             foodName = [foodName stringByReplacingOccurrencesOfString:@"--and--" withString:@"&"];
             foodName = [foodName stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-            
         }
         _myFood = foodChannels;
         if(!_myFood) {

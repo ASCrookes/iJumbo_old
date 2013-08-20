@@ -693,7 +693,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="author" destination="DAl-bh-peM" id="IOT-jg-YCL"/>
                                     <outlet property="thumbnail" destination="tMr-s6-scu" id="QQH-cm-KOo"/>
@@ -1196,6 +1196,7 @@
                             <navigationBar contentMode="scaleToFill" id="CBd-aM-VWh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem id="m4j-Eq-bKA">
                                         <barButtonItem key="leftBarButtonItem" image="back arrow.png" id="NJi-E0-NfP">
@@ -1782,6 +1783,7 @@
                                     <action selector="getAppInfo:" destination="2" eventType="touchUpInside" id="ZBL-4v-VwW"/>
                                 </connections>
                             </button>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>

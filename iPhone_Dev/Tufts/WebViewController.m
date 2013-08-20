@@ -33,8 +33,8 @@
 {
     [super viewDidLoad];
     [self.webView setScalesPageToFit:YES];
+    self.navigationItem.rightBarButtonItem = self.safari;
 	// Do any additional setup after loading the view.
-    
 
     [self.navBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
 }
@@ -87,18 +87,17 @@
     [activityView sizeToFit];
     [activityView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin)];
     [activityView startAnimating];
-    UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
-    self.navigationItem.rightBarButtonItem = loadingView;
+    self.navBar.topItem.titleView = activityView;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    self.navigationItem.rightBarButtonItem = self.safari;
+    self.navBar.topItem.titleView = nil;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Could not load" message:@"Try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    self.navigationItem.rightBarButtonItem = self.safari;
+    // UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Could not load" message:@"Try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    // [alert show];
+    self.navBar.topItem.titleView = nil;
 }
 
 - (UIBarButtonItem*)safari {

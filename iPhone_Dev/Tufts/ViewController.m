@@ -25,6 +25,8 @@
 @synthesize news = _news;
 @synthesize backgroundColor = _backgroundColor;
 
+const BOOL SHOW_NEW = NO;
+
 //*********************************************************
 //*********************************************************
 #pragma mark - Standard Stuff
@@ -36,6 +38,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = self.backgroundColor;
+    self.navigationItem.backBarButtonItem.tintColor = [UIColor whiteColor];
     [self setIcons];
     //[self.etvc loadData]; a relatively small amount of data to load beforehand
     [self.mtvc loadData];
@@ -45,7 +48,7 @@
     [self.links loadData];
     
     // if the app is yet to launch then show a page with what is new to this version of the app
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"]) {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"hasSeenTutorial"] && SHOW_NEW) {
         // show the new stuff here!!!!
         [self launchTutorial];
     }

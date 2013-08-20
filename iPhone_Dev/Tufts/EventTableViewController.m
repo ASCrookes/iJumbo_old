@@ -16,7 +16,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 @end
 
-
 @implementation EventTableViewController
 
 @synthesize events = _events;
@@ -40,8 +39,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 //*********************************************************
 //*********************************************************
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +54,9 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.noEvents = nil;
     
     [self.dayBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
+    NSMutableDictionary* attr = [[self.dayBar titleTextAttributes] mutableCopy];
+    [attr setObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    [self.dayBar setTitleTextAttributes:attr];
     self.date = [NSDate date];
     UIBarButtonItem* datePicker = [[UIBarButtonItem alloc] initWithTitle:@"Calendar" style:UIBarButtonItemStylePlain target:self action:@selector(showDatePicker:)];
     [self.navigationItem setRightBarButtonItem:datePicker];
@@ -88,8 +88,8 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     }
     if(self.isLoading) {
         self.loadingView.hidden = NO;
-    } else if(self.lastDownload == nil || [self.lastDownload timeIntervalSinceNow] < -600) { //havent loaded data in 15 minutes
-        self.events = [NSArray array];
+    } else if(self.lastDownload == nil || [self.lastDownload timeIntervalSinceNow] < -300) { //havent loaded data in x minutes
+        self.events = [NSMutableArray array];
         [self loadData];
     }
 }
@@ -103,7 +103,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)loadData
 {
     self.dataSource = [NSDictionary dictionary];
-    self.events = [NSArray array];
+    self.events = [NSMutableArray array];
     //[self.tableView reloadData];
     [self showActivityIndicator];
     dispatch_queue_t queue = dispatch_queue_create("Event.Table.Load", NULL);
@@ -178,7 +178,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 }
 
 + (NSString*)timeFromString:(NSString*)date {
-    NSLog(@"DATE STRING: [%@]", date);
     NSArray* words = [date componentsSeparatedByString:@" "];
     return [words[words.count - 2] stringByAppendingString:words[words.count -1]];
 }
@@ -299,8 +298,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.date = newDate;
 }
 
-
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Data Management
@@ -315,8 +312,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         self.datePicker = nil;
     }
 }
-
-
 
 //*********************************************************
 //*********************************************************

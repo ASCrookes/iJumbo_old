@@ -33,11 +33,11 @@
 		8E26B69A153E734800994136 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E26B699153E734800994136 /* MenuTableViewController.m */; };
 		8E293D1416483F4400A0812B /* buildingCellButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E293D1016483F4400A0812B /* buildingCellButton.png */; };
 		8E293D1516483F4400A0812B /* buildingCellButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E293D1116483F4400A0812B /* buildingCellButton@2x.png */; };
-		8E293D1616483F4400A0812B /* myFoodButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E293D1216483F4400A0812B /* myFoodButton@2x.png */; };
-		8E293D1716483F4400A0812B /* myFoodButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E293D1316483F4400A0812B /* myFoodButton.png */; };
 		8E2DA28C161B5A0100EB19D0 /* feedback_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E2DA28B161B5A0100EB19D0 /* feedback_email.png */; };
 		8E2E899B15EB2AD9002D4DA1 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E2E899A15EB2AD9002D4DA1 /* buildings.json */; };
 		8E300643156ABCA9000438A2 /* FoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E300642156ABCA9000438A2 /* FoodViewController.m */; };
+		8E35D8D417C40ED900F6791A /* myFoodButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E35D8D317C40ED900F6791A /* myFoodButton.png */; };
+		8E35D8D617C40EDF00F6791A /* myFoodButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E35D8D517C40EDF00F6791A /* myFoodButton@2x.png */; };
 		8E3F13D715D09B5E00A558AB /* SourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F13D615D09B5E00A558AB /* SourcesViewController.m */; };
 		8E3F13DD15D0B55400A558AB /* iconElephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E3F13DC15D0B55400A558AB /* iconElephant.png */; };
 		8E3F13DF15D0B55800A558AB /* iconElephant@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E3F13DE15D0B55800A558AB /* iconElephant@2x.png */; };
@@ -61,6 +61,8 @@
 		8E5320CE1561B18F0006C6CA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5320CD1561B18F0006C6CA /* MapKit.framework */; };
 		8E5320D21561B2FB0006C6CA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5320D11561B2FB0006C6CA /* MapViewController.m */; };
 		8E6FE98E160E5A940024567A /* MyFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FE98D160E5A940024567A /* MyFoodViewController.m */; };
+		8E71A62017C3FE43006C6E6E /* places_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E71A61E17C3FE43006C6E6E /* places_button.png */; };
+		8E71A62117C3FE43006C6E6E /* places_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E71A61F17C3FE43006C6E6E /* places_button@2x.png */; };
 		8E9A35F415EE8DBB0006DA20 /* darkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F215EE8DBB0006DA20 /* darkBackground.png */; };
 		8E9A35F515EE8DBB0006DA20 /* darkBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */; };
 		8EAC190A1561DAF90078F5CD /* BuildingAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC19091561DAF90078F5CD /* BuildingAnnotation.m */; };
@@ -148,12 +150,12 @@
 		8E26B699153E734800994136 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		8E293D1016483F4400A0812B /* buildingCellButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buildingCellButton.png; sourceTree = "<group>"; };
 		8E293D1116483F4400A0812B /* buildingCellButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buildingCellButton@2x.png"; sourceTree = "<group>"; };
-		8E293D1216483F4400A0812B /* myFoodButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myFoodButton@2x.png"; sourceTree = "<group>"; };
-		8E293D1316483F4400A0812B /* myFoodButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myFoodButton.png; sourceTree = "<group>"; };
 		8E2DA28B161B5A0100EB19D0 /* feedback_email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback_email.png; sourceTree = "<group>"; };
 		8E2E899A15EB2AD9002D4DA1 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildings.json; sourceTree = "<group>"; };
 		8E300641156ABCA9000438A2 /* FoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodViewController.h; sourceTree = "<group>"; };
 		8E300642156ABCA9000438A2 /* FoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodViewController.m; sourceTree = "<group>"; };
+		8E35D8D317C40ED900F6791A /* myFoodButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myFoodButton.png; sourceTree = "<group>"; };
+		8E35D8D517C40EDF00F6791A /* myFoodButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myFoodButton@2x.png"; sourceTree = "<group>"; };
 		8E3F13D515D09B5E00A558AB /* SourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourcesViewController.h; sourceTree = "<group>"; };
 		8E3F13D615D09B5E00A558AB /* SourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourcesViewController.m; sourceTree = "<group>"; };
 		8E3F13DC15D0B55400A558AB /* iconElephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconElephant.png; sourceTree = "<group>"; };
@@ -196,6 +198,8 @@
 		8E5320D11561B2FB0006C6CA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8E6FE98C160E5A940024567A /* MyFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFoodViewController.h; sourceTree = "<group>"; };
 		8E6FE98D160E5A940024567A /* MyFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFoodViewController.m; sourceTree = "<group>"; };
+		8E71A61E17C3FE43006C6E6E /* places_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_button.png; sourceTree = "<group>"; };
+		8E71A61F17C3FE43006C6E6E /* places_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "places_button@2x.png"; sourceTree = "<group>"; };
 		8E9A35F215EE8DBB0006DA20 /* darkBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = darkBackground.png; sourceTree = "<group>"; };
 		8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "darkBackground@2x.png"; sourceTree = "<group>"; };
 		8EAC19081561DAF90078F5CD /* BuildingAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingAnnotation.h; sourceTree = "<group>"; };
@@ -279,8 +283,8 @@
 			children = (
 				8E293D1016483F4400A0812B /* buildingCellButton.png */,
 				8E293D1116483F4400A0812B /* buildingCellButton@2x.png */,
-				8E293D1216483F4400A0812B /* myFoodButton@2x.png */,
-				8E293D1316483F4400A0812B /* myFoodButton.png */,
+				8E35D8D317C40ED900F6791A /* myFoodButton.png */,
+				8E35D8D517C40EDF00F6791A /* myFoodButton@2x.png */,
 				8E2DA28B161B5A0100EB19D0 /* feedback_email.png */,
 				8E9A35F215EE8DBB0006DA20 /* darkBackground.png */,
 				8E9A35F315EE8DBB0006DA20 /* darkBackground@2x.png */,
@@ -304,6 +308,8 @@
 				8ED679C615C77D25008C82B4 /* forward arrow@2x.png */,
 				8EE401A215D1D5CB004AD1F7 /* newsDefault.png */,
 				8EE401A315D1D5CB004AD1F7 /* newsDefault@2x.png */,
+				8E71A61E17C3FE43006C6E6E /* places_button.png */,
+				8E71A61F17C3FE43006C6E6E /* places_button@2x.png */,
 				8E0C42B115B7BB96009165E0 /* NavBar.png */,
 				8E0C42AF15B7BB8D009165E0 /* LowerNavBar.png */,
 				8E18AC3F15CB57040054284B /* Bus.png */,
@@ -541,7 +547,7 @@
 		8E1E7A00153C835800B126B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Amadou Crookes";
 			};
 			buildConfigurationList = 8E1E7A03153C835800B126B8 /* Build configuration list for PBXProject "Tufts" */;
@@ -573,6 +579,7 @@
 				8ED4A65315BE529600B7193A /* forward arrow.png in Resources */,
 				8ED4A65515BE529C00B7193A /* back arrow.png in Resources */,
 				8ED679C315C77C84008C82B4 /* back arrow@2x.png in Resources */,
+				8E71A62017C3FE43006C6E6E /* places_button.png in Resources */,
 				8ED679C715C77D25008C82B4 /* forward arrow@2x.png in Resources */,
 				8E18AC4D15CB57040054284B /* Bus.png in Resources */,
 				8E18AC4E15CB57040054284B /* Bus@2x.png in Resources */,
@@ -593,6 +600,7 @@
 				8E3F13DD15D0B55400A558AB /* iconElephant.png in Resources */,
 				8E3F13DF15D0B55800A558AB /* iconElephant@2x.png in Resources */,
 				8EE401A415D1D5CB004AD1F7 /* newsDefault.png in Resources */,
+				8E71A62117C3FE43006C6E6E /* places_button@2x.png in Resources */,
 				8EE401A515D1D5CB004AD1F7 /* newsDefault@2x.png in Resources */,
 				8EE401B615D1EBAE004AD1F7 /* background@2x.png in Resources */,
 				8EE401B715D1EBAE004AD1F7 /* background.png in Resources */,
@@ -611,9 +619,9 @@
 				8ED2008F16477056001C525E /* MainStoryboard_iPhone5.storyboard in Resources */,
 				8E293D1416483F4400A0812B /* buildingCellButton.png in Resources */,
 				8E293D1516483F4400A0812B /* buildingCellButton@2x.png in Resources */,
-				8E293D1616483F4400A0812B /* myFoodButton@2x.png in Resources */,
-				8E293D1716483F4400A0812B /* myFoodButton.png in Resources */,
 				8EC72705164DB9DA007C7A8A /* Default-568h@2x.png in Resources */,
+				8E35D8D417C40ED900F6791A /* myFoodButton.png in Resources */,
+				8E35D8D617C40EDF00F6791A /* myFoodButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,8 +709,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = NO;
@@ -716,9 +729,12 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = iJumbo;
 				PROVISIONING_PROFILE = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E6A9A4B-F11B-408E-AB69-DBD97D43A537";
@@ -730,15 +746,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -813,15 +836,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Amadou Crookes";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Amadou Crookes";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
