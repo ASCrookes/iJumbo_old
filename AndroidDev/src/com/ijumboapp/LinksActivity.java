@@ -8,16 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class LinksActivity extends IJumboActivity implements LoadActivityInterface {
 
 	private JSONArray links;
+	private long lastLoaded;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_links); 
+        this.lastLoaded = -1;
         ListView lView = (ListView) findViewById(R.id.linksList);
         lView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -40,6 +43,7 @@ public class LinksActivity extends IJumboActivity implements LoadActivityInterfa
 	
 	@Override
 	public void loadData() throws JSONException, JSONException {
+		
 		this.links = new RequestManager().getJSONArray("http://ijumboapp.com/api/json/links");
 		final ListView listV = (ListView) findViewById(R.id.linksList);
 		final LinksAdapter adapter = new LinksAdapter(this, 0, this.links);
@@ -53,12 +57,24 @@ public class LinksActivity extends IJumboActivity implements LoadActivityInterfa
 
 	@Override
 	public void stopLoadingUI() {
-
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pBar = (ProgressBar) findViewById(R.id.linksPB);
+				pBar.setVisibility(View.INVISIBLE);
+			}
+		});
 	}
 
 	@Override
 	public void startLoadingUI() {
-		
+		this.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				ProgressBar pBar = (ProgressBar) findViewById(R.id.linksPB);
+				pBar.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 
 }

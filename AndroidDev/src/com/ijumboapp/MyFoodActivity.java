@@ -103,7 +103,7 @@ public class MyFoodActivity extends IJumboActivity implements LoadActivityInterf
 		});
 	}
 	
-	private String[] getMyFood() {
+	public String[] getMyFood() {
 		Set<String> myFoodSet = PushService.getSubscriptions(this);
 		Object[] myFoodObjs =  myFoodSet.toArray();
 		

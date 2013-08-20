@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +29,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	Set<Integer> sectionLocations;
 	String diningHall;
 	JSONObject diningHallInfo;
+	Set<String> myFoodSet;
 	
 	public MenuAdapter(Context context, int textViewResourceId, JSONObject[] objects, String diningHall, JSONObject diningHallInfo) {
 		super(context, textViewResourceId, objects);
@@ -36,7 +38,6 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		this.sectionLocations = new HashSet<Integer>();
 		this.diningHall = diningHall;
 		this.diningHallInfo = diningHallInfo;
-		
 		try {
 			this.parseData(objects);
 		} catch (JSONException e) {
@@ -91,7 +92,13 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 			 cell = inflater.inflate(R.layout.listview_item_row, parent, false);
 			 cell.setOnClickListener(this.itemListener(position));
 			 try {
-				((TextView)cell.findViewById(R.id.txtTitle)).setText(cellData.getString("FoodName"));
+				TextView tView = (TextView) cell.findViewById(R.id.txtTitle);
+				tView.setText(cellData.getString("FoodName"));
+				if (this.myFoodSet.contains(cellData.getString("FoodName"))) {
+					tView.setTextColor(Color.BLUE);
+				} else {
+					tView.setTextColor(Color.BLACK);
+				}
 			} catch (JSONException e) {
 				MainActivity.addErrorToDatabase("MenuAdapter", "getView2", e.toString());
 			}
@@ -136,6 +143,8 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 	public int getCount() {
 		return this.data.length;
 	}	
+	
+	public void setMyFoodSet(Set<String> set) {
+		this.myFoodSet = set;
+	}
 }
-
-

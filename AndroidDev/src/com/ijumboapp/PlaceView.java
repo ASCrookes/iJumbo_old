@@ -4,24 +4,28 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 
 public class PlaceView extends IJumboActivity {
 
+	private JSONObject location;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_place_view);
 		Intent intent = getIntent();
-		JSONObject place = null;
 		try {
-			place = new JSONObject(intent.getStringExtra("place"));
-			this.setupViewForLocation(place);
+			this.location = new JSONObject(intent.getStringExtra("place"));
+			this.setupViewForLocation(this.location);
 		} catch (JSONException e) {
 			MainActivity.addErrorToDatabase("PlacesView", "onCreate", e.toString());
 		}
@@ -34,6 +38,25 @@ public class PlaceView extends IJumboActivity {
 		getMenuInflater().inflate(R.menu.activity_place_view, menu);
 		return true;
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.placeViewItem:
+        	try {
+				String mapQuery = String.format("http://maps.google.com/maps?q=%s,+%s+(%s)", this.location.getString("latitude"), this.location.getString("longitude"), this.location.getString("building_name"));
+				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapQuery));
+				this.startActivity(intent);
+        	} catch (JSONException e) {
+				e.printStackTrace();
+        	}
+        	break;
+        default:
+        	break;
+        }
+        return true;
+    }
 	
 	private void setupViewForLocation(JSONObject location) throws JSONException {
 		if(location == null) {

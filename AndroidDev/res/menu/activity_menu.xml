@@ -5,13 +5,15 @@
         android:showAsAction="always"
         android:title="My Food" />
     
-    <item android:id="@+id/diningHallSpinner"
+    <item 
+        android:id="@+id/diningHallSpinner"
         android:title="Dewick"
         android:orderInCategory="1"
         android:showAsAction="always"
         android:actionLayout="@layout/menu_spinner" />
     
-    <item android:id="@+id/mealSpinner"
+    <item 
+        android:id="@+id/mealSpinner"
         android:title="Breakfast"
         android:orderInCategory="1"
         android:showAsAction="always"

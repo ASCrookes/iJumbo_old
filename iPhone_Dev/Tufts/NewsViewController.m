@@ -58,7 +58,10 @@ enum NewsSegment {
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"whiteBackground.png"]];
     [self.tableView reloadData];
     self.navigationItem.rightBarButtonItem = self.section;
-    self.navigationItem.titleView = self.newsSegment;
+    /* UNCOMMENT
+     self.navigationItem.titleView = self.newsSegment;
+     */
+    self.navigationController.title = @"The Daily";
     
     if(self.isLoading) {
         [self setLoadingUI];
@@ -106,7 +109,7 @@ enum NewsSegment {
     [activityView startAnimating];
     UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
     self.navigationItem.rightBarButtonItem = loadingView;
-    self.navigationItem.titleView = nil;
+    /* UNCOMMENT self.navigationItem.titleView = nil; */
     self.navigationItem.title = @"Loading...";
 }
 
@@ -273,7 +276,7 @@ enum NewsSegment {
 - (void)stopLoadingUI
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.navigationItem.titleView = self.newsSegment;
+        /* UNCOMMENT self.navigationItem.titleView = self.newsSegment; */
         self.navigationItem.rightBarButtonItem = self.section;
         self.navigationItem.title = @"News";
     });
@@ -388,6 +391,7 @@ enum NewsSegment {
                  @"http://www.tuftsdaily.com/se/tufts-daily-op-ed-rss-1.445869",@"Daily-Op-Ed",
                  @"http://www.tuftsdaily.com/se/tufts-daily-sports-rss-1.445871",@"Daily-Sports",
                  // the observer rss feed urls
+                 /* UNCOMMENT
                  @"http://tuftsobserver.org/category/arts-culture/feed",@"Observer-Arts",
                  @"http://tuftsobserver.org/category/campus/feed",@"Observer-Campus",
                  @"http://tuftsobserver.org/category/news-features/feed",@"Observer-News",
@@ -395,6 +399,7 @@ enum NewsSegment {
                  @"http://tuftsobserver.org/category/opinion/feed",@"Observer-Opinion",
                  @"http://tuftsobserver.org/category/poetry-prose/feed",@"Observer-Poetry",
                  @"http://tuftsobserver.org/category/extras/feed",@"Observer-Extras",
+                  */
                  nil];
     }
     return _urls;
@@ -418,6 +423,7 @@ enum NewsSegment {
                           nil,@"Daily-Op-Ed",
                           nil,@"Daily-Sports",
                           // keys for the observer news
+                          /* UNCOMMENT
                           nil,@"Observer-Arts",
                           nil,@"Observer-Campus",
                           nil,@"Observer-News",
@@ -425,6 +431,7 @@ enum NewsSegment {
                           nil,@"Observer-Opinion",
                           nil,@"Observer-Poetry",
                           nil,@"Observer-Extras",
+                           */
                           // keys for the daily images
                           nil,@"Daily-Main-Images",
                           nil,@"Daily-News-Images",
@@ -433,6 +440,7 @@ enum NewsSegment {
                           nil,@"Daily-Op-Ed-Images",
                           nil,@"Daily-Sports-Images",
                           // keys for the observer images
+                          /* UNCOMMENT
                           nil,@"Observer-Arts-Images",
                           nil,@"Observer-Campus-Images",
                           nil,@"Observer-News-Images",
@@ -440,6 +448,7 @@ enum NewsSegment {
                           nil,@"Observer-Opinion-Images",
                           nil,@"Observer-Poetry-Images",
                           nil,@"Observer-Extras-Images",
+                           */
                           [NSDate date],@"createdDate",
                           nil];
     }
@@ -514,7 +523,7 @@ enum NewsSegment {
 - (UISegmentedControl*)newsSegment
 {
     if(!_newsSegment) {
-        _newsSegment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Daily",@"Observer", nil]];
+        _newsSegment = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Daily"/* UNCOMMENT,@"Observer"*/, nil]];
         [_newsSegment setSegmentedControlStyle:UISegmentedControlStyleBar];
         _newsSegment.selectedSegmentIndex = 0;
         [_newsSegment addTarget:self action:@selector(segmentChanged) forControlEvents:UIControlEventValueChanged];

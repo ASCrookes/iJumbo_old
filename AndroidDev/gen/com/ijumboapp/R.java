@@ -71,8 +71,9 @@ public final class R {
         public static final int joeyList=0x7f080021;
         public static final int joeyPD=0x7f080020;
         public static final int joeyRefreshMenuItem=0x7f080055;
+        public static final int linksButton=0x7f080026;
         public static final int linksList=0x7f080023;
-        public static final int linksPD=0x7f080022;
+        public static final int linksPB=0x7f080022;
         public static final int mapButton=0x7f080025;
         public static final int mealSpinner=0x7f080058;
         public static final int menuButton=0x7f08002b;
@@ -104,6 +105,7 @@ public final class R {
         public static final int placeSunday=0x7f080043;
         public static final int placeThursday=0x7f080040;
         public static final int placeTuesday=0x7f08003e;
+        public static final int placeViewItem=0x7f08005b;
         public static final int placeWebsite=0x7f080033;
         public static final int placeWednesday=0x7f08003f;
         public static final int placesList=0x7f080045;
@@ -121,7 +123,6 @@ public final class R {
         public static final int textView4=0x7f080008;
         public static final int textView6=0x7f080028;
         public static final int textView7=0x7f080029;
-        public static final int trunkButton=0x7f080026;
         public static final int txtHeader=0x7f080048;
         public static final int txtTitle=0x7f080049;
         public static final int txtTitleEvents=0x7f080047;

@@ -6,7 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
 
 import org.json.JSONArray;
@@ -37,6 +41,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 	private Spinner hallSpinner;
 	private Spinner mealSpinner;
 	private JSONObject diningHallInfo;
+	private Set<String> myFoodSet;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -133,6 +138,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
     	if(this.diningHallInfo == null) {
     		this.diningHallInfo = new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo");
     	}
+    	this.myFoodSet = this.getMyFood();
     	this.masterDict = new JSONObject(new RequestManager().get("http://ijumboapp.com/api/json/meals"));
     	this.displayDataBasedOnUI();
     	this.writeDiningHallInfoToStorage(new RequestManager().getJSONObject("http://ijumboapp.com/api/json/diningHallInfo"));
@@ -160,6 +166,7 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
     	final ListView listV = (ListView) findViewById(R.id.menuList);
     	//Make this work to create the correct adapter
     	final MenuAdapter adapter = new MenuAdapter(this, R.layout.listview_item_row, dataList, this.getDiningHall(), this.diningHallInfo);
+    	adapter.setMyFoodSet(this.myFoodSet);
         this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -283,5 +290,22 @@ public class MenuActivity extends IJumboActivity implements LoadActivityInterfac
 					 				 .replace(" ", "_");
 			channel = "ASC_" + channel;
 			return channel;
+		}
+		
+		// Takes the set and changes the names to how they appear in the list.
+		public Set<String> getMyFood() {
+			Set<String> set = PushService.getSubscriptions(this);
+			Object[] myFoodObjs =  set.toArray();
+			Set<String> myFoodSet = new HashSet<String>();
+			for(int i = 0; i < myFoodObjs.length; i++) {
+				// all subscribers have the master channel ""
+				if(!myFoodObjs[i].equals("")) {
+					myFoodSet.add(myFoodObjs[i].toString()
+						  			.replace("ASC_", "")
+						  			.replace("_", " ")
+						  			.replace("--and--", "&"));
+				}
+			}
+			return myFoodSet;
 		}
 }

@@ -22,7 +22,9 @@ import android.widget.ProgressBar;
 
 public class EventsActivity extends IJumboActivity implements LoadActivityInterface {
 	final long MILLISECONDS_IN_DAY = 86400000;
+	final long REFRESH_TIME = 300000;
 	private Date date;
+	private long lastLoaded;
 	private JSONObject eventsDict;
 	// events is used to catch the data
 	// data source is what the table uses
@@ -83,6 +85,8 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
 			this.setDate(new Date(this.date.getTime() + MILLISECONDS_IN_DAY));
 			return true;
 		} else if (itemId == R.id.eventDate) {
+			this.lastLoaded = -1;
+			new Thread(new ActivityLoadThread(this)).start();
 			this.setDate(new Date());
 			return true;
 		} else {
@@ -99,8 +103,11 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
 	}
         
     public void loadData() throws JSONException {
-    	String url = "https://www.tuftslife.com/events.json";
-    	this.eventsDict = new RequestManager().getJSONObject(url);
+    	if (System.currentTimeMillis() - this.lastLoaded > REFRESH_TIME) {
+    		String url = "https://www.tuftslife.com/events.json";
+    		this.eventsDict = new RequestManager().getJSONObject(url);
+    		this.lastLoaded = System.currentTimeMillis();
+    	}
     	String dateKey = this.getDatedKey();
     	System.out.println(dateKey);
     	JSONArray eventsList;

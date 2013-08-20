@@ -30,7 +30,7 @@
         android:src="@drawable/map" />
 
     <ImageButton
-        android:id="@+id/trunkButton"
+        android:id="@+id/linksButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -90,13 +90,13 @@
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="10dp"
-        android:text="Trunk" />
+        android:text="Links" />
 
     <ImageButton
         android:id="@+id/joeyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/trunkButton"
+        android:layout_alignLeft="@+id/linksButton"
         android:layout_centerVertical="true"
         android:background="@null"
         android:onClick="getJoey"
