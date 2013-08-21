@@ -147,7 +147,7 @@ const int TOMORROW_INDEX = 1;
         [self loadData];
     }
     int segIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
-    int dayIndex = ([[self.todayBarButton tintColor] isEqual:[UIColor whiteColor]]) ? TODAY_INDEX : TOMORROW_INDEX;
+    int dayIndex = ([[self.todayBarButton tintColor] isEqual:[UIColor blackColor]]) ? TODAY_INDEX : TOMORROW_INDEX;
     NSString* mealKey = (segIndex == 0) ? @"Breakfast" : (segIndex == 1) ? @"Lunch" : @"Dinner";
     NSString* hallName = self.navigationItem.rightBarButtonItem.title;
     if(!hallName) {
@@ -407,9 +407,7 @@ const int TOMORROW_INDEX = 1;
     [self setDiningHallInfo:nil];
 }
 
-- (UIView*)loadingView
-{
-    
+- (UIView*)loadingView {
     if(!_loadingView) {
         _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, HEIGHT_OF_HELPER_VIEWS_IN_MEALS)];
         _loadingView.backgroundColor = [UIColor clearColor];
