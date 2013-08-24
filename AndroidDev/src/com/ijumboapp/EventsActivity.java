@@ -109,7 +109,6 @@ public class EventsActivity extends IJumboActivity implements LoadActivityInterf
     		this.lastLoaded = System.currentTimeMillis();
     	}
     	String dateKey = this.getDatedKey();
-    	System.out.println(dateKey);
     	JSONArray eventsList;
     	if (this.eventsDict.has(dateKey))
     		eventsList = (JSONArray) this.eventsDict.get(dateKey);

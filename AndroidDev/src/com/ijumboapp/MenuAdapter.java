@@ -38,6 +38,7 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 		this.sectionLocations = new HashSet<Integer>();
 		this.diningHall = diningHall;
 		this.diningHallInfo = diningHallInfo;
+		this.myFoodSet = null;
 		try {
 			this.parseData(objects);
 		} catch (JSONException e) {
@@ -94,10 +95,10 @@ public class MenuAdapter extends ArrayAdapter<JSONObject> {
 			 try {
 				TextView tView = (TextView) cell.findViewById(R.id.txtTitle);
 				tView.setText(cellData.getString("FoodName"));
-				if (this.myFoodSet.contains(cellData.getString("FoodName"))) {
-					tView.setTextColor(Color.BLUE);
+				if (this.myFoodSet != null && this.myFoodSet.contains(cellData.getString("FoodName"))) {
+					tView.setTextColor(Color.parseColor("#6699CC"));
 				} else {
-					tView.setTextColor(Color.BLACK);
+					tView.setTextColor(Color.WHITE);
 				}
 			} catch (JSONException e) {
 				MainActivity.addErrorToDatabase("MenuAdapter", "getView2", e.toString());
