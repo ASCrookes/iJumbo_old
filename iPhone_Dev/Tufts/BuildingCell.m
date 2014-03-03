@@ -53,6 +53,8 @@
     MapViewController* mvc = [[MapViewController alloc] init];
     // have to load the view before dropping the pin to get the animation to work
     [self.viewController.navigationController pushViewController:mvc animated:YES];
+    [mvc loadView];
+    [mvc viewDidLoad];
     [mvc showBuilding:self.building];
 }
 

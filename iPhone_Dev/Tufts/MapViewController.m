@@ -78,6 +78,8 @@
     [self.view addSubview:self.searchBar];
     self.searchBar.delegate = self;
     
+    self.searchBar.translucent = NO;
+    
     self.searchBar.tintColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
     self.searchBar.backgroundColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
     self.searchBar.barTintColor = self.searchBar.backgroundColor;
@@ -338,17 +340,14 @@
 //*********************************************************
 //*********************************************************
 
-
-- (NSArray*)searchForBuildingByName:(NSString*)searchTerm
-{
+- (NSArray*)searchForBuildingByName:(NSString*)searchTerm {
+    
     NSMutableArray* results = [[NSMutableArray alloc] init];
     NSRange range;
     
-    for(NSArray* section in self.tableBuildings)
-    {
+    for(NSArray* section in self.tableBuildings) {
         NSMutableArray* resultsInSection = [[NSMutableArray alloc] init];
-        for(NSDictionary* building in section) 
-        {
+        for(NSDictionary* building in section) {
             range = [[building objectForKey:@"building_name"] rangeOfString:searchTerm options:NSCaseInsensitiveSearch];
             if(range.location != NSNotFound) {
                 [resultsInSection addObject:building];
@@ -362,12 +361,9 @@
     return results;
 }
 
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self.delegate searchBuildingsByName:searchBar.text]; 
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.searchBar resignFirstResponder];
+    [self.delegate searchBuildingsByName:searchBar.text];
 }
-
-
 
 @end

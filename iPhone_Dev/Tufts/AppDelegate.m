@@ -36,7 +36,6 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
     [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     [[UISegmentedControl appearance] setTintColor:[UIColor whiteColor]];
-    [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
