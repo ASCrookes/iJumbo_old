@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic) BOOL hasDetailedCells;
 @property (nonatomic,strong) id <BuildingTableDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
 
 - (void)loadData;
 

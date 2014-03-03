@@ -40,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
     [self setupView];
     [self.mapView setDelegate:self];
 }
@@ -63,9 +65,28 @@
 //*********************************************************
 //*********************************************************
 
+// Should always be called after setupMapView
+- (void)setupMapView {
+    int searchBarOffset = self.searchBar.frame.size.height;
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, searchBarOffset, self.view.frame.size.width, self.view.frame.size.height - searchBarOffset)];
+    self.mapView.delegate = self;
+    [self.view addSubview:self.mapView];
+}
+
+- (void)setupSearchBar {
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    [self.view addSubview:self.searchBar];
+    self.searchBar.delegate = self;
+    
+    self.searchBar.tintColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
+    self.searchBar.backgroundColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
+    self.searchBar.barTintColor = self.searchBar.backgroundColor;
+}
+
 // Sets the map so it shows the entire Tufts campus
-- (void)setupView
-{
+- (void)setupView {
+    [self setupSearchBar];
+    [self setupMapView];
     CLLocationDegrees lat;
     lat = 42.406056;
     CLLocationDegrees lng;

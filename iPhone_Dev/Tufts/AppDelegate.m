@@ -7,9 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 #import <Parse/Parse.h>
 
-// Time in terms of seconds
+// Time in terms of seconds between showing alerts that there is no connection.
 const int TIME_BETWEEN_CONNECTION_ALERT = 90;
 
 @implementation AppDelegate
@@ -17,7 +18,6 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
 @synthesize window = _window;
 @synthesize alertedInternetIsNotAvailable = _alertedInternetIsNotAvailable;
 @synthesize alertedDate = _alertedDate;
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,27 +31,36 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
                                                     UIRemoteNotificationTypeSound];
     
     // Appearance of the app
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
+    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar.png"] forBarMetrics:UIBarMetricsDefault];
     [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
-    [[UIBarButtonItem appearance] setTintColor:[UIColor darkGrayColor]];
-    [[UISegmentedControl appearance] setTintColor:[UIColor darkGrayColor]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UISegmentedControl appearance] setTintColor:[UIColor whiteColor]];
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
     
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        UIStoryboard *storyBoard;
-        
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        CGFloat scale = [UIScreen mainScreen].scale;
-        result = CGSizeMake(result.width * scale, result.height * scale);
-        if(result.height == 1136){
-            storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone5" bundle:nil];
-            UIViewController *initViewController = [storyBoard instantiateInitialViewController];
-            [self.window setRootViewController:initViewController];
-        }
-    }
-     
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    ViewController* vc = [[ViewController alloc] init];
+    UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self customizeNavigationController:navcon];
+    
+    [self.window setRootViewController:navcon];
+    [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+- (void)customizeNavigationController:(UINavigationController*)navcon {
+    [navcon.navigationBar setTintColor:[UIColor whiteColor]];
+    [navcon.navigationBar setBackgroundColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75]];
+    navcon.navigationBar.translucent = NO;
+    [navcon.navigationBar setBarStyle:UIBarStyleDefault];
+    [navcon.navigationBar setBarTintColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75]];
+    [navcon.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,nil]];
+    navcon.navigationBar.layer.shadowColor = [UIColor clearColor].CGColor;
+    navcon.navigationBar.layer.shadowRadius = 0;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

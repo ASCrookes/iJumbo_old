@@ -9,11 +9,8 @@
 #import "BuildingTableViewController.h"
 #import "MapViewController.h"
 
-
 @interface BuildingTableViewController () <MapViewDelegate>
-
 @end
-
 
 @implementation BuildingTableViewController
 
@@ -35,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupTableView];
     self.title = @"Places";
     UIBarButtonItem* mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(showMap)];
     self.navigationItem.rightBarButtonItem = mapButton;
@@ -48,7 +46,16 @@
         [self.tableView reloadData];
         [self loadData];
     }
+    [self.tableView reloadData];
     //[self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
+}
+
+- (void)setupTableView {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -56,19 +63,12 @@
     return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
-- (void)showMap
-{
-    MapViewController* map = [self.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
+- (void)showMap {
+    MapViewController* map = [[MapViewController alloc] init];
     map.delegate = self;
     map.buildings = self.buildings;
     map.tableBuildings = self.buildings;
-    map.view.backgroundColor = self.view.backgroundColor;
-    [map setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:map];
-    [navcon setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
-    map.navigationItem.leftBarButtonItem = backButton;
-    [self presentModalViewController:navcon animated:YES];
+    [self.navigationController pushViewController:map animated:YES];
 }
 
 - (void)viewDidUnload
@@ -200,22 +200,13 @@
     static NSString *CellIdentifier = @"Building Cell";
     BuildingCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell) {
-        if(hasDetailedCells) {
-            cell = (BuildingCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        } else {
-            cell = (BuildingCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
+        cell = [[BuildingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.viewController = self;
+        cell.hidden = NO;
     }
     NSDictionary* buildingDict = [[self.dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    if(hasDetailedCells) {
-        [cell setupCellWithBuilding:buildingDict andViewController:self];
-        cell.infoButton.hidden = NO;
-        cell.mapButton.hidden  = NO;
-    } else {
-        cell.textLabel.text = [buildingDict objectForKey:@"building_name"];
-        cell.infoButton.hidden = YES;
-        cell.mapButton.hidden  = YES;
-    }
+    [cell setupCellWithBuilding:buildingDict hasDetailedText:hasDetailedCells];
+
     return cell;
 }
 
@@ -248,15 +239,18 @@
     return sectionTitle;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 45;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, 45)];
-    label.backgroundColor = self.tableView.backgroundColor;
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 30)];
+    label.backgroundColor = [UIColor clearColor];
     NSString* sectionTitle = [[[[self.dataSource objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
     if([sectionTitle isEqualToString:@"1"]) {
         sectionTitle = @"123";
@@ -267,7 +261,8 @@
     label.numberOfLines = 2;
     label.adjustsFontSizeToFitWidth = YES;
     label.minimumFontSize = 14;
-    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 45)];
+    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+    header.backgroundColor = self.tableView.backgroundColor;
     [header addSubview:label];
     
     return header;

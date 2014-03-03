@@ -22,15 +22,22 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-
+        self.thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
+        self.title = [[UILabel alloc] initWithFrame:CGRectMake(92, 0, 217, 69)];
+        self.title.numberOfLines = 3;
+        self.title.font = [UIFont boldSystemFontOfSize:17];
+        self.author = [[UILabel alloc] initWithFrame:CGRectMake(92, 68, 217, 21)];
+        self.author.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:11];
+        
+        [self addSubview:self.thumbnail];
+        [self addSubview:self.title];
+        [self addSubview:self.author];
     }
     return self;
 }
 
-
 // story should contain media:thumbnail author and title
-- (void)setupCellWithStory:(NSDictionary*)story andImageData:(NSData*)imageData
-{
+- (void)setupCellWithStory:(NSDictionary*)story andImageData:(NSData*)imageData {
     self.showLoadingUI = NO;
     self.title.text = [story objectForKey:@"title"];
     NSString* author = [story objectForKey:@"author"];
@@ -43,7 +50,7 @@
         self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
     }
     
-    self.webVC   = nil;
+    self.webVC = nil;
     self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -96,7 +103,7 @@
 - (WebViewController*)webVC
 {
     if(!_webVC) {
-        _webVC = [[UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:nil] instantiateViewControllerWithIdentifier:@"Web View"];
+        _webVC = [[WebViewController alloc] init];
         if(self.link) {
             [_webVC setWebViewWithURL:self.link delegate:self];
         }

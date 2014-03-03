@@ -11,14 +11,14 @@
 
 @interface BuildingCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *buildingName;
-@property (weak, nonatomic) IBOutlet UIButton *mapButton;
-@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (strong, nonatomic) UILabel *buildingName;
+@property (strong, nonatomic) UIButton *mapButton;
+@property (strong, nonatomic) UIButton *infoButton;
 @property (strong, nonatomic) NSDictionary* building;
 // the table view that this cell belongs to
 @property (strong, nonatomic) UIViewController* viewController;
 
-- (void)setupCellWithBuilding:(NSDictionary*)building andViewController:(UIViewController*)vc;
+- (void)setupCellWithBuilding:(NSDictionary*)building hasDetailedText:(BOOL)hasDetailedText;
 - (IBAction)infoButtonAction:(id)sender;
 
 

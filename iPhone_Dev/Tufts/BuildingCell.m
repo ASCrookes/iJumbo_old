@@ -16,38 +16,47 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.buildingName = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, 186, 43)];
+        self.buildingName.font = [UIFont boldSystemFontOfSize:17];
+        
+        self.mapButton = [[UIButton alloc] initWithFrame:CGRectMake(206, 3, 40, 38)];
+        [self.mapButton addTarget:self action:@selector(mapButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.mapButton setImage:[UIImage imageNamed:@"places_button.png"] forState:UIControlStateNormal];
+        self.mapButton.titleLabel.text = @"Map";
+        self.mapButton.titleLabel.textColor = [UIColor blackColor];
+        
+        self.infoButton = [[UIButton alloc] initWithFrame:CGRectMake(254, 3, 40, 38)];
+        [self.infoButton addTarget:self action:@selector(infoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.infoButton setImage:[UIImage imageNamed:@"places_button.png"] forState:UIControlStateNormal];
+        self.infoButton.titleLabel.text = @"Info";
+        self.infoButton.titleLabel.textColor = [UIColor blackColor];
+        
+        [self addSubview:self.buildingName];
+        [self addSubview:self.mapButton];
+        [self addSubview:self.infoButton];
     }
     return self;
 }
 
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
-- (void)setupCellWithBuilding:(NSDictionary*)building andViewController:(UIViewController*)vc
-{
+- (void)setupCellWithBuilding:(NSDictionary*)building hasDetailedText:(BOOL)hasDetailedText {
     self.building = building;
     self.buildingName.text = [building objectForKey:@"building_name"];
-    self.viewController = vc;
+    self.mapButton.hidden = !hasDetailedText;
+    self.infoButton.hidden = !hasDetailedText;
 }
 
-- (IBAction)mapButtonAction:(id)sender
-{
-    MapViewController* mvc = [self.viewController.storyboard instantiateViewControllerWithIdentifier:@"Map View"];
+- (void)mapButtonAction:(id)sender {
+    MapViewController* mvc = [[MapViewController alloc] init];
     // have to load the view before dropping the pin to get the animation to work
-    [mvc loadView];
-    [mvc viewDidLoad];
-    [mvc showBuilding:self.building];
     [self.viewController.navigationController pushViewController:mvc animated:YES];
+    [mvc showBuilding:self.building];
 }
 
-- (IBAction)infoButtonAction:(id)sender
-{
+- (void)infoButtonAction:(id)sender {
     BuildingViewController* bvc = [[UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:nil] instantiateViewControllerWithIdentifier:@"Building View"];
     bvc.allowsMap = YES;
     [bvc setBuilding:self.building];

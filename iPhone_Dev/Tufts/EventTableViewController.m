@@ -88,7 +88,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     }
     if(self.isLoading) {
         self.loadingView.hidden = NO;
-    } else if(self.lastDownload == nil || [self.lastDownload timeIntervalSinceNow] < -300) { //havent loaded data in x minutes
+    } else if(self.lastDownload == nil || [self.lastDownload timeIntervalSinceNow] < -300) {  //havent loaded data in x minutes
         self.events = [NSMutableArray array];
         [self loadData];
     }

@@ -19,8 +19,8 @@
 
 @interface MapViewController : UIViewController <BuildingTableDelegate, UISearchBarDelegate>
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) MKMapView *mapView;
+@property (strong, nonatomic) UISearchBar *searchBar;
 
 @property (nonatomic,strong) NSArray* buildings;
 @property (nonatomic,strong) NSArray* annotations;
@@ -30,7 +30,7 @@
 @property (nonatomic)        BOOL allowAnnotationClick;
 @property (nonatomic)        BOOL isLoading;
 
-@property (nonatomic, strong) id <MapViewDelegate> delegate;
+@property (nonatomic,strong) id <MapViewDelegate> delegate;
 
 
 - (void)parseData:(NSData *)responseData;

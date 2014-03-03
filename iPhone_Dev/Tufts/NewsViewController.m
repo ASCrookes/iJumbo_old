@@ -54,10 +54,13 @@ enum NewsSegment {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     self.tableView.separatorColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1];
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"whiteBackground.png"]];
     self.view.backgroundColor = self.tableView.backgroundColor;
-    [self.tableView reloadData];
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.navigationItem.rightBarButtonItem = self.section;
     /* UNCOMMENT
      self.navigationItem.titleView = self.newsSegment;
@@ -81,6 +84,10 @@ enum NewsSegment {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)setupView {
+    
 }
 
 - (void)loadData
@@ -111,7 +118,6 @@ enum NewsSegment {
     UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
     self.navigationItem.rightBarButtonItem = loadingView;
     /* UNCOMMENT self.navigationItem.titleView = nil; */
-    self.navigationItem.title = @"Loading...";
 }
 
 //*********************************************************
@@ -137,20 +143,22 @@ enum NewsSegment {
     static NSString *CellIdentifier = @"AWESOME NEWS CELL";
     NewsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil) {
-        cell = [[NewsCell alloc] init];
+        cell = [[NewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
     [cell setupCellWithStory:[self.dataSource objectAtIndex:indexPath.row] andImageData:[self.imageDataSource objectAtIndex:indexPath.row]];
 
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NewsCell* cell = (NewsCell*)[tableView cellForRowAtIndexPath:indexPath];
     cell.webVC.title = @"News";
     [self.navigationController pushViewController:[cell getWebViewController] animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 90.0f;
 }
 
 //*********************************************************
@@ -341,7 +349,6 @@ enum NewsSegment {
     key = [key stringByAppendingString:self.section.title];
     return key;
 }
-
 
 //*********************************************************
 //*********************************************************

@@ -10,10 +10,10 @@
 
 @interface WebViewController : UIViewController <UIWebViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
+@property (strong, nonatomic) UINavigationBar *navBar;
+@property (strong, nonatomic) UIWebView *webView;
+@property (strong, nonatomic) UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIBarButtonItem *forwardButton;
 @property (strong, nonatomic) NSString* url;
 @property (strong, nonatomic) UIBarButtonItem* safari;
 

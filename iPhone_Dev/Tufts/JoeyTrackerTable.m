@@ -10,7 +10,6 @@
 #import "AppDelegate.h"
 
 @interface JoeyTrackerTable ()
-
 @end
 
 @implementation JoeyTrackerTable
@@ -95,6 +94,10 @@
         self.navigationItem.rightBarButtonItem = self.reload;
         [self.tableView reloadData];
         [self stopLoadingUI];
+        if (self.joeyInfo.count == 0) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Joey Tracker is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
     });
 }
 
@@ -119,13 +122,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section == 1) {
-        int count = [self.joeyInfo count];
-        if(count == 0) {
-            NSLog(@"SHOW IT");
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Joey Tracker is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-        return count;
+        return (self.joeyInfo.count > 0) ? self.joeyInfo.count : 1;
     }
     return 1;
 }
@@ -144,9 +141,14 @@
         cell.userInteractionEnabled = YES;
         return cell;
     }
-    NSDictionary* joeyDict = [self.joeyInfo objectAtIndex:indexPath.row];
-    cell.textLabel.text = [joeyDict objectForKey:@"location"];
-    cell.detailTextLabel.text  = [joeyDict objectForKey:@"ETA"];
+    if (self.joeyInfo.count == 0) {
+        cell.textLabel.text = @"tracker is unavailable";
+        cell.detailTextLabel.text = @"";
+    } else {
+        NSDictionary* joeyDict = [self.joeyInfo objectAtIndex:indexPath.row];
+        cell.textLabel.text = [joeyDict objectForKey:@"location"];
+        cell.detailTextLabel.text  = [joeyDict objectForKey:@"ETA"];
+    }
     cell.userInteractionEnabled = YES;
     
     return cell;
@@ -222,13 +224,11 @@
 //*********************************************************
 //*********************************************************
 
-
 // The map is easily created
 // data cannot be removed because it contains info for when the cell is clikced on
 - (void)clearUnnecessary {
     self.map = nil;
 }
-
 
 //*********************************************************
 //*********************************************************
@@ -249,7 +249,6 @@
     }
     return _map;
 }
-
 
 - (UIBarButtonItem*)reload {
     if(!_reload) {

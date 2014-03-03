@@ -479,8 +479,6 @@
 				8EE67FEE17C01FA000CD35AD /* LinksTableViewController.m */,
 				8E18AC6615CB8AD20054284B /* InfoViewController.h */,
 				8E18AC6715CB8AD20054284B /* InfoViewController.m */,
-				8E5320D01561B2FB0006C6CA /* MapViewController.h */,
-				8E5320D11561B2FB0006C6CA /* MapViewController.m */,
 			);
 			name = "Main Views";
 			sourceTree = "<group>";
@@ -488,6 +486,8 @@
 		8E5B22DD1593B81E00C7C49E /* Specific View */ = {
 			isa = PBXGroup;
 			children = (
+				8E5320D01561B2FB0006C6CA /* MapViewController.h */,
+				8E5320D11561B2FB0006C6CA /* MapViewController.m */,
 				8E6FE98C160E5A940024567A /* MyFoodViewController.h */,
 				8E6FE98D160E5A940024567A /* MyFoodViewController.m */,
 				8E3FA91D15CCB53B0031F87D /* AboutTuftsViewController.h */,
@@ -549,6 +549,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Amadou Crookes";
+				TargetAttributes = {
+					8E1E7A08153C835800B126B8 = {
+						DevelopmentTeam = NR3QK94585;
+					};
+				};
 			};
 			buildConfigurationList = 8E1E7A03153C835800B126B8 /* Build configuration list for PBXProject "Tufts" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -794,7 +799,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -824,7 +829,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -885,7 +890,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = iJumbo;
-				PROVISIONING_PROFILE = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=*]" = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2C307D5-1618-4D32-AA30-063AFA6F7F8B";
 				TARGETED_DEVICE_FAMILY = 1;
