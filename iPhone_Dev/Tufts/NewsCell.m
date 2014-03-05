@@ -22,6 +22,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         self.thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
         self.title = [[UILabel alloc] initWithFrame:CGRectMake(92, 0, 217, 69)];
         self.title.numberOfLines = 3;

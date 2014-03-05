@@ -123,7 +123,7 @@
         cellText = [cellText stringByReplacingOccurrencesOfString:@"--and--" withString:@"&"];
     } else if([self.foodSet containsObject:cellText]) {
         NSLog(@"changing the color");
-        textColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1];
+        textColor = [StandardUtils blueColor];
     }
     cell.textLabel.text = cellText;
     cell.textLabel.textColor = textColor;

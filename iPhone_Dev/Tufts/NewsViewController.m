@@ -55,7 +55,7 @@ enum NewsSegment {
 {
     [super viewDidLoad];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-    self.tableView.separatorColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1];
+    self.tableView.separatorColor = [StandardUtils blueColor];
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"whiteBackground.png"]];
     self.view.backgroundColor = self.tableView.backgroundColor;
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -90,8 +90,7 @@ enum NewsSegment {
     
 }
 
-- (void)loadData
-{
+- (void)loadData {
     self.isLoading = YES;
     NSArray* storyToLoad = [self.storiesByType objectForKey:[self getKeyFromUI]];
     if(storyToLoad) {

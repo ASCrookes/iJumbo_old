@@ -140,7 +140,7 @@ const BOOL SHOW_NEW = NO;
     [self.navigationController pushViewController:self.news animated:YES];
 }
 
-- (IBAction)getAppInfo:(id)sender 
+- (void)getAppInfo:(id)sender
 {
     InfoViewController* info = [self.storyboard instantiateViewControllerWithIdentifier:@"INFO TABLE"];
     info.tableView.backgroundColor = self.backgroundColor;
@@ -189,14 +189,13 @@ const BOOL SHOW_NEW = NO;
     UIButton* links = [[UIButton alloc] initWithFrame:CGRectMake(194, 346, 109, 109)];
     [links setImage:[UIImage imageNamed:@"Webpage.png"] forState:UIControlStateNormal];
     [links addTarget:self action:@selector(getLinks:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     [self.view addSubview:news];
     [self.view addSubview:places];
     [self.view addSubview:menus];
     [self.view addSubview:transport];
     [self.view addSubview:events];
     [self.view addSubview:links];
-
 }
 
 //*********************************************************
@@ -258,7 +257,7 @@ const BOOL SHOW_NEW = NO;
 
 - (LinksTableViewController*)links {
     if (!_links) {
-        _links = [[LinksTableViewController alloc] init];
+        _links = (LinksTableViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"LinksTable"];
         _links.backgroundColor = self.backgroundColor;
         _links.view.backgroundColor = self.backgroundColor;
         _links.tableView.backgroundColor = self.backgroundColor;

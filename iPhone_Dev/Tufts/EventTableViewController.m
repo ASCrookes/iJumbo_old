@@ -44,6 +44,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     [super viewDidLoad];
     
     self.title = @"Tufts Life";
+    [self setupView];
     // load the date picker so it doesnt randomly show up when the events page first displays
     (void)self.datePicker;
     [self.extraNavBar setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LowerNavBar.png"]]];
@@ -53,14 +54,33 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.loadingView = nil;
     self.noEvents = nil;
     
-    [self.dayBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
-    NSMutableDictionary* attr = [[self.dayBar titleTextAttributes] mutableCopy];
-    [attr setObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-    [self.dayBar setTitleTextAttributes:attr];
     self.date = [NSDate date];
     UIBarButtonItem* datePicker = [[UIBarButtonItem alloc] initWithTitle:@"Calendar" style:UIBarButtonItemStylePlain target:self action:@selector(showDatePicker:)];
     [self.navigationItem setRightBarButtonItem:datePicker];
     [self.tableView reloadData];
+}
+
+- (void)setupView {
+    self.dayBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    self.dayBar.barTintColor = [StandardUtils blueColor];
+    self.dayBar.tintColor = [UIColor whiteColor];
+    self.dayBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.dayBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - 64) style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    self.nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"forward arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonAction:)];
+    self.previousButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonAction:)];
+    
+    UINavigationItem* navItem = [[UINavigationItem alloc] init];
+    navItem.rightBarButtonItem = self.nextButton;
+    navItem.leftBarButtonItem  = self.previousButton;
+    
+    [self.dayBar pushNavigationItem:navItem animated:NO];
+    
+    [self.view addSubview:self.dayBar];
+    [self.view addSubview:self.tableView];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -108,11 +128,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     [self showActivityIndicator];
     dispatch_queue_t queue = dispatch_queue_create("Event.Table.Load", NULL);
     dispatch_async(queue, ^{
-        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://www.tuftslife.com/events.json"]];
+        NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.tuftslife.com/events.json"]];
         if(data == nil) {
             AppDelegate* del = [[UIApplication sharedApplication] delegate];
             [del pingServer];
             self.dayBar.topItem.titleView = nil;
+            [self changeDateToDate:self.date];
             return;
         }
         NSError* error;
@@ -124,7 +145,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
             [self changeDateToDate:self.date];
             [self.tableView reloadData];
         });
-        
     });
     dispatch_release(queue);
 }
@@ -218,7 +238,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self resignDatePicker];
-    EventViewController* eventPage = [self.storyboard instantiateViewControllerWithIdentifier:@"Event View"];
+    EventViewController* eventPage = (EventViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Event View"];
     [eventPage loadView];
     [eventPage setEvent:[self.events objectAtIndex:indexPath.row]];
     [eventPage setUp];
@@ -329,6 +349,9 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         CGFloat screenWidth = screenRect.size.width;
         CGFloat screenHeight = screenRect.size.height;
         _datePicker.center = CGPointMake(screenWidth/2, screenHeight+44);
+        [_datePicker setTintColor:[UIColor blackColor]];
+        [_datePicker setBackgroundColor:[UIColor whiteColor]];
+        
         [self.view addSubview:_datePicker];
     }
     return _datePicker;

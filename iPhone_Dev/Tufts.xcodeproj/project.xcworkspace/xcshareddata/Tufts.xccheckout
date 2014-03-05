@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>22117A07-85BF-497D-BDBA-5CD411F8DFFE</string>
+	<string>C128760B-EE28-456E-BACF-7E5FF5BF4557</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Tufts</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>

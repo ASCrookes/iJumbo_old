@@ -11,6 +11,7 @@
 		8E021A0E15B1086100FBB153 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A0C15B1081000FBB153 /* NewsViewController.m */; };
 		8E021A1115B131C300FBB153 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E021A1015B131C300FBB153 /* NewsCell.m */; };
 		8E0359D1161E71AF0038D61B /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0359D0161E71AF0038D61B /* WebViewController.m */; };
+		8E0754A018C70245001E5417 /* StandardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E07549F18C70245001E5417 /* StandardUtils.m */; };
 		8E0C42B015B7BB8D009165E0 /* LowerNavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C42AF15B7BB8D009165E0 /* LowerNavBar.png */; };
 		8E0C42B215B7BB96009165E0 /* NavBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C42B115B7BB96009165E0 /* NavBar.png */; };
 		8E18AC4D15CB57040054284B /* Bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E18AC3F15CB57040054284B /* Bus.png */; };
@@ -116,6 +117,8 @@
 		8E021A1015B131C300FBB153 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
 		8E0359CF161E71AF0038D61B /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8E0359D0161E71AF0038D61B /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		8E07549E18C70245001E5417 /* StandardUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardUtils.h; sourceTree = "<group>"; };
+		8E07549F18C70245001E5417 /* StandardUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardUtils.m; sourceTree = "<group>"; };
 		8E0C42AF15B7BB8D009165E0 /* LowerNavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LowerNavBar.png; sourceTree = "<group>"; };
 		8E0C42B115B7BB96009165E0 /* NavBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBar.png; sourceTree = "<group>"; };
 		8E18AC3F15CB57040054284B /* Bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bus.png; sourceTree = "<group>"; };
@@ -327,6 +330,8 @@
 		8E1E79FE153C835800B126B8 = {
 			isa = PBXGroup;
 			children = (
+				8E07549E18C70245001E5417 /* StandardUtils.h */,
+				8E07549F18C70245001E5417 /* StandardUtils.m */,
 				8EC72704164DB9DA007C7A8A /* Default-568h@2x.png */,
 				8E3F13DC15D0B55400A558AB /* iconElephant.png */,
 				8EE401BE15D1EC62004AD1F7 /* Default.png */,
@@ -657,6 +662,7 @@
 				8E3FA91F15CCB53B0031F87D /* AboutTuftsViewController.m in Sources */,
 				8E3F13D715D09B5E00A558AB /* SourcesViewController.m in Sources */,
 				8E4DC3331603CBCB00EC14BF /* ASIAuthenticationDialog.m in Sources */,
+				8E0754A018C70245001E5417 /* StandardUtils.m in Sources */,
 				8E4DC3341603CBCB00EC14BF /* ASIDataCompressor.m in Sources */,
 				8E4DC3351603CBCB00EC14BF /* ASIDataDecompressor.m in Sources */,
 				8E4DC3361603CBCB00EC14BF /* ASIDownloadCache.m in Sources */,

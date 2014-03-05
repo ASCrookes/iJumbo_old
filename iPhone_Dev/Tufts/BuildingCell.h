@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BuildingViewController.h"
+
+@class BuildingTableViewController;
 
 @interface BuildingCell : UITableViewCell
 
@@ -16,7 +17,7 @@
 @property (strong, nonatomic) UIButton *infoButton;
 @property (strong, nonatomic) NSDictionary* building;
 // the table view that this cell belongs to
-@property (strong, nonatomic) UIViewController* viewController;
+@property (strong, nonatomic) BuildingTableViewController* viewController;
 
 - (void)setupCellWithBuilding:(NSDictionary*)building hasDetailedText:(BOOL)hasDetailedText;
 - (IBAction)infoButtonAction:(id)sender;

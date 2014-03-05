@@ -163,13 +163,14 @@
         [self.navigationController pushViewController:webView animated:YES];
         return;
     }
+    if (self.joeyInfo.count == 0)
+        return;
     [self.map viewDidLoad];
     self.map.allowAnnotationClick = NO;
     self.map.searchBar.userInteractionEnabled = NO;
     [self.map showBuilding:[[self.joeyInfo objectAtIndex:indexPath.row] objectForKey:@"geo"]];
     
     [self.navigationController pushViewController:self.map animated:YES];
-
 }
 
 + (NSString*)getScheduleURLBasedOnDate {

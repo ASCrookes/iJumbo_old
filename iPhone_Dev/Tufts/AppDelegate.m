@@ -31,9 +31,9 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
                                                     UIRemoteNotificationTypeSound];
     
     // Appearance of the app
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
+    [[UINavigationBar appearance] setTintColor:[StandardUtils blueColor]];
     //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBar.png"] forBarMetrics:UIBarMetricsDefault];
-    [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
+    [[UITableView appearance] setSeparatorColor:[StandardUtils blueColor]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
     [[UISegmentedControl appearance] setTintColor:[UIColor whiteColor]];
     
@@ -47,6 +47,17 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
     
     [self.window setRootViewController:navcon];
     [self.window makeKeyAndVisible];
+    
+    NSString* storyboardName;
+    CGSize result = [[UIScreen mainScreen] bounds].size;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    result = CGSizeMake(result.width * scale, result.height * scale);
+    if(result.height == 1136) {
+        storyboardName = @"MainStoryboard_iPhone5";
+    } else {
+        storyboardName = @"MainStoryboard1";
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:storyboardName forKey:@"storyboard"];
     
     return YES;
 }

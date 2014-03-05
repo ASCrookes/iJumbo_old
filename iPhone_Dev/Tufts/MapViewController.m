@@ -40,8 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
-    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:0.75];
     [self setupView];
     [self.mapView setDelegate:self];
 }
@@ -49,14 +47,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return interfaceOrientation == UIInterfaceOrientationPortrait;
-}
-
-- (void)viewDidUnload
-{
-    [self setMapView:nil];
-    [self setSearchBar:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 //*********************************************************
@@ -251,7 +241,7 @@
     UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:btvc];
     navcon.navigationBar.tintColor = [UIColor blackColor];
     navcon.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [navcon.navigationBar setTintColor:[UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1]];
+    [navcon.navigationBar setTintColor:[StandardUtils blueColor]];
     UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
     btvc.navigationItem.leftBarButtonItem = barButton;
     UIBarButtonItem* onMap = [[UIBarButtonItem alloc] initWithTitle:@"View On Map" style:UIBarButtonItemStylePlain target:self action:@selector(viewSearchResultsOnMap)];

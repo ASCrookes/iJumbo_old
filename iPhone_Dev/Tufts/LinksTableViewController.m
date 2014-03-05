@@ -99,7 +99,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    WebViewController* wvc = [[UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:nil] instantiateViewControllerWithIdentifier:@"Web View"];
+    WebViewController* wvc = (WebViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Web View"];
     NSDictionary* info = self.links[indexPath.section];
     [wvc setWebViewWithURL:info[@"link"] delegate:self];
     wvc.title = info[@"name"];

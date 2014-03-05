@@ -11,7 +11,7 @@
 #import "NSDictionary+Contains_Key.h"
 #import "MyFoodViewController.h"
 
-@interface MenuTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface MenuTableViewController : UIViewController <UIActionSheetDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic,strong) NSDictionary* masterDict;
@@ -20,15 +20,13 @@
 @property (nonatomic,strong) NSDate* lastUpdate;
 @property (nonatomic,strong) UIView* loadingView;
 @property (nonatomic,strong) UIView* noFood;
-@property (weak, nonatomic) IBOutlet UINavigationBar *extraBar;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UINavigationBar *extraBar;
 @property (nonatomic, strong) NSDictionary* diningHallInfo;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *todayBarButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *tomorrowBarButton;
-@property (weak, nonatomic) IBOutlet UIButton *myFoodButton;
+@property (strong, nonatomic) UIBarButtonItem *todayBarButton;
+@property (strong, nonatomic) UIBarButtonItem *tomorrowBarButton;
+@property (strong, nonatomic) UIButton *myFoodButton;
 @property (nonatomic,strong) NSSet* foodSet;
-
-
+@property (nonatomic,strong) UITableView* tableView;
 
 - (void)loadData;
 - (void)parseData;
@@ -36,8 +34,6 @@
 - (void)loadDataBasedOnDate;
 - (void)clearUnnecessary;
 
-
 + (NSNumber*)getNumericalDate:(NSDate*)date;
-
 
 @end

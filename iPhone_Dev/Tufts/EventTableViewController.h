@@ -10,7 +10,7 @@
 #import "EventViewController.h"
 #import "NSDictionary+Contains_Key.h"
 
-@interface EventTableViewController : UIViewController <NSXMLParserDelegate, UITableViewDataSource, UITabBarDelegate, UIGestureRecognizerDelegate>
+@interface EventTableViewController : UIViewController <NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) NSDictionary* dataSource;
 @property (nonatomic,strong) NSMutableArray* events;
@@ -20,9 +20,9 @@
 @property (nonatomic,strong) UIView* loadingView;
 @property (strong, nonatomic) UIDatePicker* datePicker;
 @property (nonatomic) BOOL isLoading;
-@property (weak, nonatomic) IBOutlet UINavigationBar *extraNavBar;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *previousButton;
+@property (strong, nonatomic) UINavigationBar *extraNavBar;
+@property (strong, nonatomic) UIBarButtonItem *nextButton;
+@property (strong, nonatomic) UIBarButtonItem *previousButton;
 @property (strong, nonatomic) NSDate* lastDownload;
 
 // For getting the info from the rss feed
@@ -30,9 +30,9 @@
 @property (nonatomic,strong) NSMutableDictionary* currentEvent;
 @property (nonatomic,strong) NSString* currentKey;
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *dayBar;
+@property (strong, nonatomic) UINavigationBar *dayBar;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
 
 - (void)loadData;
 - (void)clearUnnecessary;

@@ -11,9 +11,7 @@
 #import "BuildingCell.h"
 
 @protocol BuildingTableDelegate <NSObject>
-
 - (void)selectedBuilding:(id)buildingJSON;
-
 @end
 
 @interface BuildingTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
@@ -21,10 +19,10 @@
 @property (nonatomic,strong) NSArray* buildings;
 @property (nonatomic,strong) NSArray* dataSource;
 @property (nonatomic) BOOL mapSelect;
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) UISearchBar *searchBar;
 @property (nonatomic) BOOL hasDetailedCells;
+@property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic,strong) id <BuildingTableDelegate> delegate;
-@property (strong, nonatomic) UITableView *tableView;
 
 - (void)loadData;
 

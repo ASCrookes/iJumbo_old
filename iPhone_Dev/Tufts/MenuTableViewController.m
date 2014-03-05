@@ -14,10 +14,6 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
 const int TODAY_INDEX = 0;
 const int TOMORROW_INDEX = 1;
 
-@interface MenuTableViewController ()
-
-@end
-
 @implementation MenuTableViewController
 
 @synthesize dataSource = _dataSource;
@@ -27,7 +23,6 @@ const int TOMORROW_INDEX = 1;
 @synthesize loadingView = _loadingView;
 @synthesize noFood = _noFood;
 @synthesize extraBar = _extraBar;
-@synthesize tableView = _tableView;
 @synthesize diningHallInfo = _diningHallInfo;
 @synthesize foodSet = _foodSet;
 
@@ -37,11 +32,11 @@ const int TOMORROW_INDEX = 1;
 //*********************************************************
 //*********************************************************
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self addBarInfo];
+    [self setupView];
     if(!self.isLoading) {
         [self.tableView reloadData];
     }
@@ -50,6 +45,25 @@ const int TOMORROW_INDEX = 1;
         [self loadData];
     }
     [self loadDataBasedOnDate];
+}
+
+- (void)setupView {
+    self.extraBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    self.extraBar.barTintColor = [StandardUtils blueColor];
+    UINavigationItem* navItem = [[UINavigationItem alloc] init];
+    self.todayBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStylePlain target:self action:@selector(dateButtonAction:)];
+    self.todayBarButton.tintColor = [UIColor lightGrayColor];
+    self.tomorrowBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Tomorrow" style:UIBarButtonItemStylePlain target:self action:@selector(dateButtonAction:)];
+    navItem.leftBarButtonItem = self.todayBarButton;
+    navItem.rightBarButtonItem = self.tomorrowBarButton;
+    
+    [self.extraBar pushNavigationItem:navItem animated:NO];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.extraBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.extraBar.frame.size.height - 64) style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.view addSubview:self.extraBar];
+    [self.view addSubview:self.tableView];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -81,7 +95,6 @@ const int TOMORROW_INDEX = 1;
     [self.extraBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"] forBarMetrics:UIBarMetricsDefault];
 }
 
-
 - (void)viewDidUnload
 {
     [self setExtraBar:nil];
@@ -100,18 +113,17 @@ const int TOMORROW_INDEX = 1;
 //*********************************************************
 //*********************************************************
 
-- (IBAction)dateButtonAction:(UIBarButtonItem*)sender
+- (void)dateButtonAction:(UIBarButtonItem*)sender
 {
     if([sender.title isEqualToString:@"Tomorrow"]) {
-        [self.tomorrowBarButton setTintColor:[UIColor blackColor]];
-        [self.todayBarButton setTintColor:[UIColor darkGrayColor]];
+        [self.tomorrowBarButton setTintColor:[UIColor lightGrayColor]];
+        [self.todayBarButton setTintColor:[UIColor whiteColor]];
     } else {
-        [self.tomorrowBarButton setTintColor:[UIColor darkGrayColor]];
-        [self.todayBarButton setTintColor:[UIColor blackColor]];
+        [self.tomorrowBarButton setTintColor:[UIColor whiteColor]];
+        [self.todayBarButton setTintColor:[UIColor lightGrayColor]];
     }
     [self setDataSourceFromMaster];
 }
-
 
 - (void)changeHall
 {
@@ -140,14 +152,13 @@ const int TOMORROW_INDEX = 1;
     }
 }
 
-
 - (void)setDataSourceFromMaster
 {
     if(!self.masterDict || !self.tomorrowsDict) {
         [self loadData];
     }
     int segIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
-    int dayIndex = ([[self.todayBarButton tintColor] isEqual:[UIColor blackColor]]) ? TODAY_INDEX : TOMORROW_INDEX;
+    int dayIndex = ([[self.todayBarButton tintColor] isEqual:[UIColor lightGrayColor]]) ? TODAY_INDEX : TOMORROW_INDEX;
     NSString* mealKey = (segIndex == 0) ? @"Breakfast" : (segIndex == 1) ? @"Lunch" : @"Dinner";
     NSString* hallName = self.navigationItem.rightBarButtonItem.title;
     if(!hallName) {
@@ -167,13 +178,11 @@ const int TOMORROW_INDEX = 1;
     [self.tableView reloadData];
 }
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - JSON loading
 //*********************************************************
 //*********************************************************
-
 
 - (void)loadData
 {
@@ -193,7 +202,6 @@ const int TOMORROW_INDEX = 1;
     });
     dispatch_release(queue);
 }
-
 
 - (void)parseData
 {
@@ -236,7 +244,6 @@ const int TOMORROW_INDEX = 1;
     self.loadingView.hidden = YES;
 }
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Table View Delegate/Data Source
@@ -273,7 +280,7 @@ const int TOMORROW_INDEX = 1;
     } else {
         cellText = [[[[self.dataSource objectAtIndex:indexPath.section - 1] objectForKey:@"foods"] objectAtIndex:indexPath.row] objectForKey:@"FoodName"];
         if ([self.foodSet containsObject:cellText]) {
-            textColor = [UIColor colorWithRed:72.0/255 green:145.0/255 blue:206.0/255 alpha:1];
+            textColor = [StandardUtils blueColor];
         }
     }
     cell.textLabel.text = cellText;
@@ -292,14 +299,14 @@ const int TOMORROW_INDEX = 1;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0) {
-        BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
+        BuildingViewController* bvc = (BuildingViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Building View"];
         bvc.allowsMap = YES;
         [bvc setBuilding:[self.diningHallInfo objectForKey:self.navigationItem.rightBarButtonItem.title]];
         bvc.view.backgroundColor = self.tableView.backgroundColor;
         [self.navigationController pushViewController:bvc animated:YES];
         return;
     }
-    FoodViewController* fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Food View"];
+    FoodViewController* fvc = (FoodViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Food View"];
     [fvc setFood:[[[self.dataSource objectAtIndex:indexPath.section - 1] objectForKey:@"foods"] objectAtIndex:indexPath.row]];
     [fvc setTitle:[fvc.food objectForKey:@"FoodName"]];
     fvc.view.backgroundColor = self.tableView.backgroundColor;
@@ -309,7 +316,6 @@ const int TOMORROW_INDEX = 1;
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, SECTION_HEIGHT)];
     label.backgroundColor = self.tableView.backgroundColor;
     if(section == 0) {
@@ -323,6 +329,7 @@ const int TOMORROW_INDEX = 1;
     label.adjustsFontSizeToFitWidth = YES;
     label.minimumFontSize = 14;
     UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, SECTION_HEIGHT)];
+    header.backgroundColor = label.backgroundColor;
     [header addSubview:label];
     
     return header;
@@ -382,7 +389,7 @@ const int TOMORROW_INDEX = 1;
 }
 
 - (IBAction)showMyFood:(id)sender {
-    MyFoodViewController* myFood = [self.storyboard instantiateViewControllerWithIdentifier:@"My Food VC"];
+    MyFoodViewController* myFood = (MyFoodViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"My Food VC"];
     myFood.view.hidden = NO;
     myFood.tableView.backgroundColor = self.view.backgroundColor;
     myFood.foodSet = self.foodSet;
@@ -392,8 +399,6 @@ const int TOMORROW_INDEX = 1;
 + (void)subscribeToFood:(NSString*)foodName {
     [MyFoodViewController subscribeToFood:foodName];
 }
-
-
 
 //*********************************************************
 //*********************************************************

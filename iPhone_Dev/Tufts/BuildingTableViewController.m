@@ -21,18 +21,16 @@
 @synthesize dataSource = _dataSource;
 @synthesize hasDetailedCells;
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Standard Stuff
 //*********************************************************
 //*********************************************************
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupTableView];
+    [self setupView];
     self.title = @"Places";
     UIBarButtonItem* mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(showMap)];
     self.navigationItem.rightBarButtonItem = mapButton;
@@ -47,19 +45,23 @@
         [self loadData];
     }
     [self.tableView reloadData];
-    //[self.searchBar setBackgroundImage:[UIImage imageNamed:@"LowerNavBar.png"]];
 }
 
-- (void)setupTableView {
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+// adds the tableview and searchbar
+- (void)setupView {
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    self.searchBar.barTintColor = [StandardUtils blueColor];
+    self.searchBar.delegate = self;
+    [self.view addSubview:self.searchBar];
+    
+    int navBarHeight = 64;  // Also includes statusbar
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height - navBarHeight)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
@@ -107,26 +109,25 @@
     dispatch_release(queue);
 }
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Search
 //*********************************************************
 //*********************************************************
 
-- (NSArray*)searchForBuildingByName:(NSString*)searchTerm
-{
+- (NSArray*)searchForBuildingByName:(NSString*)searchTerm {
     NSMutableArray* results = [[NSMutableArray alloc] init];
     NSRange range;
     
-    for(NSArray* section in self.buildings)
-    {
+    for(NSArray* section in self.buildings) {
         NSMutableArray* resultsInSection = [[NSMutableArray alloc] init];
-        for(NSDictionary* building in section)
-        {
-            range = [[building objectForKey:@"building_name"] rangeOfString:searchTerm options:NSCaseInsensitiveSearch];
-            if(range.location != NSNotFound) {
-                [resultsInSection addObject:building];
+        for(NSDictionary* building in section) {
+            NSString* buildingName = [building objectForKey:@"building_name"];
+            if (buildingName != nil && buildingName.length > 0) {
+                range = [buildingName rangeOfString:searchTerm options:NSCaseInsensitiveSearch];
+                if(range.location != NSNotFound) {
+                    [resultsInSection addObject:building];
+                }
             }
         }
         if([resultsInSection count] > 0) {
@@ -169,12 +170,11 @@
 // This is actually a MapViewDelegate methods so searching the map links back to this view
 - (void)searchBuildingsByName:(NSString *)searchText
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     // change the text of the search bar and make it search using that
-    self.searchBar.text = searchText;
+    [self.searchBar setText:searchText];
     [self searchBarSearchButtonClicked:self.searchBar];
 }
-
 
 //*********************************************************
 //*********************************************************
@@ -193,7 +193,6 @@
     // Return the number of rows in the section.
     return [[self.dataSource objectAtIndex:section] count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -223,7 +222,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    BuildingViewController* bvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Building View"];
+    BuildingViewController* bvc = (BuildingViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Building View"];
     bvc.allowsMap = YES;
     [bvc setBuilding:[[self.dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     bvc.view.backgroundColor = self.view.backgroundColor;
@@ -247,8 +246,7 @@
     return 45;
 }
 
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 30)];
     label.backgroundColor = [UIColor clearColor];
     NSString* sectionTitle = [[[[self.dataSource objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
@@ -268,7 +266,6 @@
     return header;
 }
 
-
 //*********************************************************
 //*********************************************************
 #pragma mark - Setters/Getters
@@ -282,11 +279,5 @@
     }
     return _dataSource;
 }
-
-
-
-
-
-
 
 @end

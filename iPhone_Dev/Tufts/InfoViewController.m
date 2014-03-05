@@ -44,18 +44,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
-        UIViewController* aboutTufts = [self.storyboard instantiateViewControllerWithIdentifier:@"About Tufts"];
+        UIViewController* aboutTufts = [StandardUtils viewControllerFromStoryboardWithIdentifier:@"About Tufts"];
         aboutTufts.view.backgroundColor = self.tableView.backgroundColor;
         UINavigationController* aboutTuftsNavcon = [self navconWithRootViewController:aboutTufts BackButtonTitle:@"Back"];
         [self presentModalViewController:aboutTuftsNavcon animated:YES];
     } else if(indexPath.section == 4) {
-        FeedbackViewController* feedbackView = [self.storyboard instantiateViewControllerWithIdentifier:@"Feedback Input View"];
+        FeedbackViewController* feedbackView = (FeedbackViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Feedback Input View"];
         feedbackView.view.backgroundColor = self.view.backgroundColor;
         feedbackView.title = @"Feedback";
         UINavigationController* navcon = [self navconWithRootViewController:feedbackView BackButtonTitle:@"Cancel"];
         [self presentModalViewController:navcon animated:YES];
     } else if(indexPath.section == 6) {
-        SourcesViewController* sourceVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Sources View Controller"];
+        SourcesViewController* sourceVC = (SourcesViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Sources View Controller"];
         sourceVC.view.backgroundColor = self.tableView.backgroundColor;
         UINavigationController* navcon = [self navconWithRootViewController:sourceVC BackButtonTitle:@"Back"];
         [self presentModalViewController:navcon animated:YES];

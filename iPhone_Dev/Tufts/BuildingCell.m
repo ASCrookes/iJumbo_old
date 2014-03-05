@@ -19,17 +19,20 @@
         self.buildingName = [[UILabel alloc] initWithFrame:CGRectMake(12, 0, 186, 43)];
         self.buildingName.font = [UIFont boldSystemFontOfSize:17];
         
+        UIImage* image = [UIImage imageNamed:@"places_button.png"];
+        
         self.mapButton = [[UIButton alloc] initWithFrame:CGRectMake(206, 3, 40, 38)];
         [self.mapButton addTarget:self action:@selector(mapButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.mapButton setImage:[UIImage imageNamed:@"places_button.png"] forState:UIControlStateNormal];
-        self.mapButton.titleLabel.text = @"Map";
-        self.mapButton.titleLabel.textColor = [UIColor blackColor];
+        [self.mapButton setBackgroundImage:image forState:UIControlStateNormal];
+        [self.mapButton setTitle:@"Map" forState:UIControlStateNormal];
+        [self.mapButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
         self.infoButton = [[UIButton alloc] initWithFrame:CGRectMake(254, 3, 40, 38)];
         [self.infoButton addTarget:self action:@selector(infoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.infoButton setImage:[UIImage imageNamed:@"places_button.png"] forState:UIControlStateNormal];
-        self.infoButton.titleLabel.text = @"Info";
+        [self.infoButton setBackgroundImage:image forState:UIControlStateNormal];
+        [self.infoButton setTitle:@"Info" forState:UIControlStateNormal];
         self.infoButton.titleLabel.textColor = [UIColor blackColor];
+        [self.infoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
         [self addSubview:self.buildingName];
         [self addSubview:self.mapButton];
@@ -51,6 +54,7 @@
 
 - (void)mapButtonAction:(id)sender {
     MapViewController* mvc = [[MapViewController alloc] init];
+    mvc.delegate = self.viewController;
     // have to load the view before dropping the pin to get the animation to work
     [self.viewController.navigationController pushViewController:mvc animated:YES];
     [mvc loadView];
@@ -59,7 +63,7 @@
 }
 
 - (void)infoButtonAction:(id)sender {
-    BuildingViewController* bvc = [[UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:nil] instantiateViewControllerWithIdentifier:@"Building View"];
+    BuildingViewController* bvc = (BuildingViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Building View"];
     bvc.allowsMap = YES;
     [bvc setBuilding:self.building];
     bvc.view.backgroundColor = self.viewController.view.backgroundColor;

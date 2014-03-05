@@ -12,9 +12,7 @@
 #import "BuildingTableViewController.h"
 
 @protocol MapViewDelegate <NSObject>
-
 - (void)searchBuildingsByName:(NSString*)searchText;
-
 @end
 
 @interface MapViewController : UIViewController <BuildingTableDelegate, UISearchBarDelegate>
