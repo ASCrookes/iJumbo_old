@@ -40,14 +40,6 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    ViewController* vc = [[ViewController alloc] init];
-    UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self customizeNavigationController:navcon];
-    
-    [self.window setRootViewController:navcon];
-    [self.window makeKeyAndVisible];
-    
     NSString* storyboardName;
     CGSize result = [[UIScreen mainScreen] bounds].size;
     CGFloat scale = [UIScreen mainScreen].scale;
@@ -58,6 +50,14 @@ const int TIME_BETWEEN_CONNECTION_ALERT = 90;
         storyboardName = @"MainStoryboard1";
     }
     [[NSUserDefaults standardUserDefaults] setObject:storyboardName forKey:@"storyboard"];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    ViewController* vc = [[ViewController alloc] init];
+    UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self customizeNavigationController:navcon];
+    
+    [self.window setRootViewController:navcon];
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

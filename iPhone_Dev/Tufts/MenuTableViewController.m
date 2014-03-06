@@ -316,21 +316,31 @@ const int TOMORROW_INDEX = 1;
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, SECTION_HEIGHT)];
-    label.backgroundColor = self.tableView.backgroundColor;
+    NSString* headerIdentifier = @"MenuTableHeaderIdentifier";
+    NSInteger headerLabelTag = 1;
+    UITableViewHeaderFooterView* header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
+    if (header == nil) {
+        header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:headerIdentifier];
+        header.frame = CGRectMake(0, 0, self.tableView.frame.size.width, SECTION_HEIGHT);
+        header.contentView.backgroundColor = self.view.backgroundColor;
+        CGSize headerSize = header.frame.size;
+        int labelInset = 20;
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(labelInset, 0, headerSize.width - labelInset, headerSize.height)];
+        label.backgroundColor = header.contentView.backgroundColor;
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont boldSystemFontOfSize:16];
+        label.numberOfLines = 2;
+        label.adjustsFontSizeToFitWidth = YES;
+        label.minimumFontSize = 14;
+        label.tag = headerLabelTag;
+        [header addSubview:label];
+    }
+    UILabel* label = (UILabel*)[header viewWithTag:headerLabelTag];
     if(section == 0) {
-        label.text = @"Dining Hall Info";
+        label.text = @"Dining Center Info";
     } else {
         label.text = [[self.dataSource objectAtIndex:section - 1] objectForKey:@"SectionName"];
     }
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont boldSystemFontOfSize:16];
-    label.numberOfLines = 2;
-    label.adjustsFontSizeToFitWidth = YES;
-    label.minimumFontSize = 14;
-    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, SECTION_HEIGHT)];
-    header.backgroundColor = label.backgroundColor;
-    [header addSubview:label];
     
     return header;
 }
