@@ -37,6 +37,10 @@
         self.author = [[UILabel alloc] initWithFrame:CGRectMake(92, 68, 217, 21)];
         self.author.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:11];
         
+        UIView* imageBackground = [[UIView alloc] initWithFrame:self.thumbnail.frame];
+        imageBackground.backgroundColor = self.thumbnail.backgroundColor;
+        
+        [self addSubview:imageBackground];
         [self addSubview:self.thumbnail];
         [self addSubview:self.title];
         [self addSubview:self.author];
@@ -55,18 +59,28 @@
 
     UIImage* image = [NetworkManager imageFromUrl:story[@"imageUrl"]];
 
-    if (image == nil) {
+    if (image == nil) {  // The image is being downloaded.
         self.activityIndicator.hidden = NO;
         [self.activityIndicator startAnimating];
         self.thumbnail.image = nil;
-    } else if ([image isMemberOfClass:[NSNull class]]) {
+    } else if ([image isMemberOfClass:[NSNull class]]) {  // This url does not have an image.
         self.activityIndicator.hidden = YES;
         [self.activityIndicator stopAnimating];
         self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
-    } else {
+    } else {  // There is an image already downloaded and in the singleton's cache.
         self.activityIndicator.hidden = YES;
         [self.activityIndicator stopAnimating];
-        self.thumbnail.image = image;
+        
+        // If the image was previously being downloaded fade the image in.
+        if (self.thumbnail.image == nil) {
+            self.thumbnail.alpha = 0.0f;
+            self.thumbnail.image = image;
+            [UIView animateWithDuration:0.3f animations:^{
+                self.thumbnail.alpha = 1.0f;
+            }];
+        } else {
+            self.thumbnail.image = image;
+        }
     }
 
     self.webVC = nil;
