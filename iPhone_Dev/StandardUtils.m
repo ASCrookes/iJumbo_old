@@ -20,4 +20,8 @@
     return vc;
 }
 
++ (BOOL)isNull:(id)object {
+    return (object == nil || [object class] == [NSNull class]);
+}
+
 @end

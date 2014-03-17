@@ -7,6 +7,7 @@
 //
 
 #import "NewsViewController.h"
+#import "NetworkManager.h"
 
 const int UPDATE_TIME = 300; // 30 is 5 minutes -> seconds
 const int IMAGE_SIZE  = 90; // The images are squares
@@ -26,12 +27,10 @@ enum NewsSegment {
 @synthesize rssParser = _rssParser;
 @synthesize currentStory = _currentStory;
 @synthesize currentKey = _currentKey;
-@synthesize storyImages = _storyImages;
 @synthesize section = _section;
 @synthesize urls = _urls;
 @synthesize currentURL = _currentURL;
 @synthesize dataSource = _dataSource;
-@synthesize imageDataSource = _imageDataSource;
 @synthesize webViewBackButton = _webViewBackButton;
 @synthesize webViewForwardButton = _webViewForwardButton;
 @synthesize currentWebView = _currentWebView;
@@ -67,11 +66,17 @@ enum NewsSegment {
      */
     self.navigationController.title = @"The Daily";
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kDownloadedImageNotification object:nil];
+    
     if(self.isLoading) {
         [self setLoadingUI];
     } else if([self.dataSource count] == 0) {
         [self loadData];
     }
+}
+
+- (void)reloadTableView {
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -93,8 +98,7 @@ enum NewsSegment {
 - (void)loadData {
     self.isLoading = YES;
     NSArray* storyToLoad = [self.storiesByType objectForKey:[self getKeyFromUI]];
-    if(storyToLoad) {
-        self.imageDataSource = [self.storiesByType objectForKey:[[self getKeyFromUI] stringByAppendingString:@"-Images"]];
+    if (storyToLoad) {
         self.dataSource = storyToLoad;
         [self.tableView reloadData];
          return;
@@ -144,7 +148,7 @@ enum NewsSegment {
     if(cell == nil) {
         cell = [[NewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    [cell setupCellWithStory:[self.dataSource objectAtIndex:indexPath.row] andImageData:[self.imageDataSource objectAtIndex:indexPath.row]];
+    [cell setupCellWithStory:self.dataSource[indexPath.row]];
 
     return cell;
 }
@@ -169,7 +173,6 @@ enum NewsSegment {
 - (void)parseXMLFileAtCurrentURL
 { 
     self.stories = [[NSMutableArray alloc] init];
-    self.storyImages = [[NSMutableArray alloc] init];
 
     self.currentURL = nil;
     self.rssParser = [[NSXMLParser alloc] initWithContentsOfURL:self.currentURL];
@@ -201,9 +204,7 @@ enum NewsSegment {
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
     self.dataSource = self.stories;
-    self.imageDataSource = self.storyImages;
     [self.storiesByType setObject:self.dataSource forKey:[self getKeyFromUI]];
-    [self.storiesByType setObject:self.imageDataSource forKey:[[self getKeyFromUI] stringByAppendingString:@"-Images"]];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
@@ -246,13 +247,9 @@ enum NewsSegment {
     NSString* title = [self.currentStory objectForKey:@"title"];
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.currentStory setObject:title forKey:@"title"];
+    self.currentStory[@"imageUrl"] = self.currentStory[@"media:thumbnail"];
     if(self.currentStory)
         [self.stories addObject:self.currentStory];
-    
-    // adds the thumbnail data
-    NSData* thumbnailData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.currentStory objectForKey:@"media:thumbnail"]]];
-    if(!thumbnailData) { thumbnailData = [NSData data]; }
-    [self.storyImages addObject:thumbnailData];
     self.currentStory = nil;
 }
 
@@ -321,7 +318,6 @@ enum NewsSegment {
     NSString* selectedTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     if([selectedTitle isEqualToString:@"Refresh"]) {
         // clear the data so that it has to load again
-        self.imageDataSource = nil;
         self.dataSource = nil;
         self.stories = nil;
         self.storiesByType = nil;
@@ -363,7 +359,6 @@ enum NewsSegment {
         //self.rssParser = nil;
         self.currentStory = nil;
         self.currentKey = nil;
-        self.storyImages = nil;
         self.urls = nil;
         self.currentURL = nil;
         self.storiesByType = nil;
@@ -376,14 +371,6 @@ enum NewsSegment {
 #pragma mark - Setters/Getters
 //*********************************************************
 //*********************************************************
-
-- (NSMutableArray*)storyImages
-{
-    if(!_storyImages) {
-        _storyImages = [[NSMutableArray alloc] init];
-    }
-    return _storyImages;
-}
 
 // setups a link between the bar button item to select which newspaper feed to from
 - (NSDictionary*)urls
@@ -429,33 +416,6 @@ enum NewsSegment {
                           nil,@"Daily-Arts",
                           nil,@"Daily-Op-Ed",
                           nil,@"Daily-Sports",
-                          // keys for the observer news
-                          /* UNCOMMENT
-                          nil,@"Observer-Arts",
-                          nil,@"Observer-Campus",
-                          nil,@"Observer-News",
-                          nil,@"Observer-Off Campus",
-                          nil,@"Observer-Opinion",
-                          nil,@"Observer-Poetry",
-                          nil,@"Observer-Extras",
-                           */
-                          // keys for the daily images
-                          nil,@"Daily-Main-Images",
-                          nil,@"Daily-News-Images",
-                          nil,@"Daily-Features-Images",
-                          nil,@"Daily-Arts-Images",
-                          nil,@"Daily-Op-Ed-Images",
-                          nil,@"Daily-Sports-Images",
-                          // keys for the observer images
-                          /* UNCOMMENT
-                          nil,@"Observer-Arts-Images",
-                          nil,@"Observer-Campus-Images",
-                          nil,@"Observer-News-Images",
-                          nil,@"Observer-Off Campus-Images",
-                          nil,@"Observer-Opinion-Images",
-                          nil,@"Observer-Poetry-Images",
-                          nil,@"Observer-Extras-Images",
-                           */
                           [NSDate date],@"createdDate",
                           nil];
     }

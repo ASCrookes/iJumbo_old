@@ -12,5 +12,6 @@
 
 + (UIColor*)blueColor;
 + (UIViewController*)viewControllerFromStoryboardWithIdentifier:(NSString*)identifier;
++ (BOOL)isNull:(id)object;
 
 @end

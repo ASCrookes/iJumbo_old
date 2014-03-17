@@ -247,22 +247,30 @@
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 30)];
-    label.backgroundColor = [UIColor clearColor];
+    
+    NSString* headerIdentifier = @"BuildingTableHeaderIdentifier";
+    NSInteger headerLabelTag = 1;
+    UITableViewHeaderFooterView* header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
+    if (header == nil) {
+        header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:headerIdentifier];
+        header.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 30);
+        header.contentView.backgroundColor = self.tableView.backgroundColor;
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 30)];
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont boldSystemFontOfSize:16];
+        label.numberOfLines = 2;
+        label.adjustsFontSizeToFitWidth = YES;
+        label.minimumFontSize = 14;
+        header.tag = headerLabelTag;
+        [header addSubview:label];
+    }
+    UILabel* label = (UILabel*)[header viewWithTag:headerLabelTag];
     NSString* sectionTitle = [[[[self.dataSource objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
     if([sectionTitle isEqualToString:@"1"]) {
         sectionTitle = @"123";
     }
     label.text = sectionTitle;
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont boldSystemFontOfSize:16];
-    label.numberOfLines = 2;
-    label.adjustsFontSizeToFitWidth = YES;
-    label.minimumFontSize = 14;
-    UIView* header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    header.backgroundColor = self.tableView.backgroundColor;
-    [header addSubview:label];
-    
     return header;
 }
 

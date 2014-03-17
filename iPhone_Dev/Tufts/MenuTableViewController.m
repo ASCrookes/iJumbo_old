@@ -326,7 +326,7 @@ const int TOMORROW_INDEX = 1;
         CGSize headerSize = header.frame.size;
         int labelInset = 20;
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(labelInset, 0, headerSize.width - labelInset, headerSize.height)];
-        label.backgroundColor = header.contentView.backgroundColor;
+        label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.font = [UIFont boldSystemFontOfSize:16];
         label.numberOfLines = 2;
@@ -341,7 +341,6 @@ const int TOMORROW_INDEX = 1;
     } else {
         label.text = [[self.dataSource objectAtIndex:section - 1] objectForKey:@"SectionName"];
     }
-    
     return header;
 }
 

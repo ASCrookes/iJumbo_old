@@ -7,10 +7,16 @@
 //
 
 #import "NewsCell.h"
+#import "NetworkManager.h"
+
+@interface NewsCell ()
+@property (nonatomic, strong) UIActivityIndicatorView* activityIndicator;
+@end
 
 
 @implementation NewsCell
 
+@synthesize activityIndicator = _activityIndicator;
 @synthesize title = _title;
 @synthesize author = _author;
 @synthesize thumbnail = _thumbnail;
@@ -24,6 +30,7 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
+        self.thumbnail.backgroundColor = [UIColor darkGrayColor];
         self.title = [[UILabel alloc] initWithFrame:CGRectMake(92, 0, 217, 69)];
         self.title.numberOfLines = 3;
         self.title.font = [UIFont boldSystemFontOfSize:17];
@@ -38,19 +45,30 @@
 }
 
 // story should contain media:thumbnail author and title
-- (void)setupCellWithStory:(NSDictionary*)story andImageData:(NSData*)imageData {
+- (void)setupCellWithStory:(NSDictionary*)story {
+
     self.showLoadingUI = NO;
     self.title.text = [story objectForKey:@"title"];
     NSString* author = [story objectForKey:@"author"];
     self.link = [story objectForKey:@"link"];
     self.author.text = [author isEqualToString:@"  "] ? @"Not Available" : author;
 
-    if([imageData length] > 0) {
-        self.thumbnail.image = [UIImage imageWithData:imageData];
-    } else {
+    UIImage* image = [NetworkManager imageFromUrl:story[@"imageUrl"]];
+
+    if (image == nil) {
+        self.activityIndicator.hidden = NO;
+        [self.activityIndicator startAnimating];
+        self.thumbnail.image = nil;
+    } else if ([image isMemberOfClass:[NSNull class]]) {
+        self.activityIndicator.hidden = YES;
+        [self.activityIndicator stopAnimating];
         self.thumbnail.image = [UIImage imageNamed:@"newsDefault.png"];
+    } else {
+        self.activityIndicator.hidden = YES;
+        [self.activityIndicator stopAnimating];
+        self.thumbnail.image = image;
     }
-    
+
     self.webVC = nil;
     self.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
@@ -110,6 +128,16 @@
         }
     }
     return _webVC;
+}
+
+- (UIActivityIndicatorView*)activityIndicator {
+    if (!_activityIndicator) {
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 90, 90)];
+        _activityIndicator.hidden = YES;
+        [_activityIndicator stopAnimating];
+        [self.thumbnail addSubview:_activityIndicator];
+    }
+    return _activityIndicator;
 }
 
 

@@ -18,7 +18,7 @@
 @property (strong, nonatomic) WebViewController* webVC;
 @property (nonatomic) BOOL showLoadingUI;
 
-- (void)setupCellWithStory:(NSDictionary*)story andImageData:(NSData*)imageData;
+- (void)setupCellWithStory:(NSDictionary*)story;
 - (WebViewController*)getWebViewController;
 
 @end

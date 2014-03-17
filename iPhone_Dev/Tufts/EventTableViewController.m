@@ -401,7 +401,7 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 - (UIView*)noEvents
 {
     if(!_noEvents) {
-        _noEvents = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, HEIGHT_OF_HELPER_VIEWS)];
+        _noEvents = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 320, HEIGHT_OF_HELPER_VIEWS)];
         _noEvents.backgroundColor = [UIColor clearColor];
         UILabel* label = [[UILabel alloc] initWithFrame:_noEvents.frame];
         label.text = @"NO EVENTS";

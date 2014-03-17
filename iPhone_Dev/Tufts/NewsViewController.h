@@ -16,8 +16,6 @@
 @property (nonatomic,strong) NSXMLParser* rssParser;
 @property (nonatomic,strong) NSMutableDictionary* currentStory;
 @property (nonatomic,strong) NSString* currentKey;
-@property (nonatomic,strong) NSMutableArray* storyImages; // the image data
-@property (nonatomic,strong) NSArray* imageDataSource;
 @property (nonatomic,strong) UIBarButtonItem* section;
 @property (nonatomic,strong) NSDictionary* urls;
 @property (nonatomic,strong) NSURL* currentURL;

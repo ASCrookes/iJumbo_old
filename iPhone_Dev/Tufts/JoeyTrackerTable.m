@@ -35,17 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.scrollEnabled = NO;
     self.navigationItem.rightBarButtonItem = self.reload;
     [self loadData];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.tableView.scrollEnabled = NO;
 }
 
 //*********************************************************
@@ -94,7 +85,7 @@
         self.navigationItem.rightBarButtonItem = self.reload;
         [self.tableView reloadData];
         [self stopLoadingUI];
-        if (self.joeyInfo.count == 0) {
+        if (self.joeyInfo.count == 0 & self.navigationController.visibleViewController == self) {
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Joey Tracker is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
@@ -114,9 +105,8 @@
 //*********************************************************
 //*********************************************************
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return (self.joeyInfo.count == 0) ? 1 : 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -138,7 +128,6 @@
     if(indexPath.section == 0) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"schedule"];
         cell.textLabel.text = @"Schedule";
-        cell.userInteractionEnabled = YES;
         return cell;
     }
     if (self.joeyInfo.count == 0) {
@@ -149,7 +138,6 @@
         cell.textLabel.text = [joeyDict objectForKey:@"location"];
         cell.detailTextLabel.text  = [joeyDict objectForKey:@"ETA"];
     }
-    cell.userInteractionEnabled = YES;
     
     return cell;
 }
@@ -157,7 +145,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0) {
-        WebViewController* webView = [self.storyboard instantiateViewControllerWithIdentifier:@"Web View"];
+        WebViewController* webView = [[WebViewController alloc] init];
         [webView setWebViewWithURL:[JoeyTrackerTable getScheduleURLBasedOnDate] delegate:nil];
         webView.title = @"Joey Schedule";
         [self.navigationController pushViewController:webView animated:YES];
