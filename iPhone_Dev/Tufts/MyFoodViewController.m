@@ -138,7 +138,6 @@
     if(segmentIndex != 0 && indexPath.section != 0) {
         [MyFoodViewController subscribeToFood:[self.dataSource objectAtIndex:indexPath.row]];
     }
-
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -160,9 +159,7 @@
     [super viewDidUnload];
 }
 
-- (void)loadData
-{
-
+- (void)loadData {
     NSData* jsonData = [MyFoodViewController allFoodStoredData];
     // if there was data saved onto disk reload it and show that. then load the data from the server and write it
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -213,11 +210,18 @@
     channel = [channel stringByReplacingOccurrencesOfString:@"&" withString:@"--and--"];
     // channels must start with a letter -> append my initials
     channel = [@"ASC_" stringByAppendingString:channel];
-    [PFPush subscribeToChannelInBackground:channel];
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[@"Subscribed to " stringByAppendingString:foodName] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[@"Subscribing to " stringByAppendingString:foodName] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     });
+    [PFPush subscribeToChannelInBackground:channel block:^(BOOL succeeded, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error || !succeeded) {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[[@"Could not subscribe to " stringByAppendingString:foodName] stringByAppendingString:@" - try again later"] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
+        });
+    }];
 }
 
 

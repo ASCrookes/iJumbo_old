@@ -10,8 +10,13 @@
 
 @interface StandardUtils : NSObject
 
+// iJumbo blue.
 + (UIColor*)blueColor;
+// Create a view controller from the appropriate storyboard.
 + (UIViewController*)viewControllerFromStoryboardWithIdentifier:(NSString*)identifier;
+// YES if nil or NSNull
 + (BOOL)isNull:(id)object;
+// Standard background color used by the view controllers.
++ (UIColor*)backgroundColor;
 
 @end

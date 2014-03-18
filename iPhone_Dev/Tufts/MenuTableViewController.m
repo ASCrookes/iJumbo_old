@@ -14,6 +14,10 @@ const int HEIGHT_OF_HELPER_VIEWS_IN_MEALS = 186;
 const int TODAY_INDEX = 0;
 const int TOMORROW_INDEX = 1;
 
+@interface MenuTableViewController ()
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
+@end
+
 @implementation MenuTableViewController
 
 @synthesize dataSource = _dataSource;
@@ -47,6 +51,18 @@ const int TOMORROW_INDEX = 1;
     [self loadDataBasedOnDate];
 }
 
+- (void)setupPullToRefresh {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)pullToRefresh {
+    [self.refreshControl beginRefreshing];
+    [self loadData];
+}
+
 - (void)setupView {
     self.extraBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     self.extraBar.barTintColor = [StandardUtils blueColor];
@@ -64,6 +80,8 @@ const int TOMORROW_INDEX = 1;
     
     [self.view addSubview:self.extraBar];
     [self.view addSubview:self.tableView];
+    
+    [self setupPullToRefresh];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -131,7 +149,7 @@ const int TOMORROW_INDEX = 1;
                                 delegate:self
                        cancelButtonTitle:@"Cancel"
                   destructiveButtonTitle:nil
-                       otherButtonTitles:@"Dewick", @"Hodgdon", @"Carmichael", @"Refresh", nil];
+                       otherButtonTitles:@"Dewick", @"Hodgdon", @"Carmichael", @"My Food", nil];
     
     // Show the sheet
     [sheet showInView:self.view];
@@ -142,10 +160,8 @@ const int TOMORROW_INDEX = 1;
     NSString* diningHall = [actionSheet buttonTitleAtIndex:buttonIndex];
     if([self.navigationItem.rightBarButtonItem.title isEqualToString:diningHall] || 
        [[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Cancel"]    ) {
-    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Refresh"]) {
-        self.masterDict = nil;
-        self.dataSource = nil;
-        [self loadData];
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"My Food"]) {
+        [self showMyFood];
     } else {
         self.navigationItem.rightBarButtonItem.title = diningHall;
         [self setDataSourceFromMaster];
@@ -190,7 +206,8 @@ const int TOMORROW_INDEX = 1;
         return;
     }
     self.isLoading = YES;
-    self.loadingView.hidden = NO;
+    if (!self.refreshControl.isRefreshing)
+        self.loadingView.hidden = NO;
     //self.noFood.hidden = YES;
     self.dataSource = [NSArray array];
     [self.tableView reloadData];
@@ -233,6 +250,7 @@ const int TOMORROW_INDEX = 1;
         [dateFormat setDateFormat:@"MM/dd"];
         NSString* mealsDate = [NSString stringWithFormat:@"Today(%@)", [dateFormat stringFromDate:self.lastUpdate]];
         [self.todayBarButton setTitle:mealsDate];
+        [self.refreshControl endRefreshing];
     });
 
 }
@@ -397,7 +415,7 @@ const int TOMORROW_INDEX = 1;
     return number;
 }
 
-- (IBAction)showMyFood:(id)sender {
+- (void)showMyFood {
     MyFoodViewController* myFood = (MyFoodViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"My Food VC"];
     myFood.view.hidden = NO;
     myFood.tableView.backgroundColor = self.view.backgroundColor;

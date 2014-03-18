@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Transportation";
     self.navigationItem.rightBarButtonItem = self.reload;
     [self loadData];
 }
@@ -54,7 +55,6 @@
     UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
     self.navigationItem.rightBarButtonItem = loadingView;
     NSURL *url = [NSURL URLWithString:@"http://ijumboapp.com/api/json/joey"];
-    self.title = @"Refreshing...";
     
     // Set up a concurrent queue
     dispatch_queue_t queue = dispatch_queue_create("Joey.Pull.Data", nil);
@@ -81,7 +81,6 @@
                                                       error:&error];
     self.navigationItem.rightBarButtonItem = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.title = @"Transportation";
         self.navigationItem.rightBarButtonItem = self.reload;
         [self.tableView reloadData];
         [self stopLoadingUI];
@@ -93,9 +92,7 @@
 }
 
 // Stops the UI that is setup when the data is loading
-- (void)stopLoadingUI
-{
-    self.title = @"Transportation";
+- (void)stopLoadingUI {
     self.navigationItem.rightBarButtonItem = self.reload;
 }
 
@@ -190,7 +187,7 @@
 {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 320, 45)];
     label.backgroundColor = self.tableView.backgroundColor;
-    label.text = (section == 1) ? @"Tufts Life Joey Tracker" : @"Joey Tracker Schedule";
+    label.text = (section == 1) ? @"Joey Tracker" : @"Joey Schedule";
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont boldSystemFontOfSize:16];
     label.numberOfLines = 2;

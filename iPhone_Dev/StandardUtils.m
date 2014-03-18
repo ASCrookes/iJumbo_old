@@ -24,4 +24,8 @@
     return (object == nil || [object class] == [NSNull class]);
 }
 
++ (UIColor*)backgroundColor {
+    return [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
+}
+
 @end

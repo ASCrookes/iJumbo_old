@@ -547,7 +547,15 @@
     {
       "address": "46 Professors Row Medford, MA 02155 ", 
       "building_name": "Campus Bookstore", 
-      "hours": false, 
+      "hours":[	
+"9:00AM","6:00PM",
+"9:00AM","6:00PM",
+"9:00AM","6:00PM",
+"9:00AM","6:00PM",
+"9:00AM","4:30PM",
+"11:00AM","3:00PM",
+"CLOSED","CLOSED"      
+		], 
       "latitude": "42.405547", 
       "longitude": "-71.12026", 
       "phone_number": "617-627-3468", 
@@ -567,7 +575,7 @@
 "10:00AM","1:00AM"
       ], 
       "latitude": "42.405547", 
-      "longitude": "-71.120259", 
+      "longitude": "-71.120259",
       "phone_number": "N/A", 
       "type": "Academic Building", 
       "website": "http://ocl.tufts.edu/?pid=17"
@@ -590,8 +598,8 @@
 "7:15AM","8:00PM",
 "7:15AM","8:00PM",
 "7:15AM","8:00PM",
-"7:15AM","7:30PM",
-"11:00AM","9:00PM",
+"7:15AM","8:00PM",
+"11:00AM","8:00PM",
 "8:00AM","9:00PM"      
 		], 
       "latitude": "42.408935", 
@@ -762,12 +770,12 @@
       "address": "25 Latin Way Medford, MA 02155 ", 
       "building_name": "Dewick-MacPhie Dining Hall", 
       "hours": [
-"8:00AM","9:0PAM",
-"8:00AM","9:0PAM",
-"8:00AM","9:0PAM",
 "8:00AM","9:00PM",
-"8:00AM","7:30PM",
-"8:00AM","7:30PM",
+"8:00AM","9:00PM",
+"8:00AM","9:00PM",
+"8:00AM","9:00PM",
+"8:00AM","8:00PM",
+"8:00AM","8:00PM",
 "11:00AM","9:00PM"
 	      ], 
       "latitude": "42.405166", 
@@ -967,7 +975,15 @@
     {
       "address": "124 Professors Row Somerville, MA 02144 ", 
       "building_name": "Health Service", 
-      "hours": false, 
+       "hours": [
+"8:00AM","6:00PM",
+"8:00AM","6:00PM",
+"10:00AM","9:00PM",
+"8:00AM","6:00PM",
+"8:00AM","6:30PM",
+"10:30AM","5:00PM",
+"CLOSED","CLOSED"
+	      ], 
       "latitude": "42.407049", 
       "longitude": "-71.124003", 
       "phone_number": "617-627-3350", 
@@ -1064,6 +1080,24 @@
       "longitude": "-71.119731", 
       "phone_number": "N/A", 
       "type": "Athletics", 
+      "website": "N/A"
+    },
+    {
+      "address": "N/A", 
+      "building_name": "Jumbo Express", 
+      "hours": [
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"10:00AM","MIDNIGHT",
+"1:00PM","MIDNIGHT",
+"1:00PM","MIDNIGHT"
+	      ], 
+      "latitude": "42.405472", 
+      "longitude": "-71.120328", 
+      "phone_number": "617-627-3531", 
+      "type": "Other",
       "website": "N/A"
     }
   ], 
@@ -1274,6 +1308,24 @@
       "longitude": "-71.11866", 
       "phone_number": "N/A", 
       "type": "Academic Building", 
+      "website": "N/A"
+    }, 
+    {
+      "address": "44 Professors Row Medford, MA 02155 ", 
+      "building_name": "Rez Cafe", 
+       "hours": [
+"8:00AM","MIDNIGHT",
+"8:00AM","MIDNIGHT",
+"8:00AM","MIDNIGHT",
+"8:00AM","10:00PM",
+"8:00AM","6:00PM",
+"NOON","6:00PM",
+"NOON","MIDNIGHT"
+	      ], 
+      "latitude": "42.405547", 
+      "longitude": "-71.120259",
+      "phone_number": "508-641-6617", 
+      "type": "Other", 
       "website": "N/A"
     }, 
     {

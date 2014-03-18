@@ -10,6 +10,7 @@
 #import "MapViewController.h"
 
 @interface BuildingTableViewController () <MapViewDelegate>
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
 @end
 
 @implementation BuildingTableViewController
@@ -27,10 +28,11 @@
 //*********************************************************
 //*********************************************************
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    self.view.backgroundColor = [StandardUtils backgroundColor];
+    self.tableView.backgroundColor = [StandardUtils backgroundColor];
     self.title = @"Places";
     UIBarButtonItem* mapButton = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(showMap)];
     self.navigationItem.rightBarButtonItem = mapButton;
@@ -44,7 +46,20 @@
         [self.tableView reloadData];
         [self loadData];
     }
+    
     [self.tableView reloadData];
+}
+
+- (void)setupPullToRefresh {
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+}
+
+- (void)pullToRefresh {
+    [self.refreshControl beginRefreshing];
+    [self loadData];
 }
 
 // adds the tableview and searchbar
@@ -59,6 +74,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+    
+    [self setupPullToRefresh];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -104,6 +121,7 @@
         self.dataSource = self.buildings;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         });
     });
     dispatch_release(queue);
@@ -164,6 +182,7 @@
     if([searchText isEqualToString:@""]) {
         self.dataSource = self.buildings;
         [self.tableView reloadData];
+        [self.searchBar performSelector:@selector(resignFirstResponder) withObject:nil afterDelay:0.4];
     }
 }
 
@@ -249,23 +268,23 @@
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     NSString* headerIdentifier = @"BuildingTableHeaderIdentifier";
-    NSInteger headerLabelTag = 1;
+    NSInteger headerLabelTag = 10;
     UITableViewHeaderFooterView* header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
     if (header == nil) {
         header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:headerIdentifier];
         header.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 30);
         header.contentView.backgroundColor = self.tableView.backgroundColor;
-        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 30)];
-        label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor whiteColor];
-        label.font = [UIFont boldSystemFontOfSize:16];
-        label.numberOfLines = 2;
-        label.adjustsFontSizeToFitWidth = YES;
-        label.minimumFontSize = 14;
-        header.tag = headerLabelTag;
-        [header addSubview:label];
+        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 30)];
+        headerLabel.textColor = [UIColor whiteColor];
+        headerLabel.font = [UIFont boldSystemFontOfSize:16];
+        headerLabel.numberOfLines = 2;
+        headerLabel.adjustsFontSizeToFitWidth = YES;
+        headerLabel.minimumFontSize = 14;
+        headerLabel.tag = headerLabelTag;
+        [header addSubview:headerLabel];
     }
     UILabel* label = (UILabel*)[header viewWithTag:headerLabelTag];
+    label.textColor = [UIColor whiteColor];
     NSString* sectionTitle = [[[[self.dataSource objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
     if([sectionTitle isEqualToString:@"1"]) {
         sectionTitle = @"123";

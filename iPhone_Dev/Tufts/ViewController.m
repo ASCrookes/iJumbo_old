@@ -184,7 +184,7 @@ const BOOL SHOW_NEW = NO;
     [transport setImage:[UIImage imageNamed:@"Bus.png"] forState:UIControlStateNormal];
     [transport addTarget:self action:@selector(getJoey:) forControlEvents:UIControlEventTouchUpInside];
     UIButton* events = [[UIButton alloc] initWithFrame:CGRectMake(20, 346, 109, 109)];
-    [events setImage:[UIImage imageNamed:@"event.png"] forState:UIControlStateNormal];
+    [events setImage:[UIImage imageNamed:@"events.png"] forState:UIControlStateNormal];
     [events addTarget:self action:@selector(getEvents:) forControlEvents:UIControlEventTouchUpInside];
     UIButton* links = [[UIButton alloc] initWithFrame:CGRectMake(194, 346, 109, 109)];
     [links setImage:[UIImage imageNamed:@"Webpage.png"] forState:UIControlStateNormal];
@@ -247,8 +247,6 @@ const BOOL SHOW_NEW = NO;
         _btvc = [[BuildingTableViewController alloc] init];
         _btvc.mapSelect = NO;
         _btvc.hasDetailedCells = YES;
-        [_btvc loadView];
-        [_btvc viewDidLoad];
         _btvc.tableView.backgroundColor = self.backgroundColor;
         _btvc.view.backgroundColor = self.backgroundColor;
     }
@@ -299,7 +297,7 @@ const BOOL SHOW_NEW = NO;
 - (UIColor*)backgroundColor
 {
     if(!_backgroundColor) {
-        _backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"background.png"]];
+        _backgroundColor = [StandardUtils backgroundColor];
     }
     return _backgroundColor;
 }
