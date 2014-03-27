@@ -68,7 +68,7 @@ const int TOMORROW_INDEX = 1;
     self.extraBar.barTintColor = [StandardUtils blueColor];
     UINavigationItem* navItem = [[UINavigationItem alloc] init];
     self.todayBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Today" style:UIBarButtonItemStylePlain target:self action:@selector(dateButtonAction:)];
-    self.todayBarButton.tintColor = [UIColor lightGrayColor];
+    self.todayBarButton.tintColor = [UIColor darkGrayColor];
     self.tomorrowBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Tomorrow" style:UIBarButtonItemStylePlain target:self action:@selector(dateButtonAction:)];
     navItem.leftBarButtonItem = self.todayBarButton;
     navItem.rightBarButtonItem = self.tomorrowBarButton;
@@ -134,11 +134,11 @@ const int TOMORROW_INDEX = 1;
 - (void)dateButtonAction:(UIBarButtonItem*)sender
 {
     if([sender.title isEqualToString:@"Tomorrow"]) {
-        [self.tomorrowBarButton setTintColor:[UIColor lightGrayColor]];
+        [self.tomorrowBarButton setTintColor:[UIColor darkGrayColor]];
         [self.todayBarButton setTintColor:[UIColor whiteColor]];
     } else {
         [self.tomorrowBarButton setTintColor:[UIColor whiteColor]];
-        [self.todayBarButton setTintColor:[UIColor lightGrayColor]];
+        [self.todayBarButton setTintColor:[UIColor darkGrayColor]];
     }
     [self setDataSourceFromMaster];
 }
@@ -174,7 +174,7 @@ const int TOMORROW_INDEX = 1;
         [self loadData];
     }
     int segIndex = ((UISegmentedControl*)self.navigationItem.titleView).selectedSegmentIndex;
-    int dayIndex = ([[self.todayBarButton tintColor] isEqual:[UIColor lightGrayColor]]) ? TODAY_INDEX : TOMORROW_INDEX;
+    int dayIndex = ([[self.todayBarButton tintColor] isEqual:[UIColor darkGrayColor]]) ? TODAY_INDEX : TOMORROW_INDEX;
     NSString* mealKey = (segIndex == 0) ? @"Breakfast" : (segIndex == 1) ? @"Lunch" : @"Dinner";
     NSString* hallName = self.navigationItem.rightBarButtonItem.title;
     if(!hallName) {
@@ -209,7 +209,6 @@ const int TOMORROW_INDEX = 1;
     if (!self.refreshControl.isRefreshing)
         self.loadingView.hidden = NO;
     //self.noFood.hidden = YES;
-    self.dataSource = [NSArray array];
     [self.tableView reloadData];
     // Load data in a background queue
     dispatch_queue_t queue = dispatch_queue_create("Menu.Table.Load", nil);
@@ -217,7 +216,6 @@ const int TOMORROW_INDEX = 1;
         [self parseData];
         [self loadFoodSet];
     });
-    dispatch_release(queue);
 }
 
 - (void)parseData
@@ -304,14 +302,6 @@ const int TOMORROW_INDEX = 1;
     cell.textLabel.text = cellText;
     cell.textLabel.textColor = textColor;
     return cell;
-}
-
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if(section == 0) {
-        return @"";
-    }
-    return [[self.dataSource objectAtIndex:section - 1] objectForKey:@"SectionName"];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -446,7 +436,7 @@ const int TOMORROW_INDEX = 1;
         UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, HEIGHT_OF_HELPER_VIEWS_IN_MEALS)];
         label.text = @"LOADING";
         label.textColor = [UIColor whiteColor];
-        label.textAlignment = UITextAlignmentRight;
+        label.textAlignment = NSTextAlignmentRight;
         label.backgroundColor = [UIColor clearColor];
         [_loadingView addSubview:label];
         UIActivityIndicatorView* activiyIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(180, 0, 40, HEIGHT_OF_HELPER_VIEWS_IN_MEALS)];
@@ -466,7 +456,7 @@ const int TOMORROW_INDEX = 1;
         UILabel* label = [[UILabel alloc] initWithFrame:_noFood.frame];
         label.text = @"Meal Not Available";
         label.textColor = [UIColor whiteColor];
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor clearColor];
         //[_noFood addSubview:label];
         [self.tableView addSubview:_noFood];
@@ -494,7 +484,6 @@ const int TOMORROW_INDEX = 1;
             self.diningHallInfo = diningInfo;
             [data writeToURL:localURL atomically:YES];
         });
-        dispatch_release(queue);
     }
     return _diningHallInfo;
 }

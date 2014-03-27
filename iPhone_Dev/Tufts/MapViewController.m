@@ -137,7 +137,6 @@
                                withObject:data
                             waitUntilDone:YES];
     });
-    dispatch_release(queue);
 }
 
 // Parse the data from the given json data

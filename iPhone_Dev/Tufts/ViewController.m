@@ -171,6 +171,7 @@ const BOOL SHOW_NEW = NO;
 }
 
 - (void)addMainButtons {
+    /*
     UIButton* news = [[UIButton alloc] initWithFrame:CGRectMake(20, 72, 109, 108)];
     [news setImage:[UIImage imageNamed:@"news.png"] forState:UIControlStateNormal];
     [news addTarget:self action:@selector(getNews:) forControlEvents:UIControlEventTouchUpInside];
@@ -196,6 +197,7 @@ const BOOL SHOW_NEW = NO;
     [self.view addSubview:transport];
     [self.view addSubview:events];
     [self.view addSubview:links];
+     */
 }
 
 //*********************************************************

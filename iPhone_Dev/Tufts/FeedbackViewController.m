@@ -67,7 +67,6 @@
             [self dismissModalViewControllerAnimated:YES];
         });
     });
-    dispatch_release(queue);
 }
 
 

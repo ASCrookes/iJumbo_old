@@ -146,7 +146,6 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
             [self.tableView reloadData];
         });
     });
-    dispatch_release(queue);
 }
 
 - (void)showActivityIndicator {

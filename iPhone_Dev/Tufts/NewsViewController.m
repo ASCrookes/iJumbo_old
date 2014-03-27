@@ -109,7 +109,6 @@ enum NewsSegment {
     dispatch_async(queue, ^{
         [self parseXMLFileAtCurrentURL];
     });
-    dispatch_release(queue);
 }
 
 - (void)setLoadingUI

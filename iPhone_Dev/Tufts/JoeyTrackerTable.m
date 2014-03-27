@@ -61,9 +61,7 @@
     dispatch_async(queue, ^{
         NSData *data = [NSData dataWithContentsOfURL:url];
         [self parseData:data];
-    });
-    dispatch_release(queue);
-    
+    });    
 }
 
 - (void)parseData:(NSData *)responseData
@@ -84,10 +82,10 @@
         self.navigationItem.rightBarButtonItem = self.reload;
         [self.tableView reloadData];
         [self stopLoadingUI];
-        if (self.joeyInfo.count == 0 & self.navigationController.visibleViewController == self) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Joey Tracker is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+//        if (self.joeyInfo.count == 0 & self.navigationController.visibleViewController == self) {
+//            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Joey Tracker is not available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//        }
     });
 }
 

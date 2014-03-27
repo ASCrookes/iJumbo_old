@@ -124,7 +124,6 @@
             [self.refreshControl endRefreshing];
         });
     });
-    dispatch_release(queue);
 }
 
 //*********************************************************
@@ -246,15 +245,6 @@
     [bvc setBuilding:[[self.dataSource objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
     bvc.view.backgroundColor = self.view.backgroundColor;
     [self.navigationController pushViewController:bvc animated:YES];
-}
-
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString* sectionTitle = [[[[self.dataSource objectAtIndex:section] objectAtIndex:0] objectForKey:@"building_name"] substringToIndex:1];
-    if([sectionTitle isEqualToString:@"1"]) {
-        sectionTitle = @"123";
-    }
-    return sectionTitle;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

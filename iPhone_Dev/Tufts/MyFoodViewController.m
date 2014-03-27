@@ -75,7 +75,6 @@
                 [self.tableView reloadData];
             });
         });
-        dispatch_release(queue);
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
     } else {
         self.dataSource = self.allFood;
@@ -187,7 +186,6 @@
             [self.tableView reloadData];
         });
     });
-    dispatch_release(queue);
 }
 
 + (NSData*)allFoodStoredData

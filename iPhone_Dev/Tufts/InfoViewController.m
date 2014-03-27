@@ -47,17 +47,20 @@
         UIViewController* aboutTufts = [StandardUtils viewControllerFromStoryboardWithIdentifier:@"About Tufts"];
         aboutTufts.view.backgroundColor = self.tableView.backgroundColor;
         UINavigationController* aboutTuftsNavcon = [self navconWithRootViewController:aboutTufts BackButtonTitle:@"Back"];
+        [aboutTufts.navigationController.navigationBar setBarTintColor:[StandardUtils blueColor]];
         [self presentModalViewController:aboutTuftsNavcon animated:YES];
     } else if(indexPath.section == 4) {
         FeedbackViewController* feedbackView = (FeedbackViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Feedback Input View"];
         feedbackView.view.backgroundColor = self.view.backgroundColor;
         feedbackView.title = @"Feedback";
         UINavigationController* navcon = [self navconWithRootViewController:feedbackView BackButtonTitle:@"Cancel"];
+        [navcon.navigationController.navigationBar setBarTintColor:[StandardUtils blueColor]];
         [self presentModalViewController:navcon animated:YES];
     } else if(indexPath.section == 6) {
         SourcesViewController* sourceVC = (SourcesViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Sources View Controller"];
         sourceVC.view.backgroundColor = self.tableView.backgroundColor;
         UINavigationController* navcon = [self navconWithRootViewController:sourceVC BackButtonTitle:@"Back"];
+        [navcon.navigationController.navigationBar setBarTintColor:[StandardUtils blueColor]];
         [self presentModalViewController:navcon animated:YES];
     }
 }
