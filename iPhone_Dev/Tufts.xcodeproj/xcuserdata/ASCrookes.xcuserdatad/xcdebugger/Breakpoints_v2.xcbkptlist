@@ -16,16 +16,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NetworkManager.m"
-            timestampString = "416729256.412716"
+            filePath = "Tufts/NewsViewController.m"
+            timestampString = "417634145.469516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-imageFromUrl:"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-parserDidEndDocument:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,29 +35,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NetworkManager.m"
-            timestampString = "416729256.93437"
+            filePath = "Tufts/NewsViewController.m"
+            timestampString = "417634147.730975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "-imageFromUrl:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NetworkManager.m"
-            timestampString = "416729416.220633"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-imageFromUrl:"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "-parserDidStartDocument:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

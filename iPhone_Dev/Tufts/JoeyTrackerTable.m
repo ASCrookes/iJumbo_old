@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 @interface JoeyTrackerTable ()
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
 @end
 
 @implementation JoeyTrackerTable
@@ -37,6 +38,11 @@
     [super viewDidLoad];
     self.title = @"Transportation";
     self.navigationItem.rightBarButtonItem = self.reload;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
+    
     [self loadData];
 }
 
@@ -54,6 +60,7 @@
     [activityView startAnimating];
     UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
     self.navigationItem.rightBarButtonItem = loadingView;
+    [self.refreshControl beginRefreshing];
     NSURL *url = [NSURL URLWithString:@"http://ijumboapp.com/api/json/joey"];
     
     // Set up a concurrent queue
@@ -92,6 +99,7 @@
 // Stops the UI that is setup when the data is loading
 - (void)stopLoadingUI {
     self.navigationItem.rightBarButtonItem = self.reload;
+    [self.refreshControl endRefreshing];
 }
 
 //*********************************************************

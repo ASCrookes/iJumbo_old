@@ -13,7 +13,7 @@ const int SECONDS_IN_DAY = 86400;
 const int HEIGHT_OF_HELPER_VIEWS = 186;
 
 @interface EventTableViewController ()
-
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
 @end
 
 @implementation EventTableViewController
@@ -70,6 +70,11 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
     self.nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"forward arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonAction:)];
     self.previousButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonAction:)];
     
@@ -120,12 +125,12 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
 //*********************************************************
 //*********************************************************
 
-- (void)loadData
-{
+- (void)loadData {
     self.dataSource = [NSDictionary dictionary];
     self.events = [NSMutableArray array];
     //[self.tableView reloadData];
     [self showActivityIndicator];
+    [self.refreshControl beginRefreshing];
     dispatch_queue_t queue = dispatch_queue_create("Event.Table.Load", NULL);
     dispatch_async(queue, ^{
         NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.tuftslife.com/events.json"]];
@@ -139,9 +144,11 @@ const int HEIGHT_OF_HELPER_VIEWS = 186;
         NSError* error;
         self.lastDownload = [NSDate date];
         self.dataSource = [NSJSONSerialization JSONObjectWithData:data
-                                                          options:0 error:&error];
+                                                          options:0
+                                                            error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.dayBar.topItem.titleView = nil;
+            [self.refreshControl endRefreshing];
             [self changeDateToDate:self.date];
             [self.tableView reloadData];
         });

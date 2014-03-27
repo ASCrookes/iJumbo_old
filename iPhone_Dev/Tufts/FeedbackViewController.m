@@ -29,15 +29,6 @@
     return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
-- (void)viewDidUnload
-{
-    [self setFeedbackInputField:nil];
-    [self setEmailField:nil];
-    [self setEmailField:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
 - (IBAction)sendAction:(id)sender 
 {
     ASIFormDataRequest* request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"http://ijumboapp.com/api/feedback"]];

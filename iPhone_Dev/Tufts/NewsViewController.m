@@ -18,11 +18,12 @@ enum NewsSegment {
 };
 
 @interface NewsViewController ()
-
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
 @end
 
 @implementation NewsViewController
 
+@synthesize refreshControl = _refreshControl;
 @synthesize stories = _stories;
 @synthesize rssParser = _rssParser;
 @synthesize currentStory = _currentStory;
@@ -60,6 +61,12 @@ enum NewsSegment {
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.tintColor = [UIColor darkGrayColor];
+    [self.tableView addSubview:self.refreshControl];
+    
     self.navigationItem.rightBarButtonItem = self.section;
     /* UNCOMMENT
      self.navigationItem.titleView = self.newsSegment;
@@ -98,14 +105,16 @@ enum NewsSegment {
 - (void)loadData {
     self.isLoading = YES;
     NSArray* storyToLoad = [self.storiesByType objectForKey:[self getKeyFromUI]];
-    if (storyToLoad) {
+    if (storyToLoad && !self.refreshControl.refreshing) {
         self.dataSource = storyToLoad;
+        [self.refreshControl endRefreshing];
         [self.tableView reloadData];
-         return;
+        return;
     }
+    
     [self setLoadingUI];
     [self.rssParser abortParsing];
-    dispatch_queue_t queue = dispatch_queue_create("load.news.data", nil);
+    dispatch_queue_t queue = dispatch_queue_create("News.Load.Data", nil);
     dispatch_async(queue, ^{
         [self parseXMLFileAtCurrentURL];
     });
@@ -119,6 +128,11 @@ enum NewsSegment {
     [activityView startAnimating];
     UIBarButtonItem *loadingView = [[UIBarButtonItem alloc] initWithCustomView:activityView];
     self.navigationItem.rightBarButtonItem = loadingView;
+    
+    if (!self.refreshControl.refreshing) {
+        [self.refreshControl beginRefreshing];
+    }
+    
     /* UNCOMMENT self.navigationItem.titleView = nil; */
 }
 
@@ -283,6 +297,7 @@ enum NewsSegment {
         /* UNCOMMENT self.navigationItem.titleView = self.newsSegment; */
         self.navigationItem.rightBarButtonItem = self.section;
         self.navigationItem.title = @"News";
+        [self.refreshControl endRefreshing];
     });
 }
 

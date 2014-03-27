@@ -63,13 +63,15 @@
     dispatch_async(queue, ^{
         NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://ijumboapp.com/api/json/links"]];
         NSError* error;
-        self.links = [NSJSONSerialization JSONObjectWithData:data
-                                                     options:0
-                                                       error:&error];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.navigationItem.rightBarButtonItem = nil;
-            [self.tableView reloadData];
-        });
+        if (data) {
+            self.links = [NSJSONSerialization JSONObjectWithData:data
+                                                         options:0
+                                                           error:&error];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationItem.rightBarButtonItem = nil;
+                [self.tableView reloadData];
+            });
+        }
     });
 }
 

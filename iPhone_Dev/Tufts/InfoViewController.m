@@ -46,33 +46,27 @@
     if (indexPath.section == 2) {
         UIViewController* aboutTufts = [StandardUtils viewControllerFromStoryboardWithIdentifier:@"About Tufts"];
         aboutTufts.view.backgroundColor = self.tableView.backgroundColor;
-        UINavigationController* aboutTuftsNavcon = [self navconWithRootViewController:aboutTufts BackButtonTitle:@"Back"];
-        [aboutTufts.navigationController.navigationBar setBarTintColor:[StandardUtils blueColor]];
-        [self presentModalViewController:aboutTuftsNavcon animated:YES];
+        [self.navigationController pushViewController:aboutTufts animated:YES];
     } else if(indexPath.section == 4) {
         FeedbackViewController* feedbackView = (FeedbackViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Feedback Input View"];
         feedbackView.view.backgroundColor = self.view.backgroundColor;
         feedbackView.title = @"Feedback";
-        UINavigationController* navcon = [self navconWithRootViewController:feedbackView BackButtonTitle:@"Cancel"];
-        [navcon.navigationController.navigationBar setBarTintColor:[StandardUtils blueColor]];
-        [self presentModalViewController:navcon animated:YES];
+        [self.navigationController pushViewController:feedbackView animated:YES];
     } else if(indexPath.section == 6) {
         SourcesViewController* sourceVC = (SourcesViewController*)[StandardUtils viewControllerFromStoryboardWithIdentifier:@"Sources View Controller"];
         sourceVC.view.backgroundColor = self.tableView.backgroundColor;
-        UINavigationController* navcon = [self navconWithRootViewController:sourceVC BackButtonTitle:@"Back"];
-        [navcon.navigationController.navigationBar setBarTintColor:[StandardUtils blueColor]];
-        [self presentModalViewController:navcon animated:YES];
+        [self.navigationController pushViewController:sourceVC animated:YES];// presentModalViewController:navcon animated:YES];
     }
 }
 
 - (UINavigationController*)navconWithRootViewController:(UIViewController*)vc BackButtonTitle:(NSString*)backTitle
 {
     UINavigationController* navcon = [[UINavigationController alloc] initWithRootViewController:vc];
-    navcon.navigationBar.tintColor = [UIColor blackColor];
     navcon.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithTitle:backTitle style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
     vc.navigationItem.leftBarButtonItem = barButton;
     navcon.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [navcon.navigationBar setBarTintColor:[StandardUtils blueColor]];
     
     return navcon;
 }

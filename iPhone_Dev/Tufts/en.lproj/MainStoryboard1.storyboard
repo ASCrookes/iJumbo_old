@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ljJ-Xt-EhC">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
@@ -14,22 +14,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="roundedTextView.png" id="bIj-cq-dh5">
-                                <rect key="frame" x="20" y="97" width="280" height="163"/>
+                                <rect key="frame" x="20" y="49" width="280" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="roundedTextView.png" id="YTf-6r-Gd3">
-                                <rect key="frame" x="20" y="297" width="280" height="163"/>
+                                <rect key="frame" x="20" y="249" width="280" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Founding:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="c7l-bJ-sFO">
-                                <rect key="frame" x="20" y="68" width="77" height="21"/>
+                                <rect key="frame" x="20" y="20" width="77" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="bhd-x7-XTa">
-                                <rect key="frame" x="20" y="97" width="280" height="163"/>
+                                <rect key="frame" x="20" y="49" width="280" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">In the 1840s, the Universalist Church wanted to open a college in New England. Boston businessman Charles Tufts gave the church a gift of 20 acres of land, valued at $20,000, on the condition it be used for establishing a college. With that, the location was decided. Tufts' land, which he inherited, was located on one of the highest hills in the Boston area, Walnut Hill, straddling Medford and Somerville.</string>
@@ -37,14 +37,14 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Vision Statement:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="5Ts-Ue-qt7">
-                                <rect key="frame" x="20" y="268" width="134" height="21"/>
+                                <rect key="frame" x="20" y="220" width="134" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="oU2-z7-GMA">
-                                <rect key="frame" x="20" y="297" width="280" height="163"/>
+                                <rect key="frame" x="20" y="249" width="280" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">As we shape our future, quality will be the pole star that guides us. We will seek quality in our teaching and research and in the services that support our academic enterprise. Our programs will be those that meet our own high standards, that augment each other, and that are worthy of the respect of our students and of scholars, educators, and the larger community. For students, our search for quality will mean opportunities both in and beyond the classroom to become well-educated, well-rounded individuals, professionals, and scholars. For faculty and staff, it will mean opportunities to realize their talents in the service of Tufts' goals. Fulfilling our vision of quality will mean choices. No university can do everything for everyone, and we will seek to do those things in which we can excel. Nor is quality static, and we will therefore welcome change and innovation, continually improving quality in every aspect of the University.</string>
@@ -389,22 +389,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="roundedTextView.png" id="NLj-UC-mbi">
-                                <rect key="frame" x="11" y="109" width="298" height="120"/>
+                                <rect key="frame" x="11" y="60" width="298" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="FlG-0R-k2H">
-                                <rect key="frame" x="11" y="109" width="298" height="120"/>
+                                <rect key="frame" x="11" y="60" width="298" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="feedback_email.png" id="4XK-gu-DwX">
-                                <rect key="frame" x="11" y="69" width="298" height="30"/>
+                                <rect key="frame" x="11" y="20" width="298" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" id="rnb-s2-NcW">
-                                <rect key="frame" x="20" y="69" width="280" height="30"/>
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
